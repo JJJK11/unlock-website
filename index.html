@@ -3,40 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Insights — Unlock Solutions</title>
-    <meta name="description" content="Insights and perspectives on enterprise transformation, intelligent automation, platform modernization, and governance from Unlock Solutions.">
-    <link rel="icon" type="image/png" href="../unlock_favicon.png">
+    <title>Unlock Solutions — Enterprise Systems & Intelligent Operations</title>
+    <meta name="description" content="We lead enterprise transformation programs end to end — operating model redesign, platform modernization, governance, intelligent automation, and measurable performance outcomes.">
+    <link rel="icon" type="image/png" href="unlock_favicon.png">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23f5c800'/%3E%3Crect x='16' y='32' width='24' height='18' rx='3.5' stroke='%231a5bba' stroke-width='3.5' fill='none'/%3E%3Cpath d='M22 32v-7a8 8 0 0 1 16 0' stroke='%231a5bba' stroke-width='3.5' stroke-linecap='round' fill='none'/%3E%3Ccircle cx='28' cy='40' r='2' fill='%231a5bba'/%3E%3Crect x='27' y='40' width='2' height='4' rx='1' fill='%231a5bba'/%3E%3C/svg%3E">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&family=Manrope:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
         :root {
-            --bg: #FFFFFF; --surface: #FFFFFF;
-            --ink: #0A1628; --ink-2: #1E2D45; --ink-3: #5A6A80; --ink-4: #8B99AD; --ink-5: #C2CBd6;
-            --rule: #E2E8F0; --warm: #F0F5FF;
-            --blue: #1a5bba; --blue-d: #0d2d6b; --blue-dd: #071a42; --blue-l: #2D6FD4; --blue-xl: #EBF2FF;
-            --gold: #f5c800; --gold-l: #FFD740; --gold-d: #D4A800;
+            --bg: #FFFFFF;
+            --surface: #FFFFFF;
+            --ink: #0A1628;
+            --ink-2: #1E2D45;
+            --ink-3: #5A6A80;
+            --ink-4: #8B99AD;
+            --ink-5: #C2CBd6;
+            --rule: #E2E8F0;
+            --warm: #F0F5FF;
+            --blue: #1a5bba;
+            --blue-d: #0d2d6b;
+            --blue-dd: #071a42;
+            --blue-l: #2D6FD4;
+            --blue-xl: #EBF2FF;
+            --gold: #f5c800;
+            --gold-l: #FFD740;
+            --gold-d: #D4A800;
+            --accent: #1a5bba;
+            --accent-l: #2D6FD4;
+            --signal: #D4922E;
+            --signal-l: #E5A840;
             --serif: 'Newsreader', Georgia, serif;
             --sans: 'Manrope', system-ui, sans-serif;
             --mono: 'JetBrains Mono', monospace;
             --ease: cubic-bezier(0.22, 1, 0.36, 1);
         }
+
         html { scroll-behavior: smooth; }
         body { font-family: var(--sans); background: var(--bg); color: var(--ink); font-size: 16px; -webkit-font-smoothing: antialiased; line-height: 1.6; overflow-x: hidden; }
         ::selection { background: var(--blue); color: #FFFFFF; }
         a { color: inherit; text-decoration: none; }
         .w { max-width: 1300px; margin: 0 auto; padding: 0 clamp(1.5rem, 5vw, 5rem); }
 
-        /* Header */
+        /* ══════════════ HEADER ══════════════ */
         header {
             position: fixed; top: 0; left: 0; right: 0; z-index: 200;
             background: rgba(7,26,66,0.85); backdrop-filter: blur(24px) saturate(1.4);
             -webkit-backdrop-filter: blur(24px) saturate(1.4);
             border-bottom: 1px solid rgba(245,200,0,0.1);
         }
-        header .w { display: flex; justify-content: space-between; align-items: center; height: 64px; }
+        header .w { display: flex; justify-content: space-between; align-items: center; height: 64px; border-bottom: none; }
         .logo { display: flex; flex-direction: column; align-items: center; line-height: 1; text-decoration: none; }
         .logo-top { display: flex; align-items: center; font-family: var(--sans); font-weight: 800; font-size: 1.5rem; color: #FFFFFF; letter-spacing: -0.01em; }
         .logo-lock { display: inline-flex; align-items: center; justify-content: center; width: 0.95em; height: 0.95em; background: var(--gold); border-radius: 50%; margin: 0 0.01em; position: relative; top: 0.02em; }
@@ -46,113 +64,2050 @@
         .hn a { font-size: 0.78rem; font-weight: 500; color: rgba(255,255,255,0.6); padding: 0.4rem 0.7rem; letter-spacing: 0.015em; transition: color 0.25s; }
         .hn a:hover { color: #FFFFFF; }
         .hn-cta { color: var(--blue-dd) !important; background: var(--gold) !important; padding: 0.45rem 1.3rem !important; border-radius: 100px !important; font-weight: 700 !important; font-size: 0.75rem !important; letter-spacing: 0.03em !important; transition: all 0.25s var(--ease) !important; }
-        .hn-cta:hover { background: var(--gold-l) !important; transform: translateY(-1px) !important; }
+        .hn-cta:hover { background: var(--gold-l) !important; transform: translateY(-1px) !important; box-shadow: 0 4px 12px rgba(245,200,0,0.3) !important; }
         .mt { display: none; background: none; border: none; color: #FFFFFF; cursor: pointer; padding: 6px; }
-        .mn { position: fixed; top: 64px; left: 0; right: 0; background: var(--blue-dd); z-index: 199; display: flex; flex-direction: column; max-height: 0; overflow: hidden; transition: max-height 0.4s var(--ease); }
-        .mn.open { max-height: 400px; }
-        .mn a { font-size: 0.88rem; color: rgba(255,255,255,0.6); font-weight: 500; padding: 0.65rem clamp(1.5rem, 5vw, 5rem); transition: color 0.2s, background 0.2s; }
-        .mn a:hover { color: #FFFFFF; background: rgba(255,255,255,0.03); }
+        .mn { display: none; position: fixed; top: 64px; left: 0; right: 0; background: var(--blue-dd); border-bottom: 1px solid rgba(245,200,0,0.1); z-index: 199; padding: 0.5rem 0; }
+        .mn.open { display: block; }
+        .mn a { display: block; padding: 0.65rem clamp(1.5rem, 5vw, 5rem); font-size: 0.88rem; color: rgba(255,255,255,0.6); font-weight: 500; }
+        .mn a:hover { color: var(--gold); }
 
-        /* Page hero */
-        .blog-hero {
-            padding: 8rem 0 3rem;
-            background: linear-gradient(160deg, var(--blue-dd) 0%, var(--blue-d) 100%);
-            border-bottom: 2px solid var(--gold);
+        /* ══════════════ HERO ══════════════ */
+        .hero {
+            min-height: 100vh; display: flex; flex-direction: column;
+            justify-content: center; position: relative;
+            padding: 7rem 0 0;
+            background: linear-gradient(135deg, var(--blue-dd) 0%, var(--blue-d) 40%, var(--blue) 100%);
+            color: #FFFFFF;
+            overflow: hidden;
         }
-        .blog-hero .sec-tag { font-family: var(--mono); font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.16em; color: var(--gold); margin-bottom: 1rem; }
-        .blog-hero h1 { font-family: var(--serif); font-size: clamp(2rem, 4vw, 3rem); font-weight: 400; color: #fff; line-height: 1.2; margin-bottom: 0.75rem; }
-        .blog-hero p { font-size: 1rem; color: rgba(255,255,255,0.7); max-width: 600px; }
 
-        /* Blog grid */
-        .blog-section { padding: 4rem 0 6rem; }
-        .blog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 2rem; }
-        .blog-card {
-            border: 1px solid var(--rule); background: var(--surface);
+        .hero::before {
+            content: ''; position: absolute; inset: 0;
+            background:
+                radial-gradient(ellipse 80% 60% at 70% 20%, rgba(245,200,0,0.08) 0%, transparent 60%),
+                radial-gradient(ellipse 60% 50% at 20% 80%, rgba(26,91,186,0.15) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-shapes {
+            position: absolute; inset: 0; pointer-events: none; overflow: hidden; z-index: 1;
+        }
+        .hero-shape {
+            position: absolute; border-radius: 50%; opacity: 0.06;
+        }
+        .hero-shape:nth-child(1) {
+            width: 600px; height: 600px; right: -150px; top: -100px;
+            border: 2px solid var(--gold);
+            animation: float1 20s ease-in-out infinite;
+        }
+        .hero-shape:nth-child(2) {
+            width: 400px; height: 400px; left: -100px; bottom: -50px;
+            background: var(--gold);
+            animation: float2 25s ease-in-out infinite;
+        }
+        .hero-shape:nth-child(3) {
+            width: 200px; height: 200px; right: 20%; top: 60%;
+            border: 1.5px solid rgba(255,255,255,0.3);
+            animation: float3 18s ease-in-out infinite;
+        }
+        .hero-shape:nth-child(4) {
+            width: 80px; height: 80px; left: 15%; top: 20%;
+            background: var(--gold);
+            animation: float1 22s ease-in-out infinite reverse;
+        }
+        @keyframes float1 { 0%,100% { transform: translate(0,0) rotate(0deg); } 50% { transform: translate(-30px,20px) rotate(5deg); } }
+        @keyframes float2 { 0%,100% { transform: translate(0,0); } 50% { transform: translate(20px,-30px); } }
+        @keyframes float3 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(15px,15px) scale(1.05); } }
+
+        .hero-content { position: relative; z-index: 2; }
+
+        .hero-ey {
+            font-family: var(--mono); font-size: 0.65rem; font-weight: 500;
+            text-transform: uppercase; letter-spacing: 0.2em; color: var(--gold);
+            margin-bottom: 2.5rem;
+            display: flex; align-items: center; gap: 1rem;
+        }
+        .hero-ey::before { content: ''; width: 40px; height: 1px; background: var(--gold); }
+
+        .hero h1 {
+            font-family: var(--serif); font-weight: 400;
+            font-size: clamp(3.25rem, 7vw, 6rem);
+            line-height: 1.02; letter-spacing: -0.025em;
+            max-width: 950px; margin-bottom: 3rem;
+            color: #FFFFFF;
+        }
+
+        .hero h1 i { font-style: italic; color: var(--gold); }
+
+        .hero-lower {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+            align-items: end; padding-bottom: clamp(4rem, 8vh, 7rem);
+        }
+
+        .hero-desc {
+            font-size: 1.05rem; color: rgba(255,255,255,0.7); line-height: 1.8;
+            max-width: 480px;
+        }
+
+        .hero-acts { display: flex; gap: 1.5rem; align-items: center; justify-content: flex-end; }
+
+        .btn-k {
+            display: inline-flex; align-items: center; gap: 0.6rem;
+            padding: 1rem 2.25rem; background: var(--gold); color: var(--blue-dd);
+            font-weight: 700; font-size: 0.82rem; border: none; cursor: pointer;
+            letter-spacing: 0.03em; transition: all 0.3s var(--ease);
+            position: relative; overflow: hidden;
+        }
+        .btn-k::after { content: ''; position: absolute; inset: 0; background: rgba(255,255,255,0.15); transform: translateX(-101%); transition: transform 0.4s var(--ease); }
+        .btn-k:hover::after { transform: translateX(0); }
+        .btn-k svg { width: 14px; height: 14px; transition: transform 0.3s var(--ease); }
+        .btn-k:hover svg { transform: translateX(3px); }
+
+        .btn-u {
+            font-size: 0.82rem; font-weight: 600; color: rgba(255,255,255,0.7);
+            border-bottom: 1.5px solid rgba(255,255,255,0.3); padding-bottom: 0.2rem;
+            transition: color 0.2s, border-color 0.2s;
+        }
+        .btn-u:hover { color: #FFFFFF; border-color: var(--gold); }
+
+        /* Non-hero buttons */
+        .sec .btn-k { background: var(--blue); color: #FFFFFF; }
+        .sec .btn-k:hover { background: var(--blue-l); }
+        .sec .btn-u { color: var(--blue); border-bottom-color: var(--blue); }
+        .sec .btn-u:hover { color: var(--blue-d); border-bottom-color: var(--gold); }
+
+        .hero-rule {
+            width: 100%; height: 3px;
+            background: linear-gradient(90deg, var(--gold), var(--blue-l), var(--gold));
+            position: relative;
+        }
+
+        /* ══════════════ DISCIPLINE RIBBON ══════════════ */
+        .ribbon { background: var(--blue-dd); color: var(--surface); overflow: hidden; border-top: 2px solid var(--gold); border-bottom: 2px solid var(--gold); }
+        .ribbon-track {
+            display: flex; animation: scroll 25s linear infinite;
+            white-space: nowrap;
+        }
+        .ribbon-item {
+            flex-shrink: 0; padding: 1rem 3rem;
+            font-family: var(--mono); font-size: 0.68rem;
+            letter-spacing: 0.12em; text-transform: uppercase;
+            color: rgba(255,255,255,0.6);
+            display: flex; align-items: center; gap: 1.5rem;
+        }
+        .ribbon-item::after { content: ''; min-width: 18px; min-height: 18px; width: 18px; height: 18px; background: #f5c800; border-radius: 50%; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 26' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='3' y='12' width='16' height='12' rx='2.5' stroke='%231a5bba' stroke-width='2'/%3E%3Cpath d='M7 12V8a5 5 0 0 1 10 0' stroke='%231a5bba' stroke-width='2' stroke-linecap='round'/%3E%3Ccircle cx='11' cy='17.5' r='1.2' fill='%231a5bba'/%3E%3Crect x='10.4' y='17.5' width='1.2' height='2.5' rx='0.6' fill='%231a5bba'/%3E%3C/svg%3E"); background-size: 60%; background-repeat: no-repeat; background-position: center; flex-shrink: 0; align-self: center; }
+        .ribbon-item:nth-child(odd) { color: #f5c800; }
+        .ribbon-item:nth-child(even) { color: #4a9eff; }
+        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        /* ══════════════ SECTION UTILITY ══════════════ */
+        .sec { padding: clamp(5rem, 10vh, 9rem) 0; }
+        .sec-dark { background: linear-gradient(135deg, var(--blue-dd) 0%, var(--blue-d) 100%); color: var(--surface); }
+        .sec-warm { background: var(--warm); }
+
+        .sec-intro {
+            display: grid; grid-template-columns: 260px 1fr; gap: 2rem;
+            margin-bottom: clamp(3rem, 5vh, 5rem); align-items: start;
+        }
+
+        .sec-tag {
+            font-family: var(--mono); font-size: 0.6rem; font-weight: 500;
+            text-transform: uppercase; letter-spacing: 0.16em; color: var(--blue);
+            padding-top: 0.85rem;
+        }
+
+        .sec-dark .sec-tag { color: var(--gold); }
+
+        .sec-title {
+            font-family: var(--serif); font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+            font-weight: 400; line-height: 1.15; letter-spacing: -0.015em;
+            margin-bottom: 0.75rem;
+        }
+
+        .sec-lead {
+            font-size: 0.95rem; color: var(--ink-2); line-height: 1.75; max-width: 540px;
+        }
+        .sec-dark .sec-lead { color: rgba(255,255,255,0.7); }
+
+        /* ══════════════ CAPABILITIES — ACCORDION ══════════════ */
+        .acc { border-top: 2px solid var(--blue); }
+
+        .acc-item { border-bottom: 1px solid var(--rule); overflow: hidden; transition: all 0.4s var(--ease); border-left: 3px solid transparent; }
+        .acc-item:hover { background: var(--blue-xl); }
+        .acc-item.active { background: rgba(245, 200, 0, 0.05); border-left-color: var(--gold); }
+
+        .acc-head {
+            display: grid; grid-template-columns: 60px 280px 1fr 40px;
+            align-items: center; gap: 1rem; padding: 1.75rem 0;
+            cursor: pointer; user-select: none;
+            transition: padding 0.4s var(--ease);
+        }
+
+        .acc-item.active .acc-head { padding-bottom: 1rem; }
+
+        .acc-num {
+            font-family: var(--serif); font-size: 1.75rem; font-weight: 700;
+            color: var(--ink-5); transition: color 0.4s var(--ease);
+        }
+        .acc-item.active .acc-num { color: var(--blue); }
+        .acc-item:hover .acc-num { color: var(--gold); }
+
+        .acc-head h3 {
+            font-family: var(--serif); font-size: 1.2rem; font-weight: 400;
+            line-height: 1.3; transition: color 0.3s;
+        }
+        .acc-item.active .acc-head h3 { color: var(--blue); font-weight: 500; }
+        .acc-head:hover h3 { color: var(--ink-2); }
+
+        .acc-brief {
+            font-size: 0.82rem; color: var(--ink-4); line-height: 1.5;
+            transition: opacity 0.3s;
+        }
+        .acc-item.active .acc-brief { opacity: 0; }
+
+        .acc-arrow {
+            width: 32px; height: 32px; display: flex; align-items: center;
+            justify-content: center; transition: transform 0.4s var(--ease), background 0.3s;
+            border-radius: 50%;
+        }
+        .acc-arrow svg { width: 16px; height: 16px; color: var(--ink-4); transition: color 0.3s; }
+        .acc-item.active .acc-arrow { transform: rotate(180deg); background: var(--gold); }
+        .acc-item.active .acc-arrow svg { color: var(--blue-dd); }
+
+        .acc-body {
+            max-height: 0; overflow: hidden;
+            transition: max-height 0.6s var(--ease);
+        }
+        .acc-item.active .acc-body { max-height: 400px; }
+
+        .acc-content {
+            padding: 0 0 2rem; padding-left: 76px;
+            display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;
+        }
+
+        .acc-text {
+            font-size: 0.92rem; color: var(--ink-2); line-height: 1.8;
+        }
+
+        .acc-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; align-content: start; padding-top: 0.25rem; }
+        .acc-tag {
+            font-family: var(--mono); font-size: 0.62rem; color: var(--blue);
+            padding: 0.35rem 0.65rem; border: 1px solid rgba(26, 91, 186, 0.15);
+            letter-spacing: 0.02em; background: var(--blue-xl);
+            transition: all 0.3s var(--ease);
+        }
+        .acc-tag:hover { background: var(--gold); color: var(--blue-dd); border-color: var(--gold); transform: translateY(-1px); }
+
+        /* ══════════════ MATURITY — HORIZONTAL PROGRESSION ══════════════ */
+        .mat-wrap { position: relative; }
+
+        .mat-bar {
+            display: flex; height: 4px; background: var(--rule);
+            margin-bottom: 3rem; position: relative; overflow: hidden;
+        }
+
+        .mat-bar-fill {
+            position: absolute; left: 0; top: 0; bottom: 0;
+            background: linear-gradient(90deg, var(--blue), var(--gold));
+            width: 0; transition: width 1.2s var(--ease);
+        }
+
+        .mat-bar-fill.animate { width: 100%; }
+
+        .mat-stages {
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+        }
+
+        .mat-stage {
+            padding: 0 2rem 0 0; position: relative;
+            cursor: default;
+        }
+
+        .mat-stage::before {
+            content: ''; position: absolute; top: -3rem; left: 0;
+            width: 10px; height: 10px; border-radius: 50%;
+            background: var(--bg); border: 2px solid var(--ink-5);
+            transform: translateX(-1px) translateY(-3px);
+            transition: border-color 0.4s, background 0.4s;
+            z-index: 1;
+        }
+
+        .mat-stage:hover::before { border-color: var(--gold); background: var(--gold); box-shadow: 0 0 0 4px rgba(245,200,0,0.2); }
+
+        .mat-stage-n {
+            font-family: var(--mono); font-size: 0.58rem; font-weight: 600;
+            text-transform: uppercase; letter-spacing: 0.1em; color: var(--blue);
+            margin-bottom: 0.4rem;
+            background: var(--blue-xl); display: inline-block; padding: 0.2rem 0.5rem;
+        }
+
+        .mat-stage h4 {
+            font-family: var(--serif); font-size: 1.1rem; font-weight: 400;
+            margin-bottom: 0.875rem;
+        }
+
+        .mat-stage ul { list-style: none; }
+        .mat-stage li {
+            font-size: 0.78rem; color: var(--ink-2); line-height: 1.6;
+            padding: 0.15rem 0; padding-left: 0.875rem; position: relative;
+        }
+        .mat-stage li::before {
+            content: '—'; position: absolute; left: 0; color: var(--blue);
+            font-size: 0.65rem;
+        }
+
+        /* ══════════════ APPROACH — CONNECTED TIMELINE ══════════════ */
+        .tl { position: relative; }
+
+        .tl::before {
+            content: ''; position: absolute; left: 29px; top: 0; bottom: 0;
+            width: 2px; background: linear-gradient(180deg, var(--gold), var(--blue-l), var(--gold));
+        }
+
+        .tl-node {
+            display: grid; grid-template-columns: 60px 1fr; gap: 2rem;
+            padding: 0; position: relative; cursor: pointer;
+        }
+
+        .tl-node + .tl-node { border-top: 1px solid rgba(255,255,255,0.05); }
+
+        .tl-head {
+            display: grid; grid-template-columns: 60px 1fr; gap: 2rem;
+            padding: 2.25rem 0; cursor: pointer; user-select: none;
+        }
+
+        .tl-marker {
+            display: flex; flex-direction: column; align-items: center;
+            gap: 0; padding-top: 0.25rem;
+        }
+
+        .tl-dot {
+            width: 18px; height: 18px; border-radius: 50%;
+            border: 1.5px solid var(--blue-l);
+            background: var(--blue-dd); position: relative; z-index: 1;
+            display: flex; align-items: center; justify-content: center;
+            transition: border-color 0.4s, box-shadow 0.4s, background 0.4s;
+        }
+
+        .tl-dot-inner { width: 4px; height: 4px; border-radius: 50%; background: var(--blue-l); transition: background 0.4s; }
+        .tl-node.active .tl-dot { border-color: var(--gold); background: var(--gold); box-shadow: 0 0 0 6px rgba(245, 200, 0, 0.15); }
+        .tl-node.active .tl-dot-inner { background: var(--blue-dd); }
+        .tl-node:hover .tl-dot { border-color: var(--gold); box-shadow: 0 0 0 4px rgba(245, 200, 0, 0.1); }
+
+        .tl-num {
+            font-family: var(--mono); font-size: 0.55rem; color: rgba(255,255,255,0.4);
+            margin-top: 0.5rem; letter-spacing: 0.05em;
+            transition: color 0.3s;
+        }
+        .tl-node.active .tl-num { color: var(--gold); }
+
+        .tl-body h3 {
+            font-family: var(--serif); font-size: 1.25rem; font-weight: 400;
+            margin-bottom: 0; color: var(--surface);
+            transition: color 0.3s;
+        }
+        .tl-node.active .tl-body h3 { color: var(--gold); }
+
+        .tl-body p {
+            font-size: 0.88rem; color: rgba(255,255,255,0.65); line-height: 1.75;
+            max-width: 520px;
+            max-height: 0; overflow: hidden; margin: 0;
+            transition: max-height 0.5s var(--ease), margin 0.5s var(--ease);
+        }
+        .tl-node.active .tl-body p { max-height: 200px; margin-top: 0.4rem; }
+
+        /* ══════════════ DIAGNOSTIC ══════════════ */
+        .diag {
+            background: var(--surface); border: 1px solid var(--rule);
+            position: relative; overflow: hidden;
+            box-shadow: 0 8px 40px rgba(26,91,186,0.08);
+        }
+
+        .diag-chrome {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0.875rem 1.75rem; border-bottom: 1px solid rgba(26,91,186,0.1);
+            background: linear-gradient(90deg, var(--blue-dd), var(--blue-d));
+        }
+
+        .diag-dots { display: flex; gap: 6px; }
+        .diag-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.15); }
+        .diag-dot:first-child { background: var(--gold); }
+
+        .diag-title {
+            font-family: var(--mono); font-size: 0.65rem; font-weight: 500;
+            letter-spacing: 0.08em; color: rgba(255,255,255,0.7); text-transform: uppercase;
+        }
+
+        .diag-badge {
+            font-family: var(--mono); font-size: 0.58rem; font-weight: 600;
+            letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold);
+            background: rgba(245,200,0,0.12); padding: 0.25rem 0.6rem; border-radius: 100px;
+        }
+
+        .diag-body { padding: 2.5rem; }
+        .diag-body .btn-k { background: var(--gold); color: var(--blue-dd); }
+        .diag-body .btn-k:hover { background: var(--gold-l); }
+        .diag-form { display: grid; gap: 1.25rem; }
+        .diag-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+
+        .diag-f label {
+            display: block; font-family: var(--mono); font-size: 0.62rem;
+            font-weight: 500; color: var(--ink-4); margin-bottom: 0.4rem;
+            text-transform: uppercase; letter-spacing: 0.08em;
+        }
+
+        .diag-f input, .diag-f textarea, .diag-f select {
+            width: 100%; font-family: var(--sans); font-size: 0.88rem;
+            padding: 0.75rem 1rem; background: var(--bg); border: 1px solid var(--rule);
+            color: var(--ink); outline: none; transition: border-color 0.25s;
+        }
+        .diag-f input:focus, .diag-f textarea:focus, .diag-f select:focus { border-color: var(--blue); box-shadow: 0 0 0 2px rgba(26,91,186,0.1); }
+        .diag-f textarea { resize: vertical; min-height: 90px; }
+        .diag-f input::placeholder, .diag-f textarea::placeholder { color: var(--ink-5); }
+        .diag-f select { cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23A0A0A0' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; }
+
+        .diag-results { display: none; padding: 2.5rem; border-top: 1px solid var(--rule); }
+        .diag-results.show { display: block; }
+
+        .diag-sum { font-size: 0.92rem; color: var(--ink-2); line-height: 1.75; padding: 1.25rem 1.5rem; border-left: 3px solid var(--blue); background: var(--blue-xl); margin-bottom: 2rem; }
+
+
+        .diag-steps { border-top: 1px solid var(--rule); }
+
+        .diag-ld { display: none; padding: 4rem; text-align: center; }
+        .diag-ld.show { display: block; }
+        .diag-sp { width: 24px; height: 24px; border: 2.5px solid var(--rule); border-top-color: var(--blue); border-right-color: var(--gold); border-radius: 50%; animation: spin 0.7s linear infinite; margin: 0 auto 0.75rem; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* ── Workload progress bars ── */
+        .diag-dist-bars { display: grid; gap: 1.25rem; margin-bottom: 2rem; }
+        .diag-bar-row { display: grid; grid-template-columns: 90px 1fr 48px; align-items: center; gap: 1rem; }
+        .diag-bar-label { font-family: var(--mono); font-size: 0.65rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-3); }
+        .diag-bar-track { height: 28px; background: var(--warm); border: 1px solid var(--rule); position: relative; overflow: hidden; }
+        .diag-bar-fill { height: 100%; width: 0; transition: width 1.2s var(--ease); display: flex; align-items: center; }
+        .diag-bar-fill.ai { background: linear-gradient(90deg, var(--blue-d), var(--blue-l)); }
+        .diag-bar-fill.human { background: linear-gradient(90deg, var(--gold-d), var(--gold)); }
+        .diag-bar-fill.system { background: linear-gradient(90deg, var(--ink-3), var(--ink-4)); }
+        .diag-bar-pct { font-family: var(--serif); font-size: 1.1rem; font-weight: 500; text-align: right; }
+        .diag-bar-pct.ai { color: var(--blue); }
+        .diag-bar-pct.human { color: var(--gold-d); }
+        .diag-bar-pct.system { color: var(--ink-3); }
+
+        /* ── Step analysis table ── */
+        .diag-steps-hd { display: grid; grid-template-columns: 1fr 140px 120px 1fr; gap: 1rem; padding: 0.75rem 0; border-bottom: 2px solid var(--blue); font-family: var(--mono); font-size: 0.6rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-4); }
+        .diag-step { display: grid; grid-template-columns: 1fr 140px 120px 1fr; gap: 1rem; align-items: center; padding: 1rem 0; border-bottom: 1px solid var(--rule); }
+        .diag-step:last-child { border-bottom: none; }
+        .diag-sn { font-size: 0.88rem; font-weight: 600; }
+        .diag-ss { font-size: 0.78rem; color: var(--ink-3); margin-top: 0.15rem; }
+        .diag-pot { font-family: var(--mono); font-size: 0.62rem; font-weight: 600; padding: 0.3rem 0.65rem; display: inline-block; letter-spacing: 0.03em; }
+        .diag-pot.High { background: var(--blue-xl); color: var(--blue); font-weight: 700; }
+        .diag-pot.Medium { background: rgba(245,200,0,0.12); color: var(--gold-d); font-weight: 700; }
+        .diag-pot.Low { background: #FFF1F0; color: #C0392B; font-weight: 700; }
+        .diag-benefit { font-size: 0.78rem; color: var(--ink-2); }
+
+        /* ── Future state recommendations ── */
+        .diag-recs { margin-top: 2rem; padding: 1.75rem; background: var(--blue-xl); border: 1px solid rgba(26,91,186,0.12); }
+        .diag-recs-title { font-family: var(--mono); font-size: 0.65rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 1rem; }
+        .diag-rec-list { list-style: none; display: grid; gap: 0.65rem; }
+        .diag-rec-item { display: grid; grid-template-columns: 24px 1fr; gap: 0.75rem; font-size: 0.88rem; color: var(--ink-2); line-height: 1.6; }
+        .diag-rec-icon { width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 0.1rem; }
+        .diag-rec-icon svg { width: 16px; height: 16px; color: var(--blue); }
+
+        /* ── SVG flowchart ── */
+        .diag-flow { margin-top: 2rem; border: 1px solid var(--rule); background: var(--surface); padding: 1.5rem; overflow-x: auto; }
+        .diag-flow-title { font-family: var(--mono); font-size: 0.65rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-4); margin-bottom: 1rem; }
+        .diag-flow svg { display: block; margin: 0 auto; }
+        .diag-flow text { font-family: var(--sans); }
+
+        /* ── Reset button ── */
+        .diag-reset { margin-top: 2rem; text-align: center; }
+        .btn-reset { display: inline-flex; align-items: center; gap: 0.6rem; padding: 0.8rem 2rem; background: none; color: var(--blue); font-family: var(--sans); font-weight: 600; font-size: 0.82rem; border: 1.5px solid var(--blue); cursor: pointer; letter-spacing: 0.02em; transition: all 0.25s var(--ease); }
+        .btn-reset:hover { background: var(--blue); color: #FFFFFF; }
+        .btn-reset svg { width: 14px; height: 14px; }
+
+        /* ══════════════ PLATFORMS — LOGO MARQUEE ══════════════ */
+        .plat-sec { overflow: hidden; }
+
+        /* ── Spider Diagram ── */
+        .spider {
+            position: relative; width: 100%; max-width: 820px;
+            margin: 1rem auto 0; aspect-ratio: 1 / 1;
+            user-select: none;
+        }
+        .spider svg {
+            position: absolute; inset: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 1;
+        }
+        .sp-ring { fill: none; stroke: var(--ink-5); stroke-width: 0.15; opacity: 0.18; }
+        .sp-spoke { stroke: var(--ink-5); stroke-width: 0.1; opacity: 0.12; }
+        .sp-dep {
+            fill: none; stroke: var(--ink-5); stroke-width: 0.15; opacity: 0;
+            transition: opacity 0.5s var(--ease), stroke 0.4s, stroke-width 0.4s;
+        }
+        .spider.focus .sp-dep.on {
+            opacity: 0.4; stroke: var(--gold); stroke-width: 0.35;
+            stroke-dasharray: 2 1.5;
+            animation: spPulse 3s linear infinite;
+        }
+        @keyframes spPulse { to { stroke-dashoffset: -10.5; } }
+        .sp-orbit {
+            fill: none; stroke: var(--gold); stroke-width: 0.15;
+            stroke-dasharray: 1.5 2.5; opacity: 0.5;
+            animation: spOrbit 20s linear infinite;
+            transform-origin: 50% 50%;
+        }
+        @keyframes spOrbit { to { stroke-dashoffset: -100; } }
+        .sp-orbit-blue {
+            fill: none; stroke: var(--blue); stroke-width: 0.15;
+            stroke-dasharray: 1.5 2.5; opacity: 0.4;
+            animation: spOrbitRev 20s linear infinite;
+            transform-origin: 50% 50%;
+        }
+        @keyframes spOrbitRev { to { stroke-dashoffset: 100; } }
+        .sp-link {
+            stroke: var(--ink-5); stroke-width: 0.12; opacity: 0.1;
+            transition: all 0.45s var(--ease);
+        }
+        .spider.focus .sp-link { opacity: 0.03; }
+        .spider.focus .sp-link.on { opacity: 0.35; stroke: var(--blue); stroke-width: 0.22; }
+        .spider.focus .sp-link.on-shared { opacity: 0.45; stroke: var(--gold-d); stroke-width: 0.28; }
+
+        /* Category node */
+        .sp-cat {
+            position: absolute; transform: translate(-50%, -50%);
+            z-index: 20; cursor: pointer;
+            display: flex; flex-direction: column; align-items: center; gap: 3px;
+        }
+        .sp-cat-dot {
+            width: 38px; height: 38px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.4s var(--ease);
+            box-shadow: 0 1px 6px rgba(7,26,66,0.08);
+        }
+        .sp-cat-dot svg { width: 18px; height: 18px; fill: #fff; }
+        .sp-cat:hover .sp-cat-dot, .sp-cat.on .sp-cat-dot {
+            transform: scale(1.15);
+            box-shadow: 0 0 0 2.5px rgba(245,200,0,0.3), 0 2px 14px rgba(7,26,66,0.12);
+        }
+        .sp-cat-name {
+            font-family: var(--sans); font-weight: 800; font-size: 0.58rem;
+            color: var(--ink-2); text-align: center; white-space: nowrap;
+            letter-spacing: 0.14em; text-transform: uppercase;
+            transition: all 0.3s var(--ease);
+            text-shadow: 0 1px 4px rgba(255,255,255,0.95);
+        }
+        .sp-cat:hover .sp-cat-name, .sp-cat.on .sp-cat-name {
+            color: var(--blue); letter-spacing: 0.16em;
+        }
+        .spider.focus .sp-cat:not(.on) { opacity: 0.25; }
+        .spider.focus .sp-cat.on { opacity: 1; }
+        .spider.focus .sp-cat.connected { opacity: 0.6; }
+
+        /* App node */
+        .sp-app {
+            position: absolute; transform: translate(-50%, -50%);
+            font-family: var(--sans); font-size: 0.5rem; font-weight: 400;
+            color: var(--blue); white-space: nowrap; z-index: 10;
+            text-transform: uppercase; letter-spacing: 0.05em;
+            transition: all 0.45s var(--ease);
+            pointer-events: none;
+            text-shadow: 0 1px 3px rgba(255,255,255,0.85);
+        }
+        .spider.focus .sp-app { opacity: 0.06; }
+        .spider.focus .sp-app.on {
+            opacity: 1; color: var(--blue); font-weight: 700;
+            font-size: 0.72rem; z-index: 18;
+            text-shadow: 0 1px 8px rgba(255,255,255,1);
+        }
+        .spider.focus .sp-app.on-shared {
+            opacity: 1; color: #e67e00; font-weight: 800;
+            font-size: 0.75rem; z-index: 19;
+            text-shadow: 0 0 10px rgba(245,200,0,0.2), 0 1px 6px rgba(255,255,255,1);
+        }
+
+        @media (max-width: 768px) {
+            .spider { max-width: 560px; }
+            .sp-cat-dot { width: 32px; height: 32px; }
+            .sp-cat-dot svg { width: 14px; height: 14px; }
+            .sp-cat-name { font-size: 0.48rem; }
+            .sp-app { font-size: 0.46rem; }
+            .spider.focus .sp-app.on { font-size: 0.56rem; }
+        }
+        @media (max-width: 580px) {
+            .spider { display: none; }
+            .sp-mobile { display: block !important; }
+        }
+        .sp-mobile { display: none; }
+        .spm-group {
+            border: 1px solid var(--rule); border-radius: 10px;
+            margin-bottom: 8px; overflow: hidden;
+        }
+        .spm-head {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 12px 18px; cursor: pointer; font-weight: 800;
+            font-size: 0.75rem; color: #fff; letter-spacing: 0.1em; text-transform: uppercase;
+            background: linear-gradient(135deg, var(--blue-dd), var(--blue-d));
+        }
+        .spm-head svg { width: 16px; height: 16px; color: var(--gold); transition: transform 0.3s var(--ease); }
+        .spm-group.open .spm-head svg { transform: rotate(180deg); }
+        .spm-body { max-height: 0; overflow: hidden; transition: max-height 0.4s var(--ease); }
+        .spm-group.open .spm-body { max-height: 600px; }
+        .spm-item { padding: 7px 18px; font-size: 0.8rem; color: var(--ink-3); font-weight: 500; }
+
+        /* ══════════════ INSIGHTS ══════════════ */
+        .ins-grid {
+            display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 0;
+            border: 1px solid var(--rule);
+        }
+
+        .ins-card {
+            padding: 2.5rem; border-right: 1px solid var(--rule);
             display: flex; flex-direction: column; transition: all 0.3s var(--ease);
-            border-top: 3px solid transparent;
+            background: var(--surface); border-top: 3px solid transparent;
         }
-        .blog-card:hover { background: var(--blue-xl); border-top-color: var(--gold); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(7,26,66,0.08); }
-        .blog-card-body { padding: 2rem; display: flex; flex-direction: column; flex: 1; }
-        .blog-card-meta { font-family: var(--mono); font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; display: flex; align-items: center; gap: 1rem; }
-        .blog-card-meta .tag { padding: 0.2rem 0.5rem; font-weight: 600; }
-        .blog-card-meta .tag.transform { color: var(--blue); background: var(--blue-xl); }
-        .blog-card-meta .tag.ai { color: var(--blue-d); background: var(--blue-xl); }
-        .blog-card-meta .tag.govern { color: var(--gold-d); background: #FFF8E1; }
-        .blog-card-meta .tag.platform { color: var(--ink-3); background: #F1F5F9; }
-        .blog-card-meta .tag.auto { color: #D4922E; background: #FFF3E0; }
-        .blog-card-meta .date { color: var(--ink-4); }
-        .blog-card h2 { font-family: var(--serif); font-size: 1.2rem; font-weight: 400; line-height: 1.35; margin-bottom: 0.75rem; flex: 1; }
-        .blog-card p { font-size: 0.85rem; color: var(--ink-3); line-height: 1.7; margin-bottom: 1.5rem; }
-        .blog-card-link { font-size: 0.72rem; font-weight: 600; color: var(--blue); display: inline-flex; align-items: center; gap: 0.4rem; transition: color 0.2s, gap 0.3s; }
-        .blog-card-link:hover { color: var(--blue-d); gap: 0.65rem; }
-        .blog-card-link svg { width: 10px; height: 10px; }
+        .ins-card:last-child { border-right: none; }
+        .ins-card:hover { background: var(--blue-xl); border-top-color: var(--gold); }
+        .ins-card:first-child { border-right: 1px solid var(--rule); }
 
-        /* Footer */
+        .ins-src { font-family: var(--mono); font-size: 0.58rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1.25rem; padding: 0.25rem 0.5rem; display: inline-block; }
+        .ins-src.li { color: var(--blue); background: var(--blue-xl); } .ins-src.x { color: var(--ink-3); background: #F1F5F9; } .ins-src.bl { color: var(--blue-d); background: var(--blue-xl); }
+
+        .ins-card h3 { font-family: var(--serif); font-size: 1.15rem; font-weight: 400; line-height: 1.35; margin-bottom: 0.75rem; flex: 1; }
+        .ins-card:first-child h3 { font-size: 1.35rem; }
+
+        .ins-card p { font-size: 0.8rem; color: var(--ink-3); line-height: 1.6; margin-bottom: 1.5rem; }
+
+        .ins-lk { font-size: 0.72rem; font-weight: 600; color: var(--blue); display: inline-flex; align-items: center; gap: 0.4rem; transition: color 0.2s, gap 0.3s; }
+        .ins-lk:hover { color: var(--blue-d); gap: 0.65rem; }
+        .ins-lk svg { width: 10px; height: 10px; }
+
+        .ins-more { margin-top: 2.5rem; }
+
+        /* ══════════════ CONTACT ══════════════ */
+        .contact-s { background: linear-gradient(135deg, var(--blue-dd) 0%, var(--blue-d) 50%, #0f3570 100%); color: var(--surface); }
+        .contact-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 6rem; }
+
+        .ci-tag { font-family: var(--mono); font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.16em; color: var(--gold); margin-bottom: 1.5rem; }
+        .ci h2 { font-family: var(--serif); font-size: clamp(1.75rem, 3vw, 2.5rem); font-weight: 400; line-height: 1.2; margin-bottom: 1.25rem; }
+        .ci > p { font-size: 0.95rem; color: rgba(255,255,255,0.6); line-height: 1.8; margin-bottom: 2.5rem; }
+
+        .cd { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem; font-size: 0.82rem; color: rgba(255,255,255,0.55); }
+        .cd svg { width: 15px; height: 15px; color: rgba(255,255,255,0.2); flex-shrink: 0; }
+        .cd a { color: rgba(255,255,255,0.7); transition: color 0.2s; }
+        .cd a:hover { color: var(--gold); }
+        .soc { display: flex; gap: 0.4rem; margin-top: 2rem; }
+        .soc a { font-family: var(--mono); font-size: 0.65rem; color: rgba(255,255,255,0.5); padding: 0.35rem 0.65rem; border: 1px solid rgba(255,255,255,0.08); transition: all 0.25s var(--ease); }
+        .soc a:hover { border-color: var(--gold); color: var(--gold); }
+
+        .cf-box { background: rgba(255,255,255,0.04); border: 1px solid rgba(245,200,0,0.15); overflow: hidden; }
+        .cf-hd { padding: 1.25rem 2rem; border-bottom: 1px solid rgba(245,200,0,0.1); background: rgba(245,200,0,0.03); }
+        .cf-hd h3 { font-family: var(--serif); font-size: 1.1rem; font-weight: 400; }
+        .cf-hd p { font-size: 0.72rem; color: rgba(255,255,255,0.5); margin-top: 0.2rem; }
+        .cf { padding: 2rem; }
+        .cf-g { display: grid; grid-template-columns: 1fr 1fr; gap: 0.875rem; }
+        .cf-f { display: flex; flex-direction: column; }
+        .cf-f.full { grid-column: 1 / -1; }
+        .cf-f label { font-family: var(--mono); font-size: 0.6rem; font-weight: 500; color: rgba(255,255,255,0.55); margin-bottom: 0.3rem; text-transform: uppercase; letter-spacing: 0.08em; }
+        .cf-f input, .cf-f select, .cf-f textarea { font-family: var(--sans); font-size: 0.88rem; padding: 0.7rem 1rem; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); color: white; outline: none; transition: border-color 0.25s; }
+        .cf-f input:focus, .cf-f select:focus, .cf-f textarea:focus { border-color: var(--gold); box-shadow: 0 0 0 2px rgba(245,200,0,0.1); }
+        .cf-f input::placeholder, .cf-f textarea::placeholder { color: rgba(255,255,255,0.35); }
+        .cf-f select { cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236b6b6b' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; }
+        .cf-f select option { background: var(--blue-dd); color: #fff; padding: 0.5rem; }
+        .cf-f textarea { resize: vertical; min-height: 80px; }
+        .cf-sub { margin-top: 1.25rem; display: flex; align-items: center; gap: 1rem; }
+        .btn-w { display: inline-flex; align-items: center; gap: 0.6rem; padding: 0.8rem 2rem; background: var(--gold); color: var(--blue-dd); font-family: var(--sans); font-weight: 700; font-size: 0.82rem; border: none; cursor: pointer; letter-spacing: 0.03em; transition: all 0.25s var(--ease); }
+        .btn-w:hover { background: var(--gold-l); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(245,200,0,0.3); }
+        .btn-w svg { width: 14px; height: 14px; }
+        .cf-n { font-size: 0.65rem; color: rgba(255,255,255,0.4); }
+        .cf-ok { display: none; padding: 3rem 2rem; text-align: center; }
+        .cf-ok.show { display: block; }
+        .cf-ok h3 { font-family: var(--serif); font-size: 1.25rem; margin-bottom: 0.5rem; }
+        .cf-ok p { font-size: 0.85rem; color: rgba(255,255,255,0.6); }
+
+        /* ══════════════ FOOTER ══════════════ */
         footer { background: var(--blue-dd); border-top: 2px solid var(--gold); padding: 1.5rem 0; }
         .ft { display: flex; justify-content: space-between; align-items: center; }
         .ft-b { font-size: 0.68rem; color: rgba(255,255,255,0.5); }
         .ft-b strong { color: var(--gold); }
         .ft-c { font-size: 0.62rem; color: rgba(255,255,255,0.35); }
 
+        /* ══════════════ REVEAL ══════════════ */
+        .rv { opacity: 0; transform: translateY(20px); transition: opacity 0.8s var(--ease), transform 0.8s var(--ease); }
+        .rv.v { opacity: 1; transform: translateY(0); }
+        .rv-d1 { transition-delay: 0.1s; } .rv-d2 { transition-delay: 0.2s; } .rv-d3 { transition-delay: 0.3s; } .rv-d4 { transition-delay: 0.4s; }
+
+        /* ══════════════ RESPONSIVE ══════════════ */
+        @media (max-width: 960px) {
+            .hero-lower { grid-template-columns: 1fr; gap: 2rem; } .hero-acts { justify-content: flex-start; }
+            .sec-intro { grid-template-columns: 1fr; gap: 0.5rem; } .sec-tag { padding-top: 0; margin-bottom: 0.5rem; }
+            .acc-head { grid-template-columns: 48px 1fr 40px; } .acc-brief { display: none; }
+            .acc-content { grid-template-columns: 1fr; padding-left: 64px; }
+            .mat-stages { grid-template-columns: 1fr 1fr; gap: 2rem; } .mat-bar { display: none; } .mat-stage::before { display: none; }
+            .tl-node { grid-template-columns: 40px 1fr; gap: 1.25rem; }
+            .ins-grid { grid-template-columns: 1fr; } .ins-card { border-right: none; border-bottom: 1px solid var(--rule); }
+            .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+            .diag-row { grid-template-columns: 1fr; }
+        }
         @media (max-width: 720px) {
             .hn { display: none; } .mt { display: flex; min-width: 44px; min-height: 44px; justify-content: center; align-items: center; }
+            .mat-stages { grid-template-columns: 1fr; }
+            .cf-g { grid-template-columns: 1fr; }
+            .diag-bar-row { grid-template-columns: 70px 1fr 40px; }
+            .diag-steps-hd, .diag-step { grid-template-columns: 1fr; gap: 0.5rem; }
+            .diag-steps-hd { display: none; }
             .ft { flex-direction: column; gap: 0.35rem; text-align: center; }
+            .acc-head { grid-template-columns: 36px 1fr 32px; }
+            .acc-content { padding-left: 52px; }
             .mn a { padding: 0.85rem clamp(1.5rem, 5vw, 5rem); }
-            .blog-grid { grid-template-columns: 1fr; }
+            .contact-grid { gap: 2rem; }
+        }
+        @media (max-width: 580px) {
+            .hero-shapes { display: none; }
+            .hero-acts { flex-direction: column; gap: 1rem; align-items: stretch; }
+            .hero-lower { gap: 2rem; }
+            .ribbon-item { padding: 1rem 1.5rem; }
+            .acc-content { padding-left: 42px; }
+            .cb-panel { width: calc(100% - 16px); right: 8px; bottom: 80px; height: calc(100dvh - 120px); max-height: 600px; }
+        }
+
+        /* ══════════════ CHATBOT ══════════════ */
+        .cb-trigger {
+            position: fixed; bottom: 28px; right: 28px; z-index: 9999;
+            width: 60px; height: 60px; border-radius: 50%; border: none; cursor: pointer;
+            background: var(--gold); color: var(--blue-dd);
+            box-shadow: 0 4px 20px rgba(245,200,0,0.35), 0 2px 8px rgba(0,0,0,0.15);
+            display: flex; align-items: center; justify-content: center;
+            transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+        }
+        .cb-trigger:hover { transform: scale(1.08); box-shadow: 0 6px 28px rgba(245,200,0,0.45), 0 3px 12px rgba(0,0,0,0.2); }
+        .cb-trigger svg { width: 28px; height: 28px; transition: transform 0.3s var(--ease); }
+        .cb-trigger.open svg { transform: rotate(90deg) scale(0.9); }
+
+        .cb-panel {
+            position: fixed; bottom: 100px; right: 28px; z-index: 9998;
+            width: 400px; height: 520px;
+            background: #fff; border-radius: 16px;
+            box-shadow: 0 12px 48px rgba(7,26,66,0.18), 0 2px 8px rgba(0,0,0,0.08);
+            display: flex; flex-direction: column;
+            opacity: 0; visibility: hidden; transform: translateY(20px) scale(0.95);
+            transition: opacity 0.35s var(--ease), transform 0.35s var(--ease), visibility 0.35s;
+            overflow: hidden;
+        }
+        .cb-panel.open { opacity: 1; visibility: visible; transform: translateY(0) scale(1); }
+
+        .cb-header {
+            background: linear-gradient(135deg, var(--blue-dd), var(--blue-d));
+            color: #fff; padding: 16px 20px; display: flex; align-items: center; justify-content: space-between;
+            border-bottom: 2px solid var(--gold);
+        }
+        .cb-header-left { display: flex; align-items: center; gap: 10px; }
+        .cb-header-icon { width: 32px; height: 32px; background: var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+        .cb-header-icon svg { width: 30px; height: 30px; color: var(--blue-dd); }
+        .cb-header-title { font-weight: 700; font-size: 0.9rem; letter-spacing: 0.01em; }
+        .cb-header-sub { font-size: 0.68rem; color: rgba(255,255,255,0.6); font-weight: 400; }
+        .cb-close { background: none; border: none; color: rgba(255,255,255,0.6); cursor: pointer; padding: 4px; transition: color 0.2s; }
+        .cb-close:hover { color: #fff; }
+        .cb-close svg { width: 20px; height: 20px; }
+
+        .cb-messages {
+            flex: 1; overflow-y: auto; padding: 16px 16px 8px;
+            display: flex; flex-direction: column; gap: 8px;
+            scroll-behavior: smooth;
+        }
+        .cb-messages::-webkit-scrollbar { width: 4px; }
+        .cb-messages::-webkit-scrollbar-thumb { background: var(--ink-5); border-radius: 4px; }
+
+        .cb-msg {
+            max-width: 88%; padding: 10px 14px; border-radius: 14px;
+            font-size: 0.82rem; line-height: 1.55; animation: cbFadeIn 0.3s var(--ease);
+            word-wrap: break-word;
+        }
+        .cb-msg.bot {
+            align-self: flex-start; background: var(--blue-xl); color: var(--ink-2);
+            border-bottom-left-radius: 4px;
+        }
+        .cb-msg.user {
+            align-self: flex-end; background: var(--gold); color: var(--blue-dd);
+            border-bottom-right-radius: 4px; font-weight: 600;
+        }
+        .cb-msg strong { font-weight: 700; }
+        .cb-msg ul { margin: 6px 0 4px 16px; }
+        .cb-msg li { margin-bottom: 2px; }
+
+        .cb-options {
+            display: flex; flex-wrap: wrap; gap: 6px; padding: 4px 0 2px;
+            animation: cbFadeIn 0.3s var(--ease) 0.1s both;
+        }
+        .cb-opt {
+            background: #fff; border: 1.5px solid var(--blue); color: var(--blue);
+            padding: 7px 14px; border-radius: 100px; font-size: 0.76rem; font-weight: 600;
+            cursor: pointer; transition: all 0.2s var(--ease); font-family: var(--sans);
+            line-height: 1.3;
+        }
+        .cb-opt:hover { background: var(--blue); color: #fff; }
+
+        .cb-typing {
+            align-self: flex-start; display: flex; gap: 4px; padding: 12px 16px;
+            background: var(--blue-xl); border-radius: 14px; border-bottom-left-radius: 4px;
+        }
+        .cb-typing span {
+            width: 7px; height: 7px; background: var(--ink-4); border-radius: 50%;
+            animation: cbTyping 1.2s ease-in-out infinite;
+        }
+        .cb-typing span:nth-child(2) { animation-delay: 0.15s; }
+        .cb-typing span:nth-child(3) { animation-delay: 0.3s; }
+
+        .cb-input-bar {
+            display: flex; padding: 10px 16px; border-top: 1px solid var(--rule);
+            gap: 8px; align-items: center;
+        }
+        .cb-input-bar input {
+            flex: 1; border: 1.5px solid var(--rule); border-radius: 100px;
+            padding: 8px 14px; font-size: 0.8rem; font-family: var(--sans);
+            outline: none; transition: border-color 0.2s;
+        }
+        .cb-input-bar input:focus { border-color: var(--blue); }
+        .cb-input-bar button {
+            background: var(--blue); color: #fff; border: none; border-radius: 50%;
+            width: 34px; height: 34px; cursor: pointer; display: flex; align-items: center;
+            justify-content: center; transition: background 0.2s; flex-shrink: 0;
+        }
+        .cb-input-bar button:hover { background: var(--blue-l); }
+        .cb-input-bar button svg { width: 16px; height: 16px; }
+
+        @keyframes cbFadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes cbTyping { 0%, 60%, 100% { transform: translateY(0); opacity: 0.4; } 30% { transform: translateY(-5px); opacity: 1; } }
+
+        @media (max-width: 480px) {
+            .cb-trigger { bottom: 16px; right: 16px; width: 54px; height: 54px; }
         }
     </style>
 </head>
 <body>
 
-    <header><div class="w"><a href="../index.html" class="logo"><div class="logo-top">Unl<span class="logo-lock"><svg viewBox="0 0 24 26" fill="none"><rect x="3" y="13" width="16" height="11" rx="2.5" stroke="#1a5bba" stroke-width="2.2" fill="none"/><path d="M7 13V8a5 5 0 0 1 10 0" stroke="#1a5bba" stroke-width="2.2" stroke-linecap="round" fill="none"/><circle cx="11" cy="18" r="1.2" fill="#1a5bba"/><rect x="10.4" y="18" width="1.2" height="2.2" rx="0.6" fill="#1a5bba"/></svg></span>ck</div><div class="logo-bottom">Solutions</div></a><ul class="hn"><li><a href="../index.html#capabilities">Capabilities</a></li><li><a href="../index.html#maturity">Maturity</a></li><li><a href="../index.html#approach">Approach</a></li><li><a href="../index.html#diagnostic">Diagnostic</a></li><li><a href="./">Insights</a></li><li><a href="../index.html#contact" class="hn-cta">Book a Consultation</a></li></ul><button class="mt" onclick="document.querySelector('.mn').classList.toggle('open')" aria-label="Menu"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/></svg></button></div></header>
-    <div class="mn"><a href="../index.html#capabilities" onclick="this.parentElement.classList.remove('open')">Capabilities</a><a href="../index.html#maturity" onclick="this.parentElement.classList.remove('open')">Maturity</a><a href="../index.html#approach" onclick="this.parentElement.classList.remove('open')">Approach</a><a href="../index.html#diagnostic" onclick="this.parentElement.classList.remove('open')">Diagnostic</a><a href="./" onclick="this.parentElement.classList.remove('open')">Insights</a><a href="../index.html#contact" onclick="this.parentElement.classList.remove('open')">Contact</a></div>
+    <header><div class="w"><a href="#" class="logo"><div class="logo-top">Unl<span class="logo-lock"><svg viewBox="0 0 24 26" fill="none"><rect x="3" y="13" width="16" height="11" rx="2.5" stroke="#1a5bba" stroke-width="2.2" fill="none"/><path d="M7 13V8a5 5 0 0 1 10 0" stroke="#1a5bba" stroke-width="2.2" stroke-linecap="round" fill="none"/><circle cx="11" cy="18" r="1.2" fill="#1a5bba"/><rect x="10.4" y="18" width="1.2" height="2.2" rx="0.6" fill="#1a5bba"/></svg></span>ck</div><div class="logo-bottom">Solutions</div></a><ul class="hn"><li><a href="#capabilities">Capabilities</a></li><li><a href="#maturity">Maturity</a></li><li><a href="#approach">Approach</a></li><li><a href="#diagnostic">Diagnostic</a></li><li><a href="#insights">Insights</a></li><li><a href="#contact" class="hn-cta">Book a Consultation</a></li></ul><button class="mt" onclick="document.querySelector('.mn').classList.toggle('open')" aria-label="Menu"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/></svg></button></div></header>
+    <div class="mn"><a href="#capabilities" onclick="this.parentElement.classList.remove('open')">Capabilities</a><a href="#maturity" onclick="this.parentElement.classList.remove('open')">Maturity</a><a href="#approach" onclick="this.parentElement.classList.remove('open')">Approach</a><a href="#diagnostic" onclick="this.parentElement.classList.remove('open')">Diagnostic</a><a href="#insights" onclick="this.parentElement.classList.remove('open')">Insights</a><a href="#contact" onclick="this.parentElement.classList.remove('open')">Contact</a></div>
 
-    <section class="blog-hero">
-        <div class="w">
-            <div class="sec-tag">Insights</div>
-            <h1>Perspectives on Enterprise Transformation</h1>
-            <p>Strategic thinking on operating models, intelligent automation, platform modernization, and governance.</p>
-        </div>
-    </section>
-
-    <section class="blog-section">
-        <div class="w">
-            <div class="blog-grid">
-
-                <!-- BLOG CARD TEMPLATE — Copy this block for each new post -->
-                <!--
-                <a href="your-post-slug.html" class="blog-card">
-                    <div class="blog-card-body">
-                        <div class="blog-card-meta">
-                            <span class="tag transform">Transformation</span>
-                            <span class="date">15 Feb 2026</span>
+    <main>
+        <!-- ═══════════ HERO ═══════════ -->
+        <section class="hero">
+            <div class="hero-shapes"><div class="hero-shape"></div><div class="hero-shape"></div><div class="hero-shape"></div><div class="hero-shape"></div></div>
+            <div class="w">
+                <div class="hero-content">
+                    <div class="hero-ey rv">Enterprise Systems & Intelligent Operations</div>
+                    <h1 class="rv rv-d1">We transform how enterprises <i>operate, govern, and perform.</i></h1>
+                    <div class="hero-lower">
+                        <p class="hero-desc rv rv-d2">End-to-end transformation programs that redesign operating models, modernize platforms, build governance discipline, and enable intelligent automation — delivering measurable outcomes.</p>
+                        <div class="hero-acts rv rv-d3">
+                            <a href="#contact" class="btn-k">Book a Consultation <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+                            <a href="#capabilities" class="btn-u">View Capabilities</a>
                         </div>
-                        <h2>Your Blog Post Title Here</h2>
-                        <p>A short 1-2 sentence summary of the blog post that appears on the card.</p>
-                        <span class="blog-card-link">Read article <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
                     </div>
-                </a>
-                -->
-                <!-- Tag options: transform, ai, govern, platform, auto -->
-
-                <!-- Example posts — replace with your actual blog content -->
-                <a href="#" class="blog-card">
-                    <div class="blog-card-body">
-                        <div class="blog-card-meta">
-                            <span class="tag transform">Transformation</span>
-                            <span class="date">Coming Soon</span>
-                        </div>
-                        <h2>Blog posts coming soon</h2>
-                        <p>We're preparing insights on enterprise transformation, intelligent automation, and platform strategy.</p>
-                        <span class="blog-card-link">Read article <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-                    </div>
-                </a>
-
+                </div>
             </div>
-        </div>
-    </section>
+            <div class="hero-rule"></div>
+        </section>
+
+        <!-- Discipline Ribbon -->
+        <div class="ribbon"><div class="ribbon-track"><div class="ribbon-item">Transformation Programs</div><div class="ribbon-item">Platform Modernization</div><div class="ribbon-item">Governance & Execution</div><div class="ribbon-item">Intelligent Automation</div><div class="ribbon-item">Enablement & Adoption</div><div class="ribbon-item">Transformation Programs</div><div class="ribbon-item">Platform Modernization</div><div class="ribbon-item">Governance & Execution</div><div class="ribbon-item">Intelligent Automation</div><div class="ribbon-item">Enablement & Adoption</div></div></div>
+
+        <!-- ═══════════ CAPABILITIES ═══════════ -->
+        <section id="capabilities" class="sec">
+            <div class="w">
+                <div class="sec-intro rv">
+                    <div class="sec-tag">What We Do</div>
+                    <div>
+                        <h2 class="sec-title">Disciplines that<br>drive transformation</h2>
+                        <p class="sec-lead">We don't advise from the sideline. We lead programs end to end — from operating model redesign through to sustained adoption and measurable performance.</p>
+                    </div>
+                </div>
+                <div class="acc rv">
+                    <div class="acc-item active">
+                        <div class="acc-head" onclick="toggleAcc(this)">
+                            <div class="acc-num">01</div>
+                            <h3>Enterprise Transformation Programs</h3>
+                            <div class="acc-brief">Operating model, process, governance, change</div>
+                            <div class="acc-arrow"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M19 9l-7 7-7-7"/></svg></div>
+                        </div>
+                        <div class="acc-body">
+                            <div class="acc-content">
+                                <p class="acc-text">We lead end-to-end transformation programs — operating model redesign, process re-engineering, governance architecture, change management, and measurable performance outcomes. This is the core of what we do.</p>
+                                <div class="acc-tags"><span class="acc-tag">Operating model</span><span class="acc-tag">Process redesign</span><span class="acc-tag">Change management</span><span class="acc-tag">Performance outcomes</span><span class="acc-tag">Stakeholder alignment</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="acc-item">
+                        <div class="acc-head" onclick="toggleAcc(this)">
+                            <div class="acc-num">02</div>
+                            <h3>Platform Modernization & Optimization</h3>
+                            <div class="acc-brief">ERP, CRM, HRIS, finance, integration, data quality</div>
+                            <div class="acc-arrow"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M19 9l-7 7-7-7"/></svg></div>
+                        </div>
+                        <div class="acc-body">
+                            <div class="acc-content">
+                                <p class="acc-text">We modernize and optimize core enterprise platforms — ERP, CRM, HRIS, finance and planning systems, integration layers, data quality, and release readiness — so the enterprise actually runs better.</p>
+                                <div class="acc-tags"><span class="acc-tag">ERP</span><span class="acc-tag">CRM</span><span class="acc-tag">HRIS</span><span class="acc-tag">Finance systems</span><span class="acc-tag">Data quality</span><span class="acc-tag">Integration</span><span class="acc-tag">Release readiness</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="acc-item">
+                        <div class="acc-head" onclick="toggleAcc(this)">
+                            <div class="acc-num">03</div>
+                            <h3>Transformation Governance & Execution</h3>
+                            <div class="acc-brief">PMO, RASCI, risk, decision forums, benefits realization</div>
+                            <div class="acc-arrow"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M19 9l-7 7-7-7"/></svg></div>
+                        </div>
+                        <div class="acc-body">
+                            <div class="acc-content">
+                                <p class="acc-text">We build the discipline that keeps transformation on track — PMO and delivery cadence, RASCI, risk and controls, decision forums, adoption tracking, and benefits realization.</p>
+                                <div class="acc-tags"><span class="acc-tag">PMO</span><span class="acc-tag">RASCI</span><span class="acc-tag">Risk & controls</span><span class="acc-tag">Decision forums</span><span class="acc-tag">Benefits realization</span><span class="acc-tag">Delivery cadence</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="acc-item">
+                        <div class="acc-head" onclick="toggleAcc(this)">
+                            <div class="acc-num">04</div>
+                            <h3>Intelligent Automation</h3>
+                            <div class="acc-brief">AI, agents, workflows, analytics, automation</div>
+                            <div class="acc-arrow"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M19 9l-7 7-7-7"/></svg></div>
+                        </div>
+                        <div class="acc-body">
+                            <div class="acc-content">
+                                <p class="acc-text">AI, agents, workflows, analytics, and automation applied where they drive throughput, accuracy, and service improvement — as part of the transformation, not as a standalone initiative.</p>
+                                <div class="acc-tags"><span class="acc-tag">AI enablement</span><span class="acc-tag">Agents</span><span class="acc-tag">Workflow automation</span><span class="acc-tag">Analytics</span><span class="acc-tag">Process mining</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="acc-item">
+                        <div class="acc-head" onclick="toggleAcc(this)">
+                            <div class="acc-num">05</div>
+                            <h3>Enablement & Adoption</h3>
+                            <div class="acc-brief">Training, playbooks, process ownership, handoff</div>
+                            <div class="acc-arrow"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M19 9l-7 7-7-7"/></svg></div>
+                        </div>
+                        <div class="acc-body">
+                            <div class="acc-content">
+                                <p class="acc-text">Training, role-based playbooks, process ownership, continuous improvement, and operational handoff — so change sticks and the organization doesn't revert to old patterns.</p>
+                                <div class="acc-tags"><span class="acc-tag">Training</span><span class="acc-tag">Playbooks</span><span class="acc-tag">Process ownership</span><span class="acc-tag">Continuous improvement</span><span class="acc-tag">Operational handoff</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════ MATURITY ═══════════ -->
+        <section id="maturity" class="sec sec-warm">
+            <div class="w">
+                <div class="sec-intro rv">
+                    <div class="sec-tag">Maturity Model</div>
+                    <div>
+                        <h2 class="sec-title">Where is your<br>organization today?</h2>
+                        <p class="sec-lead">We assess your current operating maturity and define the most direct path to higher capability, governance, and performance.</p>
+                    </div>
+                </div>
+                <div class="mat-wrap rv">
+                    <div class="mat-bar"><div class="mat-bar-fill" id="matFill"></div></div>
+                    <div class="mat-stages">
+                        <div class="mat-stage"><div class="mat-stage-n">Level 01</div><h4>Traditional</h4><ul><li>70%+ manual workflows</li><li>Automation below 10%</li><li>Siloed systems, no APIs</li><li>No formal governance</li></ul></div>
+                        <div class="mat-stage"><div class="mat-stage-n">Level 02</div><h4>Transitional</h4><ul><li>1–3 pilots with baseline KPIs</li><li>10–30% targeted automation</li><li>Initial governance and RASCI</li><li>80–90% data accuracy</li></ul></div>
+                        <div class="mat-stage"><div class="mat-stage-n">Level 03</div><h4>Augmented</h4><ul><li>Standardized processes across 3+ functions</li><li>30–60% workflow automation</li><li>Governed decision forums and audit trails</li><li>Operational KPIs tied to platform data</li></ul></div>
+                        <div class="mat-stage"><div class="mat-stage-n">Level 04</div><h4>Intelligent Enterprise</h4><ul><li>Integrated operating model with closed-loop performance</li><li>60%+ automation with bounded autonomy</li><li>Real-time observability across operations</li><li>Continuous improvement pipeline active</li></ul></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════ APPROACH ═══════════ -->
+        <section id="approach" class="sec sec-dark">
+            <div class="w">
+                <div class="sec-intro rv">
+                    <div class="sec-tag">Our Approach</div>
+                    <div>
+                        <h2 class="sec-title" style="color:#FFFFFF">Structured transformation<br>framework</h2>
+                        <p class="sec-lead">Each phase builds measurable capability, governed by data and aligned to outcomes.</p>
+                    </div>
+                </div>
+                <div class="tl rv">
+                    <div class="tl-node active" onclick="toggleTl(this)"><div class="tl-marker"><div class="tl-dot"><div class="tl-dot-inner"></div></div><div class="tl-num">01</div></div><div class="tl-body"><h3>Discovery & Context</h3><p>Factual view of systems, workflows, operating model, and governance. Define boundaries, control points, and readiness across business and IT.</p></div></div>
+                    <div class="tl-node" onclick="toggleTl(this)"><div class="tl-marker"><div class="tl-dot"><div class="tl-dot-inner"></div></div><div class="tl-num">02</div></div><div class="tl-body"><h3>Design & Governance</h3><p>Translate findings into an actionable framework — operating model, accountability structures, risk posture, decision forums, and change architecture.</p></div></div>
+                    <div class="tl-node" onclick="toggleTl(this)"><div class="tl-marker"><div class="tl-dot"><div class="tl-dot-inner"></div></div><div class="tl-num">03</div></div><div class="tl-body"><h3>Build & Integrate</h3><p>Configure platforms, automation layers, and intelligent capabilities aligned to enterprise systems. Integrate observability, security, and orchestration.</p></div></div>
+                    <div class="tl-node" onclick="toggleTl(this)"><div class="tl-marker"><div class="tl-dot"><div class="tl-dot-inner"></div></div><div class="tl-num">04</div></div><div class="tl-body"><h3>Scale & Adopt</h3><p>Transition pilots into production. Drive adoption through structured rollout, role-based training, playbooks, and operational change management.</p></div></div>
+                    <div class="tl-node" onclick="toggleTl(this)"><div class="tl-marker"><div class="tl-dot"><div class="tl-dot-inner"></div></div><div class="tl-num">05</div></div><div class="tl-body"><h3>Govern & Evolve</h3><p>Institutionalize governance, metrics, review cycles, and benefits realization. Maintain alignment between enterprise performance and continuous improvement.</p></div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════ DIAGNOSTIC ═══════════ -->
+        <section id="diagnostic" class="sec">
+            <div class="w">
+                <div class="sec-intro rv">
+                    <div class="sec-tag">Transformation Diagnostic</div>
+                    <div>
+                        <h2 class="sec-title">Automation readiness<br>assessment</h2>
+                        <p class="sec-lead">Describe a business process and our engine analyzes automation potential, workload distribution, and recommended future state.</p>
+                    </div>
+                </div>
+                <div class="diag rv">
+                    <div class="diag-chrome"><div class="diag-dots"><span class="diag-dot"></span><span class="diag-dot"></span><span class="diag-dot"></span></div><div class="diag-title">Automation Readiness Assessment</div><div class="diag-badge">AI Powered</div></div>
+                    <div class="diag-body">
+                        <div class="diag-form" id="dF">
+                            <div class="diag-row"><div class="diag-f"><label>Industry</label><select id="dI"><option value="" disabled selected>Select industry</option><option>Financial Services</option><option>Healthcare</option><option>Manufacturing</option><option>Retail</option><option>Technology</option><option>Government</option><option>Energy & Utilities</option><option>Professional Services</option><option>Education</option><option>Telecommunications</option><option>Real Estate</option><option>Non-profit / NGO</option><option>Logistics & Transportation</option><option>Media & Entertainment</option></select></div><div class="diag-f"><label>Department</label><select id="dD"><option value="" disabled selected>Select department</option><option>Finance & Accounting</option><option>Human Resources</option><option>IT & Engineering</option><option>Operations</option><option>Sales & Marketing</option><option>Customer Service</option><option>Supply Chain</option><option>Legal</option><option>Procurement</option><option>Executive / C-Suite</option><option>Research & Development</option><option>Compliance & Risk</option></select></div></div>
+                            <div class="diag-f"><label>Describe the workflow</label><textarea id="dP" placeholder="e.g., Monthly financial close process — journal entries, reconciliation, approvals, and reporting across three teams..."></textarea></div>
+                            <div class="diag-f"><label>Pain points (optional)</label><input type="text" id="dX" placeholder="e.g., Manual data entry, slow approvals, duplicate work..."></div>
+                            <div style="margin-top:0.5rem"><button class="btn-k" id="dBtn" onclick="runD()">Run Assessment <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></button></div>
+                        </div>
+                    </div>
+                    <div class="diag-ld" id="dL"><div class="diag-sp"></div><div style="font-size:0.82rem;color:var(--ink-4)">Running assessment...</div></div>
+                    <div class="diag-results" id="dR">
+                        <div id="dS" class="diag-sum"></div>
+                        <div id="dDi" class="diag-dist-bars"></div>
+                        <div class="diag-steps" id="dA"></div>
+                        <div id="dRecs" class="diag-recs" style="display:none"></div>
+                        <div id="dFlow" class="diag-flow" style="display:none"></div>
+                        <div class="diag-reset"><button class="btn-reset" onclick="resetD()">Run Another Assessment <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg></button></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════ PLATFORMS ═══════════ -->
+        <section class="sec sec-warm plat-sec">
+            <div class="w">
+                <div class="sec-intro rv">
+                    <div class="sec-tag">Platform Expertise</div>
+                    <div>
+                        <h2 class="sec-title">Enterprise ecosystem<br>coverage</h2>
+                        <p class="sec-lead">We modernize, integrate, and optimize across the platforms your business runs on.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="w">
+                <div class="spider rv" id="spider"></div>
+                <div class="sp-mobile rv" id="spMobile"></div>
+            </div>
+        </section>
+
+        <!-- ═══════════ INSIGHTS ═══════════ -->
+        <section id="insights" class="sec">
+            <div class="w">
+                <div class="sec-intro rv">
+                    <div class="sec-tag">Insights</div>
+                    <div>
+                        <h2 class="sec-title">Latest from<br>Unlock Solutions</h2>
+                        <p class="sec-lead">Perspectives on enterprise transformation, operational performance, and intelligent systems.</p>
+                    </div>
+                </div>
+                <div class="ins-grid rv">
+                    <div class="ins-card"><div class="ins-src li">LinkedIn</div><h3>Why Governance Is the Foundation of Every Successful Transformation</h3><p>Organizations that embed governance early scale faster with fewer setbacks. Here's the framework we use with clients.</p><a href="https://www.linkedin.com/company/unlock-solutions" target="_blank" class="ins-lk">Read on LinkedIn <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a></div>
+                    <div class="ins-card"><div class="ins-src x">X / @UnlocksAI</div><h3>The Maturity Gap: Most Enterprises Are Still at Level 1</h3><p>70% of organizations we assess still run manual workflows.</p><a href="https://x.com/UnlocksAI" target="_blank" class="ins-lk">Follow on X <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a></div>
+                    <div class="ins-card"><div class="ins-src bl">Blog</div><h3>From ERP to Intelligent Enterprise: A 5-Phase Playbook</h3><p>How we moved a national distributor from fragmented reporting to automated dashboards in 90 days.</p><a href="blog/" class="ins-lk">View all insights <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a></div>
+                </div>
+                <div class="ins-more"><a href="https://www.linkedin.com/company/unlock-solutions" target="_blank" class="btn-u" style="font-size:0.82rem">Follow for more insights</a></div>
+            </div>
+        </section>
+
+        <!-- ═══════════ CONTACT ═══════════ -->
+        <section id="contact" class="sec contact-s">
+            <div class="w">
+                <div class="contact-grid">
+                    <div class="ci">
+                        <div class="ci-tag">Get Started</div>
+                        <h2>Let's transform how your enterprise operates.</h2>
+                        <p>From operating model redesign to intelligent automation, we bring structure, governance, and execution discipline to every program.</p>
+                        <div class="cd"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg><a href="mailto:connect@unlock-solutions.com">connect@unlock-solutions.com</a></div>
+                        <div class="cd"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/></svg><span>(604) 670-2076</span></div>
+                        <div class="cd"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg><span>Vancouver, BC, Canada</span></div>
+                        <div class="soc"><a href="https://x.com/UnlocksAI" target="_blank">@UnlocksAI</a><a href="https://x.com/UnlockSolns" target="_blank">@UnlockSolns</a><a href="https://www.linkedin.com/company/unlock-solutions" target="_blank">LinkedIn</a></div>
+                    </div>
+                    <div class="cf-box">
+                        <div class="cf-hd"><h3>Book a Transformation Assessment</h3><p>Complimentary 30-minute consultation</p></div>
+                        <form class="cf" id="cF" action="https://formsubmit.co/connect@unlock-solutions.com" method="POST">
+                            <input type="hidden" name="_subject" value="New Inquiry — Unlock Solutions"><input type="hidden" name="_captcha" value="false"><input type="hidden" name="_template" value="table"><input type="text" name="_honey" style="display:none">
+                            <div class="cf-g">
+                                <div class="cf-f"><label>Name</label><input type="text" name="name" placeholder="Your name" required></div>
+                                <div class="cf-f"><label>Email</label><input type="email" name="email" placeholder="you@company.com" required></div>
+                                <div class="cf-f"><label>Company</label><input type="text" name="company" placeholder="Company name"></div>
+                                <div class="cf-f"><label>Interest</label><select name="interest" required><option value="" disabled selected>Select area</option><option>Enterprise Transformation</option><option>Platform Modernization</option><option>Governance & PMO</option><option>Intelligent Automation</option><option>Enablement & Adoption</option><option>Multiple / Not Sure</option></select></div>
+                                <div class="cf-f full"><label>About your goals</label><textarea name="message" placeholder="What transformation challenges are you facing?"></textarea></div>
+                            </div>
+                            <div class="cf-sub"><button type="submit" class="btn-w">Submit Request <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg></button><span class="cf-n">We respond within 24 hours</span></div>
+                        </form>
+                        <div class="cf-ok" id="cfOk"><h3>Request received.</h3><p>We'll be in touch within 24 hours.</p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <footer><div class="w"><div class="ft"><div class="ft-b"><strong>Unlock Solutions</strong> — Enterprise Systems & Intelligent Operations / Vancouver, BC</div><div class="ft-c">&copy; 2017–2026 Unlock Solutions</div></div></div></footer>
 
+    <script>
+        /* ── Timeline collapse ── */
+        function toggleTl(node) {
+            const wasActive = node.classList.contains('active');
+            document.querySelectorAll('.tl-node').forEach(n => n.classList.remove('active'));
+            if (!wasActive) node.classList.add('active');
+        }
+
+        /* ── Accordion ── */
+        function toggleAcc(head) {
+            const item = head.parentElement;
+            const wasActive = item.classList.contains('active');
+            document.querySelectorAll('.acc-item').forEach(i => i.classList.remove('active'));
+            if (!wasActive) item.classList.add('active');
+        }
+
+        /* ── Maturity bar animation ── */
+        const matObs = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) { document.getElementById('matFill').classList.add('animate'); matObs.unobserve(e.target); } });
+        }, { threshold: 0.3 });
+        const matEl = document.querySelector('.mat-wrap');
+        if (matEl) matObs.observe(matEl);
+
+        /* ── Diagnostic — Client-Side Analysis Engine ── */
+        const STEP_KB = [
+            { keys: ['data entry','data input','manual entry','keying','typing','input data','enter data','data capture'], cat: 'ai', potential: 'High', state: 'Manual data entry from multiple sources', benefit: '70–85% time reduction via OCR/AI extraction', rec: 'Deploy intelligent document processing with AI extraction and auto-validation' },
+            { keys: ['reconciliation','reconcile','matching','cross-reference','compare','variance','discrepancy'], cat: 'ai', potential: 'High', state: 'Manual cross-referencing across systems', benefit: 'Continuous automated matching with exception flagging', rec: 'Implement automated three-way matching with AI anomaly detection' },
+            { keys: ['approval','approve','sign-off','sign off','authorize','authorise','escalat'], cat: 'human', potential: 'High', state: 'Email-based approval chains', benefit: 'Automated routing with SLA tracking', rec: 'Configure rule-based approval routing with auto-escalation and mobile approvals' },
+            { keys: ['report','reporting','dashboard','analytics','kpi','metric','visualization','visualise'], cat: 'ai', potential: 'High', state: 'Manual report generation and distribution', benefit: 'Real-time auto-generated dashboards', rec: 'Build automated reporting pipelines with scheduled distribution and self-service BI' },
+            { keys: ['review','audit','check','verify','validation','validate','quality','qa','inspect'], cat: 'human', potential: 'Medium', state: 'Manual review and verification', benefit: 'AI-assisted review with anomaly flagging', rec: 'Layer AI-driven anomaly detection to pre-screen items before human review' },
+            { keys: ['journal','posting','ledger','booking','accrual','journal entry','gl','general ledger'], cat: 'ai', potential: 'High', state: 'Manual journal entry preparation', benefit: 'Automated journal generation with variance checks', rec: 'Automate recurring journal entries with rule-based posting and exception handling' },
+            { keys: ['invoice','billing','payment','payable','receivable','collection','remittance'], cat: 'ai', potential: 'High', state: 'Manual invoice processing', benefit: '80% faster processing with auto-matching', rec: 'Deploy AI-powered invoice capture with three-way matching and auto-posting' },
+            { keys: ['onboard','orientation','provision','setup','new hire','new employee','welcome'], cat: 'system', potential: 'High', state: 'Manual onboarding workflows', benefit: 'Automated provisioning and task orchestration', rec: 'Build end-to-end onboarding automation with system provisioning and task tracking' },
+            { keys: ['schedule','scheduling','roster','shift','calendar','planning','plan','forecast'], cat: 'system', potential: 'Medium', state: 'Spreadsheet-based scheduling', benefit: 'Optimized scheduling with constraint-based algorithms', rec: 'Implement intelligent scheduling with demand forecasting and constraint optimization' },
+            { keys: ['email','communication','notify','notification','alert','send','distribute','correspondence'], cat: 'system', potential: 'High', state: 'Manual email and notification management', benefit: 'Event-driven automated communications', rec: 'Configure event-triggered notification workflows with template management' },
+            { keys: ['transfer','migrate','integration','import','export','sync','synchronize','etl','extract','load'], cat: 'system', potential: 'High', state: 'Manual data transfer between systems', benefit: 'Real-time automated integration', rec: 'Build API-based integration layer with real-time sync and error handling' },
+            { keys: ['ticket','incident','request','support','helpdesk','help desk','case','issue','troubleshoot'], cat: 'system', potential: 'Medium', state: 'Manual ticket routing and triage', benefit: 'AI-powered categorization and routing', rec: 'Deploy AI ticket classification with auto-routing and suggested resolutions' },
+            { keys: ['procure','purchase','requisition','order','vendor','supplier','sourcing','rfp','rfq','po'], cat: 'system', potential: 'Medium', state: 'Manual procurement process', benefit: 'Streamlined e-procurement with auto-approvals', rec: 'Implement e-procurement with catalog management and automated PO generation' },
+            { keys: ['compliance','regulatory','audit trail','control','sox','gdpr','policy','governance'], cat: 'human', potential: 'Medium', state: 'Manual compliance tracking', benefit: 'Continuous automated compliance monitoring', rec: 'Build automated compliance monitoring with real-time audit trails and alerts' },
+            { keys: ['training','learning','development','course','certification','skill','upskill'], cat: 'human', potential: 'Low', state: 'Ad-hoc training delivery', benefit: 'Structured LMS-based learning paths', rec: 'Deploy learning management system with role-based paths and progress tracking' },
+            { keys: ['decision','strategy','evaluate','assess','judgment','judgement','analysis','negotiate'], cat: 'human', potential: 'Low', state: 'Human decision-making process', benefit: 'Data-enriched decision support', rec: 'Provide AI-powered decision support with scenario modeling and recommendations' },
+            { keys: ['inventory','stock','warehouse','fulfillment','shipping','logistics','supply chain','delivery'], cat: 'system', potential: 'High', state: 'Manual inventory and logistics tracking', benefit: 'Real-time automated inventory management', rec: 'Implement automated inventory management with demand sensing and reorder triggers' },
+            { keys: ['close','month end','month-end','period end','closing','year end','year-end','financial close'], cat: 'ai', potential: 'High', state: 'Manual period-end close process', benefit: '40–60% reduction in close cycle time', rec: 'Automate close task orchestration with dependency tracking and status dashboards' }
+        ];
+
+        const INDUSTRY_CONTEXT = {
+            'Financial Services': { focus: 'regulatory compliance, risk management, and audit trails', aiBoost: 5 },
+            'Healthcare': { focus: 'patient data accuracy, HIPAA compliance, and care coordination', aiBoost: 3 },
+            'Manufacturing': { focus: 'supply chain efficiency, quality control, and production scheduling', aiBoost: 4 },
+            'Retail': { focus: 'inventory optimization, customer experience, and omnichannel operations', aiBoost: 4 },
+            'Technology': { focus: 'development velocity, CI/CD automation, and platform scalability', aiBoost: 6 },
+            'Government': { focus: 'transparency, compliance, citizen service delivery, and audit readiness', aiBoost: 2 },
+            'Energy & Utilities': { focus: 'asset management, regulatory compliance, and field operations', aiBoost: 3 },
+            'Professional Services': { focus: 'utilization rates, project delivery, and client engagement', aiBoost: 5 },
+            'Education': { focus: 'student lifecycle management, accreditation compliance, and learning outcomes', aiBoost: 3 },
+            'Telecommunications': { focus: 'network operations, subscriber management, and service assurance', aiBoost: 5 },
+            'Real Estate': { focus: 'lease management, property operations, and tenant experience', aiBoost: 3 },
+            'Non-profit / NGO': { focus: 'donor management, grant compliance, and program impact measurement', aiBoost: 2 },
+            'Logistics & Transportation': { focus: 'fleet management, route optimization, and shipment visibility', aiBoost: 5 },
+            'Media & Entertainment': { focus: 'content workflow orchestration, rights management, and audience analytics', aiBoost: 4 }
+        };
+
+        const DEPARTMENT_CONTEXT = {
+            'Finance & Accounting': { focus: 'close-cycle optimization, reconciliation accuracy, and regulatory reporting', aiBoost: 4, keywords: ['journal','reconciliation','invoice','close','ledger','accrual','payable','receivable','reporting','audit'], rec: 'Prioritize financial close automation and continuous reconciliation to reduce cycle time' },
+            'Human Resources': { focus: 'employee lifecycle management, compliance, and workforce planning', aiBoost: 3, keywords: ['onboard','hire','payroll','benefits','performance','leave','offboard','training','compliance'], rec: 'Automate employee lifecycle workflows from onboarding through offboarding with self-service portals' },
+            'IT & Engineering': { focus: 'incident resolution, change management, and platform reliability', aiBoost: 5, keywords: ['ticket','incident','deploy','release','monitor','provision','integration','security','change'], rec: 'Implement AIOps for incident detection and automated remediation with CI/CD pipeline optimization' },
+            'Operations': { focus: 'process throughput, quality management, and operational visibility', aiBoost: 4, keywords: ['schedule','inventory','quality','maintenance','fulfillment','logistics','workflow','production'], rec: 'Deploy real-time operational dashboards with automated exception handling and predictive maintenance' },
+            'Sales & Marketing': { focus: 'pipeline velocity, lead qualification, and campaign ROI measurement', aiBoost: 4, keywords: ['lead','pipeline','campaign','forecast','proposal','quote','crm','conversion','outreach'], rec: 'Implement AI-driven lead scoring and automated nurture sequences to accelerate pipeline velocity' },
+            'Customer Service': { focus: 'first-contact resolution, SLA adherence, and customer satisfaction', aiBoost: 4, keywords: ['ticket','case','support','escalation','sla','resolution','customer','feedback','chat'], rec: 'Deploy AI-powered ticket classification and self-service knowledge base to improve first-contact resolution' },
+            'Supply Chain': { focus: 'demand forecasting, supplier performance, and end-to-end visibility', aiBoost: 4, keywords: ['procure','order','supplier','inventory','shipment','warehouse','demand','forecast','logistics'], rec: 'Build end-to-end supply chain visibility with AI-driven demand sensing and supplier risk monitoring' },
+            'Legal': { focus: 'contract lifecycle management, regulatory compliance, and risk mitigation', aiBoost: 2, keywords: ['contract','review','compliance','regulatory','litigation','nda','clause','approval','policy'], rec: 'Implement contract lifecycle management with AI-assisted clause review and obligation tracking' },
+            'Procurement': { focus: 'sourcing efficiency, spend visibility, and supplier management', aiBoost: 3, keywords: ['requisition','purchase','vendor','sourcing','rfp','contract','spend','po','invoice','approval'], rec: 'Deploy e-procurement with automated requisition-to-PO workflows and spend analytics' },
+            'Executive / C-Suite': { focus: 'strategic decision support, performance visibility, and governance oversight', aiBoost: 3, keywords: ['report','dashboard','kpi','strategy','decision','board','governance','performance','risk'], rec: 'Build executive command center with real-time KPI dashboards and AI-powered scenario modeling' },
+            'Research & Development': { focus: 'innovation pipeline management, IP protection, and time-to-market acceleration', aiBoost: 3, keywords: ['research','prototype','test','patent','experiment','data','analysis','review','collaboration'], rec: 'Automate R&D project tracking and data analysis pipelines to accelerate innovation cycles' },
+            'Compliance & Risk': { focus: 'regulatory adherence, risk assessment, and audit readiness', aiBoost: 3, keywords: ['audit','compliance','risk','control','regulation','policy','monitoring','report','assessment','sox'], rec: 'Implement continuous compliance monitoring with automated audit trail generation and risk scoring' }
+        };
+
+        function parseSteps(text) {
+            let steps = [];
+            // Try numbered list first: "1. xxx 2. xxx" or "1) xxx 2) xxx"
+            const numbered = text.match(/(?:^|\n)\s*\d+[\.\)]\s*[^\n\d]+/g);
+            if (numbered && numbered.length >= 2) {
+                steps = numbered.map(s => s.replace(/^\s*\d+[\.\)]\s*/, '').trim());
+            } else {
+                // Try dash/bullet list
+                const dashed = text.match(/(?:^|\n)\s*[-–—•]\s*[^\n-–—•]+/g);
+                if (dashed && dashed.length >= 2) {
+                    steps = dashed.map(s => s.replace(/^\s*[-–—•]\s*/, '').trim());
+                } else {
+                    // Split by comma, "and", semicolons, or sentences
+                    steps = text.split(/[,;]\s*|\s+(?:and|then|followed by|next|after that)\s+/i)
+                        .map(s => s.replace(/^[\s.]+|[\s.]+$/g, '').trim())
+                        .filter(s => s.length > 2);
+                }
+            }
+            // Capitalize first letter
+            return steps.map(s => s.charAt(0).toUpperCase() + s.slice(1)).filter(s => s.length > 0);
+        }
+
+        function analyzeStep(stepText, department) {
+            const lower = stepText.toLowerCase();
+            const deptCtx = DEPARTMENT_CONTEXT[department];
+            const deptKeys = deptCtx ? deptCtx.keywords : [];
+            let bestMatch = null, bestScore = 0;
+            for (const entry of STEP_KB) {
+                let score = 0;
+                for (const key of entry.keys) {
+                    if (lower.includes(key)) {
+                        score += key.split(' ').length;
+                        // Boost score if keyword also matches department context
+                        if (deptKeys.includes(key)) score += 1;
+                    }
+                }
+                if (score > bestScore) { bestScore = score; bestMatch = entry; }
+            }
+            if (bestMatch) {
+                return { stepName: stepText, currentState: bestMatch.state, automationPotential: bestMatch.potential, benefit: bestMatch.benefit, cat: bestMatch.cat, rec: bestMatch.rec };
+            }
+            // Default: assume medium potential, human category
+            return { stepName: stepText, currentState: 'Current process requires manual effort', automationPotential: 'Medium', benefit: 'Efficiency gains through standardization', cat: 'human', rec: 'Evaluate workflow for standardization and partial automation opportunities' };
+        }
+
+        function calcWorkload(analyzedSteps, industry, department) {
+            let ai = 0, human = 0, system = 0, total = analyzedSteps.length || 1;
+            for (const s of analyzedSteps) {
+                if (s.cat === 'ai') ai++; else if (s.cat === 'system') system++; else human++;
+            }
+            let aiPct = Math.round((ai / total) * 100);
+            let humanPct = Math.round((human / total) * 100);
+            let sysPct = Math.round((system / total) * 100);
+            // Apply industry + department AI boosts
+            const indBoost = (INDUSTRY_CONTEXT[industry] || {}).aiBoost || 0;
+            const deptBoost = (DEPARTMENT_CONTEXT[department] || {}).aiBoost || 0;
+            aiPct = Math.min(85, aiPct + Math.round((indBoost + deptBoost) / 2));
+            // Rebalance to 100
+            const sum = aiPct + humanPct + sysPct;
+            if (sum !== 100) {
+                const diff = 100 - sum;
+                humanPct += diff;
+            }
+            humanPct = Math.max(5, humanPct);
+            return { ai: aiPct, human: humanPct, system: sysPct };
+        }
+
+        function generateSummary(steps, industry, department, painPoints) {
+            const highCount = steps.filter(s => s.automationPotential === 'High').length;
+            const medCount = steps.filter(s => s.automationPotential === 'Medium').length;
+            const indCtx = INDUSTRY_CONTEXT[industry];
+            const deptCtx = DEPARTMENT_CONTEXT[department];
+            let summary = `Analyzed ${steps.length} workflow steps across your ${department || 'organization'}.`;
+            if (highCount > 0) summary += ` ${highCount} step${highCount > 1 ? 's show' : ' shows'} high automation potential.`;
+            if (medCount > 0) summary += ` ${medCount} step${medCount > 1 ? 's have' : ' has'} medium automation potential with targeted improvements.`;
+            if (indCtx) summary += ` Given your ${industry.toLowerCase()} context, we recommend prioritizing ${indCtx.focus}.`;
+            if (deptCtx) summary += ` For ${department}, the key opportunity areas are ${deptCtx.focus}.`;
+            if (painPoints) summary += ` Your noted pain points — ${painPoints} — align with the automation opportunities identified below.`;
+            return summary;
+        }
+
+        function generateRecs(analyzedSteps, painPoints, department) {
+            const recs = [];
+            const seen = new Set();
+            // Department-specific recommendation first
+            const deptCtx = DEPARTMENT_CONTEXT[department];
+            if (deptCtx) { recs.push(deptCtx.rec); seen.add(deptCtx.rec); }
+            // High-potential steps next
+            const sorted = [...analyzedSteps].sort((a, b) => {
+                const order = { High: 0, Medium: 1, Low: 2 };
+                return (order[a.automationPotential] || 2) - (order[b.automationPotential] || 2);
+            });
+            for (const s of sorted) {
+                if (!seen.has(s.rec) && recs.length < 6) { recs.push(s.rec); seen.add(s.rec); }
+            }
+            if (painPoints && recs.length < 6) {
+                const lower = painPoints.toLowerCase();
+                if (lower.includes('slow') || lower.includes('delay') || lower.includes('bottleneck')) recs.push('Implement SLA-based escalation to eliminate process bottlenecks');
+                if (lower.includes('error') || lower.includes('mistake') || lower.includes('accuracy')) recs.push('Add automated validation rules and cross-system data integrity checks');
+                if (lower.includes('duplicate') || lower.includes('redundan')) recs.push('Consolidate duplicate workflows and establish single source of truth');
+            }
+            return recs.slice(0, 6);
+        }
+
+        function buildFlowSVG(analyzedSteps) {
+            const nodeW = 160, nodeH = 44, gapX = 40, padX = 20, padY = 20;
+            const perRow = Math.min(analyzedSteps.length, 4);
+            const rows = Math.ceil(analyzedSteps.length / perRow);
+            const svgW = perRow * (nodeW + gapX) - gapX + padX * 2;
+            const svgH = rows * (nodeH + 60) + padY;
+            const colors = { ai: { fill: '#1B3A6B', text: '#FFFFFF' }, human: { fill: '#D4922E', text: '#FFFFFF' }, system: { fill: '#6B6B6B', text: '#FFFFFF' } };
+            let nodes = '', arrows = '', positions = [];
+
+            analyzedSteps.forEach((s, i) => {
+                const row = Math.floor(i / perRow);
+                const col = i % perRow;
+                const x = padX + col * (nodeW + gapX);
+                const y = padY + row * (nodeH + 60);
+                positions.push({ x: x + nodeW / 2, y, w: nodeW, h: nodeH });
+                const c = colors[s.cat] || colors.human;
+                const label = s.stepName.length > 22 ? s.stepName.substring(0, 20) + '...' : s.stepName;
+                nodes += `<rect x="${x}" y="${y}" width="${nodeW}" height="${nodeH}" rx="6" fill="${c.fill}" />`;
+                nodes += `<text x="${x + nodeW / 2}" y="${y + nodeH / 2 + 1}" text-anchor="middle" dominant-baseline="central" fill="${c.text}" font-size="11" font-weight="500">${label}</text>`;
+            });
+
+            for (let i = 0; i < positions.length - 1; i++) {
+                const a = positions[i], b = positions[i + 1];
+                const sameRow = Math.floor(i / perRow) === Math.floor((i + 1) / perRow);
+                if (sameRow) {
+                    const x1 = a.x + a.w / 2, y1 = a.y + a.h / 2;
+                    const x2 = b.x - b.w / 2, y2 = b.y + b.h / 2;
+                    arrows += `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="#C8C8C8" stroke-width="1.5" marker-end="url(#arrowhead)" />`;
+                } else {
+                    const x1 = a.x, y1 = a.y + a.h;
+                    const x2 = b.x, y2 = b.y;
+                    arrows += `<path d="M${x1},${y1} L${x1},${y1 + 20} L${x2},${y2 - 20} L${x2},${y2}" fill="none" stroke="#C8C8C8" stroke-width="1.5" marker-end="url(#arrowhead)" />`;
+                }
+            }
+
+            // Legend
+            const legendY = svgH - 10;
+            const legend = `<rect x="${padX}" y="${legendY}" width="10" height="10" rx="2" fill="#1B3A6B"/><text x="${padX + 14}" y="${legendY + 9}" font-size="10" fill="#6B6B6B">AI-automatable</text>`
+                + `<rect x="${padX + 110}" y="${legendY}" width="10" height="10" rx="2" fill="#D4922E"/><text x="${padX + 124}" y="${legendY + 9}" font-size="10" fill="#6B6B6B">Human-driven</text>`
+                + `<rect x="${padX + 220}" y="${legendY}" width="10" height="10" rx="2" fill="#6B6B6B"/><text x="${padX + 234}" y="${legendY + 9}" font-size="10" fill="#6B6B6B">System/integration</text>`;
+
+            return `<svg viewBox="0 0 ${svgW} ${svgH + 20}" width="100%" xmlns="http://www.w3.org/2000/svg">
+                <defs><marker id="arrowhead" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#C8C8C8"/></marker></defs>
+                ${arrows}${nodes}${legend}
+            </svg>`;
+        }
+
+        function runD() {
+            const industry = document.getElementById('dI').value;
+            const department = document.getElementById('dD').value;
+            const workflow = document.getElementById('dP').value.trim();
+            const painPoints = document.getElementById('dX').value.trim();
+            if (!workflow) { alert('Please describe the workflow.'); return; }
+
+            const loader = document.getElementById('dL'), results = document.getElementById('dR'), btn = document.getElementById('dBtn');
+            btn.disabled = true;
+            loader.classList.add('show');
+            results.classList.remove('show');
+
+            setTimeout(() => {
+                // 1. Parse steps
+                const rawSteps = parseSteps(workflow);
+                if (rawSteps.length === 0) { rawSteps.push(workflow.substring(0, 60)); }
+
+                // 2. Analyze each step
+                const analyzed = rawSteps.map(s => analyzeStep(s, department));
+
+                // 3. Calculate workload
+                const workload = calcWorkload(analyzed, industry, department);
+
+                // 4. Generate summary
+                const summary = generateSummary(analyzed, industry, department, painPoints);
+
+                // 5. Generate recommendations
+                const recs = generateRecs(analyzed, painPoints, department);
+
+                // 6. Render
+                renderResults({ summary, workload, steps: analyzed, recs });
+
+                loader.classList.remove('show');
+                btn.disabled = false;
+            }, 1200);
+        }
+
+        function renderResults(data) {
+            // Summary
+            document.getElementById('dS').textContent = data.summary;
+
+            // Workload bars (animate after a tick)
+            const diEl = document.getElementById('dDi');
+            diEl.innerHTML = ['ai', 'human', 'system'].map(k => {
+                const label = k === 'ai' ? 'AI Automatable' : k === 'human' ? 'Human-Driven' : 'System/Integration';
+                const pct = data.workload[k];
+                return `<div class="diag-bar-row"><div class="diag-bar-label">${label}</div><div class="diag-bar-track"><div class="diag-bar-fill ${k}" data-pct="${pct}"></div></div><div class="diag-bar-pct ${k}">${pct}%</div></div>`;
+            }).join('');
+            // Animate bars
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    diEl.querySelectorAll('.diag-bar-fill').forEach(bar => { bar.style.width = bar.dataset.pct + '%'; });
+                });
+            });
+
+            // Step analysis table
+            const stepsEl = document.getElementById('dA');
+            stepsEl.innerHTML = `<div class="diag-steps-hd"><div>Step</div><div>Current State</div><div>Potential</div><div>Benefit</div></div>`
+                + data.steps.map(s => `<div class="diag-step"><div><div class="diag-sn">${s.stepName}</div></div><div class="diag-ss">${s.currentState}</div><div><span class="diag-pot ${s.automationPotential}">${s.automationPotential}</span></div><div class="diag-benefit">${s.benefit}</div></div>`).join('');
+
+            // Recommendations
+            const recsEl = document.getElementById('dRecs');
+            if (data.recs.length > 0) {
+                const arrow = '<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>';
+                recsEl.innerHTML = `<div class="diag-recs-title">Future State Recommendations</div><ul class="diag-rec-list">${data.recs.map(r => `<li class="diag-rec-item"><div class="diag-rec-icon">${arrow}</div><div>${r}</div></li>`).join('')}</ul>`;
+                recsEl.style.display = '';
+            } else { recsEl.style.display = 'none'; }
+
+            // Flowchart
+            const flowEl = document.getElementById('dFlow');
+            if (data.steps.length >= 2) {
+                flowEl.innerHTML = `<div class="diag-flow-title">Workflow Visualization</div>` + buildFlowSVG(data.steps);
+                flowEl.style.display = '';
+            } else { flowEl.style.display = 'none'; }
+
+            // Show results
+            const r = document.getElementById('dR');
+            r.classList.add('show');
+            r.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function resetD() {
+            document.getElementById('dR').classList.remove('show');
+            document.getElementById('dI').selectedIndex = 0;
+            document.getElementById('dD').selectedIndex = 0;
+            document.getElementById('dP').value = '';
+            document.getElementById('dX').value = '';
+            document.querySelector('.diag-body').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        /* ── Contact form ── */
+        document.getElementById('cF').addEventListener('submit', async e => { e.preventDefault(); const f = e.target, b = f.querySelector('button[type="submit"]'), o = b.innerHTML; b.innerHTML = 'Sending...'; b.disabled = true; try { const r = await fetch(f.action, { method: 'POST', body: new FormData(f), headers: { 'Accept': 'application/json' } }); if (r.ok) { f.style.display = 'none'; document.getElementById('cfOk').classList.add('show'); } else throw 0; } catch { alert('Please email connect@unlock-solutions.com'); b.innerHTML = o; b.disabled = false; } });
+
+        /* ── Scroll reveal ── */
+        const obs = new IntersectionObserver(e => e.forEach(x => { if (x.isIntersecting) x.target.classList.add('v'); }), { threshold: 0.06, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.rv').forEach(el => obs.observe(el));
+
+        /* ── Spider Diagram ── */
+        (function() {
+            var C = 50, R_CAT = 17, R_APP = 23;
+            var cats = [
+                { id:'core',  name:'Core Systems',        ang: -90, color:'#1a5bba',
+                  apps:['SAP S/4HANA','Oracle Cloud','NetSuite','Dynamics 365','Salesforce','Workday','Epicor','Infor','Acumatica','Certinia','Sage Intacct','IFS','Unit4','HubSpot','Zoho One'] },
+                { id:'cloud', name:'Cloud Infrastructure', ang: -38.6, color:'#2D6FD4',
+                  apps:['Amazon Web Services','Microsoft Azure','Google Cloud','IBM Cloud','Oracle OCI','Terraform','Docker','Kubernetes','Cloudflare','VMware','Red Hat OpenShift','Akamai','DigitalOcean'] },
+                { id:'data',  name:'Data & Analytics',     ang: 12.9, color:'#0d2d6b',
+                  apps:['Databricks','Snowflake','Tableau','Power BI','Qlik Sense','Looker','ThoughtSpot','Alteryx','Informatica','Talend','dbt','Apache Spark','Fivetran','Monte Carlo','Sisense'] },
+                { id:'integ', name:'Integration Layer',    ang: 64.3, color:'#D4922E',
+                  apps:['MuleSoft','Workato','Boomi','Celigo','SnapLogic','Tray.io','Jitterbit','Zapier','Kong','Apigee','Postman','Atlassian','Slack','Monday.com','Notion'] },
+                { id:'auto',  name:'Automation',           ang: 115.7, color:'#D4A800',
+                  apps:['UiPath','Automation Anywhere','Blue Prism','Camunda','Pegasystems','Appian','Nintex','ServiceNow','Jaggaer','Coupa','SAP Signavio','Power Automate'] },
+                { id:'ai',    name:'AI Systems',           ang: 167.1, color:'#071a42',
+                  apps:['OpenAI','Anthropic','Cohere','Mistral AI','Hugging Face','LangChain','LlamaIndex','DataRobot','C3.ai','H2O.ai','Scale AI','Weights & Biases','MLflow','Palantir','Enterprise Copilots'] },
+                { id:'sec',   name:'Security & Control',   ang: 218.6, color:'#5A6A80',
+                  apps:['CrowdStrike','Palo Alto Networks','Okta','Zscaler','SentinelOne','Fortinet','CyberArk','SailPoint','Qualys','Rapid7','Wiz','Snyk','Varonis','KnowBe4','Proofpoint','Splunk'] }
+            ];
+
+            var shared = {
+                'Snowflake':['cloud','data'],       /* cloud-hosted data warehouse */
+                'ServiceNow':['core','auto'],       /* ITSM core + workflow automation */
+                'Power Automate':['core','auto'],   /* Microsoft ecosystem automation */
+                'SAP Signavio':['core','auto'],     /* process mining bridges ERP + automation */
+                'MuleSoft':['integ','auto'],        /* iPaaS + API-led automation */
+                'Workato':['integ','auto'],         /* integration-driven automation */
+                'Splunk':['data','sec'],            /* security analytics on data */
+                'Palantir':['data','ai'],           /* AI-driven data analytics */
+                'Power BI':['core','data'],         /* reporting layer for core systems */
+                'AWS SageMaker':['cloud','ai'],     /* ML on AWS */
+                'Azure AI Services':['cloud','ai'], /* ML on Azure */
+                'Google Vertex AI':['cloud','ai']   /* ML on GCP */
+            };
+            var sharedSet = {};
+            Object.keys(shared).forEach(function(name) { sharedSet[name] = true; });
+
+            var deps = [
+                ['core','cloud'], ['core','integ'], ['core','auto'], ['core','data'],
+                ['cloud','data'], ['cloud','ai'],   ['cloud','sec'],
+                ['data','ai'],    ['data','sec'],   ['data','integ'],
+                ['integ','auto'], ['integ','ai'],
+                ['auto','ai'],    ['auto','sec'],
+                ['ai','sec']
+            ];
+
+            var el = document.getElementById('spider');
+            if(!el) return;
+
+            var catMap = {};
+            cats.forEach(function(c){ catMap[c.id]=c; });
+
+            function rad(d){ return d*Math.PI/180; }
+            function px(ang,r){ return C + r*Math.cos(rad(ang)); }
+            function py(ang,r){ return C + r*Math.sin(rad(ang)); }
+
+            /* Build SVG */
+            var s = '<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">';
+
+            /* Web rings */
+            [10,20,30,40].forEach(function(r){
+                s += '<circle class="sp-ring" cx="'+C+'" cy="'+C+'" r="'+r+'"/>';
+            });
+
+            /* Animated orbit rings */
+            s += '<circle class="sp-orbit" cx="'+C+'" cy="'+C+'" r="'+R_CAT+'"/>';
+            s += '<circle class="sp-orbit-blue" cx="'+C+'" cy="'+C+'" r="'+(R_CAT+0.35)+'"/>';
+
+            /* Spokes */
+            cats.forEach(function(c){
+                s += '<line class="sp-spoke" x1="'+C+'" y1="'+C+'" x2="'+px(c.ang,46)+'" y2="'+py(c.ang,46)+'"/>';
+            });
+
+            /* Dependency arcs between categories */
+            deps.forEach(function(d){
+                var a=catMap[d[0]], b=catMap[d[1]];
+                var ax=px(a.ang,R_CAT), ay=py(a.ang,R_CAT);
+                var bx=px(b.ang,R_CAT), by=py(b.ang,R_CAT);
+                var mx=(ax+bx)/2, my=(ay+by)/2;
+                var dx=bx-ax, dy=by-ay;
+                var len=Math.sqrt(dx*dx+dy*dy);
+                var nx=-dy/len, ny=dx/len;
+                var bulge = len*0.2;
+                var cx2=mx+nx*bulge, cy2=my+ny*bulge;
+                s += '<path class="sp-dep" data-cats="'+d[0]+','+d[1]+'" d="M'+ax+','+ay+' Q'+cx2+','+cy2+' '+bx+','+by+'"/>';
+            });
+
+            /* Lines from category to each app */
+            cats.forEach(function(c){
+                var n = c.apps.length;
+                var spread = Math.min(50, n * 4.2);
+                c.apps.forEach(function(name, i){
+                    var t = n===1 ? 0 : (i/(n-1)-0.5);
+                    var appAng = c.ang + t * spread;
+                    var layer = (i%3===0)?1:(i%3===1)?0.55:0.75;
+                    var dist = R_CAT + R_APP * (0.15 + 0.85*layer);
+                    var isShared = !!sharedSet[name];
+                    s += '<line class="sp-link" data-cat="'+c.id+'" data-shared="'+(isShared?'1':'')+'" x1="'+px(c.ang,R_CAT)+'" y1="'+py(c.ang,R_CAT)+'" x2="'+px(appAng,dist)+'" y2="'+py(appAng,dist)+'"/>';
+                });
+            });
+
+            s += '</svg>';
+            el.innerHTML = s;
+
+            /* Place category nodes as DOM */
+            cats.forEach(function(c){
+                var x = px(c.ang, R_CAT), y = py(c.ang, R_CAT);
+                var node = document.createElement('div');
+                node.className = 'sp-cat';
+                node.dataset.cat = c.id;
+                node.style.left = x+'%'; node.style.top = y+'%';
+                node.innerHTML = '<div class="sp-cat-dot" style="background:'+c.color+'"><svg viewBox="0 0 24 24" fill="none"><rect x="5" y="11" width="14" height="10" rx="2" stroke="#fff" stroke-width="1.5" fill="none"/><path d="M8 11V7a4 4 0 0 1 8 0" stroke="#fff" stroke-width="1.5" stroke-linecap="round" fill="none"/><circle cx="12" cy="15.5" r="1" fill="#fff"/><rect x="11.5" y="15.5" width="1" height="2.5" rx="0.5" fill="#fff"/></svg></div>'
+                    + '<div class="sp-cat-name">'+c.name+'</div>';
+                el.appendChild(node);
+                node.addEventListener('mouseenter', function(){ activate(c.id); });
+                node.addEventListener('mouseleave', function(){ deactivate(); });
+            });
+
+            /* Place app labels as DOM */
+            var appEls = [];
+            cats.forEach(function(c){
+                var n = c.apps.length;
+                var spread = Math.min(50, n * 4.2);
+                c.apps.forEach(function(name, i){
+                    var t = n===1 ? 0 : (i/(n-1)-0.5);
+                    var appAng = c.ang + t * spread;
+                    var layer = (i%3===0)?1:(i%3===1)?0.55:0.75;
+                    var dist = R_CAT + R_APP * (0.15 + 0.85*layer);
+                    var x = px(appAng, dist), y = py(appAng, dist);
+                    var isShared = !!sharedSet[name];
+
+                    var node = document.createElement('div');
+                    node.className = 'sp-app';
+                    node.dataset.cat = c.id;
+                    node.dataset.name = name;
+                    if(isShared) node.dataset.shared = shared[name].join(',');
+                    node.style.left = x+'%'; node.style.top = y+'%';
+                    node.textContent = name;
+                    el.appendChild(node);
+                    appEls.push(node);
+                });
+            });
+
+            /* Interaction */
+            function getConnected(id){
+                var out=[];
+                deps.forEach(function(d){
+                    if(d[0]===id) out.push(d[1]);
+                    if(d[1]===id) out.push(d[0]);
+                });
+                return out;
+            }
+
+            function activate(id){
+                el.classList.add('focus');
+                var conn = getConnected(id);
+                el.querySelectorAll('.sp-cat').forEach(function(n){
+                    n.classList.remove('on','connected');
+                    if(n.dataset.cat===id) n.classList.add('on');
+                    else if(conn.indexOf(n.dataset.cat)!==-1) n.classList.add('connected');
+                });
+                el.querySelectorAll('.sp-dep').forEach(function(p){
+                    p.classList.toggle('on', p.dataset.cats.indexOf(id)!==-1);
+                });
+                el.querySelectorAll('.sp-link').forEach(function(l){
+                    l.classList.remove('on','on-shared');
+                    if(l.dataset.cat===id){
+                        l.classList.add(l.dataset.shared?'on-shared':'on');
+                    }
+                });
+                appEls.forEach(function(n){
+                    n.classList.remove('on','on-shared');
+                    if(n.dataset.cat===id){
+                        n.classList.add(n.dataset.shared?'on-shared':'on');
+                    } else if(n.dataset.shared && n.dataset.shared.indexOf(id)!==-1){
+                        n.classList.add('on-shared');
+                    }
+                });
+            }
+
+            function deactivate(){
+                el.classList.remove('focus');
+                el.querySelectorAll('.sp-cat').forEach(function(n){ n.classList.remove('on','connected'); });
+                el.querySelectorAll('.sp-dep').forEach(function(p){ p.classList.remove('on'); });
+                el.querySelectorAll('.sp-link').forEach(function(l){ l.classList.remove('on','on-shared'); });
+                appEls.forEach(function(n){ n.classList.remove('on','on-shared'); });
+            }
+
+            /* Mobile accordion */
+            var mob = document.getElementById('spMobile');
+            if(!mob) return;
+            cats.forEach(function(c){
+                var div = document.createElement('div');
+                div.className = 'spm-group';
+                div.innerHTML = '<div class="spm-head"><span>'+c.name+'</span><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></div>'
+                    +'<div class="spm-body">'+c.apps.map(function(a){ return '<div class="spm-item">'+a+'</div>'; }).join('')+'</div>';
+                div.querySelector('.spm-head').addEventListener('click',function(){ div.classList.toggle('open'); });
+                mob.appendChild(div);
+            });
+        })();
+    </script>
+
+    <!-- ══════════════ CHATBOT ══════════════ -->
+    <button class="cb-trigger" id="cbTrigger" aria-label="Open chat">
+        <svg id="cbIconChat" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+        <svg id="cbIconClose" style="display:none" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+
+    <div class="cb-panel" id="cbPanel">
+        <div class="cb-header">
+            <div class="cb-header-left">
+                <div class="cb-header-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect x="16" y="32" width="24" height="18" rx="3.5" stroke="var(--blue-dd)" stroke-width="3.5" fill="none"/><path d="M22 32v-7a8 8 0 0 1 16 0" stroke="var(--blue-dd)" stroke-width="3.5" stroke-linecap="round" fill="none"/><circle cx="28" cy="40" r="2" fill="var(--blue-dd)"/><rect x="27" y="40" width="2" height="4" rx="1" fill="var(--blue-dd)"/></svg></div>
+                <div>
+                    <div class="cb-header-title">UNLOCK Solutions</div>
+                    <div class="cb-header-sub">Enterprise Transformation Advisory</div>
+                </div>
+            </div>
+            <button class="cb-close" id="cbClose" aria-label="Close chat"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg></button>
+        </div>
+        <div class="cb-messages" id="cbMessages"></div>
+        <div class="cb-input-bar" id="cbInput">
+            <input type="text" id="cbField" placeholder="Type your question...">
+            <button id="cbSend" aria-label="Send"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg></button>
+        </div>
+    </div>
+
+    <script>
+    (function() {
+        /* ── Flow data ── */
+        const F = {
+            welcome: {
+                message: "Welcome to <strong>Unlock Solutions</strong>.<br>We help enterprises modernize operating models, strengthen governance, and deliver measurable transformation outcomes.<br><br>How can I assist you today?",
+                options: [
+                    { label: "Understand Your Services", next: "services" },
+                    { label: "Assess Our Maturity Level", next: "maturity" },
+                    { label: "Discuss a Transformation Initiative", next: "initiative_1" },
+                    { label: "Explore Platform Expertise", next: "platforms" },
+                    { label: "Governance & Operating Model Questions", next: "governance" },
+                    { label: "Pricing & Engagement Models", next: "pricing" },
+                    { label: "Book a Consultation", next: "book_1" },
+                    { label: "Speak to a Human", next: "human" }
+                ]
+            },
+
+            /* ── Services ── */
+            services: {
+                message: "Unlock Solutions leads structured enterprise transformation programs across <strong>five core disciplines</strong>:",
+                options: [
+                    { label: "Transformation Programs", next: "svc_transform" },
+                    { label: "Platform Modernization", next: "svc_platform" },
+                    { label: "Governance & Execution", next: "svc_governance" },
+                    { label: "Intelligent Automation", next: "svc_automation" },
+                    { label: "Enablement & Adoption", next: "svc_enablement" },
+                    { label: "Back to Menu", next: "welcome" }
+                ]
+            },
+            svc_transform: {
+                message: "We lead <strong>end-to-end transformation programs</strong> \u2014 from operating model redesign to measurable performance outcomes.<ul><li>Enterprise operating model redesign</li><li>Process re-engineering</li><li>Cross-functional integration</li><li>Performance architecture</li><li>Executive governance design</li></ul>",
+                options: [
+                    { label: "Explore Another Service", next: "services" },
+                    { label: "Book a Consultation", next: "book_1" },
+                    { label: "Back to Menu", next: "welcome" }
+                ]
+            },
+            svc_platform: {
+                message: "We modernize and rationalize <strong>enterprise platforms</strong>.<ul><li>ERP optimization</li><li>CRM integration</li><li>Data architecture redesign</li><li>Cloud transition programs</li><li>Workflow standardization</li></ul>",
+                options: [
+                    { label: "Explore Another Service", next: "services" },
+                    { label: "Book a Consultation", next: "book_1" },
+                    { label: "Back to Menu", next: "welcome" }
+                ]
+            },
+            svc_governance: {
+                message: "Building <strong>discipline into transformation</strong>.<ul><li>RASCI & decision rights</li><li>Steering committee frameworks</li><li>KPI governance models</li><li>Risk & control architecture</li><li>PMO setup or restructuring</li></ul>",
+                options: [
+                    { label: "Explore Another Service", next: "services" },
+                    { label: "Book a Consultation", next: "book_1" },
+                    { label: "Back to Menu", next: "welcome" }
+                ]
+            },
+            svc_automation: {
+                message: "Structured <strong>automation aligned to outcomes</strong>.<ul><li>Workflow automation mapping</li><li>Integration architecture</li><li>Automation ROI modeling</li><li>Exception handling frameworks</li><li>Closed-loop performance design</li></ul>",
+                options: [
+                    { label: "Explore Another Service", next: "services" },
+                    { label: "Book a Consultation", next: "book_1" },
+                    { label: "Back to Menu", next: "welcome" }
+                ]
+            },
+            svc_enablement: {
+                message: "Sustained transformation requires <strong>adoption</strong>.<ul><li>Change strategy</li><li>Executive alignment workshops</li><li>Role redesign</li><li>Training architecture</li><li>Performance reinforcement models</li></ul>",
+                options: [
+                    { label: "Explore Another Service", next: "services" },
+                    { label: "Book a Consultation", next: "book_1" },
+                    { label: "Back to Menu", next: "welcome" }
+                ]
+            },
+
+            /* ── Maturity ── */
+            maturity: {
+                message: "Our <strong>Maturity Model</strong> evaluates enterprise operating capability across automation, governance, integration, and performance visibility.<br><br><strong>Level 01 \u2014 Traditional</strong><br>Manual workflows \u2022 Siloed systems \u2022 Limited governance \u2022 Lagging performance reporting<br><br><strong>Level 02 \u2014 Transitional</strong><br>Isolated pilots \u2022 Emerging governance \u2022 Partial automation \u2022 Basic KPI alignment<br><br><strong>Level 03 \u2014 Augmented</strong><br>Cross-functional standardization \u2022 Governed decision forums \u2022 Integrated KPIs \u2022 Automation at scale<br><br><strong>Level 04 \u2014 Intelligent Enterprise</strong><br>Closed-loop performance \u2022 Real-time observability \u2022 Integrated operating model \u2022 Continuous improvement pipeline",
+                options: [
+                    { label: "Run a Diagnostic", next: "diagnostic_scroll" },
+                    { label: "Book a Consultation", next: "book_1" },
+                    { label: "Back to Menu", next: "welcome" }
+                ]
+            },
+            diagnostic_scroll: {
+                message: "Let me take you to our diagnostic tool where you can assess a specific department or process.",
+                action: "scrollTo",
+                scrollTarget: "#diagnostic",
+                options: [
+                    { label: "Back to Menu", next: "welcome" }
+                ]
+            },
+
+            /* ── Initiative Discussion ── */
+            initiative_1: {
+                message: "Let\u2019s scope your transformation initiative. I\u2019ll ask a few structured questions.<br><br><strong>What industry are you in?</strong>",
+                input: true,
+                inputPlaceholder: "e.g. Financial Services, Healthcare, Manufacturing...",
+                inputKey: "industry",
+                nextAfterInput: "initiative_2"
+            },
+            initiative_2: {
+                message: "What <strong>department or function</strong> is the initiative focused on?",
+                input: true,
+                inputPlaceholder: "e.g. Finance, Operations, IT, HR...",
+                inputKey: "department",
+                nextAfterInput: "initiative_3"
+            },
+            initiative_3: {
+                message: "What <strong>outcome</strong> are you targeting?",
+                options: [
+                    { label: "Cost Reduction", next: "initiative_4", value: "Cost reduction" },
+                    { label: "Throughput Increase", next: "initiative_4", value: "Throughput increase" },
+                    { label: "Platform Modernization", next: "initiative_4", value: "Platform modernization" },
+                    { label: "Governance Strengthening", next: "initiative_4", value: "Governance strengthening" },
+                    { label: "Automation", next: "initiative_4", value: "Automation" },
+                    { label: "Enterprise Redesign", next: "initiative_4", value: "Enterprise redesign" }
+                ]
+            },
+            initiative_4: {
+                message: "What is your <strong>timeline</strong>?",
+                input: true,
+                inputPlaceholder: "e.g. 3 months, Q3 2026, ASAP...",
+                inputKey: "timeline",
+                nextAfterInput: "initiative_5"
+            },
+            initiative_5: {
+                message: "Is there an <strong>executive sponsor</strong> identified?",
+                options: [
+                    { label: "Yes", next: "initiative_result", value: "Yes" },
+                    { label: "No", next: "initiative_result", value: "No" }
+                ]
+            },
+            initiative_result: {
+                message: "Based on your input, this initiative likely begins in <strong>Phase 01: Discovery & Context</strong>, followed by structured governance design.<br><br>Typical timeline: <strong>8\u201316 weeks</strong> for foundational architecture before scale.<br><br>A senior advisor can provide a detailed engagement roadmap tailored to your context.",
+                options: [
+                    { label: "Book a Consultation", next: "book_1" },
+                    { label: "View Case Study", next: "casestudy" },
+                    { label: "Back to Menu", next: "welcome" }
+                ]
+            },
+
+            /* ── Platforms ── */
+            platforms: {
+                message: "We modernize and integrate across <strong>enterprise ecosystems</strong>:<br><br><strong>ERP</strong> \u2014 SAP \u2022 Oracle \u2022 NetSuite \u2022 Epicor \u2022 Infor<br><strong>CRM</strong> \u2014 Salesforce \u2022 Microsoft Dynamics<br><strong>Cloud & Data</strong> \u2014 AWS \u2022 Azure \u2022 Google Cloud \u2022 Databricks<br><strong>Automation</strong> \u2014 Workato \u2022 UiPath \u2022 Automation Anywhere \u2022 Atlassian<br><strong>AI & Intelligent Systems</strong> \u2014 OpenAI \u2022 Google Vertex AI \u2022 Anthropic \u2022 Enterprise copilots<br><strong>Security & Governance</strong> \u2014 CrowdStrike \u2022 Palo Alto Networks \u2022 Okta",
+                options: [
+                    { label: "Discuss a Specific Platform", next: "initiative_1" },
+                    { label: "Book a Consultation", next: "book_1" },
+                    { label: "Back to Menu", next: "welcome" }
+                ]
+            },
+
+            /* ── Governance FAQ ── */
+            governance: {
+                message: "Common governance and operating model questions:",
+                options: [
+                    { label: "What is operating model redesign?", next: "gov_q1" },
+                    { label: "Governance vs. project management?", next: "gov_q2" },
+                    { label: "Why do transformations fail?", next: "gov_q3" },
+                    { label: "Back to Menu", next: "welcome" }
+                ]
+            },
+            gov_q1: {
+                message: "<strong>Operating model redesign</strong> means redefining how decisions are made, how work flows across functions, and how accountability is structured.<br><br>It is the foundation upon which technology, governance, and performance systems are built.",
+                options: [
+                    { label: "Another Question", next: "governance" },
+                    { label: "Book a Consultation", next: "book_1" },
+                    { label: "Back to Menu", next: "welcome" }
+                ]
+            },
+            gov_q2: {
+                message: "<strong>Governance</strong> defines decision rights, performance controls, and risk frameworks.<br><br><strong>Project management</strong> executes within that structure.<br><br>Without governance, projects deliver outputs. With governance, programs deliver outcomes.",
+                options: [
+                    { label: "Another Question", next: "governance" },
+                    { label: "Book a Consultation", next: "book_1" },
+                    { label: "Back to Menu", next: "welcome" }
+                ]
+            },
+            gov_q3: {
+                message: "<strong>Why do transformations fail?</strong><ul><li>No executive sponsorship</li><li>No governance discipline</li><li>Technology-first approach without operating redesign</li><li>No performance reinforcement loop</li></ul>Unlock Solutions addresses each of these structurally from day one.",
+                options: [
+                    { label: "Another Question", next: "governance" },
+                    { label: "Book a Consultation", next: "book_1" },
+                    { label: "Back to Menu", next: "welcome" }
+                ]
+            },
+
+            /* ── Pricing ── */
+            pricing: {
+                message: "Unlock Solutions operates on <strong>structured transformation engagements</strong>.<br><br><strong>Typical structures:</strong><ul><li>6\u201312 week diagnostic & architecture design</li><li>3\u20136 month implementation phases</li><li>6\u201312 month enterprise-scale programs</li></ul><strong>Engagement types:</strong><ul><li>Fixed-fee discovery</li><li>Milestone-based transformation</li><li>Retained executive advisory</li></ul>",
+                options: [
+                    { label: "Get a Customized Estimate", next: "book_1" },
+                    { label: "View Case Study", next: "casestudy" },
+                    { label: "Back to Menu", next: "welcome" }
+                ]
+            },
+
+            /* ── Case Study ── */
+            casestudy: {
+                message: "<strong>Case Study: National Distributor</strong><br><br><strong>Problem:</strong><ul><li>Fragmented reporting</li><li>Manual reconciliation</li><li>No governance discipline</li></ul><strong>90-Day Transformation:</strong><ul><li>Operating model redesign</li><li>Automated dashboards</li><li>Executive KPI forum</li><li>Standardized workflows</li></ul><strong>Result:</strong><ul><li>28% reporting time reduction</li><li>17% throughput improvement</li><li>Real-time performance visibility</li></ul>",
+                options: [
+                    { label: "Book a Consultation", next: "book_1" },
+                    { label: "Back to Menu", next: "welcome" }
+                ]
+            },
+
+            /* ── Booking Flow ── */
+            book_1: {
+                message: "Let\u2019s schedule a <strong>complimentary 30-minute transformation consultation</strong>.<br><br>What is your <strong>name</strong>?",
+                input: true,
+                inputPlaceholder: "Your full name",
+                inputKey: "book_name",
+                nextAfterInput: "book_2"
+            },
+            book_2: {
+                message: "What is your <strong>email address</strong>?",
+                input: true,
+                inputPlaceholder: "you@company.com",
+                inputKey: "book_email",
+                nextAfterInput: "book_3"
+            },
+            book_3: {
+                message: "What is your <strong>company name</strong>?",
+                input: true,
+                inputPlaceholder: "Company name",
+                inputKey: "book_company",
+                nextAfterInput: "book_4"
+            },
+            book_4: {
+                message: "What <strong>industry</strong> are you in?",
+                input: true,
+                inputPlaceholder: "e.g. Financial Services, Healthcare...",
+                inputKey: "book_industry",
+                nextAfterInput: "book_5"
+            },
+            book_5: {
+                message: "Briefly describe your <strong>transformation challenge</strong>.",
+                input: true,
+                inputPlaceholder: "What challenges are you facing?",
+                inputKey: "book_challenge",
+                nextAfterInput: "book_confirm"
+            },
+            book_confirm: {
+                message: "Thank you. Your consultation request has been received.<br><br><strong>A senior advisor will respond within 24 hours.</strong><br><br>You can also reach us directly at <a href='mailto:connect@unlock-solutions.com' style='color:var(--blue);font-weight:600'>connect@unlock-solutions.com</a>.",
+                options: [
+                    { label: "Back to Menu", next: "welcome" }
+                ]
+            },
+
+            /* ── Human ── */
+            human: {
+                message: "You can reach our team directly:<br><br><strong>Email:</strong> <a href='mailto:connect@unlock-solutions.com' style='color:var(--blue);font-weight:600'>connect@unlock-solutions.com</a><br><strong>Phone:</strong> (604) 670-2076<br><strong>Location:</strong> Vancouver, BC, Canada<br><br>Or use the contact form on this page.",
+                options: [
+                    { label: "Go to Contact Form", next: "contact_scroll" },
+                    { label: "Book a Consultation", next: "book_1" },
+                    { label: "Back to Menu", next: "welcome" }
+                ]
+            },
+            contact_scroll: {
+                message: "Let me take you to our contact form.",
+                action: "scrollTo",
+                scrollTarget: "#contact",
+                options: [
+                    { label: "Back to Menu", next: "welcome" }
+                ]
+            }
+        };
+
+        /* ── State ── */
+        const panel = document.getElementById('cbPanel');
+        const trigger = document.getElementById('cbTrigger');
+        const messagesEl = document.getElementById('cbMessages');
+        const inputBar = document.getElementById('cbInput');
+        const inputField = document.getElementById('cbField');
+        const sendBtn = document.getElementById('cbSend');
+        const iconChat = document.getElementById('cbIconChat');
+        const iconClose = document.getElementById('cbIconClose');
+        let isOpen = false;
+        let currentNode = null;
+        let formData = {};
+        let started = false;
+
+        /* ── Toggle ── */
+        function toggleChat() {
+            isOpen = !isOpen;
+            panel.classList.toggle('open', isOpen);
+            trigger.classList.toggle('open', isOpen);
+            iconChat.style.display = isOpen ? 'none' : '';
+            iconClose.style.display = isOpen ? '' : 'none';
+            if (isOpen && !started) { started = true; goTo('welcome'); }
+        }
+        trigger.addEventListener('click', toggleChat);
+        document.getElementById('cbClose').addEventListener('click', toggleChat);
+
+        /* ── Render ── */
+        function addMsg(html, type) {
+            const d = document.createElement('div');
+            d.className = 'cb-msg ' + type;
+            d.innerHTML = html;
+            messagesEl.appendChild(d);
+            scrollBottom();
+        }
+
+        function addOptions(opts) {
+            const wrap = document.createElement('div');
+            wrap.className = 'cb-options';
+            opts.forEach(o => {
+                const btn = document.createElement('button');
+                btn.className = 'cb-opt';
+                btn.textContent = o.label;
+                btn.addEventListener('click', () => {
+                    addMsg(o.label, 'user');
+                    wrap.remove();
+                    inputBar.classList.remove('show');
+                    if (o.value) formData[currentNode] = o.value;
+                    goTo(o.next);
+                });
+                wrap.appendChild(btn);
+            });
+            messagesEl.appendChild(wrap);
+            scrollBottom();
+        }
+
+        function showTyping() {
+            const t = document.createElement('div');
+            t.className = 'cb-typing';
+            t.id = 'cbTyping';
+            t.innerHTML = '<span></span><span></span><span></span>';
+            messagesEl.appendChild(t);
+            scrollBottom();
+        }
+        function hideTyping() {
+            const t = document.getElementById('cbTyping');
+            if (t) t.remove();
+        }
+
+        function scrollBottom() {
+            requestAnimationFrame(() => { messagesEl.scrollTop = messagesEl.scrollHeight; });
+        }
+
+        /* ── Navigate ── */
+        function goTo(id) {
+            const node = F[id];
+            if (!node) return;
+            currentNode = id;
+
+            showTyping();
+            const delay = node.message && node.message.length > 200 ? 900 : 600;
+            setTimeout(() => {
+                hideTyping();
+                if (node.message) addMsg(node.message, 'bot');
+
+                if (node.action === 'scrollTo' && node.scrollTarget) {
+                    const el = document.querySelector(node.scrollTarget);
+                    if (el) setTimeout(() => el.scrollIntoView({ behavior: 'smooth', block: 'start' }), 400);
+                }
+
+                if (node.input) {
+                    inputBar.classList.add('show');
+                    inputField.placeholder = node.inputPlaceholder || 'Type your response...';
+                    inputField.value = '';
+                    inputField.focus();
+                } else {
+                    inputBar.classList.remove('show');
+                }
+
+                if (node.options) addOptions(node.options);
+            }, delay);
+        }
+
+        /* ── Input handling ── */
+        function submitInput() {
+            const val = inputField.value.trim();
+            if (!val) return;
+            const node = F[currentNode];
+            if (!node || !node.input) return;
+
+            addMsg(val, 'user');
+            formData[node.inputKey] = val;
+            inputBar.classList.remove('show');
+            inputField.value = '';
+
+            /* Executive tone detection */
+            const execTerms = /operating model|decision rights|board.level|control environment|governance framework|executive sponsor/i;
+            if (execTerms.test(val) && node.nextAfterInput) {
+                const next = F[node.nextAfterInput];
+                if (next && next.message) {
+                    next.message = next.message
+                        .replace(/transformation/gi, 'enterprise operating discipline')
+                        .replace(/redesign/gi, 'architecture redesign');
+                }
+            }
+
+            if (currentNode === 'book_5') {
+                submitBooking();
+            }
+
+            if (node.nextAfterInput) goTo(node.nextAfterInput);
+        }
+
+        sendBtn.addEventListener('click', submitInput);
+        inputField.addEventListener('keydown', e => { if (e.key === 'Enter') submitInput(); });
+
+        /* ── Booking submission ── */
+        function submitBooking() {
+            const body = new FormData();
+            body.append('name', formData.book_name || '');
+            body.append('email', formData.book_email || '');
+            body.append('company', formData.book_company || '');
+            body.append('interest', formData.book_industry || '');
+            body.append('message', '[Chatbot Booking] Industry: ' + (formData.book_industry || '') + ' | Challenge: ' + (formData.book_challenge || ''));
+            body.append('_subject', 'Chatbot Consultation Request — Unlock Solutions');
+            body.append('_captcha', 'false');
+            body.append('_template', 'table');
+            fetch('https://formsubmit.co/connect@unlock-solutions.com', {
+                method: 'POST', body: body, headers: { 'Accept': 'application/json' }
+            }).catch(() => {});
+        }
+    })();
+    </script>
 </body>
 </html>
