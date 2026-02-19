@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insights — Unlock Solutions</title>
+    <meta name="description" content="Insights and perspectives on enterprise transformation, intelligent automation, platform modernization, and governance from Unlock Solutions.">
+    <link rel="icon" type="image/png" href="../unlock_favicon.png">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23f5c800'/%3E%3Crect x='16' y='32' width='24' height='18' rx='3.5' stroke='%231a5bba' stroke-width='3.5' fill='none'/%3E%3Cpath d='M22 32v-7a8 8 0 0 1 16 0' stroke='%231a5bba' stroke-width='3.5' stroke-linecap='round' fill='none'/%3E%3Ccircle cx='28' cy='40' r='2' fill='%231a5bba'/%3E%3Crect x='27' y='40' width='2' height='4' rx='1' fill='%231a5bba'/%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&family=Manrope:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg: #FFFFFF; --surface: #FFFFFF;
+            --ink: #0A1628; --ink-2: #1E2D45; --ink-3: #5A6A80; --ink-4: #8B99AD; --ink-5: #C2CBd6;
+            --rule: #E2E8F0; --warm: #F0F5FF;
+            --blue: #1a5bba; --blue-d: #0d2d6b; --blue-dd: #071a42; --blue-l: #2D6FD4; --blue-xl: #EBF2FF;
+            --gold: #f5c800; --gold-l: #FFD740; --gold-d: #D4A800;
+            --serif: 'Newsreader', Georgia, serif;
+            --sans: 'Manrope', system-ui, sans-serif;
+            --mono: 'JetBrains Mono', monospace;
+            --ease: cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--sans); background: var(--bg); color: var(--ink); font-size: 16px; -webkit-font-smoothing: antialiased; line-height: 1.6; overflow-x: hidden; }
+        ::selection { background: var(--blue); color: #FFFFFF; }
+        a { color: inherit; text-decoration: none; }
+        .w { max-width: 1300px; margin: 0 auto; padding: 0 clamp(1.5rem, 5vw, 5rem); }
+        header { position: fixed; top: 0; left: 0; right: 0; z-index: 200; background: rgba(7,26,66,0.85); backdrop-filter: blur(24px) saturate(1.4); -webkit-backdrop-filter: blur(24px) saturate(1.4); border-bottom: 1px solid rgba(245,200,0,0.1); }
+        header .w { display: flex; justify-content: space-between; align-items: center; height: 64px; }
+        .logo { display: flex; flex-direction: column; align-items: center; line-height: 1; text-decoration: none; }
+        .logo-top { display: flex; align-items: center; font-family: var(--sans); font-weight: 800; font-size: 1.5rem; color: #FFFFFF; letter-spacing: -0.01em; }
+        .logo-lock { display: inline-flex; align-items: center; justify-content: center; width: 0.95em; height: 0.95em; background: var(--gold); border-radius: 50%; margin: 0 0.01em; position: relative; top: 0.02em; }
+        .logo-lock svg { width: 0.55em; height: 0.55em; }
+        .logo-bottom { font-family: var(--sans); font-weight: 700; font-size: 0.6rem; color: var(--gold); letter-spacing: 0.22em; text-transform: uppercase; margin-top: 0.15rem; }
+        .hn { display: flex; list-style: none; align-items: center; gap: 0; }
+        .hn a { font-size: 0.78rem; font-weight: 500; color: rgba(255,255,255,0.6); padding: 0.4rem 0.7rem; letter-spacing: 0.015em; transition: color 0.25s; }
+        .hn a:hover { color: #FFFFFF; }
+        .hn-cta { color: var(--blue-dd) !important; background: var(--gold) !important; padding: 0.45rem 1.3rem !important; border-radius: 100px !important; font-weight: 700 !important; font-size: 0.75rem !important; letter-spacing: 0.03em !important; transition: all 0.25s var(--ease) !important; }
+        .hn-cta:hover { background: var(--gold-l) !important; transform: translateY(-1px) !important; }
+        .mt { display: none; background: none; border: none; color: #FFFFFF; cursor: pointer; padding: 6px; }
+        .mn { position: fixed; top: 64px; left: 0; right: 0; background: var(--blue-dd); z-index: 199; display: flex; flex-direction: column; max-height: 0; overflow: hidden; transition: max-height 0.4s var(--ease); }
+        .mn.open { max-height: 400px; }
+        .mn a { font-size: 0.88rem; color: rgba(255,255,255,0.6); font-weight: 500; padding: 0.65rem clamp(1.5rem, 5vw, 5rem); transition: color 0.2s, background 0.2s; }
+        .mn a:hover { color: #FFFFFF; background: rgba(255,255,255,0.03); }
+        .blog-hero { padding: 8rem 0 3rem; background: linear-gradient(160deg, var(--blue-dd) 0%, var(--blue-d) 100%); border-bottom: 2px solid var(--gold); }
+        .blog-hero .sec-tag { font-family: var(--mono); font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.16em; color: var(--gold); margin-bottom: 1rem; }
+        .blog-hero h1 { font-family: var(--serif); font-size: clamp(2rem, 4vw, 3rem); font-weight: 400; color: #fff; line-height: 1.2; margin-bottom: 0.75rem; }
+        .blog-hero p { font-size: 1rem; color: rgba(255,255,255,0.7); max-width: 600px; }
+
+        /* Search & Filter */
+        .filter-bar { padding: 2rem 0 0; position: relative; z-index: 10; }
+        .filter-inner { display: flex; flex-direction: column; gap: 1.25rem; }
+        .search-wrap { position: relative; max-width: 480px; }
+        .search-wrap svg.si { position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); width: 16px; height: 16px; color: var(--ink-4); pointer-events: none; }
+        .search-input { width: 100%; padding: 0.75rem 2.5rem 0.75rem 2.75rem; font-family: var(--sans); font-size: 0.85rem; font-weight: 500; border: 1.5px solid var(--rule); background: var(--surface); color: var(--ink); outline: none; transition: border-color 0.25s, box-shadow 0.25s; }
+        .search-input::placeholder { color: var(--ink-5); }
+        .search-input:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(26,91,186,0.1); }
+        .search-clear { position: absolute; right: 0.75rem; top: 50%; transform: translateY(-50%); width: 20px; height: 20px; border: none; background: none; color: var(--ink-4); cursor: pointer; display: none; padding: 0; }
+        .search-clear.visible { display: flex; align-items: center; justify-content: center; }
+        .search-clear:hover { color: var(--ink-2); }
+        .autocomplete-list { position: absolute; top: 100%; left: 0; right: 0; background: var(--surface); border: 1.5px solid var(--rule); border-top: none; max-height: 280px; overflow-y: auto; display: none; z-index: 50; box-shadow: 0 8px 24px rgba(7,26,66,0.1); }
+        .autocomplete-list.active { display: block; }
+        .autocomplete-item { padding: 0.7rem 1rem 0.7rem 2.75rem; font-size: 0.82rem; color: var(--ink-2); cursor: pointer; transition: background 0.15s; display: flex; align-items: center; gap: 0.75rem; }
+        .autocomplete-item:hover, .autocomplete-item.hl { background: var(--blue-xl); }
+        .autocomplete-item .ac-tag { font-family: var(--mono); font-size: 0.55rem; text-transform: uppercase; letter-spacing: 0.08em; padding: 0.15rem 0.4rem; font-weight: 600; flex-shrink: 0; }
+        .autocomplete-item .ac-title { flex: 1; }
+        .autocomplete-item mark { background: rgba(245,200,0,0.35); color: inherit; border-radius: 1px; }
+
+        .filter-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; }
+        .filter-label { font-family: var(--mono); font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--ink-4); margin-right: 0.25rem; padding: 0.45rem 0; }
+        .filter-pill { font-family: var(--sans); font-size: 0.72rem; font-weight: 600; padding: 0.4rem 1rem; border: 1.5px solid var(--rule); background: var(--surface); color: var(--ink-3); cursor: pointer; transition: all 0.25s var(--ease); user-select: none; letter-spacing: 0.01em; }
+        .filter-pill:hover { border-color: var(--blue); color: var(--blue); background: var(--blue-xl); }
+        .filter-pill.active { background: var(--blue-dd); color: #FFFFFF; border-color: var(--blue-dd); }
+        .filter-pill.active:hover { background: var(--blue-d); }
+        .filter-pill .pill-count { font-size: 0.6rem; opacity: 0.6; margin-left: 0.25rem; }
+
+        .results-count { font-family: var(--mono); font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-4); padding: 1.5rem 0 0.5rem; }
+        .results-count span { color: var(--blue); font-weight: 600; }
+
+        .blog-section { padding: 1rem 0 6rem; }
+        .blog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 2rem; }
+        .blog-card { border: 1px solid var(--rule); background: var(--surface); display: flex; flex-direction: column; transition: all 0.3s var(--ease); border-top: 3px solid transparent; }
+        .blog-card:hover { background: var(--blue-xl); border-top-color: var(--gold); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(7,26,66,0.08); }
+        .blog-card.hidden { display: none; }
+        .blog-card-body { padding: 2rem; display: flex; flex-direction: column; flex: 1; }
+        .blog-card-meta { font-family: var(--mono); font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+        .blog-card-meta .tag { padding: 0.2rem 0.5rem; font-weight: 600; }
+        .blog-card-meta .tag.ai { color: var(--blue-d); background: var(--blue-xl); }
+        .blog-card-meta .tag.transform { color: var(--blue); background: var(--blue-xl); }
+        .blog-card-meta .tag.govern { color: var(--gold-d); background: #FFF8E1; }
+        .blog-card-meta .tag.platform { color: var(--ink-3); background: #F1F5F9; }
+        .blog-card-meta .tag.risks { color: #C62828; background: #FFEBEE; }
+        .blog-card-meta .tag.emerging { color: #6A1B9A; background: #F3E5F5; }
+        .blog-card-meta .tag.bestpractice { color: #2E7D32; background: #E8F5E9; }
+        .blog-card-meta .date { color: var(--ink-4); }
+        .blog-card h2 { font-family: var(--serif); font-size: 1.2rem; font-weight: 400; line-height: 1.35; margin-bottom: 0.75rem; flex: 1; }
+        .blog-card p { font-size: 0.85rem; color: var(--ink-3); line-height: 1.7; margin-bottom: 1.5rem; }
+        .blog-card-link { font-size: 0.72rem; font-weight: 600; color: var(--blue); display: inline-flex; align-items: center; gap: 0.4rem; transition: color 0.2s, gap 0.3s; }
+        .blog-card-link:hover { color: var(--blue-d); gap: 0.65rem; }
+        .blog-card-link svg { width: 10px; height: 10px; }
+
+        .no-results { display: none; text-align: center; padding: 4rem 2rem; grid-column: 1 / -1; }
+        .no-results.visible { display: block; }
+        .no-results h3 { font-family: var(--serif); font-size: 1.3rem; font-weight: 400; color: var(--ink-3); margin-bottom: 0.5rem; }
+        .no-results p { font-size: 0.85rem; color: var(--ink-4); }
+        .no-results .reset-btn { display: inline-block; margin-top: 1rem; font-family: var(--sans); font-size: 0.75rem; font-weight: 600; color: var(--blue); cursor: pointer; padding: 0.5rem 1.5rem; border: 1.5px solid var(--blue); background: none; transition: all 0.2s var(--ease); }
+        .no-results .reset-btn:hover { background: var(--blue); color: #fff; }
+
+        footer { background: var(--blue-dd); border-top: 2px solid var(--gold); padding: 1.5rem 0; }
+        .ft { display: flex; justify-content: space-between; align-items: center; }
+        .ft-b { font-size: 0.68rem; color: rgba(255,255,255,0.5); }
+        .ft-b strong { color: var(--gold); }
+        .ft-c { font-size: 0.62rem; color: rgba(255,255,255,0.35); }
+
+        @media (max-width: 720px) {
+            .hn { display: none; } .mt { display: flex; min-width: 44px; min-height: 44px; justify-content: center; align-items: center; }
+            .ft { flex-direction: column; gap: 0.35rem; text-align: center; }
+            .mn a { padding: 0.85rem clamp(1.5rem, 5vw, 5rem); }
+            .blog-grid { grid-template-columns: 1fr; }
+            .filter-tags { gap: 0.35rem; }
+            .filter-pill { padding: 0.35rem 0.75rem; font-size: 0.65rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header><div class="w"><a href="../index.html" class="logo"><div class="logo-top">Unl<span class="logo-lock"><svg viewBox="0 0 24 26" fill="none"><rect x="3" y="13" width="16" height="11" rx="2.5" stroke="#1a5bba" stroke-width="2.2" fill="none"/><path d="M7 13V8a5 5 0 0 1 10 0" stroke="#1a5bba" stroke-width="2.2" stroke-linecap="round" fill="none"/><circle cx="11" cy="18" r="1.2" fill="#1a5bba"/><rect x="10.4" y="18" width="1.2" height="2.2" rx="0.6" fill="#1a5bba"/></svg></span>ck</div><div class="logo-bottom">Solutions</div></a><ul class="hn"><li><a href="../index.html#capabilities">Capabilities</a></li><li><a href="../index.html#maturity">Maturity</a></li><li><a href="../index.html#approach">Approach</a></li><li><a href="../index.html#diagnostic">Diagnostic</a></li><li><a href="./">Insights</a></li><li><a href="../index.html#contact" class="hn-cta">Book a Consultation</a></li></ul><button class="mt" onclick="document.querySelector('.mn').classList.toggle('open')" aria-label="Menu"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/></svg></button></div></header>
+    <div class="mn"><a href="../index.html#capabilities" onclick="this.parentElement.classList.remove('open')">Capabilities</a><a href="../index.html#maturity" onclick="this.parentElement.classList.remove('open')">Maturity</a><a href="../index.html#approach" onclick="this.parentElement.classList.remove('open')">Approach</a><a href="../index.html#diagnostic" onclick="this.parentElement.classList.remove('open')">Diagnostic</a><a href="./" onclick="this.parentElement.classList.remove('open')">Insights</a><a href="../index.html#contact" onclick="this.parentElement.classList.remove('open')">Contact</a></div>
+
+    <section class="blog-hero">
+        <div class="w">
+            <div class="sec-tag">Insights</div>
+            <h1>Perspectives on Enterprise Transformation</h1>
+            <p>Strategic thinking on operating models, intelligent automation, platform modernization, and governance.</p>
+        </div>
+    </section>
+
+    <section class="filter-bar">
+        <div class="w">
+            <div class="filter-inner">
+                <div class="search-wrap">
+                    <svg class="si" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+                    <input type="text" class="search-input" id="blogSearch" placeholder="Search insights..." autocomplete="off">
+                    <button class="search-clear" id="searchClear" aria-label="Clear search"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+                    <div class="autocomplete-list" id="acList"></div>
+                </div>
+                <div class="filter-tags">
+                    <span class="filter-label">Filter</span>
+                    <button class="filter-pill active" data-filter="all">All</button>
+                    <button class="filter-pill" data-filter="ai">AI</button>
+                    <button class="filter-pill" data-filter="transform">Transformation</button>
+                    <button class="filter-pill" data-filter="govern">Governance</button>
+                    <button class="filter-pill" data-filter="platform">Platform</button>
+                    <button class="filter-pill" data-filter="risks">Risks</button>
+                    <button class="filter-pill" data-filter="emerging">Emerging</button>
+                    <button class="filter-pill" data-filter="bestpractice">Best Practice</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="blog-section">
+        <div class="w">
+            <div class="results-count" id="resultsCount">Showing <span>21</span> articles</div>
+            <div class="blog-grid" id="blogGrid">
+
+                <a href="why-ai-doesnt-think-for-you.html" class="blog-card" data-tags="ai,bestpractice" data-title="Why AI Doesnt Think for You and How to Make It Work Smarter">
+                    <div class="blog-card-body">
+                        <div class="blog-card-meta"><span class="tag ai">AI</span><span class="tag bestpractice">Best Practice</span><span class="date">15 Feb 2026</span></div>
+                        <h2>Why AI Doesn&#8217;t Think for You and How to Make It Work Smarter</h2>
+                        <p>AI engines don&#8217;t think&#8212;they compute. Mastering clarity is the key to making them work smarter.</p>
+                        <span class="blog-card-link">Read article <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+                    </div>
+                </a>
+
+                <a href="ai-weekly-oct-18-2025.html" class="blog-card" data-tags="ai,emerging" data-title="AI Weekly Oct 18 2025">
+                    <div class="blog-card-body">
+                        <div class="blog-card-meta"><span class="tag ai">AI</span><span class="tag emerging">Emerging</span><span class="date">18 Oct 2025</span></div>
+                        <h2>AI Weekly | Oct 18, 2025</h2>
+                        <p>From AI assistants and retail rollouts to regulatory shifts and blueprinting for the AI native enterprise.</p>
+                        <span class="blog-card-link">Read article <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+                    </div>
+                </a>
+
+                <a href="ai-weekly-oct-2025.html" class="blog-card" data-tags="ai,emerging" data-title="AI Weekly Oct 2025">
+                    <div class="blog-card-body">
+                        <div class="blog-card-meta"><span class="tag ai">AI</span><span class="tag emerging">Emerging</span><span class="date">Oct 2025</span></div>
+                        <h2>AI Weekly | Oct 2025</h2>
+                        <p>Product updates across video, productivity, collaboration, and workforce strategy.</p>
+                        <span class="blog-card-link">Read article <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+                    </div>
+                </a>
+
+                <a href="ai-workplace-dilemma.html" class="blog-card" data-tags="ai,transform,risks" data-title="AI and the Workplace Dilemma Balancing Efficiency and Employment">
+                    <div class="blog-card-body">
+                        <div class="blog-card-meta"><span class="tag transform">Transformation</span><span class="tag risks">Risks</span><span class="date">Sep 2025</span></div>
+                        <h2>AI and the Workplace Dilemma: Balancing Efficiency and Employment</h2>
+                        <p>AI boosts efficiency but risks undermining traditional employment structures. How do organizations navigate this paradox?</p>
+                        <span class="blog-card-link">Read article <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+                    </div>
+                </a>
+
+                <a href="ai-weekly-sep-6-2025.html" class="blog-card" data-tags="ai,emerging,govern" data-title="AI Weekly September 6 2025">
+                    <div class="blog-card-body">
+                        <div class="blog-card-meta"><span class="tag ai">AI</span><span class="tag emerging">Emerging</span><span class="date">6 Sep 2025</span></div>
+                        <h2>AI Weekly | September 6, 2025</h2>
+                        <p>Apple-Google AI collaboration, NVIDIA infrastructure, Snowflake demand, and EU AI Act enforcement.</p>
+                        <span class="blog-card-link">Read article <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+                    </div>
+                </a>
+
+                <a href="ai-in-practice-insights.html" class="blog-card" data-tags="ai,bestpractice" data-title="AI in Practice Insights From Client Work and Global Research">
+                    <div class="blog-card-body">
+                        <div class="blog-card-meta"><span class="tag ai">AI</span><span class="tag bestpractice">Best Practice</span><span class="date">Sep 2025</span></div>
+                        <h2>AI in Practice: Insights From Client Work and Global Research</h2>
+                        <p>Five clear patterns emerging from enterprise AI adoption across industries.</p>
+                        <span class="blog-card-link">Read article <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+                    </div>
+                </a>
+
+                <a href="business-ready-for-ai.html" class="blog-card" data-tags="ai,transform" data-title="Is Your Business Technically Ready for AI Lets Find Out">
+                    <div class="blog-card-body">
+                        <div class="blog-card-meta"><span class="tag transform">Transformation</span><span class="tag ai">AI</span><span class="date">Aug 2025</span></div>
+                        <h2>Is Your Business Technically Ready for AI? Let&#8217;s Find Out</h2>
+                        <p>True AI value requires structural alignment, not just experimentation. Assess your readiness with a capability maturity lens.</p>
+                        <span class="blog-card-link">Read article <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+                    </div>
+                </a>
+
+                <a href="recent-ai-innovations.html" class="blog-card" data-tags="ai,emerging" data-title="Recent AI Innovations Whats Changed and Why It Matters">
+                    <div class="blog-card-body">
+                        <div class="blog-card-meta"><span class="tag ai">AI</span><span class="tag emerging">Emerging</span><span class="date">Aug 2025</span></div>
+                        <h2>Recent AI Innovations &#8211; What&#8217;s Changed and Why It Matters</h2>
+                        <p>Claude 3.5, GPT-4o, Gemini Live, Meta&#8217;s agentic framework, and Microsoft Team Copilot.</p>
+                        <span class="blog-card-link">Read article <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+                    </div>
+                </a>
+
+                <a href="ai-systems-workplace.html" class="blog-card" data-tags="ai,bestpractice" data-title="AI Systems in the Workplace Capabilities and Integration">
+                    <div class="blog-card-body">
+                        <div class="blog-card-meta"><span class="tag ai">AI</span><span class="tag bestpractice">Best Practice</span><span class="date">Jul 2025</span></div>
+                        <h2>AI Systems in the Workplace: Capabilities and Integration</h2>
+                        <p>How Gemini, NotebookLM, ChatGPT, and Claude are reshaping enterprise workflows.</p>
+                        <span class="blog-card-link">Read article <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+                    </div>
+                </a>
+
+                <a href="frontier-firms-workforce-intelligence.html" class="blog-card" data-tags="ai,transform,emerging" data-title="From Workflows to Workforce Intelligence How Frontier Firms are Redefining the Enterprise Core">
+                    <div class="blog-card-body">
+                        <div class="blog-card-meta"><span class="tag transform">Transformation</span><span class="tag emerging">Emerging</span><span class="date">Jul 2025</span></div>
+                        <h2>From Workflows to Workforce Intelligence: How Frontier Firms are Redefining the Enterprise Core</h2>
+                        <p>The shift from digital-first to intelligence-first defines the next era of enterprise performance.</p>
+                        <span class="blog-card-link">Read article <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+                    </div>
+                </a>
+
+                <a href="ai-implementations-fall-short.html" class="blog-card" data-tags="ai,risks,bestpractice" data-title="AI in Practice Why Most Enterprise Implementations Fall Short">
+                    <div class="blog-card-body">
+                        <div class="blog-card-meta"><span class="tag ai">AI</span><span class="tag risks">Risks</span><span class="date">Jun 2025</span></div>
+                        <h2>AI in Practice: Why Most Enterprise Implementations Fall Short</h2>
+                        <p>The gap is not technical. It is operational. Here&#8217;s why AI stalls after deployment.</p>
+                        <span class="blog-card-link">Read article <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+                    </div>
+                </a>
+
+                <a href="ai-governance-2025.html" class="blog-card" data-tags="ai,govern,risks" data-title="AI Governance in Enterprise Applications Whats Changing in 2025">
+                    <div class="blog-card-body">
+                        <div class="blog-card-meta"><span class="tag govern">Governance</span><span class="tag risks">Risks</span><span class="date">Jun 2025</span></div>
+                        <h2>AI Governance in Enterprise Applications: What&#8217;s Changing in 2025</h2>
+                        <p>AI governance is evolving from policy into practice. Here are the shifts leaders must navigate.</p>
+                        <span class="blog-card-link">Read article <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+                    </div>
+                </a>
+
+                <a href="workday-extend-vs-custom-integrations.html" class="blog-card" data-tags="platform,bestpractice" data-title="Workday Extend vs Custom Integrations Whats Right for Your Enterprise">
+                    <div class="blog-card-body">
+                        <div class="blog-card-meta"><span class="tag platform">Platform</span><span class="tag bestpractice">Best Practice</span><span class="date">May 2025</span></div>
+                        <h2>Workday Extend vs Custom Integrations: What&#8217;s Right for Your Enterprise</h2>
+                        <p>A practical framework for choosing between Workday Extend and custom integrations.</p>
+                        <span class="blog-card-link">Read article <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+                    </div>
+                </a>
+
+                <a href="real-cost-of-quick-wins.html" class="blog-card" data-tags="transform,risks,bestpractice" data-title="The Real Cost of Quick Wins in Enterprise Systems">
+                    <div class="blog-card-body">
+                        <div class="blog-card-meta"><span class="tag transform">Transformation</span><span class="tag risks">Risks</span><span class="date">May 2025</span></div>
+                        <h2>The Real Cost of &#8220;Quick Wins&#8221; in Enterprise Systems</h2>
+                        <p>Quick wins are not inherently valuable. When pursued without alignment, they create complexity and false progress.</p>
+                        <span class="blog-card-link">Read article <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+                    </div>
+                </a>
+
+                <a href="release-readiness-culture.html" class="blog-card" data-tags="platform,govern,bestpractice" data-title="Release Readiness Isnt a Checklist Its a Culture">
+                    <div class="blog-card-body">
+                        <div class="blog-card-meta"><span class="tag platform">Platform</span><span class="tag govern">Governance</span><span class="date">Apr 2025</span></div>
+                        <h2>Release Readiness Isn&#8217;t a Checklist, It&#8217;s a Culture</h2>
+                        <p>Release readiness is an institutional capability spanning ownership, governance, and enablement.</p>
+                        <span class="blog-card-link">Read article <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+                    </div>
+                </a>
+
+                <a href="unlocking-ai-in-erp.html" class="blog-card" data-tags="ai,platform,bestpractice" data-title="Unlocking AI in ERP From Concept to Deployment">
+                    <div class="blog-card-body">
+                        <div class="blog-card-meta"><span class="tag ai">AI</span><span class="tag platform">Platform</span><span class="date">Apr 2025</span></div>
+                        <h2>Unlocking AI in ERP: From Concept to Deployment</h2>
+                        <p>A structured approach to transforming AI from concept into measurable enterprise value within ERP systems.</p>
+                        <span class="blog-card-link">Read article <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+                    </div>
+                </a>
+
+                <a href="tariffs-canadian-business-fallout.html" class="blog-card" data-tags="transform,risks" data-title="Trumps Tariffs and the Canadian Business Fallout Navigating the New Economic Reality">
+                    <div class="blog-card-body">
+                        <div class="blog-card-meta"><span class="tag transform">Transformation</span><span class="tag risks">Risks</span><span class="date">4 Mar 2025</span></div>
+                        <h2>Trump&#8217;s Tariffs &amp; the Canadian Business Fallout: Navigating the New Economic Reality</h2>
+                        <p>New U.S. tariffs hit Canadian businesses. The path forward is optimization, not just cost-cutting.</p>
+                        <span class="blog-card-link">Read article <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+                    </div>
+                </a>
+
+                <a href="system-adoption-key-to-roi.html" class="blog-card" data-tags="platform,bestpractice" data-title="Why Successful System Adoption is the Key to ROI">
+                    <div class="blog-card-body">
+                        <div class="blog-card-meta"><span class="tag platform">Platform</span><span class="tag bestpractice">Best Practice</span><span class="date">Feb 2025</span></div>
+                        <h2>Why Successful System Adoption is the Key to ROI</h2>
+                        <p>The role of tailored training in maximizing your technology investment.</p>
+                        <span class="blog-card-link">Read article <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+                    </div>
+                </a>
+
+                <a href="ongoing-platform-training.html" class="blog-card" data-tags="platform,bestpractice" data-title="The Importance of Ongoing Platform Training in a Changing Digital Landscape">
+                    <div class="blog-card-body">
+                        <div class="blog-card-meta"><span class="tag platform">Platform</span><span class="tag bestpractice">Best Practice</span><span class="date">Feb 2025</span></div>
+                        <h2>The Importance of Ongoing Platform Training in a Changing Digital Landscape</h2>
+                        <p>How continuous learning drives business growth and keeps your teams ahead of the curve.</p>
+                        <span class="blog-card-link">Read article <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+                    </div>
+                </a>
+
+                <a href="streamlining-platform-releases.html" class="blog-card" data-tags="platform,bestpractice" data-title="Streamlining Platform Releases Without Disrupting Operations">
+                    <div class="blog-card-body">
+                        <div class="blog-card-meta"><span class="tag platform">Platform</span><span class="tag bestpractice">Best Practice</span><span class="date">Jan 2025</span></div>
+                        <h2>Streamlining Platform Releases Without Disrupting Operations</h2>
+                        <p>How to manage platform updates for maximum efficiency with minimal disruption.</p>
+                        <span class="blog-card-link">Read article <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+                    </div>
+                </a>
+
+                <a href="unlocking-opportunities-existing-systems.html" class="blog-card" data-tags="platform,bestpractice" data-title="How Unlocking Opportunities Within Your Existing Systems Saves Time and Money">
+                    <div class="blog-card-body">
+                        <div class="blog-card-meta"><span class="tag platform">Platform</span><span class="tag bestpractice">Best Practice</span><span class="date">Jan 2025</span></div>
+                        <h2>How Unlocking Opportunities Within Your Existing Systems Saves Time and Money</h2>
+                        <p>Discover the hidden potential of your technology without starting from scratch.</p>
+                        <span class="blog-card-link">Read article <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+                    </div>
+                </a>
+
+                <div class="no-results" id="noResults">
+                    <h3>No articles found</h3>
+                    <p>Try a different search term or category.</p>
+                    <button class="reset-btn" onclick="resetFilters()">Show all articles</button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer><div class="w"><div class="ft"><div class="ft-b"><strong>Unlock Solutions</strong> &#8212; Enterprise Systems &amp; Intelligent Operations / Vancouver, BC</div><div class="ft-c">&copy; 2017&#8211;2026 Unlock Solutions</div></div></div></footer>
+
+    <script>
+    (function(){
+        const si = document.getElementById('blogSearch');
+        const acl = document.getElementById('acList');
+        const clr = document.getElementById('searchClear');
+        const cards = Array.from(document.querySelectorAll('.blog-card'));
+        const pills = document.querySelectorAll('.filter-pill');
+        const rc = document.getElementById('resultsCount');
+        const nr = document.getElementById('noResults');
+        let af = 'all', sq = '', hi = -1;
+
+        const tn = {ai:'AI',transform:'Transformation',govern:'Governance',platform:'Platform',risks:'Risks',emerging:'Emerging',bestpractice:'Best Practice'};
+
+        const idx = cards.map(c => ({
+            el: c,
+            title: (c.getAttribute('data-title')||'').toLowerCase(),
+            tags: (c.getAttribute('data-tags')||'').split(','),
+            desc: (c.querySelector('p')?c.querySelector('p').textContent:'').toLowerCase(),
+            href: c.getAttribute('href')||'',
+            h2: c.querySelector('h2')?c.querySelector('h2').textContent:''
+        }));
+
+        function run(){
+            let n=0;
+            idx.forEach(b=>{
+                const mf = af==='all'||b.tags.includes(af);
+                const q = sq.toLowerCase();
+                const ms = !q||b.title.includes(q)||b.desc.includes(q)||b.tags.some(t=>(tn[t]||t).toLowerCase().includes(q));
+                if(mf&&ms){b.el.classList.remove('hidden');n++}else{b.el.classList.add('hidden')}
+            });
+            rc.innerHTML=`Showing <span>${n}</span> article${n!==1?'s':''}`;
+            nr.classList.toggle('visible',n===0);
+            // Update pill counts
+            pills.forEach(p=>{
+                const f=p.getAttribute('data-filter');
+                if(f==='all')return;
+                const q=sq.toLowerCase();
+                const cnt=idx.filter(b=>{
+                    const ms=!q||b.title.includes(q)||b.desc.includes(q);
+                    return b.tags.includes(f)&&ms;
+                }).length;
+                let cs=p.querySelector('.pill-count');
+                if(!cs){cs=document.createElement('span');cs.className='pill-count';p.appendChild(cs)}
+                cs.textContent=cnt;
+            });
+        }
+
+        pills.forEach(p=>p.addEventListener('click',()=>{
+            pills.forEach(x=>x.classList.remove('active'));p.classList.add('active');
+            af=p.getAttribute('data-filter');run();updateAc();
+        }));
+
+        si.addEventListener('input',()=>{
+            sq=si.value.trim();
+            clr.classList.toggle('visible',sq.length>0);
+            run();updateAc();
+        });
+
+        clr.addEventListener('click',()=>{
+            si.value='';sq='';clr.classList.remove('visible');acl.classList.remove('active');run();
+        });
+
+        function updateAc(){
+            const q=sq.toLowerCase();acl.innerHTML='';hi=-1;
+            if(q.length<2){acl.classList.remove('active');return}
+            const m=idx.filter(b=>{
+                const mf=af==='all'||b.tags.includes(af);
+                return mf&&(b.title.includes(q)||b.desc.includes(q));
+            }).slice(0,6);
+            if(!m.length){acl.classList.remove('active');return}
+            m.forEach((b,i)=>{
+                const d=document.createElement('a');d.className='autocomplete-item';d.href=b.href;
+                const ft=b.tags[0],tc=ft||'ai',tl=tn[ft]||ft;
+                d.innerHTML=`<span class="ac-tag tag ${tc}">${tl}</span><span class="ac-title">${hl(b.h2,q)}</span>`;
+                d.addEventListener('mouseenter',()=>{acl.querySelectorAll('.autocomplete-item').forEach(x=>x.classList.remove('hl'));d.classList.add('hl');hi=i});
+                acl.appendChild(d);
+            });
+            acl.classList.add('active');
+        }
+
+        function hl(t,q){
+            const i=t.toLowerCase().indexOf(q);if(i===-1)return esc(t);
+            return esc(t.substring(0,i))+'<mark>'+esc(t.substring(i,i+q.length))+'</mark>'+esc(t.substring(i+q.length));
+        }
+        function esc(s){const d=document.createElement('div');d.textContent=s;return d.innerHTML}
+
+        si.addEventListener('keydown',e=>{
+            const items=acl.querySelectorAll('.autocomplete-item');if(!items.length)return;
+            if(e.key==='ArrowDown'){e.preventDefault();hi=Math.min(hi+1,items.length-1);items.forEach((x,i)=>x.classList.toggle('hl',i===hi))}
+            else if(e.key==='ArrowUp'){e.preventDefault();hi=Math.max(hi-1,0);items.forEach((x,i)=>x.classList.toggle('hl',i===hi))}
+            else if(e.key==='Enter'&&hi>=0){e.preventDefault();items[hi].click()}
+            else if(e.key==='Escape'){acl.classList.remove('active')}
+        });
+
+        document.addEventListener('click',e=>{if(!e.target.closest('.search-wrap'))acl.classList.remove('active')});
+        si.addEventListener('focus',()=>{if(sq.length>=2)updateAc()});
+
+        window.resetFilters=function(){
+            si.value='';sq='';af='all';clr.classList.remove('visible');
+            pills.forEach(p=>p.classList.remove('active'));pills[0].classList.add('active');
+            acl.classList.remove('active');run();
+        };
+
+        run();
+    })();
+    </script>
+</body>
+</html>
