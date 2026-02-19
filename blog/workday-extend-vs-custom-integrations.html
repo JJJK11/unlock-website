@@ -139,43 +139,71 @@
 
                 <p>As enterprise platforms evolve, so do the options available for extending their functionality. For Workday customers, two paths often emerge when business requirements exceed what is available through standard configuration: use Workday Extend, or develop custom integrations through external platforms or internal development teams.</p>
                 <p>Both approaches are designed to meet specific operational needs. But the implications for security, governance, scalability, and long-term maintainability are fundamentally different. Selecting the right path requires more than addressing a functional gap. It requires a clear understanding of architectural impact, delivery model, and future-state planning.</p>
-                <p>Unlock Solutions works with Workday customers across industries to evaluate, design, and implement extensibility strategies that scale with the enterprise. This article presents a practical framework for making the right decision based on strategic alignment, technical capability, and business goals.</p>
                 <h2>Why Organizations Extend Workday</h2>
                 <p>Workday delivers strong out-of-the-box capabilities across HR, finance, and planning. But as organizations grow or encounter industry-specific requirements, gaps often emerge that cannot be resolved through configuration alone. Typical drivers include:</p>
-                <h2>Complex workflows involving external systems or conditional logic</h2>
+                <ul>
+                <li>Complex workflows involving external systems or conditional logic</li>
+                </ul>
                 <p>Specialized industry use cases, such as healthcare credentialing or grant-based approvals</p>
                 <h2>Custom data capture or validation needs across business units</h2>
-                <h2>Decision support tools or dashboards tailored to unique operational models</h2>
+                <ul>
+                <li>Decision support tools or dashboards tailored to unique operational models</li>
+                </ul>
                 <p>To address these challenges, organizations either build directly within Workday using Extend or connect Workday to external logic using custom integrations.</p>
                 <h2>Workday Extend: What It Offers</h2>
                 <p>Workday Extend is Workday&#8217;s native application platform. It enables customers to build applications that live entirely within the Workday environment, using Workday&#8217;s data model, security rules, and user interface components.</p>
-                <h3>What Workday Extend provides:</h3>
-                <h2>Applications reside inside the Workday tenant</h2>
-                <h2>Built using the same design principles as native Workday features</h2>
-                <h2>Inherits Workday security, auditability, and governance</h2>
-                <h2>Integrated with release cycles and platform testing processes</h2>
-                <h2>Access to native business objects and workflows</h2>
-                <h3>When Workday Extend is the right fit:</h3>
-                <h2>Data must remain within Workday for compliance or access management</h2>
-                <h2>Applications benefit from Workday&#8217;s native interface and role-based security</h2>
+                <h2>What Workday Extend provides:</h2>
+                <ul>
+                <li>Applications reside inside the Workday tenant</li>
+                <li>Built using the same design principles as native Workday features</li>
+                <li>Inherits Workday security, auditability, and governance</li>
+                <li>Integrated with release cycles and platform testing processes</li>
+                <li>Access to native business objects and workflows</li>
+                </ul>
+                <p>When Workday Extend is the right fit:</p>
+                <ul>
+                <li>Data must remain within Workday for compliance or access management</li>
+                <li>Applications benefit from Workday&#8217;s native interface and role-based security</li>
+                </ul>
                 <p>The use case aligns with internal approval chains, financial processes, or HR operations</p>
                 <h2>IT prefers centralized oversight of extensions and lifecycle governance</h2>
                 <p>Extend is especially effective when building financial or workforce workflows that require custom forms, routing, validations, and controls &#8212; all within a governed environment.</p>
                 <h2>Custom Integrations: Capabilities and Considerations</h2>
                 <p>Custom integrations allow Workday to connect with external applications, platforms, and services. These are typically built using APIs, middleware platforms such as MuleSoft or Workato, or cloud-native services developed in-house.</p>
-                <h3>Common reasons to pursue custom integrations include:</h3>
-                <p>Connectivity to legacy systems, third-party tools, or enterprise data warehouses</p>
-                <p>Real-time synchronization with platforms such as Salesforce, ServiceNow, or Coupa</p>
+                <h2>Common reasons to pursue custom integrations include:</h2>
+                <ul>
+                <li>Connectivity to legacy systems, third-party tools, or enterprise data warehouses</li>
+                <li>Real-time synchronization with platforms such as Salesforce, ServiceNow, or Coupa</li>
+                </ul>
                 <h2>Complex orchestration or business logic that exceeds platform constraints</h2>
-                <h2>External user access or mobile app support beyond Workday&#8217;s UI</h2>
-                <h3>Benefits of custom integrations:</h3>
-                <h2>Full flexibility in user experience and business logic</h2>
-                <h2>Control over release timing and infrastructure</h2>
-                <h2>Easier to integrate into existing enterprise development pipelines</h2>
-                <h2>No dependency on Workday&#8217;s release cycle or testing processes</h2>
+                <ul>
+                <li>External user access or mobile app support beyond Workday&#8217;s UI</li>
+                <li>Benefits of custom integrations:</li>
+                <li>Full flexibility in user experience and business logic</li>
+                <li>Control over release timing and infrastructure</li>
+                <li>Easier to integrate into existing enterprise development pipelines</li>
+                <li>No dependency on Workday&#8217;s release cycle or testing processes</li>
+                </ul>
                 <p>However, these benefits come with risk. Custom integrations require independent security design, robust monitoring, and disciplined change control to avoid introducing complexity or audit exposure.</p>
                 <h2>Strategic Considerations: Extend or Integrate?</h2>
                 <p>Choosing between Extend and custom integrations is not a tactical choice. It is a strategic decision that shapes how your organization scales, governs, and secures your Workday footprint.</p>
+                <h2>Security</h2>
+                <p>Workday Extend leverages Workday&#8217;s native security framework. Custom integrations require standalone models and independent compliance validation.</p>
+                <h2>User Experience</h2>
+                <p>Extend delivers a seamless interface consistent with Workday&#8217;s native UI. Custom integrations allow full design flexibility but may introduce inconsistency or additional training needs.</p>
+                <h2>Scalability</h2>
+                <p>Extend works best for targeted applications that live inside the platform. Integrations are more suitable for orchestrating across multiple systems or exposing functionality externally.</p>
+                <h2>Change Management</h2>
+                <p>Extend applications follow Workday&#8217;s release cadence, allowing centralized testing and governance. Custom integrations require separate version control and testing schedules.</p>
+                <h2>Development Velocity</h2>
+                <p>Teams familiar with Workday can build and deploy Extend applications quickly. Custom integrations take longer to implement but offer broader technical scope.</p>
+                <p>In most enterprise scenarios, the decision is not either-or. The optimal strategy combines both &#8212; Extend for Workday-native logic and compliance-aligned use cases, and integrations for wider enterprise functionality.</p>
+                <h2>Future Readiness and Platform Strategy</h2>
+                <p>Workday&#8217;s investment in Extend continues to grow. New features such as low-code tooling, event-based architecture, and enhanced data services are expanding the platform&#8217;s potential. Organizations that adopt Extend thoughtfully can streamline internal governance, reduce reliance on shadow IT, and prepare for long-term platform evolution.</p>
+                <p>That said, not all problems should be solved within Workday. Unlock Solutions encourages a disciplined approach based on architecture standards, data stewardship, and clearly defined system ownership. For many clients, the ideal model is hybrid &#8212; Workday is extended where appropriate and integrated where necessary, with a consistent governance model applied across both.</p>
+                <h2>Closing Perspective</h2>
+                <p>Extensibility is no longer a secondary concern for Workday customers. It is foundational to supporting digital transformation, scaling core processes, and realizing the full value of platform investments.</p>
+                <p>The question is not whether you extend Workday. It is how you do it &#8212; with structure, with clarity, and with a long-term view.</p>
 
                 <!-- END BLOG CONTENT -->
 
