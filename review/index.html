@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7M2THPEPMW"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-7M2THPEPMW');</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI &amp; Tech Review &#8212; Unlock Solutions</title>
+    <meta name="description" content="Emerging developments across AI and technology, curated by Unlock Solutions.">
+    <meta property="og:title" content="AI &amp; Tech Review &#8212; Unlock Solutions">
+    <meta property="og:description" content="Emerging developments across AI and technology, curated by Unlock Solutions.">
+    <meta property="og:image" content="https://www.unlock-solutions.com/unlock_logo.png">
+    <meta property="og:url" content="https://www.unlock-solutions.com/review/">
+    <meta property="og:type" content="website">
+    <link rel="icon" type="image/png" href="../unlock_favicon.png">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23f5c800'/%3E%3Crect x='16' y='32' width='24' height='18' rx='3.5' stroke='%231a5bba' stroke-width='3.5' fill='none'/%3E%3Cpath d='M22 32v-7a8 8 0 0 1 16 0' stroke='%231a5bba' stroke-width='3.5' stroke-linecap='round' fill='none'/%3E%3Ccircle cx='28' cy='40' r='2' fill='%231a5bba'/%3E%3Crect x='27' y='40' width='2' height='4' rx='1' fill='%231a5bba'/%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&family=Manrope:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg: #060B18;
+            --surface: #0C1425;
+            --surface-2: #111C32;
+            --ink: #E8ECF2;
+            --ink-2: #C2CBd6;
+            --ink-3: #8B99AD;
+            --ink-4: #5A6A80;
+            --rule: #1A2744;
+            --blue: #1a5bba;
+            --blue-d: #0d2d6b;
+            --blue-dd: #071a42;
+            --blue-l: #2D6FD4;
+            --blue-xl: rgba(26,91,186,0.12);
+            --gold: #f5c800;
+            --gold-l: #FFD740;
+            --gold-d: #D4A800;
+            --serif: 'Newsreader', Georgia, serif;
+            --sans: 'Manrope', system-ui, sans-serif;
+            --mono: 'JetBrains Mono', monospace;
+            --ease: cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--sans); background: var(--bg); color: var(--ink); font-size: 16px; -webkit-font-smoothing: antialiased; line-height: 1.7; overflow-x: hidden; }
+        ::selection { background: var(--gold); color: var(--blue-dd); }
+        a { color: inherit; text-decoration: none; }
+        .w { max-width: 1300px; margin: 0 auto; padding: 0 clamp(1.5rem, 5vw, 5rem); }
+
+        /* ══════════════ HEADER ══════════════ */
+        header { position: fixed; top: 0; left: 0; right: 0; z-index: 200; background: rgba(7,26,66,0.85); backdrop-filter: blur(24px) saturate(1.4); -webkit-backdrop-filter: blur(24px) saturate(1.4); border-bottom: 1px solid rgba(245,200,0,0.1); }
+        header .w { display: flex; justify-content: space-between; align-items: center; height: 64px; }
+        .logo { display: flex; flex-direction: column; align-items: center; line-height: 1; text-decoration: none; }
+        .logo-top { display: flex; align-items: center; font-family: var(--sans); font-weight: 800; font-size: 1.5rem; color: #FFFFFF; letter-spacing: -0.01em; }
+        .logo-lock { display: inline-flex; align-items: center; justify-content: center; width: 0.95em; height: 0.95em; background: var(--gold); border-radius: 50%; margin: 0 0.01em; position: relative; top: 0.02em; }
+        .logo-lock svg { width: 0.55em; height: 0.55em; }
+        .logo-bottom { font-family: var(--sans); font-weight: 700; font-size: 0.6rem; color: var(--gold); letter-spacing: 0.22em; text-transform: uppercase; margin-top: 0.15rem; }
+        .hn { display: flex; list-style: none; align-items: center; gap: 0; }
+        .hn a { font-size: 0.78rem; font-weight: 500; color: rgba(255,255,255,0.6); padding: 0.4rem 0.7rem; letter-spacing: 0.015em; transition: color 0.25s; }
+        .hn a:hover { color: #FFFFFF; }
+        .hn-cta { color: var(--blue-dd) !important; background: var(--gold) !important; padding: 0.45rem 1.3rem !important; border-radius: 100px !important; font-weight: 700 !important; font-size: 0.75rem !important; letter-spacing: 0.03em !important; transition: all 0.25s var(--ease) !important; }
+        .hn-cta:hover { background: var(--gold-l) !important; transform: translateY(-1px) !important; box-shadow: 0 4px 12px rgba(245,200,0,0.3) !important; }
+        .mt { display: none; background: none; border: none; color: #FFFFFF; cursor: pointer; padding: 6px; }
+        .mn { position: fixed; top: 64px; left: 0; right: 0; background: var(--blue-dd); z-index: 199; display: flex; flex-direction: column; max-height: 0; overflow: hidden; transition: max-height 0.4s var(--ease); }
+        .mn.open { max-height: 400px; }
+        .mn a { font-size: 0.88rem; color: rgba(255,255,255,0.6); font-weight: 500; padding: 0.65rem clamp(1.5rem, 5vw, 5rem); transition: color 0.2s, background 0.2s; }
+        .mn a:hover { color: #FFFFFF; background: rgba(255,255,255,0.03); }
+
+        /* ══════════════ HERO ══════════════ */
+        .hero { padding: 120px 0 80px; text-align: center; position: relative; overflow: hidden; background: linear-gradient(135deg, var(--blue-dd) 0%, var(--blue-d) 40%, var(--blue) 100%); }
+        .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 70% 20%, rgba(245,200,0,0.08) 0%, transparent 60%), radial-gradient(ellipse 60% 50% at 20% 80%, rgba(26,91,186,0.15) 0%, transparent 50%); pointer-events: none; }
+        .hero-shapes { position: absolute; inset: 0; pointer-events: none; overflow: hidden; z-index: 1; }
+        .hero-shape { position: absolute; border-radius: 50%; opacity: 0.06; }
+        .hero-shape:nth-child(1) { width: 600px; height: 600px; right: -150px; top: -100px; border: 2px solid var(--gold); animation: float1 20s ease-in-out infinite; }
+        .hero-shape:nth-child(2) { width: 400px; height: 400px; left: -100px; bottom: -50px; background: var(--gold); animation: float2 25s ease-in-out infinite; }
+        .hero-shape:nth-child(3) { width: 200px; height: 200px; right: 20%; top: 60%; border: 1.5px solid rgba(255,255,255,0.3); animation: float3 18s ease-in-out infinite; }
+        .hero-shape:nth-child(4) { width: 80px; height: 80px; left: 15%; top: 20%; background: var(--gold); animation: float1 22s ease-in-out infinite reverse; }
+        @keyframes float1 { 0%,100% { transform: translate(0,0) rotate(0deg); } 50% { transform: translate(-30px,20px) rotate(5deg); } }
+        @keyframes float2 { 0%,100% { transform: translate(0,0); } 50% { transform: translate(20px,-30px); } }
+        @keyframes float3 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(15px,15px) scale(1.05); } }
+        .hero-content { position: relative; z-index: 2; max-width: 800px; margin: 0 auto; padding: 0 clamp(1.5rem, 5vw, 5rem); }
+        .hero-ey { font-family: var(--mono); font-size: 0.65rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.2em; color: var(--gold); margin-bottom: 2rem; display: flex; align-items: center; justify-content: center; gap: 1rem; }
+        .hero-ey::before, .hero-ey::after { content: ''; width: 40px; height: 1px; background: var(--gold); }
+        .hero h1 { font-family: var(--serif); font-weight: 400; font-size: clamp(2.75rem, 6vw, 4.5rem); line-height: 1.08; letter-spacing: -0.025em; margin-bottom: 1.5rem; color: #FFFFFF; }
+        .hero h1 i { font-style: italic; color: var(--gold); }
+        .hero p { font-size: 1.05rem; color: rgba(255,255,255,0.7); max-width: 600px; margin: 0 auto; line-height: 1.8; }
+        .hero-date { margin-top: 2rem; font-family: var(--mono); font-size: 0.6rem; color: rgba(255,255,255,0.35); letter-spacing: 0.15em; text-transform: uppercase; }
+        .hero-rule { width: 100%; height: 3px; background: linear-gradient(90deg, var(--gold), var(--blue-l), var(--gold)); }
+
+        /* ══════════════ MAIN ══════════════ */
+        .main { max-width: 1200px; margin: 0 auto; padding: 60px clamp(1.5rem, 5vw, 5rem); }
+        .section-title { font-family: var(--mono); font-size: 0.6rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.16em; color: var(--gold); margin-bottom: 32px; display: flex; align-items: center; gap: 1rem; }
+        .section-title::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
+
+        /* ══════════════ SEARCH BAR ══════════════ */
+        .search-bar { padding: 0 0 2rem; }
+        .search-inner { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; }
+        .search-wrap { position: relative; flex: 1; min-width: 280px; max-width: 480px; }
+        .search-wrap svg.si { position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); width: 16px; height: 16px; color: var(--ink-4); pointer-events: none; }
+        .search-input { width: 100%; padding: 0.75rem 2.5rem 0.75rem 2.75rem; font-family: var(--sans); font-size: 0.85rem; font-weight: 500; border: 1.5px solid var(--rule); background: var(--surface); color: var(--ink); outline: none; transition: border-color 0.25s, box-shadow 0.25s; }
+        .search-input::placeholder { color: var(--ink-4); }
+        .search-input:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(245,200,0,0.08); }
+        .search-clear { position: absolute; right: 0.75rem; top: 50%; transform: translateY(-50%); width: 20px; height: 20px; border: none; background: none; color: var(--ink-4); cursor: pointer; display: none; padding: 0; }
+        .search-clear.visible { display: flex; align-items: center; justify-content: center; }
+        .search-clear:hover { color: var(--ink-2); }
+        .browse-all { display: inline-flex; align-items: center; gap: 0.5rem; font-family: var(--sans); font-size: 0.78rem; font-weight: 600; color: var(--gold); transition: gap 0.3s var(--ease), color 0.2s; text-decoration: none; white-space: nowrap; }
+        .browse-all:hover { gap: 0.7rem; color: var(--gold-l); }
+        .browse-all svg { width: 12px; height: 12px; }
+
+        /* ══════════════ FEATURED ══════════════ */
+        .featured { margin-bottom: 64px; background: var(--surface); border: 1px solid var(--rule); overflow: hidden; border-top: 3px solid var(--gold); }
+        .featured-body { padding: 3rem; }
+        .featured-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+        .tag { display: inline-block; padding: 0.2rem 0.6rem; font-family: var(--mono); font-size: 0.55rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; width: fit-content; }
+        .tag-ai { color: var(--blue-dd); background: var(--gold); }
+        .tag-infra { color: var(--ink); background: rgba(255,255,255,0.1); }
+        .tag-robotics { color: #34d399; background: rgba(16,185,129,0.12); }
+        .tag-quantum { color: #fb923c; background: rgba(251,146,60,0.12); }
+        .tag-cyber { color: #fb7185; background: rgba(244,63,94,0.12); }
+        .tag-space { color: #38bdf8; background: rgba(56,189,248,0.12); }
+        .tag-research { color: #c084fc; background: rgba(192,132,252,0.12); }
+        .tag-regulation { color: #fbbf24; background: rgba(251,191,36,0.12); }
+        .featured-meta { font-family: var(--mono); font-size: 0.58rem; color: var(--ink-4); text-transform: uppercase; letter-spacing: 0.08em; }
+        .featured-body h2 { font-family: var(--serif); font-size: 1.75rem; font-weight: 400; color: #FFFFFF; margin-bottom: 1.25rem; line-height: 1.3; max-width: 800px; }
+        .featured-body .lead { font-size: 1rem; color: var(--ink-2); line-height: 1.85; margin-bottom: 1rem; max-width: 860px; }
+        .featured-body .detail { font-size: 0.88rem; color: var(--ink-3); line-height: 1.85; margin-bottom: 0.75rem; max-width: 860px; }
+        .source-link { display: inline-flex; align-items: center; gap: 0.4rem; font-family: var(--mono); font-size: 0.62rem; font-weight: 500; color: var(--gold); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 1rem; transition: gap 0.3s var(--ease), color 0.2s; text-decoration: none; border-bottom: 1px solid rgba(245,200,0,0.3); padding-bottom: 2px; }
+        .source-link:hover { gap: 0.65rem; color: var(--gold-l); }
+        .source-link svg { width: 10px; height: 10px; }
+
+        /* ══════════════ ARTICLE BLOCKS ══════════════ */
+        .articles { display: flex; flex-direction: column; gap: 2rem; margin-bottom: 64px; }
+        .article { background: var(--surface); border: 1px solid var(--rule); border-left: 3px solid transparent; padding: 2rem 2.5rem; transition: all 0.3s var(--ease); }
+        .article:hover { border-left-color: var(--gold); background: var(--surface-2); }
+        .article-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem; flex-wrap: wrap; }
+        .article-header .article-date { font-family: var(--mono); font-size: 0.58rem; color: var(--ink-4); text-transform: uppercase; letter-spacing: 0.08em; }
+        .article h3 { font-family: var(--serif); font-size: 1.25rem; font-weight: 400; color: #FFFFFF; margin-bottom: 0.75rem; line-height: 1.35; }
+        .article .summary { font-size: 0.88rem; color: var(--ink-2); line-height: 1.85; margin-bottom: 0.5rem; }
+        .article .detail { font-size: 0.82rem; color: var(--ink-3); line-height: 1.85; margin-bottom: 0.5rem; }
+        .article .key-points { margin: 1rem 0 0.75rem; padding-left: 1.25rem; }
+        .article .key-points li { font-size: 0.82rem; color: var(--ink-3); line-height: 1.8; margin-bottom: 0.35rem; }
+        .article .key-points li::marker { color: var(--gold); }
+
+        /* ══════════════ NEWSLETTER ══════════════ */
+        .newsletter { background: linear-gradient(135deg, var(--blue-dd), var(--blue-d)); border: 1px solid var(--rule); padding: 48px; text-align: center; margin-bottom: 64px; border-top: 2px solid var(--gold); border-bottom: 2px solid var(--gold); }
+        .newsletter h3 { font-family: var(--serif); font-size: 1.5rem; font-weight: 400; color: #FFFFFF; margin-bottom: 12px; }
+        .newsletter p { color: rgba(255,255,255,0.6); margin-bottom: 28px; font-size: 0.92rem; }
+        .newsletter-form { display: flex; max-width: 480px; margin: 0 auto; gap: 12px; }
+        .newsletter-form input { flex: 1; padding: 0.8rem 1.25rem; border: 1.5px solid rgba(245,200,0,0.2); background: rgba(255,255,255,0.05); color: #fff; font-family: var(--sans); font-size: 0.85rem; outline: none; transition: border-color 0.25s; }
+        .newsletter-form input::placeholder { color: rgba(255,255,255,0.3); }
+        .newsletter-form input:focus { border-color: var(--gold); }
+        .newsletter-form button { padding: 0.8rem 2rem; background: var(--gold); color: var(--blue-dd); font-family: var(--sans); font-weight: 700; font-size: 0.82rem; letter-spacing: 0.03em; border: none; cursor: pointer; transition: all 0.25s var(--ease); }
+        .newsletter-form button:hover { background: var(--gold-l); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(245,200,0,0.3); }
+
+        /* ══════════════ FOOTER ══════════════ */
+        footer { background: var(--blue-dd); border-top: 2px solid var(--gold); padding: 1.5rem 0; }
+        .ft { display: flex; justify-content: space-between; align-items: center; }
+        .ft-b { font-size: 0.68rem; color: rgba(255,255,255,0.5); }
+        .ft-b strong { color: var(--gold); }
+        .ft-c { font-size: 0.62rem; color: rgba(255,255,255,0.35); }
+
+        /* ══════════════ RESPONSIVE ══════════════ */
+        @media (max-width: 900px) {
+            .hero h1 { font-size: clamp(2rem, 5vw, 3rem); }
+            .featured-body { padding: 2rem; }
+            .article { padding: 1.5rem; }
+        }
+        @media (max-width: 720px) {
+            .hn { display: none; } .mt { display: flex; min-width: 44px; min-height: 44px; justify-content: center; align-items: center; }
+            .ft { flex-direction: column; gap: 0.35rem; text-align: center; }
+            .mn a { padding: 0.85rem clamp(1.5rem, 5vw, 5rem); }
+            .newsletter-form { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <header><div class="w"><a href="../index.html" class="logo"><div class="logo-top">Unl<span class="logo-lock"><svg viewBox="0 0 24 26" fill="none"><rect x="3" y="13" width="16" height="11" rx="2.5" stroke="#1a5bba" stroke-width="2.2" fill="none"/><path d="M7 13V8a5 5 0 0 1 10 0" stroke="#1a5bba" stroke-width="2.2" stroke-linecap="round" fill="none"/><circle cx="11" cy="18" r="1.2" fill="#1a5bba"/><rect x="10.4" y="18" width="1.2" height="2.2" rx="0.6" fill="#1a5bba"/></svg></span>ck</div><div class="logo-bottom">Solutions</div></a><ul class="hn"><li><a href="../index.html#capabilities">Capabilities</a></li><li><a href="../index.html#maturity">Maturity</a></li><li><a href="../index.html#approach">Approach</a></li><li><a href="../blog/">Insights</a></li><li><a href="./" style="color:#fff">AI &amp; Tech Review</a></li><li><a href="../index.html#contact" class="hn-cta">Book a Consultation</a></li></ul><button class="mt" onclick="document.querySelector('.mn').classList.toggle('open')" aria-label="Menu"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/></svg></button></div></header>
+    <div class="mn"><a href="../index.html#capabilities" onclick="this.parentElement.classList.remove('open')">Capabilities</a><a href="../index.html#maturity" onclick="this.parentElement.classList.remove('open')">Maturity</a><a href="../index.html#approach" onclick="this.parentElement.classList.remove('open')">Approach</a><a href="../blog/" onclick="this.parentElement.classList.remove('open')">Insights</a><a href="./" onclick="this.parentElement.classList.remove('open')">AI &amp; Tech Review</a><a href="../index.html#contact" onclick="this.parentElement.classList.remove('open')">Contact</a></div>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-shapes"><div class="hero-shape"></div><div class="hero-shape"></div><div class="hero-shape"></div><div class="hero-shape"></div></div>
+        <div class="hero-content">
+            <div class="hero-ey">Weekly Review</div>
+            <h1>AI &amp; Tech <i>Review</i></h1>
+            <p>Emerging developments across AI and technology.</p>
+            <div class="hero-date">Week of February 16 &#8211; 22, 2026</div>
+        </div>
+    </section>
+    <div class="hero-rule"></div>
+
+    <!-- Main -->
+    <div class="main">
+
+        <!-- Search & Browse -->
+        <div class="search-bar">
+            <div class="search-inner">
+                <div class="search-wrap">
+                    <svg class="si" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+                    <input type="text" class="search-input" id="searchInput" placeholder="Search articles..." autocomplete="off">
+                    <button class="search-clear" id="searchClear" aria-label="Clear search"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+                </div>
+                <a href="../blog/" class="browse-all">View all insights <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            </div>
+        </div>
+
+        <!-- ════════ FEATURED ════════ -->
+        <div class="section-title">Lead Story</div>
+        <div class="featured">
+            <div class="featured-body">
+                <div class="featured-header">
+                    <span class="tag tag-ai">AI Models</span>
+                    <span class="featured-meta">22 Feb 2026</span>
+                </div>
+                <h2>Anthropic Ships Claude 4.6 Opus &#8212; Resets the Benchmark Ceiling for Complex Reasoning</h2>
+                <p class="lead">Anthropic released Claude 4.6 Opus this week, the latest iteration of its frontier reasoning model. Internal evaluations show double-digit gains on graduate-level science reasoning (GPQA), competition-level mathematics (MATH), and agentic multi-step coding tasks (SWE-bench Verified) relative to its predecessor.</p>
+                <p class="detail">The model introduces an extended thinking mode that surfaces chain-of-thought traces before returning a final answer, giving developers visibility into the reasoning process. This is significant for enterprise adoption where auditability matters &#8212; teams can inspect how the model reached a conclusion, not just the output.</p>
+                <p class="detail">Architectural improvements include a 200K context window with near-lossless recall, native tool orchestration for agentic workflows, and a substantially reduced hallucination rate on factual retrieval tasks. Anthropic reports that Opus 4.6 outperforms competing models on complex instruction-following benchmarks where precision and multi-constraint reasoning are required.</p>
+                <p class="detail">For enterprise teams, the practical implication is a model that can handle production-grade code refactoring, multi-document synthesis, and structured decision support without the quality degradation typically seen in long-context scenarios. API pricing remains tiered, with the extended thinking capability consuming additional tokens.</p>
+                <a href="https://www.anthropic.com" target="_blank" rel="noopener" class="source-link">Source: Anthropic <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+            </div>
+        </div>
+
+        <!-- ════════ AI MODELS & PLATFORMS ════════ -->
+        <div class="section-title" id="ai-models">AI Models &amp; Platforms</div>
+        <div class="articles">
+            <div class="article">
+                <div class="article-header"><span class="tag tag-ai">AI Models</span><span class="article-date">18 Feb 2026</span></div>
+                <h3>OpenAI Releases GPT-5 Turbo with Native Agentic Architecture</h3>
+                <p class="summary">OpenAI&#8217;s GPT-5 Turbo ships with built-in agent infrastructure, marking a fundamental shift from prompt-response to autonomous task execution. The model natively supports persistent memory across sessions, parallel tool invocation, and structured output validation without external orchestration layers.</p>
+                <p class="detail">Key technical changes include a 128K default context with dynamic routing to a 1M retrieval-augmented window, native function calling with retry logic and error recovery, and a &#8220;workspace&#8221; abstraction that maintains state across multi-turn agentic workflows. Throughput benchmarks indicate 3x faster inference on code generation tasks compared to GPT-4 Turbo.</p>
+                <p class="detail">The competitive landscape is tightening. With Anthropic, Google, and OpenAI all shipping agentic capabilities within weeks of each other, the differentiation is shifting from raw model intelligence toward reliability, latency, and enterprise integration depth. Organizations evaluating these platforms should weight tool-use accuracy and failure recovery as heavily as benchmark scores.</p>
+                <a href="https://openai.com" target="_blank" rel="noopener" class="source-link">Source: OpenAI <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+            </div>
+            <div class="article">
+                <div class="article-header"><span class="tag tag-ai">AI Models</span><span class="tag tag-research">Research</span><span class="article-date">13 Feb 2026</span></div>
+                <h3>DeepMind&#8217;s AlphaScience Identifies Room-Temperature Superconductor Candidate</h3>
+                <p class="summary">Google DeepMind&#8217;s materials science platform AlphaScience has identified a novel ternary compound exhibiting superconducting properties at 22&#176;C under ambient pressure. The discovery, published in <em>Nature</em>, was generated through a generative materials search that screened approximately 2.2 million candidate structures in under 72 hours.</p>
+                <p class="detail">The compound &#8212; a layered nickelate with a modified perovskite structure &#8212; was subsequently synthesized and validated by experimental teams at MIT and ETH Zurich. Resistivity measurements confirmed zero-resistance behaviour at 295K, with a critical current density sufficient for practical conductor applications.</p>
+                <p class="detail">If reproducible at scale, the implications extend across energy transmission (eliminating ~5% grid losses globally), MRI and quantum computing hardware (removing cryogenic cooling requirements), and high-speed rail (frictionless magnetic levitation). Independent replication efforts are underway at laboratories in Japan, Germany, and South Korea. The broader signal: AI-driven scientific discovery is compressing timelines that historically spanned decades into months.</p>
+                <a href="https://deepmind.google" target="_blank" rel="noopener" class="source-link">Source: Google DeepMind <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+            </div>
+            <div class="article">
+                <div class="article-header"><span class="tag tag-regulation">Regulation</span><span class="article-date">14 Feb 2026</span></div>
+                <h3>EU AI Act Enforcement Begins &#8212; First Penalties Issued</h3>
+                <p class="summary">The European Commission issued its first enforcement actions under the EU AI Act, imposing fines on two multinational companies for deploying high-risk AI systems in hiring and credit scoring without meeting the Act&#8217;s transparency and human oversight requirements.</p>
+                <p class="detail">The penalties &#8212; reportedly in the range of &#8364;15&#8211;30 million &#8212; target organizations that failed to provide adequate algorithmic impact assessments, did not implement meaningful human-in-the-loop review, and lacked documentation of training data provenance. The enforcement signals that the EU is treating the Act as operational regulation, not aspirational guidance.</p>
+                <ul class="key-points">
+                    <li>High-risk classification now applies to AI used in employment decisions, financial underwriting, and public services</li>
+                    <li>Organizations must maintain auditable records of model training data, evaluation metrics, and deployment decisions</li>
+                    <li>Non-EU companies serving EU customers are within scope &#8212; extraterritorial enforcement is confirmed</li>
+                    <li>Compliance frameworks from NIST AI RMF and ISO 42001 are being referenced by auditors as baseline standards</li>
+                </ul>
+                <p class="detail">For enterprises operating across jurisdictions, this accelerates the need for centralized AI governance functions that can map model inventories to regulatory requirements. The window for voluntary compliance is closing.</p>
+                <a href="https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai" target="_blank" rel="noopener" class="source-link">Source: European Commission <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+            </div>
+        </div>
+
+        <!-- ════════ INFRASTRUCTURE & COMPUTE ════════ -->
+        <div class="section-title" id="infrastructure">Infrastructure &amp; Compute</div>
+        <div class="articles">
+            <div class="article">
+                <div class="article-header"><span class="tag tag-infra">Infrastructure</span><span class="article-date">21 Feb 2026</span></div>
+                <h3>Apple Ships M5 Ultra &#8212; 192GB Unified Memory Enables On-Device Model Training</h3>
+                <p class="summary">Apple&#8217;s M5 Ultra system-on-chip delivers 192GB of unified memory with 800GB/s bandwidth, positioning the Mac Studio and Mac Pro as viable platforms for local LLM fine-tuning and inference workloads that previously required cloud GPU clusters.</p>
+                <p class="detail">The chip integrates a 40-core Neural Engine clocked at 45 TOPS and supports FP16/BF16 mixed-precision training natively. Early benchmarks from MLPerf show the M5 Ultra fine-tuning a 70B-parameter model in approximately 4 hours on a single device &#8212; a task that typically requires 4&#8211;8 A100 GPUs.</p>
+                <p class="detail">The enterprise relevance is data sovereignty. Organizations in regulated industries (healthcare, financial services, defence) that cannot send proprietary data to cloud inference endpoints now have a desktop-class alternative. Apple&#8217;s MLX framework has been updated with LoRA and QLoRA adapters, making the developer workflow increasingly comparable to PyTorch on CUDA hardware.</p>
+                <a href="https://www.apple.com" target="_blank" rel="noopener" class="source-link">Source: Apple <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+            </div>
+            <div class="article">
+                <div class="article-header"><span class="tag tag-infra">Infrastructure</span><span class="article-date">15 Feb 2026</span></div>
+                <h3>NVIDIA Begins Shipping Blackwell Ultra B300 with 288GB HBM4</h3>
+                <p class="summary">NVIDIA confirmed general availability of the Blackwell Ultra B300 GPU, featuring 288GB of HBM4 memory and 2x the AI training throughput of the B200. Initial shipments are allocated to hyperscalers (Microsoft Azure, Google Cloud, AWS) and sovereign AI infrastructure projects.</p>
+                <p class="detail">The B300 introduces fourth-generation Transformer Engine with FP4 precision support, NVLink 6.0 delivering 3.6TB/s chip-to-chip bandwidth, and a new &#8220;expert parallelism&#8221; mode optimized for Mixture-of-Experts architectures that are becoming standard in frontier model design.</p>
+                <ul class="key-points">
+                    <li>288GB HBM4 allows a full 405B-parameter model to reside in a single GPU&#8217;s memory</li>
+                    <li>Power consumption reduced 30% per FLOP versus B200 through TSMC 3nm process</li>
+                    <li>Lead times remain 6&#8211;9 months for enterprise orders; supply constrained through Q4 2026</li>
+                    <li>AMD MI400 and Intel Falcon Shores are expected to ship competing architectures by mid-2026</li>
+                </ul>
+                <p class="detail">The compute supply bottleneck continues to be the defining constraint in AI infrastructure. Organizations planning training runs should factor in 12&#8211;18 month hardware procurement cycles when scoping foundation model programs.</p>
+                <a href="https://www.nvidia.com" target="_blank" rel="noopener" class="source-link">Source: NVIDIA <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+            </div>
+        </div>
+
+        <!-- ════════ EMERGING TECHNOLOGY ════════ -->
+        <div class="section-title" id="emerging">Emerging Technology</div>
+        <div class="articles">
+            <div class="article">
+                <div class="article-header"><span class="tag tag-quantum">Quantum</span><span class="article-date">19 Feb 2026</span></div>
+                <h3>Google Achieves Sustained Error Correction Across 1,500 Logical Qubits</h3>
+                <p class="summary">Google&#8217;s Willow 3 quantum processor demonstrated sustained quantum error correction across 1,500 logical qubits, completing a cytochrome P450 molecular simulation in 14 minutes &#8212; a computation estimated to require 47,000 years on the fastest classical supercomputer.</p>
+                <p class="detail">The breakthrough addresses the primary obstacle to practical quantum computing: error rates that previously scaled linearly with qubit count. Willow 3&#8217;s surface code implementation achieves a logical error rate below 10&#x207B;&#x2076; per cycle, crossing the threshold required for commercially relevant quantum algorithms in drug discovery, materials science, and cryptographic analysis.</p>
+                <p class="detail">Google has opened a limited-access API for the processor through its Quantum AI division. Enterprise applications remain 3&#8211;5 years from production deployment, but the timeline for &#8220;quantum advantage&#8221; in specific molecular simulation and optimization problems has compressed significantly. Organizations with long-duration R&amp;D cycles in pharma, chemicals, and advanced materials should be tracking this closely.</p>
+                <a href="https://quantumai.google" target="_blank" rel="noopener" class="source-link">Source: Google Quantum AI <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+            </div>
+            <div class="article">
+                <div class="article-header"><span class="tag tag-robotics">Robotics</span><span class="article-date">20 Feb 2026</span></div>
+                <h3>Boston Dynamics Ships Atlas Gen-3 with On-Board Foundation Model Inference</h3>
+                <p class="summary">Boston Dynamics announced commercial availability of Atlas Gen-3, the first humanoid robot platform with an on-board multimodal foundation model capable of real-time environmental reasoning. The system processes visual, spatial, and verbal inputs locally &#8212; no cloud dependency for core decision-making.</p>
+                <p class="detail">Atlas Gen-3 runs a distilled 8B-parameter vision-language model on a custom 200-TOPS edge processor, enabling the robot to interpret natural language instructions, navigate unstructured environments, and manipulate objects it has never encountered before. Latency from perception to motor response is under 80ms.</p>
+                <p class="detail">Initial deployment targets are logistics warehouses and automotive manufacturing, where the robot can handle bin-picking, palletization, and quality inspection tasks that require spatial reasoning and dexterity beyond the capability of fixed-arm industrial robots. Unit pricing is reported at approximately $250,000 with a 2&#8211;3 year ROI in high-labor-cost environments.</p>
+                <a href="https://bostondynamics.com" target="_blank" rel="noopener" class="source-link">Source: Boston Dynamics <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+            </div>
+            <div class="article">
+                <div class="article-header"><span class="tag tag-cyber">Cybersecurity</span><span class="article-date">17 Feb 2026</span></div>
+                <h3>AI-Generated Phishing Campaigns Surge 400% &#8212; NIST Issues Updated Defense Framework</h3>
+                <p class="summary">A joint report from CrowdStrike, Mandiant, and Palo Alto Networks documents a 400% increase in AI-generated phishing campaigns since Q3 2025. The attacks leverage large language models to generate contextually accurate, grammatically flawless emails that bypass traditional natural-language-based detection filters.</p>
+                <p class="detail">The new attack pattern uses publicly available information (LinkedIn profiles, SEC filings, press releases) to craft highly targeted spear-phishing messages that impersonate internal executives and reference real projects. Success rates against organizations without AI-augmented email security are reported at 3&#8211;5x higher than conventional phishing.</p>
+                <ul class="key-points">
+                    <li>NIST released SP 800-218A, an updated secure software development framework that includes AI-specific threat modelling</li>
+                    <li>Recommended defences include AI-powered behavioural analysis at the email gateway, mandatory DMARC/DKIM/SPF enforcement, and hardware-token MFA</li>
+                    <li>The EU&#8217;s ENISA issued parallel guidance recommending that organizations treat LLM-generated social engineering as a distinct threat category</li>
+                    <li>Vendor solutions from Microsoft (Defender for Office 365), Google (Workspace AI Security), and Proofpoint now include LLM-detection heuristics</li>
+                </ul>
+                <p class="detail">The asymmetry is structural: generating a convincing phishing email now costs fractions of a cent, while defending against it requires layered technical controls and continuous user training. Security budgets should reflect this shift.</p>
+                <a href="https://www.nist.gov/cybersecurity" target="_blank" rel="noopener" class="source-link">Source: NIST / CrowdStrike <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+            </div>
+            <div class="article">
+                <div class="article-header"><span class="tag tag-space">Space Infrastructure</span><span class="article-date">16 Feb 2026</span></div>
+                <h3>SpaceX Deploys First Orbital Compute Module via Starship</h3>
+                <p class="summary">SpaceX successfully deployed a 12-rack orbital compute module to low Earth orbit via Starship, the first commercially operational space-based data processing facility. The module, developed in partnership with Lumen Technologies, is designed for latency-sensitive AI inference workloads serving global edge networks.</p>
+                <p class="detail">The orbital architecture targets a specific niche: workloads where ground-based data centres introduce unacceptable latency due to geographic distance, and where Starlink&#8217;s inter-satellite laser mesh provides lower-latency routing than terrestrial fibre for intercontinental traffic. Initial applications include autonomous vehicle fleet coordination, real-time financial trading, and distributed sensor fusion for maritime logistics.</p>
+                <p class="detail">Power is supplied by deployable solar arrays generating 150kW, with thermal management through radiative cooling panels. The module is designed for a 5-year operational lifespan with on-orbit servicing capability. The cost per rack-hour is not yet competitive with terrestrial cloud pricing, but the latency advantage is measurable: 8&#8211;12ms round-trip between any two points on Earth versus 40&#8211;80ms through ground infrastructure.</p>
+                <a href="https://www.spacex.com" target="_blank" rel="noopener" class="source-link">Source: SpaceX <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+            </div>
+        </div>
+
+        <!-- Newsletter -->
+        <div class="newsletter" id="newsletter">
+            <h3>Get the Weekly Briefing</h3>
+            <p>AI &amp; technology analysis delivered to your inbox every Monday. No noise, no hype &#8212; just what matters.</p>
+            <form class="newsletter-form" action="https://formsubmit.co/connect@unlock-solutions.com" method="POST">
+                <input type="hidden" name="_subject" value="New AI & Tech Review Subscriber">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_next" value="https://www.unlock-solutions.com/review/">
+                <input type="text" name="_honey" style="display:none">
+                <input type="email" name="email" placeholder="Enter your email address" required>
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+
+    </div>
+
+    <!-- Search JS -->
+    <script>
+    (function(){
+        var si = document.getElementById('searchInput');
+        var clr = document.getElementById('searchClear');
+        var featured = document.querySelector('.featured');
+        var articles = Array.from(document.querySelectorAll('.article'));
+        var sections = Array.from(document.querySelectorAll('.section-title'));
+        var allItems = [featured].concat(articles);
+
+        function getTextContent(el) { return (el.textContent || '').toLowerCase(); }
+
+        function run() {
+            var q = si.value.trim().toLowerCase();
+            clr.classList.toggle('visible', q.length > 0);
+            if (!q) {
+                allItems.forEach(function(el) { el.style.display = ''; });
+                sections.forEach(function(el) { el.style.display = ''; });
+                return;
+            }
+            allItems.forEach(function(el) {
+                el.style.display = getTextContent(el).indexOf(q) !== -1 ? '' : 'none';
+            });
+            sections.forEach(function(sec) {
+                var next = sec.nextElementSibling;
+                if (!next) return;
+                if (next === featured) { sec.style.display = featured.style.display; return; }
+                if (next.classList && next.classList.contains('articles')) {
+                    var children = Array.from(next.querySelectorAll('.article'));
+                    sec.style.display = children.some(function(c) { return c.style.display !== 'none'; }) ? '' : 'none';
+                }
+            });
+        }
+
+        si.addEventListener('input', run);
+        clr.addEventListener('click', function() { si.value = ''; run(); });
+    })();
+    </script>
+
+    <footer><div class="w"><div class="ft"><div class="ft-b"><strong>Unlock Solutions</strong> &#8212; Enterprise Systems &amp; Intelligent Operations / Vancouver, BC</div><div class="ft-c">&copy; 2017&#8211;2026 Unlock Solutions</div></div></div></footer>
+
+</body>
+</html>
