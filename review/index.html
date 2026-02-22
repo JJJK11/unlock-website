@@ -95,37 +95,10 @@
         .section-title { font-family: var(--mono); font-size: 0.6rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.16em; color: var(--gold); margin-bottom: 32px; display: flex; align-items: center; gap: 1rem; }
         .section-title::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
 
-        /* ══════════════ SEARCH BAR ══════════════ */
-        .search-bar { padding: 0 0 2rem; }
-        .search-inner { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; }
-        .search-wrap { position: relative; flex: 1; min-width: 280px; max-width: 480px; }
-        .search-wrap svg.si { position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); width: 16px; height: 16px; color: var(--ink-4); pointer-events: none; }
-        .search-input { width: 100%; padding: 0.75rem 2.5rem 0.75rem 2.75rem; font-family: var(--sans); font-size: 0.85rem; font-weight: 500; border: 1.5px solid var(--rule); background: var(--surface); color: var(--ink); outline: none; transition: border-color 0.25s, box-shadow 0.25s; }
-        .search-input::placeholder { color: var(--ink-4); }
-        .search-input:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(245,200,0,0.08); }
-        .search-clear { position: absolute; right: 0.75rem; top: 50%; transform: translateY(-50%); width: 20px; height: 20px; border: none; background: none; color: var(--ink-4); cursor: pointer; display: none; padding: 0; }
-        .search-clear.visible { display: flex; align-items: center; justify-content: center; }
-        .search-clear:hover { color: var(--ink-2); }
+        /* ══════════════ BROWSE LINK ══════════════ */
         .browse-all { display: inline-flex; align-items: center; gap: 0.5rem; font-family: var(--sans); font-size: 0.78rem; font-weight: 600; color: var(--gold); transition: gap 0.3s var(--ease), color 0.2s; text-decoration: none; white-space: nowrap; }
         .browse-all:hover { gap: 0.7rem; color: var(--gold-l); }
         .browse-all svg { width: 12px; height: 12px; }
-
-        /* ══════════════ FILTER BAR ══════════════ */
-        .filter-section { margin-bottom: 48px; }
-        .filter-inner { display: flex; flex-direction: column; gap: 1.25rem; }
-        .filter-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; margin-top: 0.5rem; }
-        .filter-label { font-family: var(--mono); font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--ink-4); margin-right: 0.25rem; padding: 0.45rem 0; }
-        .filter-pill { font-family: var(--sans); font-size: 0.72rem; font-weight: 600; padding: 0.4rem 1rem; border: 1.5px solid var(--rule); background: transparent; color: var(--ink-3); cursor: pointer; transition: all 0.25s var(--ease); user-select: none; letter-spacing: 0.01em; }
-        .filter-pill:hover { border-color: var(--gold); color: var(--gold); }
-        .filter-pill.active { background: var(--gold); color: var(--blue-dd); border-color: var(--gold); }
-        .filter-pill.active:hover { background: var(--gold-l); }
-        .filter-pill .pill-count { font-size: 0.6rem; opacity: 0.6; margin-left: 0.25rem; }
-        .no-results-review { display: none; text-align: center; padding: 3rem 2rem; }
-        .no-results-review.visible { display: block; }
-        .no-results-review h3 { font-family: var(--serif); font-size: 1.3rem; font-weight: 400; color: var(--ink-3); margin-bottom: 0.5rem; }
-        .no-results-review p { font-size: 0.85rem; color: var(--ink-4); }
-        .no-results-review .reset-btn { display: inline-block; margin-top: 1rem; font-family: var(--sans); font-size: 0.75rem; font-weight: 600; color: var(--gold); cursor: pointer; padding: 0.5rem 1.5rem; border: 1.5px solid var(--gold); background: none; transition: all 0.2s var(--ease); }
-        .no-results-review .reset-btn:hover { background: var(--gold); color: var(--blue-dd); }
 
         /* ══════════════ FEATURED ══════════════ */
         .featured { margin-bottom: 64px; background: var(--surface); border: 1px solid var(--rule); overflow: hidden; border-top: 3px solid var(--gold); }
@@ -190,8 +163,6 @@
             .ft { flex-direction: column; gap: 0.35rem; text-align: center; }
             .mn a { padding: 0.85rem clamp(1.5rem, 5vw, 5rem); }
             .newsletter-form { flex-direction: column; }
-            .filter-tags { gap: 0.35rem; }
-            .filter-pill { padding: 0.35rem 0.75rem; font-size: 0.65rem; }
         }
     </style>
 </head>
@@ -337,38 +308,9 @@
             </div>
         </div>
 
-        <!-- Search & Filter -->
-        <div class="filter-section">
-            <div class="section-title">Search &amp; Filter</div>
-            <div class="filter-inner">
-                <div class="search-bar">
-                    <div class="search-inner">
-                        <div class="search-wrap">
-                            <svg class="si" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-                            <input type="text" class="search-input" id="searchInput" placeholder="Search articles..." autocomplete="off">
-                            <button class="search-clear" id="searchClear" aria-label="Clear search"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
-                        </div>
-                        <a href="../blog/" class="browse-all">View all insights <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-                    </div>
-                </div>
-                <div class="filter-tags">
-                    <span class="filter-label">Filter</span>
-                    <button class="filter-pill active" data-filter="all">All</button>
-                    <button class="filter-pill" data-filter="ai">AI</button>
-                    <button class="filter-pill" data-filter="infra">Infrastructure</button>
-                    <button class="filter-pill" data-filter="quantum">Quantum</button>
-                    <button class="filter-pill" data-filter="robotics">Robotics</button>
-                    <button class="filter-pill" data-filter="cyber">Cybersecurity</button>
-                    <button class="filter-pill" data-filter="space">Space</button>
-                    <button class="filter-pill" data-filter="regulation">Regulation</button>
-                    <button class="filter-pill" data-filter="research">Research</button>
-                </div>
-            </div>
-            <div class="no-results-review" id="noResults">
-                <h3>No articles found</h3>
-                <p>Try a different search term or category.</p>
-                <button class="reset-btn" onclick="resetFilters()">Show all articles</button>
-            </div>
+        <!-- View All Insights -->
+        <div style="text-align:center;margin-bottom:48px">
+            <a href="../blog/" class="browse-all">View all insights <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </div>
 
         <!-- Newsletter -->
@@ -387,90 +329,6 @@
 
     </div>
 
-    <!-- Search & Filter JS -->
-    <script>
-    (function(){
-        var si = document.getElementById('searchInput');
-        var clr = document.getElementById('searchClear');
-        var pills = document.querySelectorAll('.filter-pill');
-        var nr = document.getElementById('noResults');
-        var featured = document.querySelector('.featured');
-        var articles = Array.from(document.querySelectorAll('.article'));
-        var sections = Array.from(document.querySelectorAll('.section-title'));
-        var allItems = [featured].concat(articles);
-        var af = 'all';
-
-        function getTextContent(el) { return (el.textContent || '').toLowerCase(); }
-        function getTags(el) { return (el.getAttribute('data-tags') || '').split(','); }
-
-        function run() {
-            var q = si.value.trim().toLowerCase();
-            clr.classList.toggle('visible', q.length > 0);
-            var visible = 0;
-
-            allItems.forEach(function(el) {
-                var matchFilter = af === 'all' || getTags(el).indexOf(af) !== -1;
-                var matchSearch = !q || getTextContent(el).indexOf(q) !== -1;
-                if (matchFilter && matchSearch) {
-                    el.style.display = '';
-                    visible++;
-                } else {
-                    el.style.display = 'none';
-                }
-            });
-
-            // Show/hide section titles based on visible children
-            sections.forEach(function(sec) {
-                if (sec.closest('.filter-section')) return; // skip the filter section title
-                var next = sec.nextElementSibling;
-                if (!next) return;
-                if (next === featured) { sec.style.display = featured.style.display; return; }
-                if (next.classList && next.classList.contains('articles')) {
-                    var children = Array.from(next.querySelectorAll('.article'));
-                    sec.style.display = children.some(function(c) { return c.style.display !== 'none'; }) ? '' : 'none';
-                }
-            });
-
-            nr.classList.toggle('visible', visible === 0);
-
-            // Update pill counts
-            pills.forEach(function(p) {
-                var f = p.getAttribute('data-filter');
-                if (f === 'all') return;
-                var cnt = allItems.filter(function(el) {
-                    var matchSearch = !q || getTextContent(el).indexOf(q) !== -1;
-                    return getTags(el).indexOf(f) !== -1 && matchSearch;
-                }).length;
-                var cs = p.querySelector('.pill-count');
-                if (!cs) { cs = document.createElement('span'); cs.className = 'pill-count'; p.appendChild(cs); }
-                cs.textContent = cnt;
-            });
-        }
-
-        pills.forEach(function(p) {
-            p.addEventListener('click', function() {
-                pills.forEach(function(x) { x.classList.remove('active'); });
-                p.classList.add('active');
-                af = p.getAttribute('data-filter');
-                run();
-            });
-        });
-
-        si.addEventListener('input', run);
-        clr.addEventListener('click', function() { si.value = ''; run(); });
-
-        window.resetFilters = function() {
-            si.value = '';
-            af = 'all';
-            clr.classList.remove('visible');
-            pills.forEach(function(p) { p.classList.remove('active'); });
-            pills[0].classList.add('active');
-            run();
-        };
-
-        run();
-    })();
-    </script>
 
     <footer><div class="w"><div class="ft"><div class="ft-b"><strong>Unlock Solutions</strong> &#8212; Enterprise Systems &amp; Intelligent Operations / Vancouver, BC</div><div class="ft-c">&copy; 2017&#8211;2026 Unlock Solutions</div></div></div></footer>
 
