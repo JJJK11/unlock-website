@@ -110,6 +110,23 @@
         .browse-all:hover { gap: 0.7rem; color: var(--gold-l); }
         .browse-all svg { width: 12px; height: 12px; }
 
+        /* ══════════════ FILTER BAR ══════════════ */
+        .filter-section { margin-bottom: 48px; }
+        .filter-inner { display: flex; flex-direction: column; gap: 1.25rem; }
+        .filter-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; margin-top: 0.5rem; }
+        .filter-label { font-family: var(--mono); font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--ink-4); margin-right: 0.25rem; padding: 0.45rem 0; }
+        .filter-pill { font-family: var(--sans); font-size: 0.72rem; font-weight: 600; padding: 0.4rem 1rem; border: 1.5px solid var(--rule); background: transparent; color: var(--ink-3); cursor: pointer; transition: all 0.25s var(--ease); user-select: none; letter-spacing: 0.01em; }
+        .filter-pill:hover { border-color: var(--gold); color: var(--gold); }
+        .filter-pill.active { background: var(--gold); color: var(--blue-dd); border-color: var(--gold); }
+        .filter-pill.active:hover { background: var(--gold-l); }
+        .filter-pill .pill-count { font-size: 0.6rem; opacity: 0.6; margin-left: 0.25rem; }
+        .no-results-review { display: none; text-align: center; padding: 3rem 2rem; }
+        .no-results-review.visible { display: block; }
+        .no-results-review h3 { font-family: var(--serif); font-size: 1.3rem; font-weight: 400; color: var(--ink-3); margin-bottom: 0.5rem; }
+        .no-results-review p { font-size: 0.85rem; color: var(--ink-4); }
+        .no-results-review .reset-btn { display: inline-block; margin-top: 1rem; font-family: var(--sans); font-size: 0.75rem; font-weight: 600; color: var(--gold); cursor: pointer; padding: 0.5rem 1.5rem; border: 1.5px solid var(--gold); background: none; transition: all 0.2s var(--ease); }
+        .no-results-review .reset-btn:hover { background: var(--gold); color: var(--blue-dd); }
+
         /* ══════════════ FEATURED ══════════════ */
         .featured { margin-bottom: 64px; background: var(--surface); border: 1px solid var(--rule); overflow: hidden; border-top: 3px solid var(--gold); }
         .featured-body { padding: 3rem; }
@@ -173,6 +190,8 @@
             .ft { flex-direction: column; gap: 0.35rem; text-align: center; }
             .mn a { padding: 0.85rem clamp(1.5rem, 5vw, 5rem); }
             .newsletter-form { flex-direction: column; }
+            .filter-tags { gap: 0.35rem; }
+            .filter-pill { padding: 0.35rem 0.75rem; font-size: 0.65rem; }
         }
     </style>
 </head>
@@ -196,21 +215,9 @@
     <!-- Main -->
     <div class="main">
 
-        <!-- Search & Browse -->
-        <div class="search-bar">
-            <div class="search-inner">
-                <div class="search-wrap">
-                    <svg class="si" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-                    <input type="text" class="search-input" id="searchInput" placeholder="Search articles..." autocomplete="off">
-                    <button class="search-clear" id="searchClear" aria-label="Clear search"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
-                </div>
-                <a href="../blog/" class="browse-all">View all insights <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-            </div>
-        </div>
-
         <!-- ════════ FEATURED ════════ -->
         <div class="section-title">Lead Story</div>
-        <div class="featured">
+        <div class="featured" data-tags="ai">
             <div class="featured-body">
                 <div class="featured-header">
                     <span class="tag tag-ai">AI Models</span>
@@ -228,7 +235,7 @@
         <!-- ════════ AI MODELS & PLATFORMS ════════ -->
         <div class="section-title" id="ai-models">AI Models &amp; Platforms</div>
         <div class="articles">
-            <div class="article">
+            <div class="article" data-tags="ai">
                 <div class="article-header"><span class="tag tag-ai">AI Models</span><span class="article-date">18 Feb 2026</span></div>
                 <h3>OpenAI Releases GPT-5 Turbo with Native Agentic Architecture</h3>
                 <p class="summary">OpenAI&#8217;s GPT-5 Turbo ships with built-in agent infrastructure, marking a fundamental shift from prompt-response to autonomous task execution. The model natively supports persistent memory across sessions, parallel tool invocation, and structured output validation without external orchestration layers.</p>
@@ -236,7 +243,7 @@
                 <p class="detail">The competitive landscape is tightening. With Anthropic, Google, and OpenAI all shipping agentic capabilities within weeks of each other, the differentiation is shifting from raw model intelligence toward reliability, latency, and enterprise integration depth. Organizations evaluating these platforms should weight tool-use accuracy and failure recovery as heavily as benchmark scores.</p>
                 <a href="https://openai.com" target="_blank" rel="noopener" class="source-link">Source: OpenAI <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
             </div>
-            <div class="article">
+            <div class="article" data-tags="ai,research">
                 <div class="article-header"><span class="tag tag-ai">AI Models</span><span class="tag tag-research">Research</span><span class="article-date">13 Feb 2026</span></div>
                 <h3>DeepMind&#8217;s AlphaScience Identifies Room-Temperature Superconductor Candidate</h3>
                 <p class="summary">Google DeepMind&#8217;s materials science platform AlphaScience has identified a novel ternary compound exhibiting superconducting properties at 22&#176;C under ambient pressure. The discovery, published in <em>Nature</em>, was generated through a generative materials search that screened approximately 2.2 million candidate structures in under 72 hours.</p>
@@ -244,7 +251,7 @@
                 <p class="detail">If reproducible at scale, the implications extend across energy transmission (eliminating ~5% grid losses globally), MRI and quantum computing hardware (removing cryogenic cooling requirements), and high-speed rail (frictionless magnetic levitation). Independent replication efforts are underway at laboratories in Japan, Germany, and South Korea. The broader signal: AI-driven scientific discovery is compressing timelines that historically spanned decades into months.</p>
                 <a href="https://deepmind.google" target="_blank" rel="noopener" class="source-link">Source: Google DeepMind <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
             </div>
-            <div class="article">
+            <div class="article" data-tags="regulation">
                 <div class="article-header"><span class="tag tag-regulation">Regulation</span><span class="article-date">14 Feb 2026</span></div>
                 <h3>EU AI Act Enforcement Begins &#8212; First Penalties Issued</h3>
                 <p class="summary">The European Commission issued its first enforcement actions under the EU AI Act, imposing fines on two multinational companies for deploying high-risk AI systems in hiring and credit scoring without meeting the Act&#8217;s transparency and human oversight requirements.</p>
@@ -263,7 +270,7 @@
         <!-- ════════ INFRASTRUCTURE & COMPUTE ════════ -->
         <div class="section-title" id="infrastructure">Infrastructure &amp; Compute</div>
         <div class="articles">
-            <div class="article">
+            <div class="article" data-tags="infra">
                 <div class="article-header"><span class="tag tag-infra">Infrastructure</span><span class="article-date">21 Feb 2026</span></div>
                 <h3>Apple Ships M5 Ultra &#8212; 192GB Unified Memory Enables On-Device Model Training</h3>
                 <p class="summary">Apple&#8217;s M5 Ultra system-on-chip delivers 192GB of unified memory with 800GB/s bandwidth, positioning the Mac Studio and Mac Pro as viable platforms for local LLM fine-tuning and inference workloads that previously required cloud GPU clusters.</p>
@@ -271,7 +278,7 @@
                 <p class="detail">The enterprise relevance is data sovereignty. Organizations in regulated industries (healthcare, financial services, defence) that cannot send proprietary data to cloud inference endpoints now have a desktop-class alternative. Apple&#8217;s MLX framework has been updated with LoRA and QLoRA adapters, making the developer workflow increasingly comparable to PyTorch on CUDA hardware.</p>
                 <a href="https://www.apple.com" target="_blank" rel="noopener" class="source-link">Source: Apple <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
             </div>
-            <div class="article">
+            <div class="article" data-tags="infra">
                 <div class="article-header"><span class="tag tag-infra">Infrastructure</span><span class="article-date">15 Feb 2026</span></div>
                 <h3>NVIDIA Begins Shipping Blackwell Ultra B300 with 288GB HBM4</h3>
                 <p class="summary">NVIDIA confirmed general availability of the Blackwell Ultra B300 GPU, featuring 288GB of HBM4 memory and 2x the AI training throughput of the B200. Initial shipments are allocated to hyperscalers (Microsoft Azure, Google Cloud, AWS) and sovereign AI infrastructure projects.</p>
@@ -290,7 +297,7 @@
         <!-- ════════ EMERGING TECHNOLOGY ════════ -->
         <div class="section-title" id="emerging">Emerging Technology</div>
         <div class="articles">
-            <div class="article">
+            <div class="article" data-tags="quantum">
                 <div class="article-header"><span class="tag tag-quantum">Quantum</span><span class="article-date">19 Feb 2026</span></div>
                 <h3>Google Achieves Sustained Error Correction Across 1,500 Logical Qubits</h3>
                 <p class="summary">Google&#8217;s Willow 3 quantum processor demonstrated sustained quantum error correction across 1,500 logical qubits, completing a cytochrome P450 molecular simulation in 14 minutes &#8212; a computation estimated to require 47,000 years on the fastest classical supercomputer.</p>
@@ -298,7 +305,7 @@
                 <p class="detail">Google has opened a limited-access API for the processor through its Quantum AI division. Enterprise applications remain 3&#8211;5 years from production deployment, but the timeline for &#8220;quantum advantage&#8221; in specific molecular simulation and optimization problems has compressed significantly. Organizations with long-duration R&amp;D cycles in pharma, chemicals, and advanced materials should be tracking this closely.</p>
                 <a href="https://quantumai.google" target="_blank" rel="noopener" class="source-link">Source: Google Quantum AI <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
             </div>
-            <div class="article">
+            <div class="article" data-tags="robotics">
                 <div class="article-header"><span class="tag tag-robotics">Robotics</span><span class="article-date">20 Feb 2026</span></div>
                 <h3>Boston Dynamics Ships Atlas Gen-3 with On-Board Foundation Model Inference</h3>
                 <p class="summary">Boston Dynamics announced commercial availability of Atlas Gen-3, the first humanoid robot platform with an on-board multimodal foundation model capable of real-time environmental reasoning. The system processes visual, spatial, and verbal inputs locally &#8212; no cloud dependency for core decision-making.</p>
@@ -306,7 +313,7 @@
                 <p class="detail">Initial deployment targets are logistics warehouses and automotive manufacturing, where the robot can handle bin-picking, palletization, and quality inspection tasks that require spatial reasoning and dexterity beyond the capability of fixed-arm industrial robots. Unit pricing is reported at approximately $250,000 with a 2&#8211;3 year ROI in high-labor-cost environments.</p>
                 <a href="https://bostondynamics.com" target="_blank" rel="noopener" class="source-link">Source: Boston Dynamics <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
             </div>
-            <div class="article">
+            <div class="article" data-tags="cyber">
                 <div class="article-header"><span class="tag tag-cyber">Cybersecurity</span><span class="article-date">17 Feb 2026</span></div>
                 <h3>AI-Generated Phishing Campaigns Surge 400% &#8212; NIST Issues Updated Defense Framework</h3>
                 <p class="summary">A joint report from CrowdStrike, Mandiant, and Palo Alto Networks documents a 400% increase in AI-generated phishing campaigns since Q3 2025. The attacks leverage large language models to generate contextually accurate, grammatically flawless emails that bypass traditional natural-language-based detection filters.</p>
@@ -320,13 +327,47 @@
                 <p class="detail">The asymmetry is structural: generating a convincing phishing email now costs fractions of a cent, while defending against it requires layered technical controls and continuous user training. Security budgets should reflect this shift.</p>
                 <a href="https://www.nist.gov/cybersecurity" target="_blank" rel="noopener" class="source-link">Source: NIST / CrowdStrike <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
             </div>
-            <div class="article">
+            <div class="article" data-tags="space">
                 <div class="article-header"><span class="tag tag-space">Space Infrastructure</span><span class="article-date">16 Feb 2026</span></div>
                 <h3>SpaceX Deploys First Orbital Compute Module via Starship</h3>
                 <p class="summary">SpaceX successfully deployed a 12-rack orbital compute module to low Earth orbit via Starship, the first commercially operational space-based data processing facility. The module, developed in partnership with Lumen Technologies, is designed for latency-sensitive AI inference workloads serving global edge networks.</p>
                 <p class="detail">The orbital architecture targets a specific niche: workloads where ground-based data centres introduce unacceptable latency due to geographic distance, and where Starlink&#8217;s inter-satellite laser mesh provides lower-latency routing than terrestrial fibre for intercontinental traffic. Initial applications include autonomous vehicle fleet coordination, real-time financial trading, and distributed sensor fusion for maritime logistics.</p>
                 <p class="detail">Power is supplied by deployable solar arrays generating 150kW, with thermal management through radiative cooling panels. The module is designed for a 5-year operational lifespan with on-orbit servicing capability. The cost per rack-hour is not yet competitive with terrestrial cloud pricing, but the latency advantage is measurable: 8&#8211;12ms round-trip between any two points on Earth versus 40&#8211;80ms through ground infrastructure.</p>
                 <a href="https://www.spacex.com" target="_blank" rel="noopener" class="source-link">Source: SpaceX <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+            </div>
+        </div>
+
+        <!-- Search & Filter -->
+        <div class="filter-section">
+            <div class="section-title">Search &amp; Filter</div>
+            <div class="filter-inner">
+                <div class="search-bar">
+                    <div class="search-inner">
+                        <div class="search-wrap">
+                            <svg class="si" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+                            <input type="text" class="search-input" id="searchInput" placeholder="Search articles..." autocomplete="off">
+                            <button class="search-clear" id="searchClear" aria-label="Clear search"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+                        </div>
+                        <a href="../blog/" class="browse-all">View all insights <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+                    </div>
+                </div>
+                <div class="filter-tags">
+                    <span class="filter-label">Filter</span>
+                    <button class="filter-pill active" data-filter="all">All</button>
+                    <button class="filter-pill" data-filter="ai">AI</button>
+                    <button class="filter-pill" data-filter="infra">Infrastructure</button>
+                    <button class="filter-pill" data-filter="quantum">Quantum</button>
+                    <button class="filter-pill" data-filter="robotics">Robotics</button>
+                    <button class="filter-pill" data-filter="cyber">Cybersecurity</button>
+                    <button class="filter-pill" data-filter="space">Space</button>
+                    <button class="filter-pill" data-filter="regulation">Regulation</button>
+                    <button class="filter-pill" data-filter="research">Research</button>
+                </div>
+            </div>
+            <div class="no-results-review" id="noResults">
+                <h3>No articles found</h3>
+                <p>Try a different search term or category.</p>
+                <button class="reset-btn" onclick="resetFilters()">Show all articles</button>
             </div>
         </div>
 
@@ -346,30 +387,41 @@
 
     </div>
 
-    <!-- Search JS -->
+    <!-- Search & Filter JS -->
     <script>
     (function(){
         var si = document.getElementById('searchInput');
         var clr = document.getElementById('searchClear');
+        var pills = document.querySelectorAll('.filter-pill');
+        var nr = document.getElementById('noResults');
         var featured = document.querySelector('.featured');
         var articles = Array.from(document.querySelectorAll('.article'));
         var sections = Array.from(document.querySelectorAll('.section-title'));
         var allItems = [featured].concat(articles);
+        var af = 'all';
 
         function getTextContent(el) { return (el.textContent || '').toLowerCase(); }
+        function getTags(el) { return (el.getAttribute('data-tags') || '').split(','); }
 
         function run() {
             var q = si.value.trim().toLowerCase();
             clr.classList.toggle('visible', q.length > 0);
-            if (!q) {
-                allItems.forEach(function(el) { el.style.display = ''; });
-                sections.forEach(function(el) { el.style.display = ''; });
-                return;
-            }
+            var visible = 0;
+
             allItems.forEach(function(el) {
-                el.style.display = getTextContent(el).indexOf(q) !== -1 ? '' : 'none';
+                var matchFilter = af === 'all' || getTags(el).indexOf(af) !== -1;
+                var matchSearch = !q || getTextContent(el).indexOf(q) !== -1;
+                if (matchFilter && matchSearch) {
+                    el.style.display = '';
+                    visible++;
+                } else {
+                    el.style.display = 'none';
+                }
             });
+
+            // Show/hide section titles based on visible children
             sections.forEach(function(sec) {
+                if (sec.closest('.filter-section')) return; // skip the filter section title
                 var next = sec.nextElementSibling;
                 if (!next) return;
                 if (next === featured) { sec.style.display = featured.style.display; return; }
@@ -378,10 +430,45 @@
                     sec.style.display = children.some(function(c) { return c.style.display !== 'none'; }) ? '' : 'none';
                 }
             });
+
+            nr.classList.toggle('visible', visible === 0);
+
+            // Update pill counts
+            pills.forEach(function(p) {
+                var f = p.getAttribute('data-filter');
+                if (f === 'all') return;
+                var cnt = allItems.filter(function(el) {
+                    var matchSearch = !q || getTextContent(el).indexOf(q) !== -1;
+                    return getTags(el).indexOf(f) !== -1 && matchSearch;
+                }).length;
+                var cs = p.querySelector('.pill-count');
+                if (!cs) { cs = document.createElement('span'); cs.className = 'pill-count'; p.appendChild(cs); }
+                cs.textContent = cnt;
+            });
         }
+
+        pills.forEach(function(p) {
+            p.addEventListener('click', function() {
+                pills.forEach(function(x) { x.classList.remove('active'); });
+                p.classList.add('active');
+                af = p.getAttribute('data-filter');
+                run();
+            });
+        });
 
         si.addEventListener('input', run);
         clr.addEventListener('click', function() { si.value = ''; run(); });
+
+        window.resetFilters = function() {
+            si.value = '';
+            af = 'all';
+            clr.classList.remove('visible');
+            pills.forEach(function(p) { p.classList.remove('active'); });
+            pills[0].classList.add('active');
+            run();
+        };
+
+        run();
     })();
     </script>
 
