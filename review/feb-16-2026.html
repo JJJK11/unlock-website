@@ -101,6 +101,16 @@
         .section-title { font-family: var(--mono); font-size: 0.6rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.16em; color: var(--gold); margin-bottom: 32px; display: flex; align-items: center; gap: 1rem; }
         .section-title::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
 
+        /* ══════════════ PREVIOUS REVIEWS ══════════════ */
+        .prev-reviews { margin-bottom: 64px; }
+        .prev-reviews-list { display: flex; flex-direction: column; gap: 0.75rem; }
+        .prev-review-link { display: flex; align-items: center; justify-content: space-between; background: var(--surface); border: 1px solid var(--rule); padding: 1.25rem 2rem; transition: all 0.3s var(--ease); text-decoration: none; }
+        .prev-review-link:hover { border-color: rgba(245,200,0,0.3); background: var(--surface-2); }
+        .prev-review-link .prev-title { font-size: 0.9rem; font-weight: 600; color: #FFFFFF; }
+        .prev-review-link .prev-date { font-family: var(--mono); font-size: 0.6rem; color: var(--ink-4); text-transform: uppercase; letter-spacing: 0.08em; }
+        .prev-review-link svg { color: var(--gold); width: 14px; height: 14px; flex-shrink: 0; transition: transform 0.3s var(--ease); }
+        .prev-review-link:hover svg { transform: translateX(3px); }
+
         /* ══════════════ ARCHIVE BANNER ══════════════ */
         .archive-banner { position: relative; z-index: 1; background: var(--surface); border-bottom: 1px solid var(--rule); padding: 0.75rem clamp(1.5rem, 5vw, 5rem); display: flex; justify-content: center; align-items: center; gap: 1rem; }
         .archive-banner span { font-family: var(--mono); font-size: 0.65rem; color: var(--ink-4); text-transform: uppercase; letter-spacing: 0.1em; }
@@ -327,6 +337,20 @@
         <!-- View All Insights -->
         <div style="text-align:center;margin-bottom:48px">
             <a href="../blog/" class="browse-all">View all insights <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+
+        <!-- ════════ OTHER REVIEWS ════════ -->
+        <div class="section-title">Other Reviews</div>
+        <div class="prev-reviews">
+            <div class="prev-reviews-list">
+                <a href="./" class="prev-review-link">
+                    <div>
+                        <div class="prev-title">AI &amp; Tech Review &#8212; Latest</div>
+                        <div class="prev-date">Week of February 23 &#8211; March 1, 2026</div>
+                    </div>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                </a>
+            </div>
         </div>
 
         <!-- Newsletter -->
