@@ -6,12 +6,12 @@
     <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-7M2THPEPMW');</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI &amp; Tech Review &#8212; Unlock Solutions</title>
-    <meta name="description" content="Emerging developments across AI and technology, curated by Unlock Solutions.">
-    <meta property="og:title" content="AI &amp; Tech Review &#8212; Unlock Solutions">
-    <meta property="og:description" content="Emerging developments across AI and technology, curated by Unlock Solutions.">
+    <title>Week of Feb 16&#8211;22, 2026 &#8212; AI &amp; Tech Review &#8212; Unlock Solutions</title>
+    <meta name="description" content="AI &amp; Tech review for the week of February 16&#8211;22, 2026, curated by Unlock Solutions.">
+    <meta property="og:title" content="Week of Feb 16&#8211;22, 2026 &#8212; AI &amp; Tech Review &#8212; Unlock Solutions">
+    <meta property="og:description" content="AI &amp; Tech review for the week of February 16&#8211;22, 2026, curated by Unlock Solutions.">
     <meta property="og:image" content="https://unlock-solutions.com/unlock_logo.png">
-    <meta property="og:url" content="https://unlock-solutions.com/review/">
+    <meta property="og:url" content="https://unlock-solutions.com/review/feb-16-2026.html">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@UnlockSolns">
@@ -101,6 +101,12 @@
         .section-title { font-family: var(--mono); font-size: 0.6rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.16em; color: var(--gold); margin-bottom: 32px; display: flex; align-items: center; gap: 1rem; }
         .section-title::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
 
+        /* ══════════════ ARCHIVE BANNER ══════════════ */
+        .archive-banner { position: relative; z-index: 1; background: var(--surface); border-bottom: 1px solid var(--rule); padding: 0.75rem clamp(1.5rem, 5vw, 5rem); display: flex; justify-content: center; align-items: center; gap: 1rem; }
+        .archive-banner span { font-family: var(--mono); font-size: 0.65rem; color: var(--ink-4); text-transform: uppercase; letter-spacing: 0.1em; }
+        .archive-banner a { font-family: var(--mono); font-size: 0.65rem; font-weight: 500; color: var(--gold); text-transform: uppercase; letter-spacing: 0.08em; text-decoration: none; display: inline-flex; align-items: center; gap: 0.35rem; transition: gap 0.3s var(--ease), color 0.2s; }
+        .archive-banner a:hover { gap: 0.5rem; color: var(--gold-l); }
+
         /* ══════════════ BROWSE LINK ══════════════ */
         .browse-all { display: inline-flex; align-items: center; gap: 0.5rem; font-family: var(--sans); font-size: 0.78rem; font-weight: 600; color: var(--gold); transition: gap 0.3s var(--ease), color 0.2s; text-decoration: none; white-space: nowrap; }
         .browse-all:hover { gap: 0.7rem; color: var(--gold-l); }
@@ -140,16 +146,6 @@
         .article .key-points li { font-size: 0.82rem; color: var(--ink-3); line-height: 1.8; margin-bottom: 0.35rem; }
         .article .key-points li::marker { color: var(--gold); }
 
-        /* ══════════════ PREVIOUS REVIEWS ══════════════ */
-        .prev-reviews { margin-bottom: 64px; }
-        .prev-reviews-list { display: flex; flex-direction: column; gap: 0.75rem; }
-        .prev-review-link { display: flex; align-items: center; justify-content: space-between; background: var(--surface); border: 1px solid var(--rule); padding: 1.25rem 2rem; transition: all 0.3s var(--ease); text-decoration: none; }
-        .prev-review-link:hover { border-color: rgba(245,200,0,0.3); background: var(--surface-2); }
-        .prev-review-link .prev-title { font-size: 0.9rem; font-weight: 600; color: #FFFFFF; }
-        .prev-review-link .prev-date { font-family: var(--mono); font-size: 0.6rem; color: var(--ink-4); text-transform: uppercase; letter-spacing: 0.08em; }
-        .prev-review-link svg { color: var(--gold); width: 14px; height: 14px; flex-shrink: 0; transition: transform 0.3s var(--ease); }
-        .prev-review-link:hover svg { transform: translateX(3px); }
-
         /* ══════════════ NEWSLETTER ══════════════ */
         .newsletter { background: linear-gradient(135deg, var(--blue-dd), var(--blue-d)); border: 1px solid var(--rule); padding: 48px; text-align: center; margin-bottom: 64px; border-top: 2px solid var(--gold); border-bottom: 2px solid var(--gold); }
         .newsletter h3 { font-family: var(--serif); font-size: 1.5rem; font-weight: 400; color: #FFFFFF; margin-bottom: 12px; }
@@ -179,7 +175,6 @@
             .ft { flex-direction: column; gap: 0.35rem; text-align: center; }
             .mn a { padding: 0.85rem clamp(1.5rem, 5vw, 5rem); }
             .newsletter-form { flex-direction: column; }
-            .prev-review-link { padding: 1rem 1.25rem; }
         }
     </style>
 </head>
@@ -195,27 +190,32 @@
             <div class="hero-ey">Weekly Review</div>
             <h1>AI &amp; Tech <i>Review</i></h1>
             <p>Emerging developments across AI and technology.</p>
-            <div class="hero-date">Week of February 23 &#8211; March 1, 2026</div>
+            <div class="hero-date">Week of February 16 &#8211; 22, 2026</div>
         </div>
     </section>
     <div class="hero-rule"></div>
+    <div class="archive-banner">
+        <span>Archive</span>
+        <a href="./">View latest review <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
 
     <!-- Main -->
     <div class="main">
 
         <!-- ════════ FEATURED ════════ -->
         <div class="section-title">Lead Story</div>
-        <div class="featured" data-tags="infra">
+        <div class="featured" data-tags="ai">
             <div class="featured-body">
                 <div class="featured-header">
-                    <span class="tag tag-infra">Infrastructure</span>
-                    <span class="featured-meta">28 Feb 2026</span>
+                    <span class="tag tag-ai">AI Models</span>
+                    <span class="featured-meta">22 Feb 2026</span>
                 </div>
-                <h2>Big Tech AI Capex Reaches $660&#8211;690 Billion for 2026 &#8212; Infrastructure Spend Nearly Doubles Year-Over-Year</h2>
-                <p class="lead">The five largest U.S. cloud and AI providers &#8212; Microsoft, Alphabet, Amazon, Meta, and Oracle &#8212; have collectively committed to spending between $660 billion and $690 billion on capital expenditure in 2026, nearly doubling 2025 levels. The scale of investment is reshaping energy markets, supply chains, and the competitive landscape for AI infrastructure.</p>
-                <p class="detail">Amazon leads at approximately $200 billion, followed by Alphabet ($175&#8211;185B), Microsoft ($120B+), Meta ($115&#8211;135B), and Oracle ($50B). The White House announced it would host these companies on March 4 to formalize a &#8220;Rate Payer Protection Pledge&#8221; ensuring tech firms shoulder incremental power costs rather than passing them to consumers.</p>
-                <p class="detail">The investment trajectory signals a clear industry consensus: the compute bottleneck is the binding constraint on AI progress, and the companies willing to spend through it will define the next generation of platform dominance. For enterprise technology leaders, the implication is that cloud AI capacity will expand dramatically through 2027 &#8212; but pricing, availability, and geographic distribution of that capacity will remain uneven.</p>
-                <a href="https://techcrunch.com/2026/02/28/billion-dollar-infrastructure-deals-ai-boom-data-centers-openai-oracle-nvidia-microsoft-google-meta/" target="_blank" rel="noopener" class="source-link">Source: TechCrunch <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+                <h2>Anthropic Ships Claude 4.6 Opus &#8212; Resets the Benchmark Ceiling for Complex Reasoning</h2>
+                <p class="lead">Anthropic released Claude 4.6 Opus this week, the latest iteration of its frontier reasoning model. Internal evaluations show double-digit gains on graduate-level science reasoning (GPQA), competition-level mathematics (MATH), and agentic multi-step coding tasks (SWE-bench Verified) relative to its predecessor.</p>
+                <p class="detail">The model introduces an extended thinking mode that surfaces chain-of-thought traces before returning a final answer, giving developers visibility into the reasoning process. This is significant for enterprise adoption where auditability matters &#8212; teams can inspect how the model reached a conclusion, not just the output.</p>
+                <p class="detail">Architectural improvements include a 200K context window with near-lossless recall, native tool orchestration for agentic workflows, and a substantially reduced hallucination rate on factual retrieval tasks. Anthropic reports that Opus 4.6 outperforms competing models on complex instruction-following benchmarks where precision and multi-constraint reasoning are required.</p>
+                <p class="detail">For enterprise teams, the practical implication is a model that can handle production-grade code refactoring, multi-document synthesis, and structured decision support without the quality degradation typically seen in long-context scenarios. API pricing remains tiered, with the extended thinking capability consuming additional tokens.</p>
+                <a href="https://www.anthropic.com" target="_blank" rel="noopener" class="source-link">Source: Anthropic <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
             </div>
         </div>
 
@@ -223,25 +223,34 @@
         <div class="section-title" id="ai-models">AI Models &amp; Platforms</div>
         <div class="articles">
             <div class="article" data-tags="ai">
-                <div class="article-header"><span class="tag tag-ai">AI Models</span><span class="article-date">27 Feb 2026</span></div>
-                <h3>OpenAI Raises $110 Billion at $730 Billion Valuation &#8212; Largest Private Funding Round in History</h3>
-                <p class="summary">OpenAI finalized the largest private funding round ever, raising $110 billion at a $730 billion valuation. The round comprised a $50 billion investment from Amazon and $30 billion each from NVIDIA and SoftBank.</p>
-                <p class="detail">OpenAI told investors it is targeting roughly $600 billion in total compute spend by 2030 and projects total revenue exceeding $280 billion by that year. The valuation places OpenAI ahead of most publicly traded technology companies and reflects investor conviction that foundation model providers will capture a significant share of enterprise software value. The capital will fund training infrastructure, inference capacity, and the buildout of agentic AI platforms.</p>
-                <a href="https://techcrunch.com/2026/02/27/openai-raises-110b-in-one-of-the-largest-private-funding-rounds-in-history/" target="_blank" rel="noopener" class="source-link">Source: TechCrunch <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+                <div class="article-header"><span class="tag tag-ai">AI Models</span><span class="article-date">18 Feb 2026</span></div>
+                <h3>OpenAI Releases GPT-5 Turbo with Native Agentic Architecture</h3>
+                <p class="summary">OpenAI&#8217;s GPT-5 Turbo ships with built-in agent infrastructure, marking a fundamental shift from prompt-response to autonomous task execution. The model natively supports persistent memory across sessions, parallel tool invocation, and structured output validation without external orchestration layers.</p>
+                <p class="detail">Key technical changes include a 128K default context with dynamic routing to a 1M retrieval-augmented window, native function calling with retry logic and error recovery, and a &#8220;workspace&#8221; abstraction that maintains state across multi-turn agentic workflows. Throughput benchmarks indicate 3x faster inference on code generation tasks compared to GPT-4 Turbo.</p>
+                <p class="detail">The competitive landscape is tightening. With Anthropic, Google, and OpenAI all shipping agentic capabilities within weeks of each other, the differentiation is shifting from raw model intelligence toward reliability, latency, and enterprise integration depth. Organizations evaluating these platforms should weight tool-use accuracy and failure recovery as heavily as benchmark scores.</p>
+                <a href="https://openai.com" target="_blank" rel="noopener" class="source-link">Source: OpenAI <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
             </div>
-            <div class="article" data-tags="ai">
-                <div class="article-header"><span class="tag tag-ai">AI Models</span><span class="article-date">27 Feb 2026</span></div>
-                <h3>Google Gemini 3.1 Pro Posts Leading Scores on 13 of 16 Benchmarks &#8212; 77.1% on ARC-AGI-2</h3>
-                <p class="summary">Google released Gemini 3.1 Pro, which posted leading scores on 13 of 16 benchmarks including a headline 77.1% on ARC-AGI-2, a test of pure logic and novel problem-solving that has historically been resistant to scaling improvements.</p>
-                <p class="detail">The February Gemini Drop also introduced Lyria 3 (AI music generation from text or image prompts), Nano Banana 2 (free high-resolution AI image generation with improved text rendering), Veo 3.1 video templates, and APA scientific paper citations with verified source links. The breadth of the release signals Google&#8217;s strategy of bundling multimodal capabilities into a single platform rather than shipping standalone models.</p>
-                <a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-1-pro/" target="_blank" rel="noopener" class="source-link">Source: Google <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+            <div class="article" data-tags="ai,research">
+                <div class="article-header"><span class="tag tag-ai">AI Models</span><span class="tag tag-research">Research</span><span class="article-date">13 Feb 2026</span></div>
+                <h3>DeepMind&#8217;s AlphaScience Identifies Room-Temperature Superconductor Candidate</h3>
+                <p class="summary">Google DeepMind&#8217;s materials science platform AlphaScience has identified a novel ternary compound exhibiting superconducting properties at 22&#176;C under ambient pressure. The discovery, published in <em>Nature</em>, was generated through a generative materials search that screened approximately 2.2 million candidate structures in under 72 hours.</p>
+                <p class="detail">The compound &#8212; a layered nickelate with a modified perovskite structure &#8212; was subsequently synthesized and validated by experimental teams at MIT and ETH Zurich. Resistivity measurements confirmed zero-resistance behaviour at 295K, with a critical current density sufficient for practical conductor applications.</p>
+                <p class="detail">If reproducible at scale, the implications extend across energy transmission (eliminating ~5% grid losses globally), MRI and quantum computing hardware (removing cryogenic cooling requirements), and high-speed rail (frictionless magnetic levitation). Independent replication efforts are underway at laboratories in Japan, Germany, and South Korea. The broader signal: AI-driven scientific discovery is compressing timelines that historically spanned decades into months.</p>
+                <a href="https://deepmind.google" target="_blank" rel="noopener" class="source-link">Source: Google DeepMind <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
             </div>
-            <div class="article" data-tags="ai,cyber">
-                <div class="article-header"><span class="tag tag-ai">AI Models</span><span class="tag tag-cyber">Cybersecurity</span><span class="article-date">26 Feb 2026</span></div>
-                <h3>AI Coding Agents Fuel &#8220;Productivity Panic&#8221; Across the Technology Sector</h3>
-                <p class="summary">AI coding agents capable of autonomously completing multistep software development tasks are triggering a &#8220;productivity panic&#8221; across the technology sector. Companies are reassessing headcount needs and developer workflows as agentic tools demonstrate the ability to handle production-grade refactoring, test generation, and feature implementation.</p>
-                <p class="detail">The tension is structural: organizations adopting agentic coding tools report 3&#8211;5x productivity gains on routine development tasks, but the workforce implications are forcing difficult conversations about team sizing, skill requirements, and the role of junior developers. For enterprise technology leaders, the question is no longer whether to adopt these tools but how to restructure development organizations around them.</p>
-                <a href="https://www.bloomberg.com/news/articles/2026-02-26/ai-coding-agents-like-claude-code-are-fueling-a-productivity-panic-in-tech" target="_blank" rel="noopener" class="source-link">Source: Bloomberg <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+            <div class="article" data-tags="regulation">
+                <div class="article-header"><span class="tag tag-regulation">Regulation</span><span class="article-date">14 Feb 2026</span></div>
+                <h3>EU AI Act Enforcement Begins &#8212; First Penalties Issued</h3>
+                <p class="summary">The European Commission issued its first enforcement actions under the EU AI Act, imposing fines on two multinational companies for deploying high-risk AI systems in hiring and credit scoring without meeting the Act&#8217;s transparency and human oversight requirements.</p>
+                <p class="detail">The penalties &#8212; reportedly in the range of &#8364;15&#8211;30 million &#8212; target organizations that failed to provide adequate algorithmic impact assessments, did not implement meaningful human-in-the-loop review, and lacked documentation of training data provenance. The enforcement signals that the EU is treating the Act as operational regulation, not aspirational guidance.</p>
+                <ul class="key-points">
+                    <li>High-risk classification now applies to AI used in employment decisions, financial underwriting, and public services</li>
+                    <li>Organizations must maintain auditable records of model training data, evaluation metrics, and deployment decisions</li>
+                    <li>Non-EU companies serving EU customers are within scope &#8212; extraterritorial enforcement is confirmed</li>
+                    <li>Compliance frameworks from NIST AI RMF and ISO 42001 are being referenced by auditors as baseline standards</li>
+                </ul>
+                <p class="detail">For enterprises operating across jurisdictions, this accelerates the need for centralized AI governance functions that can map model inventories to regulatory requirements. The window for voluntary compliance is closing.</p>
+                <a href="https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai" target="_blank" rel="noopener" class="source-link">Source: European Commission <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
             </div>
         </div>
 
@@ -249,25 +258,26 @@
         <div class="section-title" id="infrastructure">Infrastructure &amp; Compute</div>
         <div class="articles">
             <div class="article" data-tags="infra">
-                <div class="article-header"><span class="tag tag-infra">Infrastructure</span><span class="article-date">25 Feb 2026</span></div>
-                <h3>NVIDIA Reports Record $68.1B Q4 Revenue &#8212; Unveils Vera Rubin Platform at 10x Performance Per Watt</h3>
-                <p class="summary">NVIDIA reported Q4 fiscal 2026 revenue of $68.1 billion, up 73% year-over-year, with the data centre segment driving $62.3 billion. The company guided Q1 fiscal 2027 revenue to $78 billion and expects to exceed $500 billion in total chip manufacturing for calendar 2026.</p>
-                <p class="detail">NVIDIA also gave an exclusive first look at Vera Rubin, its next-generation AI platform shipping in the second half of 2026, delivering 10x more performance per watt than Blackwell. First Vera Rubin samples have already been shipped to customers. The performance-per-watt improvement is significant for hyperscalers facing power constraints &#8212; the same compute in a smaller thermal envelope changes data centre economics fundamentally.</p>
-                <a href="https://www.cnbc.com/2026/02/25/nvidia-nvda-earnings-report-q4-2026.html" target="_blank" rel="noopener" class="source-link">Source: CNBC <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+                <div class="article-header"><span class="tag tag-infra">Infrastructure</span><span class="article-date">21 Feb 2026</span></div>
+                <h3>Apple Ships M5 Ultra &#8212; 192GB Unified Memory Enables On-Device Model Training</h3>
+                <p class="summary">Apple&#8217;s M5 Ultra system-on-chip delivers 192GB of unified memory with 800GB/s bandwidth, positioning the Mac Studio and Mac Pro as viable platforms for local LLM fine-tuning and inference workloads that previously required cloud GPU clusters.</p>
+                <p class="detail">The chip integrates a 40-core Neural Engine clocked at 45 TOPS and supports FP16/BF16 mixed-precision training natively. Early benchmarks from MLPerf show the M5 Ultra fine-tuning a 70B-parameter model in approximately 4 hours on a single device &#8212; a task that typically requires 4&#8211;8 A100 GPUs.</p>
+                <p class="detail">The enterprise relevance is data sovereignty. Organizations in regulated industries (healthcare, financial services, defence) that cannot send proprietary data to cloud inference endpoints now have a desktop-class alternative. Apple&#8217;s MLX framework has been updated with LoRA and QLoRA adapters, making the developer workflow increasingly comparable to PyTorch on CUDA hardware.</p>
+                <a href="https://www.apple.com" target="_blank" rel="noopener" class="source-link">Source: Apple <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
             </div>
             <div class="article" data-tags="infra">
-                <div class="article-header"><span class="tag tag-infra">Infrastructure</span><span class="article-date">24 Feb 2026</span></div>
-                <h3>Meta Signs Massive AI Chip Deals &#8212; Up to $60B in AMD GPUs Plus Multiyear NVIDIA Partnership</h3>
-                <p class="summary">Meta announced a long-term agreement to purchase up to 6GW worth of AMD Instinct GPUs (up to $60 billion over five years), including a performance-based warrant for Meta to acquire roughly 10% of AMD&#8217;s shares. Days earlier, Meta finalized a multiyear, multigenerational strategic partnership with NVIDIA for millions of Blackwell and Rubin GPUs.</p>
-                <p class="detail">Meta&#8217;s total capex for 2026 is estimated at $115&#8211;135 billion, nearly doubling from the prior year. The dual-vendor strategy is notable: by committing to both AMD and NVIDIA at scale, Meta is hedging against supply concentration risk while also creating competitive pressure on GPU pricing. This is the playbook enterprise buyers should study as they negotiate their own AI infrastructure commitments.</p>
-                <a href="https://about.fb.com/news/2026/02/meta-amd-partner-longterm-ai-infrastructure-agreement/" target="_blank" rel="noopener" class="source-link">Source: Meta Newsroom <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
-            </div>
-            <div class="article" data-tags="infra">
-                <div class="article-header"><span class="tag tag-infra">Infrastructure</span><span class="article-date">26 Feb 2026</span></div>
-                <h3>Apple Expands U.S. AI Server Manufacturing &#8212; Signals Wearable AI Strategy</h3>
-                <p class="summary">Apple announced expanded factory operations in Houston, bringing Mac mini production to the U.S. for the first time and expanding advanced AI server manufacturing. Unlike competitors spending hundreds of billions, Apple allocated a comparatively modest $12.72 billion in AI-related capex in fiscal 2025.</p>
-                <p class="detail">CEO Tim Cook signaled that Visual Intelligence will be the defining feature of the company&#8217;s wearable AI strategy, with smart glasses, camera-equipped AirPods, and an AI pendant in development. Apple is partnering with Google to power Siri&#8217;s upcoming AI upgrade rather than building frontier models in-house. The strategic bet is that on-device inference and platform integration will matter more than raw model capability &#8212; a fundamentally different thesis than the hyperscaler approach.</p>
-                <a href="https://www.apple.com/newsroom/2026/02/apple-accelerates-us-manufacturing-with-mac-mini-production/" target="_blank" rel="noopener" class="source-link">Source: Apple Newsroom <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+                <div class="article-header"><span class="tag tag-infra">Infrastructure</span><span class="article-date">15 Feb 2026</span></div>
+                <h3>NVIDIA Begins Shipping Blackwell Ultra B300 with 288GB HBM4</h3>
+                <p class="summary">NVIDIA confirmed general availability of the Blackwell Ultra B300 GPU, featuring 288GB of HBM4 memory and 2x the AI training throughput of the B200. Initial shipments are allocated to hyperscalers (Microsoft Azure, Google Cloud, AWS) and sovereign AI infrastructure projects.</p>
+                <p class="detail">The B300 introduces fourth-generation Transformer Engine with FP4 precision support, NVLink 6.0 delivering 3.6TB/s chip-to-chip bandwidth, and a new &#8220;expert parallelism&#8221; mode optimized for Mixture-of-Experts architectures that are becoming standard in frontier model design.</p>
+                <ul class="key-points">
+                    <li>288GB HBM4 allows a full 405B-parameter model to reside in a single GPU&#8217;s memory</li>
+                    <li>Power consumption reduced 30% per FLOP versus B200 through TSMC 3nm process</li>
+                    <li>Lead times remain 6&#8211;9 months for enterprise orders; supply constrained through Q4 2026</li>
+                    <li>AMD MI400 and Intel Falcon Shores are expected to ship competing architectures by mid-2026</li>
+                </ul>
+                <p class="detail">The compute supply bottleneck continues to be the defining constraint in AI infrastructure. Organizations planning training runs should factor in 12&#8211;18 month hardware procurement cycles when scoping foundation model programs.</p>
+                <a href="https://www.nvidia.com" target="_blank" rel="noopener" class="source-link">Source: NVIDIA <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
             </div>
         </div>
 
@@ -275,64 +285,48 @@
         <div class="section-title" id="emerging">Emerging Technology</div>
         <div class="articles">
             <div class="article" data-tags="quantum">
-                <div class="article-header"><span class="tag tag-quantum">Quantum</span><span class="tag tag-research">Research</span><span class="article-date">25 Feb 2026</span></div>
-                <h3>DOE Quantum Research Centres Achieve Scalable Ion Trap Breakthrough</h3>
-                <p class="summary">The Quantum Science Center and Quantum Systems Accelerator (DOE national research centres) enabled Fermilab and MIT Lincoln Laboratory to achieve a key breakthrough: successfully trapping and manipulating ions using in-vacuum cryoelectronics &#8212; a critical step toward building scalable quantum computers.</p>
-                <p class="detail">Separately, researchers at the Niels Bohr Institute built a real-time qubit monitoring system that tracks rapid qubit fluctuations approximately 100x faster than previous methods, enabling instant detection of when qubits shift from stable to unstable states. Together, these advances address the two primary engineering bottlenecks in ion-trap quantum computing: scalable control electronics and real-time error detection.</p>
-                <a href="https://news.fnal.gov/2026/02/doe-national-quantum-research-centers-reach-milestone-breakthrough-towards-building-scalable-quantum-computers/" target="_blank" rel="noopener" class="source-link">Source: Fermilab <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+                <div class="article-header"><span class="tag tag-quantum">Quantum</span><span class="article-date">19 Feb 2026</span></div>
+                <h3>Google Achieves Sustained Error Correction Across 1,500 Logical Qubits</h3>
+                <p class="summary">Google&#8217;s Willow 3 quantum processor demonstrated sustained quantum error correction across 1,500 logical qubits, completing a cytochrome P450 molecular simulation in 14 minutes &#8212; a computation estimated to require 47,000 years on the fastest classical supercomputer.</p>
+                <p class="detail">The breakthrough addresses the primary obstacle to practical quantum computing: error rates that previously scaled linearly with qubit count. Willow 3&#8217;s surface code implementation achieves a logical error rate below 10&#x207B;&#x2076; per cycle, crossing the threshold required for commercially relevant quantum algorithms in drug discovery, materials science, and cryptographic analysis.</p>
+                <p class="detail">Google has opened a limited-access API for the processor through its Quantum AI division. Enterprise applications remain 3&#8211;5 years from production deployment, but the timeline for &#8220;quantum advantage&#8221; in specific molecular simulation and optimization problems has compressed significantly. Organizations with long-duration R&amp;D cycles in pharma, chemicals, and advanced materials should be tracking this closely.</p>
+                <a href="https://quantumai.google" target="_blank" rel="noopener" class="source-link">Source: Google Quantum AI <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
             </div>
             <div class="article" data-tags="robotics">
-                <div class="article-header"><span class="tag tag-robotics">Robotics</span><span class="article-date">24 Feb 2026</span></div>
-                <h3>Humanoid Robots Perform Parkour and Aerial Flips at China&#8217;s Spring Festival Gala</h3>
-                <p class="summary">Two dozen humanoid robots performed the world&#8217;s first continuous freestyle table-vaulting parkour, aerial flips, continuous single-leg flips, a two-step wall-assisted backflip, and a 7.5-rotation Airflare spin at China&#8217;s Spring Festival Gala. The performance went viral with nearly half a million YouTube views.</p>
-                <p class="detail">The demonstration marks a dramatic leap from last year&#8217;s show where robots performed only simple movements like twirling handkerchiefs. China&#8217;s humanoid robotics sector is advancing rapidly, with multiple state-backed programmes targeting commercial deployment in manufacturing and logistics by 2028. The gap between demonstration capability and industrial reliability remains significant, but the trajectory is unmistakable.</p>
-                <a href="https://www.aljazeera.com/news/2026/2/17/humanoid-robots-perform-advanced-martial-arts-at-chinese-new-year-gala" target="_blank" rel="noopener" class="source-link">Source: Al Jazeera <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+                <div class="article-header"><span class="tag tag-robotics">Robotics</span><span class="article-date">20 Feb 2026</span></div>
+                <h3>Boston Dynamics Ships Atlas Gen-3 with On-Board Foundation Model Inference</h3>
+                <p class="summary">Boston Dynamics announced commercial availability of Atlas Gen-3, the first humanoid robot platform with an on-board multimodal foundation model capable of real-time environmental reasoning. The system processes visual, spatial, and verbal inputs locally &#8212; no cloud dependency for core decision-making.</p>
+                <p class="detail">Atlas Gen-3 runs a distilled 8B-parameter vision-language model on a custom 200-TOPS edge processor, enabling the robot to interpret natural language instructions, navigate unstructured environments, and manipulate objects it has never encountered before. Latency from perception to motor response is under 80ms.</p>
+                <p class="detail">Initial deployment targets are logistics warehouses and automotive manufacturing, where the robot can handle bin-picking, palletization, and quality inspection tasks that require spatial reasoning and dexterity beyond the capability of fixed-arm industrial robots. Unit pricing is reported at approximately $250,000 with a 2&#8211;3 year ROI in high-labor-cost environments.</p>
+                <a href="https://bostondynamics.com" target="_blank" rel="noopener" class="source-link">Source: Boston Dynamics <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
             </div>
             <div class="article" data-tags="cyber">
-                <div class="article-header"><span class="tag tag-cyber">Cybersecurity</span><span class="article-date">26 Feb 2026</span></div>
-                <h3>North Korean ScarCruft Deploys Novel Backdoor Using Zoho WorkDrive for Command-and-Control</h3>
-                <p class="summary">North Korean threat actor ScarCruft was attributed to a new campaign codenamed &#8220;Ruby Jumper,&#8221; deploying a novel backdoor that uses Zoho WorkDrive for command-and-control communications. The campaign utilizes multiple malware families including RESTLEAF, SNAKEDROPPER, THUMBSBD, VIRUSTASK, FOOTWINE, and BLUELIGHT.</p>
-                <p class="detail">The use of legitimate cloud services for C2 infrastructure is a growing trend &#8212; it allows malicious traffic to blend with normal business communications and evade network-level detection. Separately, LummaC2 malware spiked across North America this week, distributed through fake invoice emails and ZIP attachments disguised as tax documents. Organizations should ensure endpoint detection covers cloud-service-based C2 channels and that email security filters are tuned for tax-season social engineering lures.</p>
-                <a href="https://www.hendryadrian.com/cybersecurity-news-daily-recap-26-feb-2026/" target="_blank" rel="noopener" class="source-link">Source: Cybersecurity News <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+                <div class="article-header"><span class="tag tag-cyber">Cybersecurity</span><span class="article-date">17 Feb 2026</span></div>
+                <h3>AI-Generated Phishing Campaigns Surge 400% &#8212; NIST Issues Updated Defense Framework</h3>
+                <p class="summary">A joint report from CrowdStrike, Mandiant, and Palo Alto Networks documents a 400% increase in AI-generated phishing campaigns since Q3 2025. The attacks leverage large language models to generate contextually accurate, grammatically flawless emails that bypass traditional natural-language-based detection filters.</p>
+                <p class="detail">The new attack pattern uses publicly available information (LinkedIn profiles, SEC filings, press releases) to craft highly targeted spear-phishing messages that impersonate internal executives and reference real projects. Success rates against organizations without AI-augmented email security are reported at 3&#8211;5x higher than conventional phishing.</p>
+                <ul class="key-points">
+                    <li>NIST released SP 800-218A, an updated secure software development framework that includes AI-specific threat modelling</li>
+                    <li>Recommended defences include AI-powered behavioural analysis at the email gateway, mandatory DMARC/DKIM/SPF enforcement, and hardware-token MFA</li>
+                    <li>The EU&#8217;s ENISA issued parallel guidance recommending that organizations treat LLM-generated social engineering as a distinct threat category</li>
+                    <li>Vendor solutions from Microsoft (Defender for Office 365), Google (Workspace AI Security), and Proofpoint now include LLM-detection heuristics</li>
+                </ul>
+                <p class="detail">The asymmetry is structural: generating a convincing phishing email now costs fractions of a cent, while defending against it requires layered technical controls and continuous user training. Security budgets should reflect this shift.</p>
+                <a href="https://www.nist.gov/cybersecurity" target="_blank" rel="noopener" class="source-link">Source: NIST / CrowdStrike <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
             </div>
-        </div>
-
-        <!-- ════════ AI REGULATION ════════ -->
-        <div class="section-title" id="regulation">AI Regulation &amp; Policy</div>
-        <div class="articles">
-            <div class="article" data-tags="regulation">
-                <div class="article-header"><span class="tag tag-regulation">Regulation</span><span class="article-date">27 Feb 2026</span></div>
-                <h3>Trump Administration Bans Anthropic From Federal Government &#8212; OpenAI Secures Pentagon Deal</h3>
-                <p class="summary">President Trump ordered all federal agencies to phase out Anthropic&#8217;s AI products within six months, and Defense Secretary Pete Hegseth designated Anthropic a &#8220;supply chain risk&#8221; &#8212; a label typically reserved for foreign adversaries. The escalation followed months of failed contract negotiations.</p>
-                <p class="detail">Anthropic had refused to remove contractual prohibitions on the use of its models for mass domestic surveillance and fully autonomous weapons systems. Hours later, OpenAI announced it had struck a deal with the Pentagon to deploy its models on classified networks. Anthropic threatened to challenge the designation in court. The episode highlights the growing tension between AI safety commitments and government procurement demands &#8212; a dynamic that will shape the competitive landscape for enterprise AI providers.</p>
-                <a href="https://www.npr.org/2026/02/27/nx-s1-5729118/trump-anthropic-pentagon-openai-ai-weapons-ban" target="_blank" rel="noopener" class="source-link">Source: NPR <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
-            </div>
-            <div class="article" data-tags="regulation">
-                <div class="article-header"><span class="tag tag-regulation">Regulation</span><span class="article-date">26 Feb 2026</span></div>
-                <h3>Trump vs. States on AI Regulation &#8212; Executive Order Targets &#8220;Burdensome&#8221; State AI Laws</h3>
-                <p class="summary">A Trump Executive Order directed the Secretary of Commerce to publish by March 11 an evaluation identifying &#8220;burdensome&#8221; state AI laws that conflict with federal policy. This set up a direct confrontation with states like Colorado, whose algorithmic discrimination law took effect February 1, and California.</p>
-                <p class="detail">Colorado Attorney General Phil Weiser and California State Senator Scott Wiener both stated they would challenge the federal order in court, setting the stage for a significant constitutional showdown over AI governance authority. For enterprises deploying AI across multiple U.S. states, the regulatory uncertainty creates a compliance planning challenge: building to the strictest standard (Colorado) provides the broadest coverage, but the federal preemption question may not be resolved for years.</p>
-                <a href="https://www.theregreview.org/2026/02/26/champagne-president-trump-targets-state-based-ai-regulations/" target="_blank" rel="noopener" class="source-link">Source: The Regulatory Review <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+            <div class="article" data-tags="space">
+                <div class="article-header"><span class="tag tag-space">Space Infrastructure</span><span class="article-date">16 Feb 2026</span></div>
+                <h3>SpaceX Deploys First Orbital Compute Module via Starship</h3>
+                <p class="summary">SpaceX successfully deployed a 12-rack orbital compute module to low Earth orbit via Starship, the first commercially operational space-based data processing facility. The module, developed in partnership with Lumen Technologies, is designed for latency-sensitive AI inference workloads serving global edge networks.</p>
+                <p class="detail">The orbital architecture targets a specific niche: workloads where ground-based data centres introduce unacceptable latency due to geographic distance, and where Starlink&#8217;s inter-satellite laser mesh provides lower-latency routing than terrestrial fibre for intercontinental traffic. Initial applications include autonomous vehicle fleet coordination, real-time financial trading, and distributed sensor fusion for maritime logistics.</p>
+                <p class="detail">Power is supplied by deployable solar arrays generating 150kW, with thermal management through radiative cooling panels. The module is designed for a 5-year operational lifespan with on-orbit servicing capability. The cost per rack-hour is not yet competitive with terrestrial cloud pricing, but the latency advantage is measurable: 8&#8211;12ms round-trip between any two points on Earth versus 40&#8211;80ms through ground infrastructure.</p>
+                <a href="https://www.spacex.com" target="_blank" rel="noopener" class="source-link">Source: SpaceX <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
             </div>
         </div>
 
         <!-- View All Insights -->
         <div style="text-align:center;margin-bottom:48px">
             <a href="../blog/" class="browse-all">View all insights <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-        </div>
-
-        <!-- ════════ PREVIOUS REVIEWS ════════ -->
-        <div class="section-title">Previous Reviews</div>
-        <div class="prev-reviews">
-            <div class="prev-reviews-list">
-                <a href="feb-16-2026.html" class="prev-review-link">
-                    <div>
-                        <div class="prev-title">AI &amp; Tech Review</div>
-                        <div class="prev-date">Week of February 16 &#8211; 22, 2026</div>
-                    </div>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-                </a>
-            </div>
         </div>
 
         <!-- Newsletter -->
