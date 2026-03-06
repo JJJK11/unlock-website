@@ -312,6 +312,10 @@
         }
         .acc-tag:hover { background: var(--gold); color: var(--blue-dd); border-color: var(--gold); transform: translateY(-1px); }
 
+        /* No-number accordion variant */
+        .acc-nonum .acc-head { grid-template-columns: 1fr 1fr 40px; }
+        .acc-nonum .acc-content { padding-left: 0; }
+
         /* ══════════════ MATURITY — HORIZONTAL PROGRESSION ══════════════ */
         .mat-wrap { position: relative; }
 
@@ -380,10 +384,10 @@
 
         .tl-node {
             display: grid; grid-template-columns: 60px 1fr; gap: 2rem;
-            padding: 0; position: relative; cursor: pointer;
+            padding: 2rem 0; position: relative; cursor: pointer;
         }
 
-        .tl-node + .tl-node { border-top: 1px solid rgba(255,255,255,0.05); }
+        .tl-node + .tl-node { border-top: 1px solid rgba(255,255,255,0.06); }
 
         .tl-head {
             display: grid; grid-template-columns: 60px 1fr; gap: 2rem;
@@ -416,19 +420,19 @@
         .tl-node.active .tl-num { color: var(--gold); }
 
         .tl-body h3 {
-            font-family: var(--serif); font-size: 1.25rem; font-weight: 400;
+            font-family: var(--serif); font-size: 1.35rem; font-weight: 400;
             margin-bottom: 0; color: var(--surface);
             transition: color 0.3s;
         }
         .tl-node.active .tl-body h3 { color: var(--gold); }
 
         .tl-body p {
-            font-size: 0.88rem; color: rgba(255,255,255,0.65); line-height: 1.75;
-            max-width: 520px;
+            font-size: 0.88rem; color: rgba(255,255,255,0.65); line-height: 1.85;
+            max-width: 600px;
             max-height: 0; overflow: hidden; margin: 0;
             transition: max-height 0.5s var(--ease), margin 0.5s var(--ease);
         }
-        .tl-node.active .tl-body p { max-height: 200px; margin-top: 0.4rem; }
+        .tl-node.active .tl-body p { max-height: 400px; margin-top: 0.75rem; }
 
         /* ══════════════ DIAGNOSTIC ══════════════ */
         .diag {
@@ -595,10 +599,9 @@
         .sp-cat-dot {
             width: 38px; height: 38px; border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
-            transition: all 0.4s var(--ease);
             box-shadow: 0 1px 6px rgba(7,26,66,0.08);
         }
-        .sp-cat-dot svg { width: 18px; height: 18px; fill: #fff; }
+        .sp-cat-dot svg { width: 18px; height: 18px; }
         .sp-cat:hover .sp-cat-dot, .sp-cat.on .sp-cat-dot {
             transform: scale(1.15);
             box-shadow: 0 0 0 2.5px rgba(245,200,0,0.3), 0 2px 14px rgba(7,26,66,0.12);
@@ -783,7 +786,9 @@
             .hero-lower { grid-template-columns: 1fr; gap: 2rem; } .hero-acts { justify-content: flex-start; }
             .sec-intro { grid-template-columns: 1fr; gap: 0.5rem; } .sec-tag { padding-top: 0; margin-bottom: 0.5rem; }
             .acc-head { grid-template-columns: 48px 1fr 40px; } .acc-brief { display: none; }
+            .acc-nonum .acc-head { grid-template-columns: 1fr 40px; }
             .acc-content { grid-template-columns: 1fr; padding-left: 64px; }
+            .acc-nonum .acc-content { padding-left: 0; }
             .mat-stages { grid-template-columns: 1fr 1fr; gap: 2rem; } .mat-bar { display: none; } .mat-stage::before { display: none; }
             .tl-node { grid-template-columns: 40px 1fr; gap: 1.25rem; }
             .ins-grid { grid-template-columns: 1fr; } .ins-card { border-right: none; border-bottom: 1px solid var(--rule); }
@@ -799,7 +804,9 @@
             .diag-steps-hd { display: none; }
             .ft { flex-direction: column; gap: 0.35rem; text-align: center; }
             .acc-head { grid-template-columns: 36px 1fr 32px; }
+            .acc-nonum .acc-head { grid-template-columns: 1fr 32px; }
             .acc-content { padding-left: 52px; }
+            .acc-nonum .acc-content { padding-left: 0; }
             .mn a { padding: 0.85rem clamp(1.5rem, 5vw, 5rem); }
             .contact-grid { gap: 2rem; }
         }
@@ -809,6 +816,7 @@
             .hero-lower { gap: 2rem; }
             .ribbon-item { padding: 1rem 1.5rem; }
             .acc-content { padding-left: 42px; }
+            .acc-nonum .acc-content { padding-left: 0; }
             .cb-panel { width: calc(100% - 16px); right: 8px; bottom: 80px; height: calc(100dvh - 120px); max-height: 600px; }
         }
 
@@ -923,9 +931,377 @@
         @media (max-width: 480px) {
             .cb-trigger { bottom: 16px; right: 16px; width: 54px; height: 54px; }
         }
+
+        /* ══════════════════════════════════════════════════════════
+           PREMIUM POLISH LAYER — Interactions, Motion, Depth
+        ══════════════════════════════════════════════════════════ */
+
+        /* ─ Additional easing tokens ─ */
+        :root {
+            --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+            --ease-in:  cubic-bezier(0.4, 0, 1, 1);
+            --t-fast:   0.18s;
+            --t-mid:    0.38s;
+            --t-slow:   0.65s;
+        }
+
+        /* ─ Scroll progress bar ─ */
+        .u-scroll-prog {
+            position: fixed; top: 0; left: 0; right: 0; height: 2px;
+            z-index: 9999; pointer-events: none;
+            background: linear-gradient(90deg, var(--gold), var(--blue-l), var(--gold));
+            transform-origin: left; transform: scaleX(0);
+            will-change: transform;
+        }
+
+        /* ─ Header: refined scroll state ─ */
+        header {
+            transition: background 0.5s var(--ease-out), box-shadow 0.5s var(--ease-out), border-color 0.5s;
+        }
+        header.is-scrolled {
+            background: rgba(7,26,66,0.97);
+            box-shadow: 0 1px 0 rgba(245,200,0,0.12), 0 4px 32px rgba(0,0,0,0.28);
+        }
+
+        /* ─ Nav: sliding gold underline ─ */
+        .hn a:not(.hn-cta) {
+            position: relative; overflow: hidden; padding-bottom: 0.55rem;
+        }
+        .hn a:not(.hn-cta)::after {
+            content: ''; position: absolute; bottom: 0.35rem; left: 0.7rem; right: 0.7rem;
+            height: 1.5px; background: var(--gold);
+            transform: scaleX(0); transform-origin: right;
+            transition: transform var(--t-mid) var(--ease-out);
+        }
+        .hn a:not(.hn-cta):hover::after { transform: scaleX(1); transform-origin: left; }
+        .hn a:not(.hn-cta):hover { color: #fff; }
+
+        /* ─ Approach section: centered header + premium title ─ */
+        #approach .sec-intro {
+            grid-template-columns: 1fr;
+            text-align: center;
+            justify-items: center;
+        }
+        #approach .sec-title {
+            background: linear-gradient(135deg, #FFFFFF 0%, var(--gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        #approach .sec-title::after {
+            content: '';
+            display: block;
+            width: 48px; height: 2px;
+            background: linear-gradient(90deg, var(--gold), transparent);
+            margin: 1rem auto 0;
+            border-radius: 1px;
+        }
+        #approach .sec-lead {
+            color: rgba(255,255,255,0.75);
+        }
+
+        /* ─ Dark accordion variant ─ */
+        .acc-dark { border-top-color: rgba(245,200,0,0.3); }
+        .acc-dark .acc-item { border-bottom-color: rgba(255,255,255,0.07); border-left-color: transparent; }
+        .acc-dark .acc-item:hover { background: rgba(255,255,255,0.03); }
+        .acc-dark .acc-item.active { background: rgba(245,200,0,0.06); border-left-color: var(--gold); }
+        .acc-dark .acc-num { color: rgba(255,255,255,0.25); }
+        .acc-dark .acc-item.active .acc-num { color: var(--gold); }
+        .acc-dark .acc-item:hover .acc-num { color: var(--gold); }
+        .acc-dark .acc-head h3 { color: var(--surface); }
+        .acc-dark .acc-item.active .acc-head h3 { color: var(--gold); }
+        .acc-dark .acc-head:hover h3 { color: rgba(255,255,255,0.85); }
+        .acc-dark .acc-brief { color: rgba(255,255,255,0.4); }
+        .acc-dark .acc-arrow svg { color: rgba(255,255,255,0.35); }
+        .acc-dark .acc-text { color: rgba(255,255,255,0.7); }
+        .acc-dark .acc-tag { color: var(--gold); background: rgba(245,200,0,0.08); border-color: rgba(245,200,0,0.2); }
+        .acc-dark .acc-tag:hover { background: var(--gold); color: var(--blue-dd); border-color: var(--gold); }
+
+        /* ─ Diagnostic: premium form focus ─ */
+        .diag-ld-phase {
+            font-family: var(--mono); font-size: 0.68rem; font-weight: 500;
+            text-transform: uppercase; letter-spacing: 0.12em;
+            color: var(--blue); margin-top: 0.35rem;
+            opacity: 0; transform: translateY(4px);
+            transition: opacity 0.4s var(--ease-out), transform 0.4s var(--ease-out);
+        }
+        .diag-ld-phase.show { opacity: 1; transform: translateY(0); }
+        .diag-f input, .diag-f textarea, .diag-f select {
+            transition: border-color var(--t-mid), box-shadow var(--t-mid);
+        }
+        .diag-f input:focus, .diag-f textarea:focus, .diag-f select:focus {
+            border-color: var(--blue);
+            box-shadow: 0 0 0 3px rgba(26,91,186,0.1), 0 1px 4px rgba(7,26,66,0.06);
+        }
+        .btn-reset {
+            transition: background var(--t-mid) var(--ease-out),
+                        color var(--t-mid),
+                        transform var(--t-fast),
+                        box-shadow var(--t-mid);
+        }
+        .btn-reset:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(26,91,186,0.15); }
+
+        /* ─ Spider load-in handled by sp-drawn sequence below ─ */
+
+        /* ─ Chatbot: pulse halo on trigger ─ */
+        .cb-trigger::before {
+            content: ''; position: absolute; inset: -6px;
+            border-radius: 50%; border: 1.5px solid var(--gold);
+            opacity: 0; transform: scale(0.8);
+            animation: cbHalo 2.8s ease-out infinite 1.5s;
+        }
+        .cb-trigger::after {
+            content: ''; position: absolute; inset: -12px;
+            border-radius: 50%; border: 1px solid rgba(245,200,0,0.35);
+            opacity: 0;
+            animation: cbHalo 2.8s ease-out infinite 1.8s;
+        }
+        @keyframes cbHalo {
+            0%   { opacity: 0.7; transform: scale(0.9); }
+            100% { opacity: 0; transform: scale(1.6); }
+        }
+        .cb-trigger.open::before, .cb-trigger.open::after { animation: none; }
+        .cb-panel {
+            transition: opacity 0.4s var(--ease-out),
+                        transform 0.4s var(--ease-out),
+                        visibility 0.4s;
+        }
+        .cb-trigger { transition: transform var(--t-mid) var(--ease-out), box-shadow var(--t-mid), background var(--t-fast); }
+        .cb-trigger:hover { box-shadow: 0 8px 32px rgba(245,200,0,0.45); }
+        .cb-msg { animation: cbMsgIn 0.35s var(--ease-out) both; }
+        @keyframes cbMsgIn {
+            from { opacity: 0; transform: translateY(8px) scale(0.97); }
+            to   { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        /* ── Diagnostic loader status + track ── */
+        .diag-ld-status {
+            font-family: var(--mono); font-size: 0.65rem; color: var(--blue);
+            text-transform: uppercase; letter-spacing: 0.12em;
+            min-height: 1.2em; margin-top: 0.5rem;
+            opacity: 0; transform: translateY(4px);
+            transition: opacity 0.3s var(--ease-out), transform 0.3s var(--ease-out);
+        }
+        .diag-ld-status.show { opacity: 1; transform: translateY(0); }
+
+        /* Progress track for loader */
+        .diag-ld-track {
+            width: 160px; height: 2px; background: var(--rule);
+            margin: 1rem auto 0; border-radius: 1px; overflow: hidden;
+        }
+        .diag-ld-track-fill {
+            height: 100%; width: 0%; border-radius: 1px;
+            background: linear-gradient(90deg, var(--blue), var(--gold));
+            transition: width 0.6s var(--ease-out);
+        }
+
+        /* ── Scroll-driven nav highlight ── */
+        .hn a.nav-active:not(.hn-cta) {
+            color: #fff;
+        }
+        .hn a.nav-active:not(.hn-cta)::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        /* ══════════════ DIAGNOSTIC — METRIC STRIP ══════════════ */
+        .diag-metric-strip {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            border: 1px solid var(--rule); margin-bottom: 2rem;
+            opacity: 0; transform: translateY(-8px);
+            transition: opacity 0.45s var(--ease-out), transform 0.45s var(--ease-out);
+        }
+        .diag-metric-strip.anim-in { opacity: 1; transform: translateY(0); }
+        .diag-metric {
+            padding: 1rem 1.25rem; text-align: center; position: relative;
+        }
+        .diag-metric + .diag-metric { border-left: 1px solid var(--rule); }
+        .diag-metric-val {
+            font-family: var(--serif); font-size: 1.85rem; font-weight: 400;
+            letter-spacing: -0.03em; line-height: 1; color: var(--ink);
+        }
+        .diag-metric-val.high { color: var(--blue); }
+        .diag-metric-val.med  { color: var(--gold-d); }
+        .diag-metric-val.auto { color: var(--blue-d); }
+        .diag-metric-label {
+            font-family: var(--mono); font-size: 0.56rem; font-weight: 600;
+            text-transform: uppercase; letter-spacing: 0.1em;
+            color: var(--ink-4); margin-top: 0.3rem;
+        }
+
+        /* ── Loader: fade-out before results ── */
+        .diag-ld {
+            transition: opacity 0.35s var(--ease-out);
+        }
+        .diag-ld.fading { opacity: 0; pointer-events: none; }
+
+        /* ── Results container: fades IN ── */
+        .diag-results {
+            opacity: 0;
+            transition: opacity 0.45s var(--ease-out);
+        }
+        .diag-results.show { display: block; }
+        .diag-results.visible { opacity: 1; }
+
+        /* ── Summary: headline lift ── */
+        .diag-sum {
+            opacity: 0; transform: translateY(12px);
+            transition: opacity 0.55s var(--ease-out), transform 0.55s var(--ease-out);
+        }
+        .diag-sum.anim-in { opacity: 1; transform: translateY(0); }
+
+        /* ── Bar rows: slide from left ── */
+        .diag-bar-row {
+            opacity: 0; transform: translateX(-10px);
+            transition: opacity 0.42s var(--ease-out), transform 0.42s var(--ease-out);
+        }
+        .diag-bar-row.anim-in { opacity: 1; transform: translateX(0); }
+
+        /* ── Bar fill: smooth ── */
+        .diag-bar-fill { transition: width 1.3s var(--ease-out); }
+
+        /* ── Step rows: lift in ── */
+        .diag-step {
+            opacity: 0; transform: translateY(7px);
+            transition: opacity 0.38s var(--ease-out), transform 0.38s var(--ease-out);
+        }
+        .diag-step.anim-in { opacity: 1; transform: translateY(0); }
+
+        /* ── Recs block + items ── */
+        .diag-recs {
+            opacity: 0; transform: translateY(8px);
+            transition: opacity 0.48s var(--ease-out), transform 0.48s var(--ease-out);
+        }
+        .diag-recs.anim-in { opacity: 1; transform: translateY(0); }
+        .diag-rec-item {
+            opacity: 0; transform: translateX(-5px);
+            transition: opacity 0.35s var(--ease-out), transform 0.35s var(--ease-out);
+        }
+        .diag-rec-item.anim-in { opacity: 1; transform: translateX(0); }
+
+        /* ── Flowchart: draw-in ── */
+        .diag-flow {
+            opacity: 0; transform: translateY(8px);
+            transition: opacity 0.5s var(--ease-out), transform 0.5s var(--ease-out);
+        }
+        .diag-flow.anim-in { opacity: 1; transform: translateY(0); }
+        /* SVG lines inside flowchart draw in */
+        .diag-flow svg line, .diag-flow svg path.flow-edge {
+            stroke-dasharray: 400;
+            stroke-dashoffset: 400;
+        }
+        .diag-flow.anim-in svg line,
+        .diag-flow.anim-in svg path.flow-edge {
+            animation: flowLineDraw 0.9s var(--ease-out) forwards;
+        }
+        @keyframes flowLineDraw { to { stroke-dashoffset: 0; } }
+
+        /* ══════════════ SPIDER — CLEAN ENTRANCE ══════════════ */
+
+        /* Rings: hidden until sp-drawn */
+        .spider svg circle.sp-ring {
+            opacity: 0;
+            transition: opacity 0.5s var(--ease-out);
+        }
+        .spider.sp-drawn svg circle.sp-ring { opacity: 0.18; }
+
+        /* Orbit rings */
+        .spider svg circle.sp-orbit { opacity: 0; transition: opacity 0.6s var(--ease-out); }
+        .spider svg circle.sp-orbit-blue { opacity: 0; transition: opacity 0.6s var(--ease-out); }
+        .spider.sp-drawn svg circle.sp-orbit { opacity: 0.5; }
+        .spider.sp-drawn svg circle.sp-orbit-blue { opacity: 0.4; }
+
+        /* Spokes: draw outward */
+        .spider svg line.sp-spoke {
+            stroke-dasharray: 60;
+            stroke-dashoffset: 60;
+        }
+        .spider.sp-drawn svg line.sp-spoke {
+            animation: spDraw 0.7s var(--ease-out) forwards;
+        }
+
+        /* Link lines: draw outward */
+        .spider svg line.sp-link {
+            stroke-dasharray: 40;
+            stroke-dashoffset: 40;
+        }
+        .spider.sp-drawn svg line.sp-link {
+            animation: spDraw 0.8s var(--ease-out) forwards;
+        }
+
+        /* Dep arcs: draw in */
+        .spider svg path.sp-dep {
+            stroke-dasharray: 60;
+            stroke-dashoffset: 60;
+        }
+        .spider.sp-drawn svg path.sp-dep {
+            animation: spDraw 0.9s var(--ease-out) forwards;
+        }
+
+        @keyframes spDraw { to { stroke-dashoffset: 0; } }
+
+        /* ── Spider node entrance: single canonical rules ── */
+        .sp-cat-dot {
+            opacity: 0;
+            transform: scale(0.9);           /* subtle — just a hint */
+            transition: opacity  0.45s var(--ease-out),
+                        transform 0.45s var(--ease-out);
+        }
+        .spider.sp-drawn .sp-cat-dot {
+            opacity: 1;
+            transform: scale(1);
+        }
+        /* Hover/active states still work — higher specificity wins */
+        .sp-cat:hover .sp-cat-dot,
+        .sp-cat.on    .sp-cat-dot {
+            transform: scale(1.15) !important;
+            box-shadow: 0 0 0 2.5px rgba(245,200,0,0.3), 0 2px 14px rgba(7,26,66,0.12);
+        }
+
+        .sp-cat-name {
+            opacity: 0;
+            transition: opacity 0.4s var(--ease-out);
+        }
+        .spider.sp-drawn .sp-cat-name { opacity: 1; }
+
+        .sp-app {
+            opacity: 0;
+            transition: opacity 0.4s var(--ease-out);
+        }
+        .spider.sp-drawn .sp-app { opacity: 1; }
+
+        @media (max-width: 580px) {
+            .diag-metric-strip { grid-template-columns: 1fr 1fr; }
+            .diag-metric:last-child { border-top: 1px solid var(--rule); border-left: none; grid-column: 1 / -1; }
+        }
+
+
+
+        /* ── Hero: exempt from generic section fade, has its own sweep ── */
+        .hero::after {
+            /* Light sweep animation — keep this, not a section transition fade */
+            bottom: auto; height: auto; top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(
+                115deg,
+                transparent 20%,
+                rgba(245,200,0,0.03) 40%,
+                rgba(255,255,255,0.02) 50%,
+                transparent 65%
+            );
+            background-size: 300% 300%;
+            animation: heroSweep 14s ease-in-out infinite alternate;
+            z-index: 1;
+        }
+        /* Hero needs overflow visible for canvas parallax */
+        .hero { overflow: visible !important; }
+        /* Ribbon needs no fade */
+        .ribbon { overflow: hidden; }
+        .ribbon::after { display: none; }
     </style>
 </head>
 <body>
+
+    <div class="u-scroll-prog" id="uScrollProg" aria-hidden="true"></div>
 
     <header><div class="w"><a href="#" class="logo"><div class="logo-top">Unl<span class="logo-lock"><svg viewBox="0 0 24 26" fill="none"><rect x="3" y="13" width="16" height="11" rx="2.5" stroke="#1a5bba" stroke-width="2.2" fill="none"/><path d="M7 13V8a5 5 0 0 1 10 0" stroke="#1a5bba" stroke-width="2.2" stroke-linecap="round" fill="none"/><circle cx="11" cy="18" r="1.2" fill="#1a5bba"/><rect x="10.4" y="18" width="1.2" height="2.2" rx="0.6" fill="#1a5bba"/></svg></span>ck</div><div class="logo-bottom">Solutions</div></a><ul class="hn"><li><a href="#capabilities">Capabilities</a></li><li><a href="#maturity">Maturity</a></li><li><a href="#approach">Approach</a></li><li><a href="#diagnostic">Diagnostic</a></li><li><a href="review/">AI &amp; Tech Review</a></li><li><a href="#contact" class="hn-cta">Book a Consultation</a></li></ul><button class="mt" onclick="document.querySelector('.mn').classList.toggle('open')" aria-label="Menu"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/></svg></button></div></header>
     <div class="mn"><a href="#capabilities" onclick="this.parentElement.classList.remove('open')">Capabilities</a><a href="#maturity" onclick="this.parentElement.classList.remove('open')">Maturity</a><a href="#approach" onclick="this.parentElement.classList.remove('open')">Approach</a><a href="#diagnostic" onclick="this.parentElement.classList.remove('open')">Diagnostic</a><a href="review/" onclick="this.parentElement.classList.remove('open')">AI &amp; Tech Review</a><a href="#contact" onclick="this.parentElement.classList.remove('open')">Contact</a></div>
@@ -963,10 +1339,9 @@
                         <p class="sec-lead">We don't advise from the sideline. We lead programs end to end — from operating model redesign through to sustained adoption and measurable performance.</p>
                     </div>
                 </div>
-                <div class="acc rv">
+                <div class="acc acc-nonum rv">
                     <div class="acc-item active">
                         <div class="acc-head" onclick="toggleAcc(this)">
-                            <div class="acc-num">01</div>
                             <h3>Enterprise Transformation Programs</h3>
                             <div class="acc-brief">Operating model, process, governance, change</div>
                             <div class="acc-arrow"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M19 9l-7 7-7-7"/></svg></div>
@@ -980,7 +1355,6 @@
                     </div>
                     <div class="acc-item">
                         <div class="acc-head" onclick="toggleAcc(this)">
-                            <div class="acc-num">02</div>
                             <h3>Platform Modernization & Optimization</h3>
                             <div class="acc-brief">ERP, CRM, HRIS, finance, integration, data quality</div>
                             <div class="acc-arrow"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M19 9l-7 7-7-7"/></svg></div>
@@ -994,7 +1368,6 @@
                     </div>
                     <div class="acc-item">
                         <div class="acc-head" onclick="toggleAcc(this)">
-                            <div class="acc-num">03</div>
                             <h3>Transformation Governance & Execution</h3>
                             <div class="acc-brief">PMO, RASCI, risk, decision forums, benefits realization</div>
                             <div class="acc-arrow"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M19 9l-7 7-7-7"/></svg></div>
@@ -1008,7 +1381,6 @@
                     </div>
                     <div class="acc-item">
                         <div class="acc-head" onclick="toggleAcc(this)">
-                            <div class="acc-num">04</div>
                             <h3>Intelligent Automation</h3>
                             <div class="acc-brief">AI, agents, workflows, analytics, automation</div>
                             <div class="acc-arrow"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M19 9l-7 7-7-7"/></svg></div>
@@ -1022,7 +1394,6 @@
                     </div>
                     <div class="acc-item">
                         <div class="acc-head" onclick="toggleAcc(this)">
-                            <div class="acc-num">05</div>
                             <h3>Enablement & Adoption</h3>
                             <div class="acc-brief">Training, playbooks, process ownership, handoff</div>
                             <div class="acc-arrow"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M19 9l-7 7-7-7"/></svg></div>
@@ -1066,16 +1437,81 @@
                 <div class="sec-intro rv">
                     <div class="sec-tag">Our Approach</div>
                     <div>
-                        <h2 class="sec-title" style="color:#FFFFFF">Structured transformation<br>framework</h2>
-                        <p class="sec-lead">Each phase builds measurable capability, governed by data and aligned to outcomes.</p>
+                        <h2 class="sec-title">Structured transformation<br>framework</h2>
+                        <p class="sec-lead">Transformation fails when it's treated as a single event. We run a five-phase operating discipline that moves from diagnosis through institutionalized governance — each phase producing measurable capability, governed by data, and directly tied to enterprise outcomes.</p>
                     </div>
                 </div>
-                <div class="tl rv">
-                    <div class="tl-node active" onclick="toggleTl(this)"><div class="tl-marker"><div class="tl-dot"><div class="tl-dot-inner"></div></div><div class="tl-num">01</div></div><div class="tl-body"><h3>Discovery & Context</h3><p>Factual view of systems, workflows, operating model, and governance. Define boundaries, control points, and readiness across business and IT.</p></div></div>
-                    <div class="tl-node" onclick="toggleTl(this)"><div class="tl-marker"><div class="tl-dot"><div class="tl-dot-inner"></div></div><div class="tl-num">02</div></div><div class="tl-body"><h3>Design & Governance</h3><p>Translate findings into an actionable framework — operating model, accountability structures, risk posture, decision forums, and change architecture.</p></div></div>
-                    <div class="tl-node" onclick="toggleTl(this)"><div class="tl-marker"><div class="tl-dot"><div class="tl-dot-inner"></div></div><div class="tl-num">03</div></div><div class="tl-body"><h3>Build & Integrate</h3><p>Configure platforms, automation layers, and intelligent capabilities aligned to enterprise systems. Integrate observability, security, and orchestration.</p></div></div>
-                    <div class="tl-node" onclick="toggleTl(this)"><div class="tl-marker"><div class="tl-dot"><div class="tl-dot-inner"></div></div><div class="tl-num">04</div></div><div class="tl-body"><h3>Scale & Adopt</h3><p>Transition pilots into production. Drive adoption through structured rollout, role-based training, playbooks, and operational change management.</p></div></div>
-                    <div class="tl-node" onclick="toggleTl(this)"><div class="tl-marker"><div class="tl-dot"><div class="tl-dot-inner"></div></div><div class="tl-num">05</div></div><div class="tl-body"><h3>Govern & Evolve</h3><p>Institutionalize governance, metrics, review cycles, and benefits realization. Maintain alignment between enterprise performance and continuous improvement.</p></div></div>
+                <div class="acc acc-dark rv">
+                    <div class="acc-item active">
+                        <div class="acc-head" onclick="toggleAcc(this)">
+                            <div class="acc-num">01</div>
+                            <h3>Discovery & Context</h3>
+                            <div class="acc-brief">Systems, workflows, operating model, readiness</div>
+                            <div class="acc-arrow"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M19 9l-7 7-7-7"/></svg></div>
+                        </div>
+                        <div class="acc-body">
+                            <div class="acc-content">
+                                <p class="acc-text">We build a factual, data-driven view of your current state — systems, workflows, operating model, governance, and organizational readiness. This includes stakeholder interviews, process mapping, technology inventory, and a control-point analysis across business and IT. The output is a documented baseline with clear boundaries, dependencies, and readiness scores that inform every decision downstream.</p>
+                                <div class="acc-tags"><span class="acc-tag">Stakeholder interviews</span><span class="acc-tag">Process mapping</span><span class="acc-tag">Technology inventory</span><span class="acc-tag">Control-point analysis</span><span class="acc-tag">Readiness scoring</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="acc-item">
+                        <div class="acc-head" onclick="toggleAcc(this)">
+                            <div class="acc-num">02</div>
+                            <h3>Design & Governance</h3>
+                            <div class="acc-brief">Operating model, RASCI, risk, decision forums</div>
+                            <div class="acc-arrow"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M19 9l-7 7-7-7"/></svg></div>
+                        </div>
+                        <div class="acc-body">
+                            <div class="acc-content">
+                                <p class="acc-text">Discovery findings are translated into an actionable transformation architecture — target operating model, accountability structures (RASCI), risk posture, decision forums, and change management framework. We define governance cadence, escalation paths, and success metrics before any build work begins, ensuring the program has structural integrity from day one.</p>
+                                <div class="acc-tags"><span class="acc-tag">Target operating model</span><span class="acc-tag">RASCI</span><span class="acc-tag">Risk posture</span><span class="acc-tag">Decision forums</span><span class="acc-tag">Change architecture</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="acc-item">
+                        <div class="acc-head" onclick="toggleAcc(this)">
+                            <div class="acc-num">03</div>
+                            <h3>Build & Integrate</h3>
+                            <div class="acc-brief">Platforms, automation, AI, security, observability</div>
+                            <div class="acc-arrow"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M19 9l-7 7-7-7"/></svg></div>
+                        </div>
+                        <div class="acc-body">
+                            <div class="acc-content">
+                                <p class="acc-text">We configure platforms, automation layers, AI capabilities, and integration pipelines aligned to your enterprise systems. This phase covers solution architecture, development sprints, API orchestration, security hardening, observability instrumentation, and UAT. Every component is built against the governance framework established in Phase 02 — no shadow IT, no ungoverned deployments.</p>
+                                <div class="acc-tags"><span class="acc-tag">Solution architecture</span><span class="acc-tag">API orchestration</span><span class="acc-tag">Security hardening</span><span class="acc-tag">Observability</span><span class="acc-tag">UAT</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="acc-item">
+                        <div class="acc-head" onclick="toggleAcc(this)">
+                            <div class="acc-num">04</div>
+                            <h3>Scale & Adopt</h3>
+                            <div class="acc-brief">Rollout, training, playbooks, adoption tracking</div>
+                            <div class="acc-arrow"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M19 9l-7 7-7-7"/></svg></div>
+                        </div>
+                        <div class="acc-body">
+                            <div class="acc-content">
+                                <p class="acc-text">Pilots transition into production through structured rollout — phased deployment, role-based training, operational playbooks, and change management embedded in the business. We run adoption tracking, feedback loops, and performance benchmarks to ensure the organization absorbs the change rather than reverting to prior patterns. This is where transformation becomes operational reality.</p>
+                                <div class="acc-tags"><span class="acc-tag">Phased deployment</span><span class="acc-tag">Role-based training</span><span class="acc-tag">Playbooks</span><span class="acc-tag">Adoption tracking</span><span class="acc-tag">Performance benchmarks</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="acc-item">
+                        <div class="acc-head" onclick="toggleAcc(this)">
+                            <div class="acc-num">05</div>
+                            <h3>Govern & Evolve</h3>
+                            <div class="acc-brief">Metrics, review cycles, benefits realization, continuous improvement</div>
+                            <div class="acc-arrow"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M19 9l-7 7-7-7"/></svg></div>
+                        </div>
+                        <div class="acc-body">
+                            <div class="acc-content">
+                                <p class="acc-text">We institutionalize governance, performance metrics, review cycles, and benefits realization tracking. This includes establishing continuous improvement pipelines, quarterly maturity assessments, and executive reporting that ties transformation outcomes directly to enterprise KPIs. The goal is a self-sustaining operating discipline — not a dependency on external consultants.</p>
+                                <div class="acc-tags"><span class="acc-tag">Governance</span><span class="acc-tag">KPI tracking</span><span class="acc-tag">Maturity assessments</span><span class="acc-tag">Executive reporting</span><span class="acc-tag">Continuous improvement</span></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1100,8 +1536,9 @@
                             <div style="margin-top:0.5rem"><button class="btn-k" id="dBtn" onclick="runD()">Run Assessment <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></button></div>
                         </div>
                     </div>
-                    <div class="diag-ld" id="dL"><div class="diag-sp"></div><div style="font-size:0.82rem;color:var(--ink-4)">Running assessment...</div></div>
+                    <div class="diag-ld" id="dL"><div class="diag-sp"></div><div style="font-size:0.82rem;color:var(--ink-4);margin-bottom:0.4rem">Running assessment</div><div class="diag-ld-status" id="dLPhase">Mapping workflows</div><div class="diag-ld-track"><div class="diag-ld-track-fill" id="dLTrack"></div></div></div>
                     <div class="diag-results" id="dR">
+                        <div id="dMetric" class="diag-metric-strip"></div>
                         <div id="dS" class="diag-sum"></div>
                         <div id="dDi" class="diag-dist-bars"></div>
                         <div class="diag-steps" id="dA"></div>
@@ -1195,8 +1632,9 @@
         /* ── Accordion ── */
         function toggleAcc(head) {
             const item = head.parentElement;
+            const acc = item.closest('.acc');
             const wasActive = item.classList.contains('active');
-            document.querySelectorAll('.acc-item').forEach(i => i.classList.remove('active'));
+            acc.querySelectorAll('.acc-item').forEach(i => i.classList.remove('active'));
             if (!wasActive) item.classList.add('active');
         }
 
@@ -1419,82 +1857,217 @@
             const painPoints = document.getElementById('dX').value.trim();
             if (!workflow) { alert('Please describe the workflow.'); return; }
 
-            const loader = document.getElementById('dL'), results = document.getElementById('dR'), btn = document.getElementById('dBtn');
+            const loader = document.getElementById('dL');
+            const results = document.getElementById('dR');
+            const btn = document.getElementById('dBtn');
+            const phaseEl = document.getElementById('dLPhase');
+            const trackEl = document.getElementById('dLTrack');
+
             btn.disabled = true;
-            loader.classList.add('show');
             results.classList.remove('show');
+            /* Reset any previous animation states */
+            results.querySelectorAll('.anim-in').forEach(el => el.classList.remove('anim-in'));
+            results.querySelectorAll('.diag-bar-fill').forEach(el => { el.style.width = '0'; });
 
+            loader.classList.add('show');
+
+            const phases = [
+                { label: 'Mapping workflows',             pct: 18  },
+                { label: 'Parsing process steps',         pct: 36  },
+                { label: 'Evaluating automation potential',pct: 58  },
+                { label: 'Analysing workload distribution',pct: 76 },
+                { label: 'Generating recommendations',    pct: 92  }
+            ];
+
+            function showPhase(idx) {
+                if (!phaseEl) return;
+                phaseEl.classList.remove('show');
+                setTimeout(() => {
+                    if (idx < phases.length) {
+                        phaseEl.textContent = phases[idx].label;
+                        if (trackEl) trackEl.style.width = phases[idx].pct + '%';
+                    }
+                    phaseEl.classList.add('show');
+                }, 180);
+            }
+
+            /* Kick off phases */
+            showPhase(0);
+            const phaseTimers = phases.slice(1).map((p, i) =>
+                setTimeout(() => showPhase(i + 1), (i + 1) * 340)
+            );
+
+            /* Do the actual work after a brief theatrical delay */
             setTimeout(() => {
-                // 1. Parse steps
-                const rawSteps = parseSteps(workflow);
-                if (rawSteps.length === 0) { rawSteps.push(workflow.substring(0, 60)); }
+                phaseTimers.forEach(t => clearTimeout(t));
+                if (phaseEl) {
+                    phaseEl.classList.remove('show');
+                    setTimeout(() => {
+                        phaseEl.textContent = 'Complete';
+                        if (trackEl) trackEl.style.width = '100%';
+                        phaseEl.classList.add('show');
+                    }, 180);
+                }
 
-                // 2. Analyze each step
-                const analyzed = rawSteps.map(s => analyzeStep(s, department));
-
-                // 3. Calculate workload
-                const workload = calcWorkload(analyzed, industry, department);
-
-                // 4. Generate summary
-                const summary = generateSummary(analyzed, industry, department, painPoints);
-
-                // 5. Generate recommendations
-                const recs = generateRecs(analyzed, painPoints, department);
-
-                // 6. Render
-                renderResults({ summary, workload, steps: analyzed, recs });
-
-                loader.classList.remove('show');
-                btn.disabled = false;
-            }, 1200);
+                setTimeout(() => {
+                    // 1. Parse steps
+                    const rawSteps = parseSteps(workflow);
+                    if (rawSteps.length === 0) { rawSteps.push(workflow.substring(0, 60)); }
+                    // 2. Analyze
+                    const analyzed = rawSteps.map(s => analyzeStep(s, department));
+                    // 3. Workload
+                    const workload = calcWorkload(analyzed, industry, department);
+                    // 4. Summary
+                    const summary = generateSummary(analyzed, industry, department, painPoints);
+                    // 5. Recs
+                    const recs = generateRecs(analyzed, painPoints, department);
+                    // 6. Render
+                    loader.classList.remove('show');
+                    btn.disabled = false;
+                    renderResults({ summary, workload, steps: analyzed, recs });
+                }, 320);
+            }, 1900);
         }
 
         function renderResults(data) {
-            // Summary
-            document.getElementById('dS').textContent = data.summary;
+            const r = document.getElementById('dR');
+            function at(ms, fn) { setTimeout(fn, ms); }
 
-            // Workload bars (animate after a tick)
+            /* ── Compute metric strip values ── */
+            const highCount = data.steps.filter(s => s.automationPotential === 'High').length;
+            const medCount  = data.steps.filter(s => s.automationPotential === 'Medium').length;
+            const autoShare = data.workload.ai;
+
+            /* ── Build metric strip (above summary) ── */
+            const stripEl = document.getElementById('dMetric');
+            stripEl.innerHTML = `
+                <div class="diag-metric">
+                    <div class="diag-metric-val high">${highCount}</div>
+                    <div class="diag-metric-label">High-Potential Steps</div>
+                </div>
+                <div class="diag-metric">
+                    <div class="diag-metric-val med">${medCount}</div>
+                    <div class="diag-metric-label">Medium-Potential Steps</div>
+                </div>
+                <div class="diag-metric">
+                    <div class="diag-metric-val auto">${autoShare}<span style="font-size:1rem">%</span></div>
+                    <div class="diag-metric-label">Est. Automation Share</div>
+                </div>`;
+            stripEl.classList.remove('anim-in');
+
+            /* ── Summary ── */
+            const sumEl = document.getElementById('dS');
+            sumEl.textContent = data.summary;
+            sumEl.classList.remove('anim-in');
+
+            /* ── Bars ── */
             const diEl = document.getElementById('dDi');
             diEl.innerHTML = ['ai', 'human', 'system'].map(k => {
                 const label = k === 'ai' ? 'AI Automatable' : k === 'human' ? 'Human-Driven' : 'System/Integration';
                 const pct = data.workload[k];
-                return `<div class="diag-bar-row"><div class="diag-bar-label">${label}</div><div class="diag-bar-track"><div class="diag-bar-fill ${k}" data-pct="${pct}"></div></div><div class="diag-bar-pct ${k}">${pct}%</div></div>`;
+                return `<div class="diag-bar-row"><div class="diag-bar-label">${label}</div><div class="diag-bar-track"><div class="diag-bar-fill ${k}" data-pct="${pct}"></div></div><div class="diag-bar-pct ${k}">0%</div></div>`;
             }).join('');
-            // Animate bars
-            requestAnimationFrame(() => {
-                requestAnimationFrame(() => {
-                    diEl.querySelectorAll('.diag-bar-fill').forEach(bar => { bar.style.width = bar.dataset.pct + '%'; });
-                });
-            });
 
-            // Step analysis table
+            /* ── Step table ── */
             const stepsEl = document.getElementById('dA');
             stepsEl.innerHTML = `<div class="diag-steps-hd"><div>Step</div><div>Current State</div><div>Potential</div><div>Benefit</div></div>`
                 + data.steps.map(s => `<div class="diag-step"><div><div class="diag-sn">${s.stepName}</div></div><div class="diag-ss">${s.currentState}</div><div><span class="diag-pot ${s.automationPotential}">${s.automationPotential}</span></div><div class="diag-benefit">${s.benefit}</div></div>`).join('');
 
-            // Recommendations
+            /* ── Recommendations ── */
             const recsEl = document.getElementById('dRecs');
             if (data.recs.length > 0) {
                 const arrow = '<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>';
-                recsEl.innerHTML = `<div class="diag-recs-title">Future State Recommendations</div><ul class="diag-rec-list">${data.recs.map(r => `<li class="diag-rec-item"><div class="diag-rec-icon">${arrow}</div><div>${r}</div></li>`).join('')}</ul>`;
-                recsEl.style.display = '';
+                recsEl.innerHTML = `<div class="diag-recs-title">Future State Recommendations</div><ul class="diag-rec-list">${data.recs.map(rx => `<li class="diag-rec-item"><div class="diag-rec-icon">${arrow}</div><div>${rx}</div></li>`).join('')}</ul>`;
+                recsEl.style.display = ''; recsEl.classList.remove('anim-in');
             } else { recsEl.style.display = 'none'; }
 
-            // Flowchart
+            /* ── Flowchart ── */
             const flowEl = document.getElementById('dFlow');
             if (data.steps.length >= 2) {
                 flowEl.innerHTML = `<div class="diag-flow-title">Workflow Visualization</div>` + buildFlowSVG(data.steps);
-                flowEl.style.display = '';
+                flowEl.style.display = ''; flowEl.classList.remove('anim-in');
             } else { flowEl.style.display = 'none'; }
 
-            // Show results
-            const r = document.getElementById('dR');
+            /* ══ ORCHESTRATED REVEAL ══
+               t=0    container fades in (opacity 0→1)
+               t=60   metric strip lifts in
+               t=180  summary lifts in
+               t=340  bar 1 slides + fills
+               t=520  bar 2 slides + fills
+               t=700  bar 3 slides + fills
+               t=980  step rows cascade (80ms each)
+               t=+    recommendations + items
+               t=+    flowchart
+            */
+
+            /* Show container — opacity stays 0 until 'visible' */
             r.classList.add('show');
-            r.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            at(30, () => {
+                r.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                r.classList.add('visible');
+            });
+
+            /* Metric strip */
+            at(60,  () => { stripEl.classList.add('anim-in'); });
+
+            /* Summary */
+            at(190, () => { sumEl.classList.add('anim-in'); });
+
+            /* Bars: staggered 180ms apart, each fills after sliding in */
+            const barRows = diEl.querySelectorAll('.diag-bar-row');
+            barRows.forEach((row, i) => {
+                const slideAt = 350 + i * 190;
+                at(slideAt, () => {
+                    row.classList.add('anim-in');
+                    at(160, () => {
+                        const fill  = row.querySelector('.diag-bar-fill');
+                        const pctEl = row.querySelector('.diag-bar-pct');
+                        const target = parseInt(fill.dataset.pct);
+                        fill.style.width = target + '%';
+                        const t0 = performance.now(), dur = 1100;
+                        function tick(now) {
+                            const p = Math.min((now - t0) / dur, 1);
+                            const ease = 1 - Math.pow(1 - p, 3);
+                            pctEl.textContent = Math.round(ease * target) + '%';
+                            if (p < 1) requestAnimationFrame(tick);
+                            else pctEl.textContent = target + '%';
+                        }
+                        requestAnimationFrame(tick);
+                    });
+                });
+            });
+
+            /* Step rows: cascade after all bars finish */
+            const stepRows = stepsEl.querySelectorAll('.diag-step');
+            const stepBase = 350 + barRows.length * 190 + 280;
+            stepRows.forEach((row, i) => {
+                at(stepBase + i * 80, () => { row.classList.add('anim-in'); });
+            });
+
+            /* Recommendations */
+            const recsBase = stepBase + stepRows.length * 80 + 140;
+            at(recsBase, () => {
+                recsEl.classList.add('anim-in');
+                recsEl.querySelectorAll('.diag-rec-item').forEach((item, i) => {
+                    at(i * 75, () => { item.classList.add('anim-in'); });
+                });
+            });
+
+            /* Flowchart: last, with SVG line draw-in */
+            at(recsBase + data.recs.length * 75 + 180, () => {
+                flowEl.classList.add('anim-in');
+                /* Stagger the individual SVG lines inside */
+                flowEl.querySelectorAll('svg line, svg path.flow-edge').forEach((el, i) => {
+                    el.style.animationDelay = (i * 60) + 'ms';
+                });
+            });
         }
 
         function resetD() {
-            document.getElementById('dR').classList.remove('show');
+            const dR2 = document.getElementById('dR');
+            dR2.classList.remove('show', 'visible');
+            dR2.querySelectorAll('.anim-in').forEach(el => el.classList.remove('anim-in'));
+            dR2.querySelectorAll('.diag-bar-fill').forEach(el => { el.style.width = '0'; });
             document.getElementById('dI').selectedIndex = 0;
             document.getElementById('dD').selectedIndex = 0;
             document.getElementById('dP').value = '';
@@ -1620,7 +2193,7 @@
                 node.className = 'sp-cat';
                 node.dataset.cat = c.id;
                 node.style.left = x+'%'; node.style.top = y+'%';
-                node.innerHTML = '<div class="sp-cat-dot" style="background:'+c.color+'"><svg viewBox="0 0 24 24" fill="none"><rect x="5" y="11" width="14" height="10" rx="2" stroke="#fff" stroke-width="1.5" fill="none"/><path d="M8 11V7a4 4 0 0 1 8 0" stroke="#fff" stroke-width="1.5" stroke-linecap="round" fill="none"/><circle cx="12" cy="15.5" r="1" fill="#fff"/><rect x="11.5" y="15.5" width="1" height="2.5" rx="0.5" fill="#fff"/></svg></div>'
+                node.innerHTML = '<div class="sp-cat-dot" style="background:var(--gold)"><svg viewBox="0 0 24 24" fill="none"><rect x="5" y="11" width="14" height="10" rx="2.5" stroke="#1a5bba" stroke-width="1.8" fill="none"/><path d="M8 11V7a4 4 0 0 1 8 0v-2" stroke="#1a5bba" stroke-width="1.8" stroke-linecap="round" fill="none"/><circle cx="12" cy="15.5" r="1.2" fill="#1a5bba"/><rect x="11.4" y="15.5" width="1.2" height="2.2" rx="0.6" fill="#1a5bba"/></svg></div>'
                     + '<div class="sp-cat-name">'+c.name+'</div>';
                 el.appendChild(node);
                 node.addEventListener('mouseenter', function(){ activate(c.id); });
@@ -2078,10 +2651,13 @@
             currentNode = id;
 
             showTyping();
-            const delay = node.message && node.message.length > 200 ? 900 : 600;
+            /* Use exec override once if set, then clear it */
+            const displayMsg = node._execOverride || node.message;
+            if (node._execOverride) { delete node._execOverride; delete node._origMessage; }
+            const delay = displayMsg && displayMsg.length > 200 ? 900 : 600;
             setTimeout(() => {
                 hideTyping();
-                if (node.message) addMsg(node.message, 'bot');
+                if (displayMsg) addMsg(displayMsg, 'bot');
 
                 if (node.action === 'scrollTo' && node.scrollTarget) {
                     const el = document.querySelector(node.scrollTarget);
@@ -2113,12 +2689,13 @@
             inputBar.classList.remove('show');
             inputField.value = '';
 
-            /* Executive tone detection */
+            /* Executive tone detection — operate on a display copy, leave F untouched */
             const execTerms = /operating model|decision rights|board.level|control environment|governance framework|executive sponsor/i;
             if (execTerms.test(val) && node.nextAfterInput) {
                 const next = F[node.nextAfterInput];
-                if (next && next.message) {
-                    next.message = next.message
+                if (next && next.message && !next._origMessage) {
+                    next._origMessage = next.message;
+                    next._execOverride = next.message
                         .replace(/transformation/gi, 'enterprise operating discipline')
                         .replace(/redesign/gi, 'architecture redesign');
                 }
@@ -2231,10 +2808,171 @@
             else if (e.key === 'Enter' && hi < 0 && si.value.trim()) { window.location.href = 'blog/'; }
             else if (e.key === 'Escape') { acl.classList.remove('active'); }
         });
-
-        document.addEventListener('click', function(e){ if (!e.target.closest('.hp-search-wrap')) acl.classList.remove('active'); });
-        si.addEventListener('focus', function(){ if (si.value.trim().length >= 2) updateAc(); });
+        document.addEventListener('click', function(){
+            acl.classList.remove('active');
+        });
     })();
+    </script>
+
+    <!-- ═══════════ PREMIUM INTERACTIONS ═══════════ -->
+    <script>
+    (function() {
+        'use strict';
+
+        /* ── Scroll Progress Bar ── */
+        var prog = document.getElementById('uScrollProg');
+        if (prog) {
+            window.addEventListener('scroll', function() {
+                var s = document.documentElement.scrollTop;
+                var h = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                prog.style.transform = 'scaleX(' + (h > 0 ? Math.min(s / h, 1) : 0) + ')';
+            }, { passive: true });
+        }
+
+        /* ── Header scroll class ── */
+        var hdr = document.querySelector('header');
+        if (hdr) {
+            function onScroll() {
+                hdr.classList.toggle('is-scrolled', window.scrollY > 56);
+            }
+            window.addEventListener('scroll', onScroll, { passive: true });
+            onScroll();
+        }
+
+        /* ── Spider: sequenced entrance animation ──
+           Sequence: rings → spokes → link lines → dep arcs → dots → names → app labels
+        ── */
+        (function() {
+            var spiderEl = document.getElementById('spider');
+            if (!spiderEl) return;
+            var hasAnimated = false;
+
+            function runEntrance() {
+                if (hasAnimated) return;
+                hasAnimated = true;
+
+                /* 1. Rings: stagger fade-in */
+                spiderEl.querySelectorAll('circle.sp-ring').forEach(function(el, i) {
+                    el.style.transitionDelay = (80 + i * 70) + 'ms';
+                });
+                spiderEl.querySelectorAll('circle.sp-orbit').forEach(function(el) {
+                    el.style.transitionDelay = '380ms';
+                });
+                spiderEl.querySelectorAll('circle.sp-orbit-blue').forEach(function(el) {
+                    el.style.transitionDelay = '460ms';
+                });
+
+                /* 2. Spokes: draw outward, staggered */
+                spiderEl.querySelectorAll('line.sp-spoke').forEach(function(el, i) {
+                    el.style.animationDelay = (260 + i * 55) + 'ms';
+                });
+
+                /* 3. Link lines: after spokes finish */
+                var spokeCount = spiderEl.querySelectorAll('line.sp-spoke').length;
+                var linkBase = 260 + spokeCount * 55 + 100;
+                spiderEl.querySelectorAll('line.sp-link').forEach(function(el, i) {
+                    el.style.animationDelay = (linkBase + i * 8) + 'ms';
+                });
+
+                /* 4. Dep arcs: after link lines */
+                var linkCount = spiderEl.querySelectorAll('line.sp-link').length;
+                var depBase = linkBase + linkCount * 8 + 80;
+                spiderEl.querySelectorAll('path.sp-dep').forEach(function(el, i) {
+                    el.style.animationDelay = (depBase + i * 45) + 'ms';
+                });
+
+                /* 5. Category dots: pop in after arcs */
+                var dotBase = depBase + spiderEl.querySelectorAll('path.sp-dep').length * 45 + 60;
+                spiderEl.querySelectorAll('.sp-cat-dot').forEach(function(el, i) {
+                    el.style.transitionDelay = (dotBase + i * 65) + 'ms';
+                });
+
+                /* 6. Category names: 100ms after their dot */
+                spiderEl.querySelectorAll('.sp-cat-name').forEach(function(el, i) {
+                    el.style.transitionDelay = (dotBase + i * 65 + 100) + 'ms';
+                });
+
+                /* 7. App labels: after all dots */
+                var appBase = dotBase + spiderEl.querySelectorAll('.sp-cat-dot').length * 65 + 140;
+                spiderEl.querySelectorAll('.sp-app').forEach(function(el, i) {
+                    el.style.transitionDelay = (appBase + i * 10) + 'ms';
+                });
+
+                /* Fire: one rAF ensures all delays are set before class is added */
+                requestAnimationFrame(function() {
+                    requestAnimationFrame(function() {
+                        spiderEl.classList.add('sp-drawn');
+                    });
+                });
+            }
+
+            /* Wait for spider DOM to be built, then set up viewport trigger */
+            function setupViewportTrigger() {
+                var viewObs = new IntersectionObserver(function(entries) {
+                    if (entries[0].isIntersecting) {
+                        viewObs.disconnect();
+                        setTimeout(runEntrance, 100);
+                    }
+                }, { threshold: 0.12 });
+                viewObs.observe(spiderEl);
+
+                /* Already in viewport on load? */
+                var r = spiderEl.getBoundingClientRect();
+                if (r.top < window.innerHeight && r.bottom > 0) {
+                    viewObs.disconnect();
+                    setTimeout(runEntrance, 100);
+                }
+            }
+
+            /* SVG may already exist if builder ran before this script */
+            if (spiderEl.querySelector('svg')) {
+                setupViewportTrigger();
+            } else {
+                var buildObs = new MutationObserver(function(mutations, obs) {
+                    if (!spiderEl.querySelector('svg')) return;
+                    obs.disconnect();
+                    setupViewportTrigger();
+                });
+                buildObs.observe(spiderEl, { childList: true });
+            }
+        })();
+
+    })();
+        /* ── Scroll-driven section highlight ── */
+        (function () {
+            var sections = document.querySelectorAll('section[id]');
+            var navLinks = document.querySelectorAll('.hn a:not(.hn-cta)');
+            var lastActive = '';
+
+            function onScroll() {
+                var scrollY = window.scrollY;
+                var current = '';
+
+                sections.forEach(function (section) {
+                    var top    = section.offsetTop - 140;
+                    var bottom = top + section.offsetHeight;
+                    if (scrollY >= top && scrollY < bottom) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                if (current === lastActive) return;
+                lastActive = current;
+
+                navLinks.forEach(function (link) {
+                    var href = link.getAttribute('href') || '';
+                    if (current && href === '#' + current) {
+                        link.classList.add('nav-active');
+                    } else {
+                        link.classList.remove('nav-active');
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', onScroll, { passive: true });
+            onScroll(); // run once on load
+        })();
+
     </script>
 </body>
 </html>
