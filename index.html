@@ -512,8 +512,8 @@
         .diag-bar-pct.system { color: var(--ink-3); }
 
         /* ── Step analysis table ── */
-        .diag-steps-hd { display: grid; grid-template-columns: 1fr 140px 120px 1fr; gap: 1rem; padding: 0.75rem 0; border-bottom: 2px solid var(--blue); font-family: var(--mono); font-size: 0.6rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-4); }
-        .diag-step { display: grid; grid-template-columns: 1fr 140px 120px 1fr; gap: 1rem; align-items: center; padding: 1rem 0; border-bottom: 1px solid var(--rule); }
+        .diag-steps-hd { display: grid; grid-template-columns: 1fr 140px 90px 80px 1fr; gap: 1rem; padding: 0.75rem 0; border-bottom: 2px solid var(--blue); font-family: var(--mono); font-size: 0.6rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-4); }
+        .diag-step { display: grid; grid-template-columns: 1fr 140px 90px 80px 1fr; gap: 1rem; align-items: center; padding: 1rem 0; border-bottom: 1px solid var(--rule); }
         .diag-step:last-child { border-bottom: none; }
         .diag-sn { font-size: 0.88rem; font-weight: 600; }
         .diag-ss { font-size: 0.78rem; color: var(--ink-3); margin-top: 0.15rem; }
@@ -536,6 +536,56 @@
         .diag-flow-title { font-family: var(--mono); font-size: 0.65rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-4); margin-bottom: 1rem; }
         .diag-flow svg { display: block; margin: 0 auto; }
         .diag-flow text { font-family: var(--sans); }
+
+        /* ── Confidence badge ── */
+        .diag-conf { font-family: var(--mono); font-size: 0.62rem; font-weight: 600; padding: 0.3rem 0.65rem; display: inline-block; letter-spacing: 0.03em; }
+        .diag-conf.High { background: var(--blue-xl); color: var(--blue); }
+        .diag-conf.Medium { background: rgba(245,200,0,0.12); color: var(--gold-d); }
+        .diag-conf.Low { background: #f5f5f5; color: var(--ink-4); }
+
+        /* ── Gauge ── */
+        .diag-gauge { text-align: center; margin: 0 0 2rem; opacity: 0; transform: translateY(8px); transition: opacity 0.55s var(--ease-out), transform 0.55s var(--ease-out); }
+        .diag-gauge.anim-in { opacity: 1; transform: translateY(0); }
+        .diag-gauge svg { display: block; margin: 0 auto; }
+        .diag-gauge-label { font-family: var(--mono); font-size: 0.62rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-4); margin-top: 0.25rem; }
+        .diag-gauge-components { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.75rem; margin-top: 1.25rem; }
+        .diag-gauge-comp { text-align: center; padding: 0.6rem 0.5rem; border: 1px solid var(--rule); }
+        .diag-gauge-comp-val { font-family: var(--serif); font-size: 1.1rem; font-weight: 400; color: var(--ink); }
+        .diag-gauge-comp-label { font-family: var(--mono); font-size: 0.52rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-4); margin-top: 0.2rem; }
+
+        /* ── Benchmark ── */
+        .diag-benchmark { margin: 0 0 2rem; padding: 1.25rem 1.5rem; border-left: 3px solid var(--gold-d); background: rgba(245,200,0,0.06); font-size: 0.88rem; color: var(--ink-2); line-height: 1.7; opacity: 0; transform: translateY(8px); transition: opacity 0.48s var(--ease-out), transform 0.48s var(--ease-out); }
+        .diag-benchmark.anim-in { opacity: 1; transform: translateY(0); }
+        .diag-bench-title { font-family: var(--mono); font-size: 0.6rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold-d); margin-bottom: 0.5rem; }
+        .diag-benchmark p { margin: 0; }
+
+        /* ── Roadmap ── */
+        .diag-roadmap { margin-top: 2rem; opacity: 0; transform: translateY(8px); transition: opacity 0.48s var(--ease-out), transform 0.48s var(--ease-out); }
+        .diag-roadmap.anim-in { opacity: 1; transform: translateY(0); }
+        .diag-roadmap-title { font-family: var(--mono); font-size: 0.65rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 1rem; }
+        .diag-roadmap-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+        .diag-roadmap-phase { border: 1px solid var(--rule); padding: 1.25rem; opacity: 0; transform: translateY(6px); transition: opacity 0.4s var(--ease-out), transform 0.4s var(--ease-out); }
+        .diag-roadmap-phase.anim-in { opacity: 1; transform: translateY(0); }
+        .diag-roadmap-phase.quick { border-left: 3px solid #27AE60; }
+        .diag-roadmap-phase.medium { border-left: 3px solid var(--gold-d); }
+        .diag-roadmap-phase.strategic { border-left: 3px solid var(--blue); }
+        .diag-roadmap-phase-title { font-family: var(--mono); font-size: 0.6rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.75rem; color: var(--ink-2); }
+        .diag-roadmap-time { font-weight: 400; color: var(--ink-4); margin-left: 0.5rem; }
+        .diag-roadmap-item { display: flex; gap: 0.5rem; font-size: 0.85rem; color: var(--ink-2); line-height: 1.6; padding: 0.5rem 0; border-bottom: 1px solid var(--rule); }
+        .diag-roadmap-item:last-child { border-bottom: none; }
+
+        /* ── ROI ── */
+        .diag-roi { margin-top: 2rem; padding: 1.75rem; border: 1px solid var(--rule); background: var(--blue-xl); opacity: 0; transform: translateY(8px); transition: opacity 0.48s var(--ease-out), transform 0.48s var(--ease-out); }
+        .diag-roi.anim-in { opacity: 1; transform: translateY(0); }
+        .diag-roi-title { font-family: var(--mono); font-size: 0.65rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 1rem; }
+        .diag-roi-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+        .diag-roi-item { }
+        .diag-roi-label { font-family: var(--mono); font-size: 0.6rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-4); margin-bottom: 0.4rem; }
+        .diag-roi-vals { font-family: var(--serif); font-size: 1.2rem; color: var(--ink); }
+        .diag-roi-cons { color: var(--ink-3); }
+        .diag-roi-sep { margin: 0 0.4rem; color: var(--ink-5); }
+        .diag-roi-opt { color: var(--blue); font-weight: 500; }
+        .diag-roi-note { margin-top: 1rem; font-size: 0.78rem; color: var(--ink-4); line-height: 1.6; }
 
         /* ── Reset button ── */
         .diag-reset { margin-top: 2rem; text-align: center; }
@@ -794,6 +844,10 @@
             .ins-grid { grid-template-columns: 1fr; } .ins-card { border-right: none; border-bottom: 1px solid var(--rule); }
             .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
             .diag-row { grid-template-columns: 1fr; }
+            .diag-metric-strip { grid-template-columns: repeat(2, 1fr); }
+            .diag-roadmap-grid { grid-template-columns: 1fr; }
+            .diag-gauge-components { grid-template-columns: repeat(2, 1fr); }
+            .diag-roi-grid { grid-template-columns: 1fr; }
         }
         @media (max-width: 720px) {
             .hn { display: none; } .mt { display: flex; min-width: 44px; min-height: 44px; justify-content: center; align-items: center; }
@@ -1106,7 +1160,7 @@
 
         /* ══════════════ DIAGNOSTIC — METRIC STRIP ══════════════ */
         .diag-metric-strip {
-            display: grid; grid-template-columns: repeat(3, 1fr);
+            display: grid; grid-template-columns: repeat(4, 1fr);
             border: 1px solid var(--rule); margin-bottom: 2rem;
             opacity: 0; transform: translateY(-8px);
             transition: opacity 0.45s var(--ease-out), transform 0.45s var(--ease-out);
@@ -1122,6 +1176,7 @@
         }
         .diag-metric-val.high { color: var(--blue); }
         .diag-metric-val.med  { color: var(--gold-d); }
+        .diag-metric-val.readiness { color: #27AE60; }
         .diag-metric-val.auto { color: var(--blue-d); }
         .diag-metric-label {
             font-family: var(--mono); font-size: 0.56rem; font-weight: 600;
@@ -1527,23 +1582,27 @@
                     </div>
                 </div>
                 <div class="diag rv">
-                    <div class="diag-chrome"><div class="diag-dots"><span class="diag-dot"></span><span class="diag-dot"></span><span class="diag-dot"></span></div><div class="diag-title">Automation Readiness Assessment</div><div class="diag-badge">AI Powered</div></div>
+                    <div class="diag-chrome"><div class="diag-dots"><span class="diag-dot"></span><span class="diag-dot"></span><span class="diag-dot"></span></div><div class="diag-title">Automation Readiness Assessment</div></div>
                     <div class="diag-body">
                         <div class="diag-form" id="dF">
                             <div class="diag-row"><div class="diag-f"><label>Industry</label><select id="dI"><option value="" disabled selected>Select industry</option><option>Financial Services</option><option>Healthcare</option><option>Manufacturing</option><option>Retail</option><option>Technology</option><option>Government</option><option>Energy & Utilities</option><option>Professional Services</option><option>Education</option><option>Telecommunications</option><option>Real Estate</option><option>Non-profit / NGO</option><option>Logistics & Transportation</option><option>Media & Entertainment</option></select></div><div class="diag-f"><label>Department</label><select id="dD"><option value="" disabled selected>Select department</option><option>Finance & Accounting</option><option>Human Resources</option><option>IT & Engineering</option><option>Operations</option><option>Sales & Marketing</option><option>Customer Service</option><option>Supply Chain</option><option>Legal</option><option>Procurement</option><option>Executive / C-Suite</option><option>Research & Development</option><option>Compliance & Risk</option></select></div></div>
                             <div class="diag-f"><label>Describe the workflow</label><textarea id="dP" placeholder="e.g., Monthly financial close process — journal entries, reconciliation, approvals, and reporting across three teams..."></textarea></div>
                             <div class="diag-f"><label>Pain points (optional)</label><input type="text" id="dX" placeholder="e.g., Manual data entry, slow approvals, duplicate work..."></div>
+                            <div class="diag-row"><div class="diag-f"><label>Team size (optional)</label><input type="number" id="dTS" placeholder="e.g., 8" min="1" max="500"></div><div class="diag-f"><label>Avg. hourly cost (optional, CAD)</label><input type="number" id="dHC" placeholder="e.g., 45" min="10" max="500"></div></div>
                             <div style="margin-top:0.5rem"><button class="btn-k" id="dBtn" onclick="runD()">Run Assessment <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></button></div>
                         </div>
                     </div>
                     <div class="diag-ld" id="dL"><div class="diag-sp"></div><div style="font-size:0.82rem;color:var(--ink-4);margin-bottom:0.4rem">Running assessment</div><div class="diag-ld-status" id="dLPhase">Mapping workflows</div><div class="diag-ld-track"><div class="diag-ld-track-fill" id="dLTrack"></div></div></div>
                     <div class="diag-results" id="dR">
                         <div id="dMetric" class="diag-metric-strip"></div>
+                        <div id="dGauge" class="diag-gauge" style="display:none"></div>
                         <div id="dS" class="diag-sum"></div>
                         <div id="dDi" class="diag-dist-bars"></div>
+                        <div id="dBench" class="diag-benchmark" style="display:none"></div>
                         <div class="diag-steps" id="dA"></div>
+                        <div id="dRoadmap" class="diag-roadmap" style="display:none"></div>
                         <div id="dRecs" class="diag-recs" style="display:none"></div>
-                        <div id="dFlow" class="diag-flow" style="display:none"></div>
+                        <div id="dROI" class="diag-roi" style="display:none"></div>
                         <div class="diag-reset"><button class="btn-reset" onclick="resetD()">Run Another Assessment <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg></button></div>
                     </div>
                 </div>
@@ -1645,27 +1704,150 @@
         const matEl = document.querySelector('.mat-wrap');
         if (matEl) matObs.observe(matEl);
 
-        /* ── Diagnostic — Client-Side Analysis Engine ── */
+        /* ── Diagnostic — Client-Side Analysis Engine v2 ── */
         const STEP_KB = [
-            { keys: ['data entry','data input','manual entry','keying','typing','input data','enter data','data capture'], cat: 'ai', potential: 'High', state: 'Manual data entry from multiple sources', benefit: '70–85% time reduction via OCR/AI extraction', rec: 'Deploy intelligent document processing with AI extraction and auto-validation' },
-            { keys: ['reconciliation','reconcile','matching','cross-reference','compare','variance','discrepancy'], cat: 'ai', potential: 'High', state: 'Manual cross-referencing across systems', benefit: 'Continuous automated matching with exception flagging', rec: 'Implement automated three-way matching with AI anomaly detection' },
-            { keys: ['approval','approve','sign-off','sign off','authorize','authorise','escalat'], cat: 'human', potential: 'High', state: 'Email-based approval chains', benefit: 'Automated routing with SLA tracking', rec: 'Configure rule-based approval routing with auto-escalation and mobile approvals' },
-            { keys: ['report','reporting','dashboard','analytics','kpi','metric','visualization','visualise'], cat: 'ai', potential: 'High', state: 'Manual report generation and distribution', benefit: 'Real-time auto-generated dashboards', rec: 'Build automated reporting pipelines with scheduled distribution and self-service BI' },
-            { keys: ['review','audit','check','verify','validation','validate','quality','qa','inspect'], cat: 'human', potential: 'Medium', state: 'Manual review and verification', benefit: 'AI-assisted review with anomaly flagging', rec: 'Layer AI-driven anomaly detection to pre-screen items before human review' },
-            { keys: ['journal','posting','ledger','booking','accrual','journal entry','gl','general ledger'], cat: 'ai', potential: 'High', state: 'Manual journal entry preparation', benefit: 'Automated journal generation with variance checks', rec: 'Automate recurring journal entries with rule-based posting and exception handling' },
-            { keys: ['invoice','billing','payment','payable','receivable','collection','remittance'], cat: 'ai', potential: 'High', state: 'Manual invoice processing', benefit: '80% faster processing with auto-matching', rec: 'Deploy AI-powered invoice capture with three-way matching and auto-posting' },
-            { keys: ['onboard','orientation','provision','setup','new hire','new employee','welcome'], cat: 'system', potential: 'High', state: 'Manual onboarding workflows', benefit: 'Automated provisioning and task orchestration', rec: 'Build end-to-end onboarding automation with system provisioning and task tracking' },
-            { keys: ['schedule','scheduling','roster','shift','calendar','planning','plan','forecast'], cat: 'system', potential: 'Medium', state: 'Spreadsheet-based scheduling', benefit: 'Optimized scheduling with constraint-based algorithms', rec: 'Implement intelligent scheduling with demand forecasting and constraint optimization' },
-            { keys: ['email','communication','notify','notification','alert','send','distribute','correspondence'], cat: 'system', potential: 'High', state: 'Manual email and notification management', benefit: 'Event-driven automated communications', rec: 'Configure event-triggered notification workflows with template management' },
-            { keys: ['transfer','migrate','integration','import','export','sync','synchronize','etl','extract','load'], cat: 'system', potential: 'High', state: 'Manual data transfer between systems', benefit: 'Real-time automated integration', rec: 'Build API-based integration layer with real-time sync and error handling' },
-            { keys: ['ticket','incident','request','support','helpdesk','help desk','case','issue','troubleshoot'], cat: 'system', potential: 'Medium', state: 'Manual ticket routing and triage', benefit: 'AI-powered categorization and routing', rec: 'Deploy AI ticket classification with auto-routing and suggested resolutions' },
-            { keys: ['procure','purchase','requisition','order','vendor','supplier','sourcing','rfp','rfq','po'], cat: 'system', potential: 'Medium', state: 'Manual procurement process', benefit: 'Streamlined e-procurement with auto-approvals', rec: 'Implement e-procurement with catalog management and automated PO generation' },
-            { keys: ['compliance','regulatory','audit trail','control','sox','gdpr','policy','governance'], cat: 'human', potential: 'Medium', state: 'Manual compliance tracking', benefit: 'Continuous automated compliance monitoring', rec: 'Build automated compliance monitoring with real-time audit trails and alerts' },
-            { keys: ['training','learning','development','course','certification','skill','upskill'], cat: 'human', potential: 'Low', state: 'Ad-hoc training delivery', benefit: 'Structured LMS-based learning paths', rec: 'Deploy learning management system with role-based paths and progress tracking' },
-            { keys: ['decision','strategy','evaluate','assess','judgment','judgement','analysis','negotiate'], cat: 'human', potential: 'Low', state: 'Human decision-making process', benefit: 'Data-enriched decision support', rec: 'Provide AI-powered decision support with scenario modeling and recommendations' },
-            { keys: ['inventory','stock','warehouse','fulfillment','shipping','logistics','supply chain','delivery'], cat: 'system', potential: 'High', state: 'Manual inventory and logistics tracking', benefit: 'Real-time automated inventory management', rec: 'Implement automated inventory management with demand sensing and reorder triggers' },
-            { keys: ['close','month end','month-end','period end','closing','year end','year-end','financial close'], cat: 'ai', potential: 'High', state: 'Manual period-end close process', benefit: '40–60% reduction in close cycle time', rec: 'Automate close task orchestration with dependency tracking and status dashboards' }
+            /* Document Processing & Data Capture */
+            { id:'DATA_ENTRY', cat:'ai', potential:0.85, complexity:0.3, keys:['data entry','data input','manual entry','keying','typing','input data','enter data','data capture','transcribe','transcription','copy from','retype','key in'], stems:['enter','input','transcri','captur'], vn:[['enter','data'],['input','data'],['capture','data'],['type','information']], state:'Manual data entry from multiple sources', benefit:'70-85% time reduction via OCR/AI extraction', recs:{q:'Implement form templates with auto-fill and validation rules',m:'Deploy OCR/intelligent document processing for structured inputs',s:'Full AI extraction pipeline with continuous learning and exception routing'}, ts:0.75 },
+            { id:'INVOICE_PROC', cat:'ai', potential:0.85, complexity:0.35, keys:['invoice','billing','payment','payable','receivable','collection','remittance','invoice processing','accounts payable','accounts receivable'], stems:['invoic','bill','pay','remit'], vn:[['process','invoice'],['pay','invoice'],['match','invoice']], state:'Manual invoice processing and matching', benefit:'80% faster processing with auto-matching', recs:{q:'Standardize invoice receipt to single channel with auto-acknowledgment',m:'Deploy AI-powered invoice capture with three-way matching',s:'End-to-end procure-to-pay automation with auto-posting'}, ts:0.80 },
+            { id:'DOC_UNDERSTAND', cat:'ai', potential:0.82, complexity:0.4, keys:['document parsing','contract analysis','pdf extraction','form reading','document classification','extract from document','read document','parse document','document review'], stems:['pars','extract','classif'], vn:[['extract','data'],['parse','document'],['read','document'],['classify','document']], state:'Manual document reading and data extraction', benefit:'85% reduction in document processing time via AI', recs:{q:'Categorize documents by type and standardize naming',m:'Deploy document AI for structured extraction',s:'Intelligent document pipeline with auto-classification and routing'}, ts:0.78 },
+            { id:'DOC_SCANNING', cat:'ai', potential:0.80, complexity:0.25, keys:['scanning','digitization','paper to digital','image capture','ocr','scan document','digitize','paper-based','paper based','physical document'], stems:['scan','digit','captur'], vn:[['scan','document'],['digitize','record'],['capture','image']], state:'Paper-based document handling', benefit:'Eliminate paper with digital capture and OCR', recs:{q:'Set up mobile scanning with cloud storage',m:'Deploy OCR with automated filing and indexing',s:'Paperless workflow with AI extraction and routing'}, ts:0.70 },
+            { id:'FORM_PROC', cat:'ai', potential:0.78, complexity:0.3, keys:['form filling','application processing','intake form','registration form','fill out form','complete form','submit form','form submission'], stems:['form','registr','applicat'], vn:[['fill','form'],['process','application'],['submit','form']], state:'Manual form completion and processing', benefit:'Auto-populated forms with validation', recs:{q:'Create digital form templates with required fields',m:'Build auto-populated forms with system lookups',s:'Intelligent forms with AI pre-fill and adaptive fields'}, ts:0.65 },
+
+            /* Generative AI & Content */
+            { id:'CONTENT_GEN', cat:'ai', potential:0.75, complexity:0.35, keys:['content creation','writing','drafting','copywriting','blog post','marketing copy','text generation','write content','create content','generate content','compose','author'], stems:['writ','draft','compos','author','generat'], vn:[['write','content'],['draft','email'],['create','copy'],['generate','text']], state:'Manual content creation and writing', benefit:'60-80% faster content production with AI drafting', recs:{q:'Create content templates and style guides',m:'Deploy AI writing assistant for first drafts',s:'AI content pipeline with brand voice training and auto-publishing'}, ts:0.60 },
+            { id:'SUMMARIZATION', cat:'ai', potential:0.80, complexity:0.3, keys:['summarize','summarization','brief','digest','condensing','abstract','synopsis','key takeaways','executive summary','tldr'], stems:['summar','digest','condens'], vn:[['summarize','report'],['create','summary'],['extract','takeaways']], state:'Manual reading and summarization', benefit:'Instant AI-generated summaries saving hours', recs:{q:'Standardize summary templates and formats',m:'Deploy AI summarization for reports and documents',s:'Auto-generated executive briefs with key insight extraction'}, ts:0.70 },
+            { id:'TRANSLATION', cat:'ai', potential:0.78, complexity:0.3, keys:['translate','translation','localization','multilingual','language conversion','interpret','foreign language','multi-language'], stems:['translat','localiz','interpret'], vn:[['translate','document'],['convert','language'],['localize','content']], state:'Manual translation or external translation services', benefit:'Near-instant AI translation with domain-specific accuracy', recs:{q:'Identify and prioritize high-volume translation needs',m:'Deploy AI translation with glossary management',s:'Real-time multilingual content pipeline with quality assurance'}, ts:0.65 },
+            { id:'TEMPLATE_GEN', cat:'ai', potential:0.72, complexity:0.25, keys:['template creation','boilerplate','standardized document','letter generation','mail merge','generate letter','form letter','document template','standard response'], stems:['templat','boilerplat','standardiz'], vn:[['generate','letter'],['create','template'],['merge','document']], state:'Manual document creation from templates', benefit:'Auto-generated documents with dynamic field population', recs:{q:'Build reusable templates with placeholder fields',m:'Deploy mail merge with CRM/database integration',s:'AI document assembly with conditional logic and personalization'}, ts:0.60 },
+            { id:'CODE_GEN', cat:'ai', potential:0.65, complexity:0.5, keys:['code generation','scripting','automation script','macro','formula writing','write code','build script','programming','develop software'], stems:['script','programm','cod','develop'], vn:[['write','code'],['build','script'],['create','macro']], state:'Manual coding and script development', benefit:'AI-assisted development accelerating delivery 2-3x', recs:{q:'Document common patterns and reusable snippets',m:'Deploy AI coding assistant for routine development',s:'AI-powered development platform with auto-testing and deployment'}, ts:0.50 },
+            { id:'EMAIL_DRAFT', cat:'ai', potential:0.74, complexity:0.2, keys:['draft email','write email','compose email','email response','reply to email','email template','canned response','standard reply'], stems:['email','respond','reply'], vn:[['draft','email'],['write','response'],['compose','reply']], state:'Manual email drafting and responses', benefit:'AI-drafted emails reducing response time 70%', recs:{q:'Create email templates for common scenarios',m:'Deploy AI email assistant with tone/brand control',s:'Intelligent email automation with context-aware responses'}, ts:0.65 },
+
+            /* NLP & Text Analysis */
+            { id:'SENTIMENT', cat:'ai', potential:0.78, complexity:0.35, keys:['sentiment analysis','opinion mining','feedback analysis','satisfaction scoring','tone detection','review analysis','customer sentiment','mood analysis'], stems:['sentimen','satisfact','opinion'], vn:[['analyze','sentiment'],['score','satisfaction'],['detect','tone']], state:'Manual review reading and sentiment assessment', benefit:'Real-time automated sentiment scoring at scale', recs:{q:'Aggregate feedback into single dashboard',m:'Deploy sentiment analysis on customer feedback',s:'Real-time sentiment monitoring with auto-triggered interventions'}, ts:0.65 },
+            { id:'ENTITY_EXTRACT', cat:'ai', potential:0.82, complexity:0.4, keys:['entity extraction','named entity','data extraction','parsing fields','metadata extraction','extract information','pull data from','field extraction'], stems:['extract','pars','metadata'], vn:[['extract','entity'],['pull','data'],['parse','field']], state:'Manual data extraction from unstructured text', benefit:'Automated entity extraction with 90%+ accuracy', recs:{q:'Define target fields and extraction templates',m:'Deploy NLP extraction for key data fields',s:'AI extraction pipeline with custom model training'}, ts:0.72 },
+            { id:'TEXT_CLASSIFY', cat:'ai', potential:0.80, complexity:0.35, keys:['classify','categorize','tagging','labeling','sorting document','triage','routing','auto-tag','auto-categorize','sort into categories'], stems:['classif','categor','triage','label','tag'], vn:[['classify','document'],['categorize','ticket'],['tag','content'],['sort','request']], state:'Manual classification and categorization', benefit:'Instant auto-classification with consistent accuracy', recs:{q:'Define taxonomy and classification rules',m:'Deploy ML classification for high-volume items',s:'Self-improving classification with feedback loops'}, ts:0.68 },
+            { id:'SEARCH_RETRIEVAL', cat:'ai', potential:0.72, complexity:0.35, keys:['search','find information','lookup','query','information retrieval','knowledge base search','find document','search for'], stems:['search','retriev','lookup','query'], vn:[['search','document'],['find','information'],['query','database']], state:'Manual searching across multiple systems', benefit:'Unified semantic search across all repositories', recs:{q:'Consolidate document repositories and add metadata',m:'Deploy enterprise search with relevance ranking',s:'AI-powered semantic search with natural language queries'}, ts:0.55 },
+            { id:'CONVO_ANALYSIS', cat:'ai', potential:0.76, complexity:0.4, keys:['call analysis','transcript analysis','meeting notes','conversation mining','call scoring','analyze calls','review transcript','meeting summary'], stems:['transcript','convers','analyz'], vn:[['analyze','call'],['review','transcript'],['score','conversation']], state:'Manual call/meeting review and note-taking', benefit:'Automated transcription with insight extraction', recs:{q:'Record and transcribe key meetings',m:'Deploy conversation intelligence with topic detection',s:'AI meeting platform with auto-actions and coaching insights'}, ts:0.62 },
+
+            /* Predictive Analytics & Decision Support */
+            { id:'DECISION', cat:'human', potential:0.35, complexity:0.6, keys:['decision','strategy','evaluate','assess','judgment','judgement','analysis','negotiate','strategic planning','business case'], stems:['decis','strateg','evaluat','negoti','judgment'], vn:[['make','decision'],['evaluate','option'],['assess','risk']], state:'Human decision-making and strategic analysis', benefit:'Data-enriched decision support with scenario modeling', recs:{q:'Standardize decision criteria and scoring rubrics',m:'Build data dashboards to inform key decisions',s:'AI-powered decision support with predictive scenario modeling'}, ts:0.25 },
+            { id:'LEAD_SCORING', cat:'ai', potential:0.82, complexity:0.4, keys:['lead scoring','lead qualification','prospect ranking','conversion prediction','pipeline scoring','qualify lead','rank prospect','score lead'], stems:['lead','prospect','scor','qualif'], vn:[['score','lead'],['qualify','prospect'],['rank','opportunity']], state:'Manual lead qualification and prioritization', benefit:'AI-scored leads improving conversion 30-50%', recs:{q:'Define ideal customer profile and scoring criteria',m:'Deploy ML lead scoring with CRM integration',s:'Predictive pipeline with propensity modeling and auto-routing'}, ts:0.65 },
+            { id:'CHURN_PREDICT', cat:'ai', potential:0.78, complexity:0.45, keys:['churn prediction','customer retention','attrition','customer lifetime value','risk of leaving','prevent churn','retain customer','loyalty'], stems:['churn','attrit','retent','loyalt'], vn:[['predict','churn'],['prevent','attrition'],['retain','customer']], state:'Reactive customer retention efforts', benefit:'Proactive churn prevention with early warning signals', recs:{q:'Track key churn indicators and health scores',m:'Deploy churn prediction model with alert triggers',s:'AI retention platform with automated intervention workflows'}, ts:0.55 },
+            { id:'DEMAND_FORECAST', cat:'ai', potential:0.80, complexity:0.45, keys:['demand forecasting','demand planning','sales forecast','volume prediction','trend analysis','projection','predict demand','forecast sales','predict volume'], stems:['forecast','predict','project','trend'], vn:[['forecast','demand'],['predict','volume'],['project','sales']], state:'Spreadsheet-based manual forecasting', benefit:'AI forecasting improving accuracy 25-40%', recs:{q:'Consolidate historical data and identify key drivers',m:'Deploy statistical forecasting with ML enhancement',s:'AI demand sensing with real-time market signal integration'}, ts:0.60 },
+            { id:'RISK_SCORING', cat:'ai', potential:0.80, complexity:0.45, keys:['risk scoring','risk assessment','credit scoring','fraud detection','anomaly scoring','threat assessment','risk analysis','detect fraud','flag suspicious'], stems:['risk','fraud','anomal','threat','suspicious'], vn:[['assess','risk'],['detect','fraud'],['score','credit'],['flag','anomaly']], state:'Manual risk assessment and scoring', benefit:'Real-time automated risk scoring with anomaly detection', recs:{q:'Define risk criteria and scoring thresholds',m:'Deploy automated risk scoring with rule engine',s:'AI risk platform with real-time detection and adaptive models'}, ts:0.65 },
+            { id:'RECOMMEND', cat:'ai', potential:0.76, complexity:0.4, keys:['recommend','suggestion','personalization','next best action','cross-sell','upsell','product recommendation','suggest','recommend product'], stems:['recommend','suggest','personaliz'], vn:[['recommend','product'],['suggest','action'],['personalize','experience']], state:'Generic one-size-fits-all recommendations', benefit:'AI-personalized recommendations increasing engagement 20-40%', recs:{q:'Segment customers and define recommendation rules',m:'Deploy recommendation engine with behavioral data',s:'Real-time AI personalization across all touchpoints'}, ts:0.55 },
+
+            /* Customer Experience */
+            { id:'CHATBOT', cat:'ai', potential:0.80, complexity:0.4, keys:['chatbot','virtual agent','self-service','faq bot','automated response','conversational ai','help bot','virtual assistant','chat support','auto-reply'], stems:['chatbot','selfserv','automat'], vn:[['deploy','chatbot'],['automate','response'],['build','self-service']], state:'All inquiries handled by human agents', benefit:'40-60% of queries resolved by AI without human intervention', recs:{q:'Create FAQ database and common response templates',m:'Deploy AI chatbot for tier-1 support queries',s:'Conversational AI platform with handoff and continuous learning'}, ts:0.55 },
+            { id:'TICKET_SUPPORT', cat:'system', potential:0.72, complexity:0.35, keys:['ticket','incident','request','support','helpdesk','help desk','case','issue','troubleshoot','service request','support ticket'], stems:['ticket','incident','support','troubleshoot'], vn:[['create','ticket'],['resolve','incident'],['handle','request']], state:'Manual ticket routing and triage', benefit:'AI-powered categorization and intelligent routing', recs:{q:'Standardize ticket categories and priority levels',m:'Deploy auto-routing with SLA tracking',s:'AI ticket platform with suggested resolutions and auto-resolution'}, ts:0.55 },
+            { id:'PERSONALIZE', cat:'ai', potential:0.74, complexity:0.45, keys:['personalization','personalize','tailored','custom experience','user profiling','behavioral targeting','customize','targeted content'], stems:['personaliz','tailor','customiz','target'], vn:[['personalize','experience'],['tailor','content'],['target','user']], state:'Generic undifferentiated customer experience', benefit:'Personalized experiences improving satisfaction 25-35%', recs:{q:'Define customer segments and basic personalization rules',m:'Deploy behavioral targeting with dynamic content',s:'AI-driven real-time personalization across all channels'}, ts:0.50 },
+            { id:'CUST_FEEDBACK', cat:'ai', potential:0.72, complexity:0.3, keys:['survey','nps','customer feedback','voice of customer','satisfaction','csat','feedback collection','customer survey','feedback analysis'], stems:['survey','feedback','satisfact'], vn:[['collect','feedback'],['analyze','survey'],['measure','satisfaction']], state:'Ad-hoc manual feedback collection', benefit:'Automated feedback loops with sentiment analysis', recs:{q:'Implement automated post-interaction surveys',m:'Deploy feedback analytics with trend detection',s:'Closed-loop feedback system with AI-driven action triggers'}, ts:0.55 },
+
+            /* Workflow Orchestration & RPA */
+            { id:'APPROVAL', cat:'human', potential:0.72, complexity:0.3, keys:['approval','approve','sign-off','sign off','authorize','authorise','escalat','get approval','approval workflow','request approval'], stems:['approv','authoriz','escalat','signoff'], vn:[['get','approval'],['request','sign-off'],['escalate','request']], state:'Email-based approval chains with delays', benefit:'Automated routing with SLA tracking and mobile approvals', recs:{q:'Enable mobile approvals and set auto-approval thresholds',m:'Deploy rule-based approval routing with auto-escalation',s:'Intelligent approval orchestration with risk-based auto-decisions'}, ts:0.55 },
+            { id:'EMAIL_COMMS', cat:'system', potential:0.75, complexity:0.25, keys:['email','communication','notify','notification','alert','send','distribute','correspondence','send notification','email notification'], stems:['email','notif','alert','correspond'], vn:[['send','email'],['notify','team'],['distribute','report']], state:'Manual email and notification management', benefit:'Event-driven automated communications', recs:{q:'Create notification templates for common events',m:'Deploy event-triggered email workflows',s:'Intelligent communication hub with channel optimization'}, ts:0.60 },
+            { id:'SCHEDULING', cat:'system', potential:0.68, complexity:0.35, keys:['schedule','scheduling','roster','shift','calendar','planning','plan','resource allocation','book meeting','appointment'], stems:['schedul','roster','calendar','allocat'], vn:[['schedule','meeting'],['plan','resource'],['allocate','staff']], state:'Spreadsheet-based manual scheduling', benefit:'Optimized scheduling with constraint-based algorithms', recs:{q:'Digitize scheduling with shared calendar tools',m:'Deploy scheduling optimization with constraint handling',s:'AI scheduling with demand forecasting and auto-optimization'}, ts:0.50 },
+            { id:'ONBOARDING', cat:'system', potential:0.78, complexity:0.35, keys:['onboard','orientation','provision','setup','new hire','new employee','welcome','employee onboarding','user onboarding','account setup'], stems:['onboard','orient','provision','setup'], vn:[['onboard','employee'],['provision','account'],['setup','user']], state:'Manual onboarding with checklists', benefit:'Automated provisioning and task orchestration', recs:{q:'Create digital onboarding checklist with assignments',m:'Deploy automated provisioning and welcome workflows',s:'End-to-end onboarding automation with progress tracking'}, ts:0.60 },
+            { id:'TASK_ASSIGN', cat:'system', potential:0.72, complexity:0.3, keys:['task assignment','work allocation','dispatching','routing work','workload balancing','queue management','assign task','delegate work','distribute work'], stems:['assign','dispatch','allocat','delegat'], vn:[['assign','task'],['distribute','work'],['balance','workload']], state:'Manual task assignment and work distribution', benefit:'Automated work routing with load balancing', recs:{q:'Define assignment rules and capacity limits',m:'Deploy auto-routing with skills-based matching',s:'AI workload optimization with predictive capacity planning'}, ts:0.55 },
+            { id:'STATUS_TRACK', cat:'system', potential:0.70, complexity:0.25, keys:['status tracking','progress monitoring','milestone tracking','status update','follow-up','tracking','track progress','monitor status','check status'], stems:['track','monitor','status','progress','followup'], vn:[['track','progress'],['monitor','status'],['update','milestone']], state:'Manual status checks via email and meetings', benefit:'Real-time automated status dashboards', recs:{q:'Create shared status board with defined stages',m:'Deploy automated progress tracking with alerts',s:'Predictive project monitoring with risk-based notifications'}, ts:0.50 },
+
+            /* Financial Operations */
+            { id:'RECONCILIATION', cat:'ai', potential:0.85, complexity:0.35, keys:['reconciliation','reconcile','matching','cross-reference','compare','variance','discrepancy','three-way match','bank reconciliation'], stems:['reconcil','match','compar','varianc'], vn:[['reconcile','account'],['match','transaction'],['compare','record']], state:'Manual cross-referencing across systems', benefit:'Continuous automated matching with exception flagging', recs:{q:'Standardize data formats across systems',m:'Deploy automated three-way matching with exception flagging',s:'AI reconciliation with anomaly detection and auto-resolution'}, ts:0.75 },
+            { id:'JOURNAL_POST', cat:'ai', potential:0.82, complexity:0.3, keys:['journal','posting','ledger','booking','accrual','journal entry','gl','general ledger','post entry','book entry'], stems:['journal','ledger','accru','booking','posting'], vn:[['post','journal'],['book','entry'],['create','accrual']], state:'Manual journal entry preparation and posting', benefit:'Automated journal generation with variance checks', recs:{q:'Standardize recurring journal templates',m:'Automate recurring journals with rule-based posting',s:'AI journal engine with anomaly detection and auto-correction'}, ts:0.70 },
+            { id:'FINANCIAL_CLOSE', cat:'ai', potential:0.82, complexity:0.4, keys:['close','month end','month-end','period end','closing','year end','year-end','financial close','close process','close cycle'], stems:['close','period','closing'], vn:[['close','books'],['complete','close'],['finalize','period']], state:'Manual period-end close process', benefit:'40-60% reduction in close cycle time', recs:{q:'Create close checklist with task dependencies',m:'Deploy close management with auto-task sequencing',s:'AI-orchestrated close with predictive completion and auto-reconciliation'}, ts:0.65 },
+            { id:'REPORTING', cat:'ai', potential:0.80, complexity:0.3, keys:['report','reporting','dashboard','analytics','kpi','metric','visualization','visualise','generate report','build dashboard','create report'], stems:['report','dashboard','analyt','visual','metric'], vn:[['generate','report'],['build','dashboard'],['track','kpi']], state:'Manual report generation and distribution', benefit:'Real-time auto-generated dashboards', recs:{q:'Define standard report templates and schedules',m:'Build automated reporting with scheduled distribution',s:'Self-service BI platform with AI-generated insights'}, ts:0.65 },
+
+            /* Data Quality & Governance */
+            { id:'DATA_CLEANSE', cat:'ai', potential:0.78, complexity:0.35, keys:['data cleaning','data cleansing','deduplication','duplicate removal','data hygiene','scrubbing','normalization','clean data','remove duplicates'], stems:['clean','deduplic','scrub','normaliz','hygien'], vn:[['clean','data'],['remove','duplicate'],['normalize','record']], state:'Manual data cleaning and deduplication', benefit:'Automated data quality with 95%+ accuracy', recs:{q:'Profile data quality and identify top issues',m:'Deploy automated cleansing and dedup pipelines',s:'Continuous data quality platform with ML-based correction'}, ts:0.65 },
+            { id:'DATA_VALIDATE', cat:'ai', potential:0.80, complexity:0.3, keys:['data validation','data quality check','integrity check','completeness check','accuracy verification','validate data','check data','verify data'], stems:['validat','integrit','verif','accura'], vn:[['validate','data'],['check','accuracy'],['verify','completeness']], state:'Manual data verification and quality checks', benefit:'Real-time automated validation with error prevention', recs:{q:'Define validation rules for critical fields',m:'Deploy automated validation at data entry points',s:'AI data quality monitoring with predictive error detection'}, ts:0.68 },
+            { id:'MASTER_DATA', cat:'system', potential:0.70, complexity:0.5, keys:['master data','mdm','golden record','single source of truth','data stewardship','reference data','data governance','standardize data'], stems:['master','steward','governan'], vn:[['manage','master data'],['establish','source of truth'],['govern','data']], state:'Fragmented data across multiple systems', benefit:'Unified master data with single source of truth', recs:{q:'Identify critical master data domains and owners',m:'Implement MDM with synchronization rules',s:'Enterprise data governance platform with AI stewardship'}, ts:0.45 },
+            { id:'COMPLIANCE_GOV', cat:'human', potential:0.65, complexity:0.4, keys:['compliance','regulatory','audit trail','control','sox','gdpr','policy','governance','regulation','comply','audit finding'], stems:['complian','regulat','audit','governan','policy'], vn:[['ensure','compliance'],['monitor','regulation'],['maintain','audit trail']], state:'Manual compliance tracking and reporting', benefit:'Continuous automated compliance monitoring', recs:{q:'Create compliance checklists with mandatory sign-offs',m:'Deploy automated audit trail and control monitoring',s:'Continuous compliance platform with real-time risk scoring'}, ts:0.50 },
+
+            /* Knowledge Management */
+            { id:'KNOWLEDGE_BASE', cat:'system', potential:0.68, complexity:0.35, keys:['knowledge base','wiki','documentation','knowledge management','institutional knowledge','sop','standard operating procedure','document process'], stems:['knowledg','document','wiki'], vn:[['build','knowledge base'],['document','process'],['create','wiki']], state:'Tribal knowledge and undocumented processes', benefit:'Searchable knowledge base reducing onboarding time 50%', recs:{q:'Document top 10 critical processes as SOPs',m:'Build searchable knowledge base with tagging',s:'AI knowledge platform with auto-capture and recommendations'}, ts:0.45 },
+            { id:'DOC_SEARCH', cat:'ai', potential:0.74, complexity:0.35, keys:['document search','information retrieval','file finding','content discovery','enterprise search','find file','locate document'], stems:['search','retriev','discov','locat'], vn:[['search','document'],['find','file'],['locate','information']], state:'Manual searching across file shares and systems', benefit:'Unified search across all document repositories', recs:{q:'Organize and tag documents with consistent metadata',m:'Deploy enterprise search with relevance ranking',s:'AI semantic search with natural language queries'}, ts:0.55 },
+            { id:'TRAINING', cat:'human', potential:0.40, complexity:0.35, keys:['training','learning','development','course','certification','skill','upskill','employee training','train staff','learning management'], stems:['train','learn','certif','upskill'], vn:[['train','staff'],['develop','skill'],['deliver','course']], state:'Ad-hoc training delivery', benefit:'Structured LMS-based learning paths', recs:{q:'Create training catalog with role-based paths',m:'Deploy LMS with progress tracking and assessments',s:'AI-personalized learning with adaptive content and skill gap analysis'}, ts:0.30 },
+
+            /* Integration & API */
+            { id:'DATA_TRANSFER', cat:'system', potential:0.80, complexity:0.35, keys:['transfer','migrate','integration','import','export','sync','synchronize','etl','extract','load','data transfer','system integration','move data'], stems:['transfer','migrat','integrat','sync','import','export'], vn:[['transfer','data'],['sync','system'],['import','file'],['export','data']], state:'Manual data transfer between systems', benefit:'Real-time automated integration', recs:{q:'Map data flows and identify manual transfer points',m:'Build API connectors for top system pairs',s:'Integration platform with real-time sync and error handling'}, ts:0.70 },
+            { id:'API_MGMT', cat:'system', potential:0.75, complexity:0.45, keys:['api','webhook','middleware','connector','integration platform','ipaas','rest','microservice','api management','api integration'], stems:['api','webhook','middlewar','connector'], vn:[['build','api'],['connect','system'],['integrate','platform']], state:'Point-to-point custom integrations', benefit:'Managed API platform with reusable connectors', recs:{q:'Inventory existing integrations and document APIs',m:'Deploy integration platform with standard connectors',s:'Enterprise iPaaS with API governance and monitoring'}, ts:0.55 },
+            { id:'LEGACY_MOD', cat:'system', potential:0.65, complexity:0.6, keys:['legacy system','mainframe','migration','modernization','system replacement','technical debt','outdated system','old system','replace system'], stems:['legacy','mainframe','moderniz','migrat'], vn:[['replace','system'],['modernize','platform'],['migrate','application']], state:'Reliance on outdated legacy systems', benefit:'Modern platform with improved agility and lower maintenance', recs:{q:'Assess legacy systems and prioritize by risk/value',m:'Build integration wrappers around legacy systems',s:'Phased platform modernization with data migration'}, ts:0.40 },
+
+            /* HR & People Ops */
+            { id:'PERF_MGMT', cat:'human', potential:0.55, complexity:0.35, keys:['performance review','evaluation','appraisal','goal setting','okr','talent assessment','360 feedback','performance management','review cycle'], stems:['perform','evaluat','apprais','talent'], vn:[['conduct','review'],['evaluate','performance'],['set','goal']], state:'Manual performance review cycles', benefit:'Streamlined reviews with data-driven insights', recs:{q:'Standardize review templates and timelines',m:'Deploy performance platform with goal tracking',s:'AI-enhanced performance management with predictive talent insights'}, ts:0.40 },
+            { id:'WORKFORCE_PLAN', cat:'human', potential:0.58, complexity:0.45, keys:['workforce planning','headcount','staffing','resource planning','capacity planning','skills gap','talent planning','staffing plan'], stems:['workforc','headcount','staffing','capacit'], vn:[['plan','workforce'],['forecast','headcount'],['assess','capacity']], state:'Spreadsheet-based workforce planning', benefit:'Data-driven workforce planning with gap analysis', recs:{q:'Centralize headcount data and define planning cycle',m:'Deploy workforce analytics with skills tracking',s:'AI workforce planning with attrition prediction and skills forecasting'}, ts:0.35 },
+
+            /* Supply Chain & Logistics */
+            { id:'PROCUREMENT', cat:'system', potential:0.72, complexity:0.35, keys:['procure','purchase','requisition','order','vendor','supplier','sourcing','rfp','rfq','po','purchase order','procurement','buy'], stems:['procur','purchas','requisit','vendor','suppli'], vn:[['submit','requisition'],['approve','purchase'],['select','vendor']], state:'Manual procurement process with paper trails', benefit:'Streamlined e-procurement with auto-approvals', recs:{q:'Digitize purchase requisition forms',m:'Deploy e-procurement with catalog and auto-PO generation',s:'AI procurement with spend analytics and supplier risk monitoring'}, ts:0.55 },
+            { id:'INVENTORY', cat:'system', potential:0.78, complexity:0.35, keys:['inventory','stock','warehouse','fulfillment','shipping','logistics','supply chain','delivery','inventory management','track inventory'], stems:['inventor','warehous','fulfil','logistic','shipment'], vn:[['manage','inventory'],['track','shipment'],['fulfill','order']], state:'Manual inventory and logistics tracking', benefit:'Real-time automated inventory management', recs:{q:'Implement barcode/QR scanning for inventory counts',m:'Deploy inventory management with reorder triggers',s:'AI inventory optimization with demand sensing'}, ts:0.60 },
+            { id:'QUALITY_INSPECT', cat:'human', potential:0.68, complexity:0.4, keys:['quality inspection','quality control','defect detection','testing','qa','inspection','sampling','quality check','inspect product'], stems:['inspect','defect','qualit','sampl'], vn:[['inspect','product'],['detect','defect'],['test','quality']], state:'Manual quality inspection and testing', benefit:'AI-assisted inspection with automated defect detection', recs:{q:'Standardize inspection checklists and criteria',m:'Deploy automated testing with statistical controls',s:'AI vision-based inspection with predictive quality analytics'}, ts:0.50 },
+
+            /* Compliance & Risk */
+            { id:'REVIEW_AUDIT', cat:'human', potential:0.60, complexity:0.35, keys:['review','audit','check','verify','validation','validate','quality','qa','inspect','peer review','manual review','double check'], stems:['review','audit','verif','validat','inspect'], vn:[['review','document'],['audit','process'],['verify','result']], state:'Manual review and verification', benefit:'AI-assisted review with anomaly flagging', recs:{q:'Define review criteria and checklists',m:'Deploy AI pre-screening to flag exceptions before human review',s:'AI review platform with continuous learning and auto-approval for low-risk items'}, ts:0.45 },
+            { id:'CONTRACT_MGMT', cat:'ai', potential:0.76, complexity:0.4, keys:['contract management','contract review','clause analysis','obligation tracking','renewal','sla monitoring','manage contract','review contract'], stems:['contract','clause','obligat','renew'], vn:[['review','contract'],['track','obligation'],['manage','renewal']], state:'Manual contract tracking and review', benefit:'AI-powered contract analysis with auto-extraction', recs:{q:'Create contract register with key dates and alerts',m:'Deploy CLM with AI clause review',s:'Intelligent contract platform with risk scoring and auto-negotiation support'}, ts:0.55 },
+            { id:'INCIDENT_MGMT', cat:'system', potential:0.72, complexity:0.4, keys:['incident response','breach','security incident','disaster recovery','business continuity','escalation protocol','crisis management','respond to incident'], stems:['incident','breach','disaster','crisis','escal'], vn:[['respond','incident'],['manage','crisis'],['escalate','breach']], state:'Ad-hoc incident response procedures', benefit:'Automated incident detection and response playbooks', recs:{q:'Document incident response playbooks',m:'Deploy automated detection with playbook execution',s:'AI-powered incident platform with predictive alerts and auto-remediation'}, ts:0.50 },
+
+            /* Miscellaneous */
+            { id:'PROJECT_MGMT', cat:'human', potential:0.55, complexity:0.35, keys:['project management','project tracking','milestone','project plan','pmo','sprint','agile','manage project','track project'], stems:['project','mileston','sprint','agile'], vn:[['manage','project'],['track','milestone'],['plan','sprint']], state:'Manual project tracking and coordination', benefit:'Automated project management with resource optimization', recs:{q:'Adopt standardized project templates',m:'Deploy project management platform with auto-tracking',s:'AI project management with predictive risk and resource optimization'}, ts:0.40 },
+            { id:'MEETING_MGMT', cat:'ai', potential:0.72, complexity:0.25, keys:['meeting notes','agenda','action items','minutes','meeting scheduling','calendar coordination','take notes','meeting summary','record meeting'], stems:['meeting','agenda','minutes','action'], vn:[['take','notes'],['schedule','meeting'],['track','action items']], state:'Manual note-taking and meeting coordination', benefit:'AI transcription with auto-extracted action items', recs:{q:'Use templates for agendas and minutes',m:'Deploy AI meeting assistant with transcription',s:'Intelligent meeting platform with auto-actions and follow-up tracking'}, ts:0.58 }
         ];
+
+        const SIGNAL_WORDS = {
+            manual_labor:  { words:['manually','by hand','manual process','hand-written','handwritten','do it ourselves','person has to','someone has to'], boost:0.15 },
+            repetition:    { words:['every day','daily','every week','weekly','every month','monthly','recurring','repetitive','routine','repeatedly','each time','over and over'], boost:0.12 },
+            copy_paste:    { words:['copy paste','copy and paste','copy-paste','retype','re-type','re-enter','reenter','swivel chair','toggle between'], boost:0.15 },
+            spreadsheet:   { words:['spreadsheet','excel','google sheets','csv','workbook','vlookup','pivot table'], boost:0.10 },
+            email_based:   { words:['email-based','via email','send email','email chain','inbox','outlook','email back and forth'], boost:0.08 },
+            time_waste:    { words:['hours spent','takes hours','all day','time-consuming','time consuming','tedious','labor-intensive','labour-intensive','takes forever','waste time','painful','slow process'], boost:0.12 },
+            error_prone:   { words:['error-prone','error prone','mistakes','inaccurate','mistype','wrong data','keeps breaking','always errors','fat finger'], boost:0.10 },
+            high_volume:   { words:['hundreds','thousands','high volume','high-volume','bulk','batch','large number','tons of','massive amount'], boost:0.10 },
+            waiting:       { words:['waiting for','wait for','pending','bottleneck','backlog','queue','delayed','stuck','held up','blocked by'], boost:0.08 },
+            paper_based:   { words:['paper','printed','printout','physical copy','filing cabinet','binder','paper trail'], boost:0.12 }
+        };
+
+        const ANTI_SIGNAL_WORDS = {
+            strategic:     { words:['strategic','strategy','vision','long-term','big picture'], penalty:-0.12 },
+            creative:      { words:['creative','brainstorm','ideation','design thinking','innovation','artistic','craft'], penalty:-0.15 },
+            judgment:      { words:['judgment','judgement','discretion','intuition','gut feeling','professional opinion','expert knowledge'], penalty:-0.12 },
+            negotiation:   { words:['negotiate','negotiation','bargain','mediate','arbitrate','deal-making'], penalty:-0.15 },
+            relationship:  { words:['relationship','rapport','trust-building','mentoring','coaching','networking'], penalty:-0.10 },
+            emotional:     { words:['empathy','emotional','counseling','sensitive','compassion','human touch','personal connection'], penalty:-0.12 },
+            novel:         { words:['novel','unprecedented','first-time','unique situation','edge case','exception','one-off','ad hoc'], penalty:-0.08 }
+        };
+
+        const PAIN_CATEGORIES = {
+            bottleneck:     { keys:['slow','delay','bottleneck','waiting','backlog','queue','stuck','pending','takes too long','forever'], label:'Process Bottlenecks', potentialBoost:0.05, priorityBoost:1.5, recs:{q:'Map and eliminate top 3 bottlenecks with parallel processing',m:'Implement SLA-based escalation and automated routing',s:'Deploy process mining to continuously identify and resolve bottlenecks'} },
+            errors:         { keys:['error','mistake','accuracy','inaccurate','wrong','incorrect','mistype','rework','redo','fix'], label:'Error & Rework', potentialBoost:0.06, priorityBoost:1.8, recs:{q:'Add validation rules and required-field checks at input points',m:'Implement automated cross-system data integrity checks',s:'Deploy AI-powered anomaly detection with continuous quality monitoring'} },
+            duplication:    { keys:['duplicate','redundant','double entry','copy paste','re-enter','multiple systems','double handling','twice','two places'], label:'Duplicate Work', potentialBoost:0.08, priorityBoost:2.0, recs:{q:'Consolidate duplicate data entry points',m:'Establish single source of truth with API-based sync',s:'Build unified data platform eliminating all manual re-entry'} },
+            visibility:     { keys:['no visibility','cant see','dont know','black box','no tracking','unclear status','lack of insight','no dashboard','where is','status unknown'], label:'Lack of Visibility', potentialBoost:0.04, priorityBoost:1.3, recs:{q:'Create shared status tracker with real-time updates',m:'Build automated dashboards with KPI alerting',s:'Deploy end-to-end process analytics with predictive monitoring'} },
+            volume:         { keys:['high volume','too many','overwhelmed','overloaded','swamped','cant keep up','flood','backlog growing','drowning','mountain of'], label:'Volume Overload', potentialBoost:0.07, priorityBoost:1.8, recs:{q:'Implement batch processing and priority queuing',m:'Deploy RPA for high-volume repetitive tasks',s:'Build scalable AI processing pipeline with auto-scaling'} },
+            compliance_risk:{ keys:['compliance','audit','regulation','regulatory','risk','non-compliant','failed audit','finding','penalty'], label:'Compliance & Audit Risk', potentialBoost:0.03, priorityBoost:1.4, recs:{q:'Create compliance checklists with mandatory sign-offs',m:'Implement automated audit trail generation',s:'Deploy continuous compliance monitoring with real-time risk scoring'} },
+            communication:  { keys:['miscommunication','silos','no communication','email chain','lost email','unclear','confusion','coordination','disconnect','nobody knows'], label:'Communication Gaps', potentialBoost:0.04, priorityBoost:1.3, recs:{q:'Standardize notification templates and escalation paths',m:'Deploy workflow-triggered notifications with status updates',s:'Build integrated collaboration hub with AI-powered routing'} },
+            scaling:        { keys:['cant scale','doesnt scale','growth','expansion','increasing','more staff','hiring','growing fast','keep up with growth'], label:'Scalability Constraints', potentialBoost:0.06, priorityBoost:1.5, recs:{q:'Identify and automate top capacity constraints',m:'Build scalable workflow templates with self-service',s:'Implement AI-augmented operations that scale without proportional headcount'} },
+            cost:           { keys:['expensive','cost','budget','over budget','spend too much','waste','inefficient spend','too costly','burning money'], label:'Cost Pressure', potentialBoost:0.05, priorityBoost:1.6, recs:{q:'Quick spend analysis to identify top waste categories',m:'Automate cost-heavy manual processes with highest ROI',s:'Deploy comprehensive automation reducing operational cost 30-50%'} },
+            knowledge:      { keys:['knowledge loss','tribal knowledge','key person','single point','bus factor','undocumented','only one person','if they leave','institutional knowledge'], label:'Knowledge Risk', potentialBoost:0.04, priorityBoost:1.4, recs:{q:'Document top 5 critical processes with step-by-step SOPs',m:'Build searchable knowledge base with process documentation',s:'Deploy AI-powered knowledge capture and process standardization'} },
+            timeliness:     { keys:['deadline','late','missed deadline','overdue','behind schedule','time pressure','rush','crunch','cant finish on time'], label:'Timeliness Issues', potentialBoost:0.05, priorityBoost:1.5, recs:{q:'Implement deadline tracking with automated reminders',m:'Build SLA monitoring with proactive escalation',s:'Deploy predictive analytics for deadline risk and resource optimization'} },
+            data_quality:   { keys:['bad data','dirty data','inconsistent','data quality','unreliable','stale data','outdated','data doesnt match','conflicting data'], label:'Data Quality Issues', potentialBoost:0.06, priorityBoost:1.7, recs:{q:'Implement input validation and required-field rules',m:'Build automated data quality scoring and cleansing',s:'Deploy master data management with AI-powered stewardship'} },
+            customer_impact:{ keys:['customer complaint','client unhappy','poor experience','customer churn','lost customer','service quality','sla breach','customer frustrated'], label:'Customer Impact', potentialBoost:0.07, priorityBoost:2.0, recs:{q:'Identify and resolve top 3 customer-facing pain points',m:'Deploy automated customer communication and status tracking',s:'Build end-to-end customer experience automation with sentiment monitoring'} },
+            integration:    { keys:['no integration','disconnected','manual transfer','swivel chair','doesnt talk','not connected','standalone','cant connect','separate systems'], label:'System Integration Gaps', potentialBoost:0.06, priorityBoost:1.6, recs:{q:'Map integration requirements and data flows',m:'Build API-based connectors for top system pairs',s:'Deploy integration platform with real-time sync and unified data layer'} },
+            approval_delays:{ keys:['approval delay','waiting for approval','approval bottleneck','sign-off delay','authorization delay','stuck in approval','approver unavailable'], label:'Approval Delays', potentialBoost:0.05, priorityBoost:1.5, recs:{q:'Enable mobile approvals and set auto-approval thresholds',m:'Implement auto-routing with delegation and escalation',s:'Deploy intelligent approval orchestration with risk-based auto-decisions'} }
+        };
+
+        const INDUSTRY_BENCHMARKS = {
+            'Financial Services': { avg:42, top:68, areas:'reconciliation, compliance monitoring, and financial reporting', note:'Financial services leads in compliance automation but lags in customer-facing AI' },
+            'Healthcare': { avg:31, top:52, areas:'clinical documentation, billing, and patient scheduling', note:'Healthcare adoption accelerating post-pandemic in telehealth and documentation' },
+            'Manufacturing': { avg:38, top:61, areas:'quality control, predictive maintenance, and supply chain optimization', note:'Industry 4.0 driving rapid adoption of IoT-integrated AI' },
+            'Retail': { avg:35, top:58, areas:'inventory management, demand forecasting, and personalized marketing', note:'Omnichannel operations creating new automation opportunities' },
+            'Technology': { avg:52, top:78, areas:'CI/CD pipelines, incident management, and customer support', note:'Technology sector leads overall automation adoption in DevOps and MLOps' },
+            'Government': { avg:22, top:38, areas:'document processing, citizen services, and compliance reporting', note:'Government automation growing steadily driven by digital service mandates' },
+            'Energy & Utilities': { avg:33, top:55, areas:'asset monitoring, field operations, and regulatory compliance', note:'Smart grid and IoT driving new automation categories' },
+            'Professional Services': { avg:36, top:59, areas:'time tracking, document generation, and client reporting', note:'AI augmentation of knowledge work is the fastest-growing segment' },
+            'Education': { avg:25, top:42, areas:'enrollment processing, grading, and student communications', note:'EdTech and LMS adoption accelerating administrative automation' },
+            'Telecommunications': { avg:44, top:67, areas:'network monitoring, customer service, and billing operations', note:'Telecom leveraging AI for network optimization and churn prevention' },
+            'Real Estate': { avg:28, top:45, areas:'lease management, property marketing, and tenant communications', note:'PropTech driving automation in property management and transactions' },
+            'Non-profit / NGO': { avg:20, top:35, areas:'donor management, grant reporting, and program tracking', note:'Cost-effective automation tools making AI accessible to mission-driven organizations' },
+            'Logistics & Transportation': { avg:40, top:63, areas:'route optimization, fleet management, and shipment tracking', note:'Real-time visibility and autonomous systems transforming logistics' },
+            'Media & Entertainment': { avg:34, top:56, areas:'content tagging, rights management, and audience analytics', note:'Generative AI creating new automation categories in content production' }
+        };
 
         const INDUSTRY_CONTEXT = {
             'Financial Services': { focus: 'regulatory compliance, risk management, and audit trails', aiBoost: 5 },
@@ -1699,108 +1881,387 @@
             'Compliance & Risk': { focus: 'regulatory adherence, risk assessment, and audit readiness', aiBoost: 3, keywords: ['audit','compliance','risk','control','regulation','policy','monitoring','report','assessment','sox'], rec: 'Implement continuous compliance monitoring with automated audit trail generation and risk scoring' }
         };
 
+        /* ── Stemmer ── */
+        function simpleStem(word) {
+            if (word.length < 4) return word;
+            const suffixes = ['mentation','ization','isation','fulness','ating','ition','ation','ment','ness','ible','able','ting','ling','ring','sing','tion','sion','ing','ies','ied','ion','ous','ive','ed','er','ly','al','es','or'];
+            for (const suf of suffixes) {
+                if (word.endsWith(suf) && word.length - suf.length >= 3) return word.slice(0, -suf.length);
+            }
+            return word;
+        }
+
+        /* ── Score a step against one KB entry ── */
+        function scoreStepAgainstEntry(words, lower, stemmedWords, entry, deptKeys) {
+            let score = 0, matched = [];
+            /* Primary key + synonym matching (combined in keys array) */
+            for (const key of entry.keys) {
+                if (lower.includes(key)) {
+                    const wc = key.split(' ').length;
+                    /* First 3 keys are primary (weight 3), rest are synonyms (weight 1.5) */
+                    const weight = entry.keys.indexOf(key) < 3 ? 3.0 : 1.5;
+                    score += weight * wc;
+                    matched.push(key);
+                    if (deptKeys && deptKeys.includes(key)) score += 1.0;
+                }
+            }
+            /* Stem matching */
+            if (entry.stems) {
+                for (const stem of entry.stems) {
+                    const stemHit = stemmedWords.some(sw => sw.startsWith(stem) && sw.length >= stem.length);
+                    if (stemHit && !matched.some(m => m.includes(stem))) {
+                        score += 0.8;
+                    }
+                }
+            }
+            /* Verb-noun pair matching */
+            if (entry.vn) {
+                for (const [verb, noun] of entry.vn) {
+                    const hasVerb = lower.includes(verb) || stemmedWords.some(sw => sw.startsWith(simpleStem(verb)));
+                    const hasNoun = lower.includes(noun) || stemmedWords.some(sw => sw.startsWith(simpleStem(noun)));
+                    if (hasVerb && hasNoun) {
+                        score += 4.0;
+                        matched.push(verb + ' ' + noun);
+                    }
+                }
+            }
+            return { score, matched };
+        }
+
+        /* ── Detect effort/volume/frequency ── */
+        function detectEffort(text) {
+            const l = text.toLowerCase();
+            let freq = 1, dur = 1, vol = 1;
+            if (/\bdail(y|i)\b|\bevery\s*day\b/i.test(l)) freq = Math.max(freq, 2.5);
+            if (/\bweekly\b|\bevery\s*week\b/i.test(l)) freq = Math.max(freq, 1.8);
+            if (/\bmonthly\b|\bevery\s*month\b/i.test(l)) freq = Math.max(freq, 1.3);
+            if (/\bconstantly\b|\bcontinuously\b|\ball\s*the\s*time\b/i.test(l)) freq = Math.max(freq, 3.0);
+            const freqNum = l.match(/\b(\d+)\s*times?\s*(?:per|a|each)\s*(?:day|daily)\b/i);
+            if (freqNum) freq = Math.max(freq, Math.min(parseInt(freqNum[1]) * 0.5, 5.0));
+            if (/\ball\s*day\b|\bfull\s*day\b|\bentire\s*day\b/i.test(l)) dur = Math.max(dur, 4.0);
+            if (/\bseveral\s*hours\b|\bmany\s*hours\b|\bhours\s*spent\b|\btakes\s*hours\b/i.test(l)) dur = Math.max(dur, 2.5);
+            const durNum = l.match(/\b(\d+)\s*hours?\b/i);
+            if (durNum) dur = Math.max(dur, 1 + Math.min(parseInt(durNum[1]) * 0.3, 3.0));
+            if (/\bhundreds\b/i.test(l)) vol = Math.max(vol, 2.0);
+            if (/\bthousands\b/i.test(l)) vol = Math.max(vol, 3.5);
+            const bigNum = l.match(/\b(\d{3,})\b/);
+            if (bigNum) vol = Math.max(vol, 1 + Math.min(parseInt(bigNum[1]) / 500, 3.0));
+            return Math.min(freq * dur * vol, 10.0);
+        }
+
+        /* ── Analyze a single step (v2) ── */
+        function analyzeStepV2(stepText, department, industry) {
+            const lower = stepText.toLowerCase();
+            const words = lower.split(/[\s,;:.!?()]+/).filter(w => w.length > 1);
+            const stemmedWords = words.map(simpleStem);
+            const deptCtx = DEPARTMENT_CONTEXT[department];
+            const deptKeys = deptCtx ? deptCtx.keywords : [];
+
+            /* Score against all KB entries */
+            let results = [];
+            for (const entry of STEP_KB) {
+                const { score, matched } = scoreStepAgainstEntry(words, lower, stemmedWords, entry, deptKeys);
+                if (score >= 0.8) results.push({ entry, score, matched });
+            }
+            results.sort((a, b) => b.score - a.score);
+            const topMatches = results.slice(0, 3);
+
+            /* Base potential from best match or default */
+            let basePotential, cat, state, benefit, recs, primaryId;
+            if (topMatches.length > 0) {
+                const best = topMatches[0].entry;
+                basePotential = best.potential;
+                cat = best.cat;
+                state = best.state;
+                benefit = best.benefit;
+                recs = best.recs;
+                primaryId = best.id;
+            } else {
+                basePotential = 0.45;
+                cat = 'human';
+                state = 'Current process requires manual effort';
+                benefit = 'Efficiency gains through standardization and partial automation';
+                recs = { q:'Standardize workflow steps and document procedures', m:'Evaluate targeted automation for repetitive elements', s:'Build end-to-end workflow automation with exception handling' };
+                primaryId = 'UNMATCHED';
+            }
+
+            /* Signal word boosts */
+            let boosters = [], reducers = [];
+            for (const [key, sig] of Object.entries(SIGNAL_WORDS)) {
+                for (const w of sig.words) {
+                    if (lower.includes(w)) { basePotential += sig.boost; boosters.push(w); break; }
+                }
+            }
+            for (const [key, sig] of Object.entries(ANTI_SIGNAL_WORDS)) {
+                for (const w of sig.words) {
+                    if (lower.includes(w)) { basePotential += sig.penalty; reducers.push(w); break; }
+                }
+            }
+
+            /* Secondary match influence */
+            for (let i = 1; i < topMatches.length; i++) {
+                basePotential += topMatches[i].score * 0.02;
+            }
+
+            /* Industry boost from KB entry */
+            if (topMatches.length > 0 && topMatches[0].entry.industryBoosts) {
+                basePotential += topMatches[0].entry.industryBoosts[industry] || 0;
+            }
+
+            basePotential = Math.max(0.10, Math.min(0.95, basePotential));
+            const potentialLabel = basePotential >= 0.70 ? 'High' : basePotential >= 0.40 ? 'Medium' : 'Low';
+
+            /* Confidence */
+            const topScore = topMatches.length > 0 ? topMatches[0].score : 0;
+            const secondScore = topMatches.length > 1 ? topMatches[1].score : 0;
+            const matchedCount = topMatches.length > 0 ? topMatches[0].matched.length : 0;
+            let confidence;
+            if (topScore >= 8.0 && matchedCount >= 3) confidence = 'High';
+            else if (topScore >= 4.0 && (topScore - secondScore) >= 2.0) confidence = 'High';
+            else if (topScore >= 3.0) confidence = 'Medium';
+            else confidence = 'Low';
+
+            const effortWeight = detectEffort(stepText);
+
+            return {
+                stepName: stepText,
+                automationPotential: basePotential,
+                potentialLabel,
+                cat,
+                currentState: state,
+                benefit,
+                recs,
+                confidence,
+                effortWeight,
+                signals: { boosters, reducers },
+                primaryId,
+                complexity: topMatches.length > 0 ? topMatches[0].entry.complexity : 0.5,
+                timeSavings: topMatches.length > 0 ? (topMatches[0].entry.ts || 0.5) : 0.3
+            };
+        }
+
+        /* ── Pain point analysis ── */
+        function analyzePainPoints(painText, analyzedSteps) {
+            const matched = [];
+            const lower = (painText || '').toLowerCase().replace(/['']/g, '');
+            const stepTexts = analyzedSteps.map(s => s.stepName.toLowerCase().replace(/['']/g, ''));
+            for (const [id, cat] of Object.entries(PAIN_CATEGORIES)) {
+                let found = false;
+                for (const kw of cat.keys) {
+                    if (lower.includes(kw)) { found = true; break; }
+                    for (const st of stepTexts) { if (st.includes(kw)) { found = true; break; } }
+                    if (found) break;
+                }
+                if (found) matched.push({ id, ...cat });
+            }
+            return { matched, painScore: Math.min(matched.length / 10, 1.0) };
+        }
+
+        /* ── Workload calculation v2 ── */
+        function calcWorkloadV2(analyzedSteps, industry, department) {
+            let aiW = 0, humanW = 0, sysW = 0, totalW = 0;
+            for (const s of analyzedSteps) {
+                const w = s.effortWeight;
+                totalW += w;
+                const p = s.automationPotential;
+                const rem = 1 - p;
+                if (s.cat === 'ai') { aiW += w * p; humanW += w * rem * 0.3; sysW += w * rem * 0.7; }
+                else if (s.cat === 'system') { sysW += w * p; humanW += w * rem * 0.5; aiW += w * rem * 0.5; }
+                else { humanW += w * 0.6; aiW += w * p * 0.3; sysW += w * p * 0.1; }
+            }
+            let sum = aiW + humanW + sysW || 1;
+            let ai = Math.round((aiW / sum) * 100);
+            let human = Math.round((humanW / sum) * 100);
+            let sys = 100 - ai - human;
+            /* Content-derived industry/dept boost */
+            const indBoost = (INDUSTRY_CONTEXT[industry] || {}).aiBoost || 0;
+            const deptBoost = (DEPARTMENT_CONTEXT[department] || {}).aiBoost || 0;
+            const relevantSteps = analyzedSteps.filter(s => s.primaryId !== 'UNMATCHED').length;
+            const relevance = relevantSteps / (analyzedSteps.length || 1);
+            const contextBoost = Math.round(((indBoost + deptBoost) / 2) * relevance);
+            ai = Math.min(95, ai + contextBoost);
+            human = Math.max(5, human - contextBoost);
+            /* Ensure sum = 100 */
+            const s2 = ai + human + sys;
+            if (s2 !== 100) {
+                const diff = 100 - s2;
+                if (ai >= human && ai >= sys) ai += diff;
+                else if (human >= sys) human += diff;
+                else sys += diff;
+            }
+            return { ai, human, system: Math.max(0, sys) };
+        }
+
+        /* ── Readiness Score (0-100) ── */
+        function computeReadinessScore(analyzedSteps, workload, industry, department, painAnalysis) {
+            const n = analyzedSteps.length || 1;
+            /* 1. Automation Potential (40 pts) */
+            const avgP = analyzedSteps.reduce((s, x) => s + x.automationPotential, 0) / n;
+            const highCount = analyzedSteps.filter(x => x.potentialLabel === 'High').length;
+            const apScore = Math.min(40, (avgP * 28) + ((highCount / n) * 12));
+
+            /* 2. Process Maturity (25 pts) */
+            const stepPts = n >= 3 && n <= 8 ? 5 : n >= 9 && n <= 15 ? 3 : 1;
+            const highConf = analyzedSteps.filter(x => x.confidence === 'High').length;
+            const confPts = Math.min(8, (highConf / n) * 8);
+            const avgSignals = analyzedSteps.reduce((s, x) => s + x.signals.boosters.length, 0) / n;
+            const sigPts = Math.min(8, avgSignals * 4);
+            const painPts = Math.min(4, (painAnalysis.matched.length || 0));
+            const pmScore = Math.min(25, stepPts + confPts + sigPts + painPts);
+
+            /* 3. Complexity (20 pts, inverted) */
+            const avgCx = analyzedSteps.reduce((s, x) => s + x.complexity, 0) / n;
+            const multiMatch = analyzedSteps.filter(x => x.primaryId !== 'UNMATCHED').length / n;
+            const cxFactor = avgCx * 0.6 + (1 - multiMatch) * 0.4;
+            const cxScore = Math.min(20, (1 - cxFactor) * 20);
+
+            /* 4. Industry Fit (15 pts) */
+            const indB = (INDUSTRY_CONTEXT[industry] || {}).aiBoost || 3;
+            const deptB = (DEPARTMENT_CONTEXT[department] || {}).aiBoost || 3;
+            const ifScore = Math.min(15, (indB / 6) * 8 + (deptB / 5) * 7);
+
+            const overall = Math.round(Math.min(100, apScore + pmScore + cxScore + ifScore));
+            let label;
+            if (overall >= 80) label = 'Excellent \u2014 Strong automation candidate';
+            else if (overall >= 65) label = 'Strong \u2014 Significant automation opportunity';
+            else if (overall >= 45) label = 'Moderate \u2014 Targeted automation recommended';
+            else if (overall >= 25) label = 'Developing \u2014 Foundational improvements first';
+            else label = 'Early Stage \u2014 Process standardization needed';
+
+            return {
+                overall, label,
+                components: {
+                    automation: { score: Math.round(apScore), max: 40 },
+                    maturity:   { score: Math.round(pmScore), max: 25 },
+                    complexity: { score: Math.round(cxScore), max: 20 },
+                    industry:   { score: Math.round(ifScore), max: 15 }
+                }
+            };
+        }
+
+        /* ── ROI Estimation ── */
+        function estimateROI(analyzedSteps, workload, teamSize, hourlyCost) {
+            teamSize = teamSize || 5;
+            hourlyCost = hourlyCost || 50;
+            const baseHours = teamSize * 160;
+            const totalWeight = analyzedSteps.reduce((s, x) => s + x.effortWeight, 0);
+            const shareEst = Math.min(totalWeight / (analyzedSteps.length * 3), 0.40);
+            const monthlyHours = baseHours * shareEst;
+            const avgSavings = analyzedSteps.reduce((s, x) => s + x.timeSavings * x.effortWeight, 0) / (totalWeight || 1);
+            const conservative = Math.round(monthlyHours * avgSavings * 0.5);
+            const optimistic = Math.round(monthlyHours * avgSavings * 0.85);
+            const fmt = v => v < 10000 ? Math.round(v / 500) * 500 : Math.round(v / 1000) * 1000;
+            return {
+                hoursPerMonth: { conservative, optimistic },
+                annualSavings: { conservative: fmt(conservative * 12 * hourlyCost), optimistic: fmt(optimistic * 12 * hourlyCost) },
+                teamSize, hourlyCost
+            };
+        }
+
+        /* ── Phased Roadmap ── */
+        function generateRoadmap(analyzedSteps, painAnalysis, department) {
+            const quick = [], medium = [], strategic = [];
+            const seenQ = new Set(), seenM = new Set(), seenS = new Set();
+            /* From analyzed steps, sorted by potential */
+            const sorted = [...analyzedSteps].sort((a, b) => b.automationPotential - a.automationPotential);
+            for (const s of sorted) {
+                if (s.recs.q && !seenQ.has(s.recs.q) && quick.length < 4) { quick.push({ title: s.recs.q, impact: s.potentialLabel, source: s.stepName }); seenQ.add(s.recs.q); }
+                if (s.recs.m && !seenM.has(s.recs.m) && medium.length < 4) { medium.push({ title: s.recs.m, impact: s.potentialLabel, source: s.stepName }); seenM.add(s.recs.m); }
+                if (s.recs.s && !seenS.has(s.recs.s) && strategic.length < 3) { strategic.push({ title: s.recs.s, impact: s.potentialLabel, source: s.stepName }); seenS.add(s.recs.s); }
+            }
+            /* Department-level rec */
+            const deptCtx = DEPARTMENT_CONTEXT[department];
+            if (deptCtx && deptCtx.rec && !seenM.has(deptCtx.rec) && medium.length < 4) {
+                medium.push({ title: deptCtx.rec, impact: 'High', source: department }); seenM.add(deptCtx.rec);
+            }
+            /* Pain-driven recs */
+            for (const p of (painAnalysis.matched || [])) {
+                if (p.recs.q && !seenQ.has(p.recs.q) && quick.length < 4) { quick.push({ title: p.recs.q, impact: 'High', source: p.label }); seenQ.add(p.recs.q); }
+                if (p.recs.m && !seenM.has(p.recs.m) && medium.length < 4) { medium.push({ title: p.recs.m, impact: 'High', source: p.label }); seenM.add(p.recs.m); }
+                if (p.recs.s && !seenS.has(p.recs.s) && strategic.length < 3) { strategic.push({ title: p.recs.s, impact: 'High', source: p.label }); seenS.add(p.recs.s); }
+            }
+            return { quick, medium, strategic };
+        }
+
+        /* ── Recommendations v2 ── */
+        function generateRecsV2(analyzedSteps, painAnalysis, department) {
+            const recs = [];
+            const seen = new Set();
+            const deptCtx = DEPARTMENT_CONTEXT[department];
+            if (deptCtx && deptCtx.rec) { recs.push(deptCtx.rec); seen.add(deptCtx.rec); }
+            const sorted = [...analyzedSteps].sort((a, b) => b.automationPotential - a.automationPotential);
+            for (const s of sorted) {
+                if (s.recs.m && !seen.has(s.recs.m) && recs.length < 6) { recs.push(s.recs.m); seen.add(s.recs.m); }
+            }
+            for (const p of (painAnalysis.matched || [])) {
+                if (p.recs.m && !seen.has(p.recs.m) && recs.length < 6) { recs.push(p.recs.m); seen.add(p.recs.m); }
+            }
+            return recs.slice(0, 6);
+        }
+
+        /* ── Summary v2 ── */
+        function generateSummaryV2(steps, industry, department, painAnalysis, readiness) {
+            const n = steps.length;
+            const highCount = steps.filter(s => s.potentialLabel === 'High').length;
+            const medCount = steps.filter(s => s.potentialLabel === 'Medium').length;
+            const indCtx = INDUSTRY_CONTEXT[industry];
+            const deptCtx = DEPARTMENT_CONTEXT[department];
+            let summary = `Analyzed ${n} workflow step${n !== 1 ? 's' : ''} across your ${department || 'organization'} with a readiness score of ${readiness.overall}/100 (${readiness.label.split(' \u2014 ')[0]}).`;
+            if (highCount > 0) summary += ` ${highCount} step${highCount > 1 ? 's show' : ' shows'} high automation potential.`;
+            if (medCount > 0) summary += ` ${medCount} step${medCount > 1 ? 's have' : ' has'} medium potential with targeted improvements.`;
+            if (indCtx) summary += ` Given your ${industry.toLowerCase()} context, we recommend prioritizing ${indCtx.focus}.`;
+            if (deptCtx) summary += ` For ${department}, key opportunity areas are ${deptCtx.focus}.`;
+            if (painAnalysis.matched.length > 0) {
+                const painLabels = painAnalysis.matched.slice(0, 3).map(p => p.label.toLowerCase()).join(', ');
+                summary += ` Detected pain patterns: ${painLabels}.`;
+            }
+            return summary;
+        }
+
+        /* ── Gauge SVG builder ── */
+        function buildGaugeSVG(score) {
+            const r = 70, cx = 90, cy = 85, sw = 10;
+            const startAng = Math.PI, endAng = 0;
+            const scoreAng = Math.PI - (score / 100) * Math.PI;
+            function polar(ang) { return { x: cx + r * Math.cos(ang), y: cy - r * Math.sin(ang) }; }
+            /* Background arc */
+            const bgS = polar(startAng), bgE = polar(endAng);
+            const bgPath = `M${bgS.x},${bgS.y} A${r},${r} 0 0,1 ${bgE.x},${bgE.y}`;
+            /* Score arc */
+            const scE = polar(scoreAng);
+            const largeArc = (Math.PI - scoreAng) > Math.PI ? 1 : 0;
+            const scPath = `M${bgS.x},${bgS.y} A${r},${r} 0 ${largeArc},1 ${scE.x},${scE.y}`;
+            /* Color based on score */
+            let color;
+            if (score >= 80) color = '#27AE60';
+            else if (score >= 65) color = '#1a5bba';
+            else if (score >= 45) color = '#D4922E';
+            else if (score >= 25) color = '#E67E22';
+            else color = '#C0392B';
+            return `<svg viewBox="0 0 180 100" width="220" xmlns="http://www.w3.org/2000/svg">
+                <path d="${bgPath}" fill="none" stroke="#E8E4DF" stroke-width="${sw}" stroke-linecap="round"/>
+                <path d="${scPath}" fill="none" stroke="${color}" stroke-width="${sw}" stroke-linecap="round" class="gauge-fill"/>
+                <text x="${cx}" y="${cy - 8}" text-anchor="middle" font-family="var(--serif)" font-size="32" font-weight="400" fill="var(--ink)">${score}</text>
+                <text x="${cx}" y="${cy + 8}" text-anchor="middle" font-family="var(--mono)" font-size="6" font-weight="600" fill="var(--ink-4)" text-transform="uppercase" letter-spacing="0.5">READINESS SCORE</text>
+            </svg>`;
+        }
+
         function parseSteps(text) {
             let steps = [];
-            // Try numbered list first: "1. xxx 2. xxx" or "1) xxx 2) xxx"
             const numbered = text.match(/(?:^|\n)\s*\d+[\.\)]\s*[^\n\d]+/g);
             if (numbered && numbered.length >= 2) {
                 steps = numbered.map(s => s.replace(/^\s*\d+[\.\)]\s*/, '').trim());
             } else {
-                // Try dash/bullet list
-                const dashed = text.match(/(?:^|\n)\s*[-–—•]\s*[^\n-–—•]+/g);
+                const dashed = text.match(/(?:^|\n)\s*[-\u2013\u2014\u2022]\s*[^\n\-\u2013\u2014\u2022]+/g);
                 if (dashed && dashed.length >= 2) {
-                    steps = dashed.map(s => s.replace(/^\s*[-–—•]\s*/, '').trim());
+                    steps = dashed.map(s => s.replace(/^\s*[-\u2013\u2014\u2022]\s*/, '').trim());
                 } else {
-                    // Split by comma, "and", semicolons, or sentences
                     steps = text.split(/[,;]\s*|\s+(?:and|then|followed by|next|after that)\s+/i)
                         .map(s => s.replace(/^[\s.]+|[\s.]+$/g, '').trim())
                         .filter(s => s.length > 2);
                 }
             }
-            // Capitalize first letter
             return steps.map(s => s.charAt(0).toUpperCase() + s.slice(1)).filter(s => s.length > 0);
-        }
-
-        function analyzeStep(stepText, department) {
-            const lower = stepText.toLowerCase();
-            const deptCtx = DEPARTMENT_CONTEXT[department];
-            const deptKeys = deptCtx ? deptCtx.keywords : [];
-            let bestMatch = null, bestScore = 0;
-            for (const entry of STEP_KB) {
-                let score = 0;
-                for (const key of entry.keys) {
-                    if (lower.includes(key)) {
-                        score += key.split(' ').length;
-                        // Boost score if keyword also matches department context
-                        if (deptKeys.includes(key)) score += 1;
-                    }
-                }
-                if (score > bestScore) { bestScore = score; bestMatch = entry; }
-            }
-            if (bestMatch) {
-                return { stepName: stepText, currentState: bestMatch.state, automationPotential: bestMatch.potential, benefit: bestMatch.benefit, cat: bestMatch.cat, rec: bestMatch.rec };
-            }
-            // Default: assume medium potential, human category
-            return { stepName: stepText, currentState: 'Current process requires manual effort', automationPotential: 'Medium', benefit: 'Efficiency gains through standardization', cat: 'human', rec: 'Evaluate workflow for standardization and partial automation opportunities' };
-        }
-
-        function calcWorkload(analyzedSteps, industry, department) {
-            let ai = 0, human = 0, system = 0, total = analyzedSteps.length || 1;
-            for (const s of analyzedSteps) {
-                if (s.cat === 'ai') ai++; else if (s.cat === 'system') system++; else human++;
-            }
-            let aiPct = Math.round((ai / total) * 100);
-            let humanPct = Math.round((human / total) * 100);
-            let sysPct = Math.round((system / total) * 100);
-            // Apply industry + department AI boosts
-            const indBoost = (INDUSTRY_CONTEXT[industry] || {}).aiBoost || 0;
-            const deptBoost = (DEPARTMENT_CONTEXT[department] || {}).aiBoost || 0;
-            aiPct = Math.min(85, aiPct + Math.round((indBoost + deptBoost) / 2));
-            // Rebalance to 100
-            const sum = aiPct + humanPct + sysPct;
-            if (sum !== 100) {
-                const diff = 100 - sum;
-                humanPct += diff;
-            }
-            humanPct = Math.max(5, humanPct);
-            return { ai: aiPct, human: humanPct, system: sysPct };
-        }
-
-        function generateSummary(steps, industry, department, painPoints) {
-            const highCount = steps.filter(s => s.automationPotential === 'High').length;
-            const medCount = steps.filter(s => s.automationPotential === 'Medium').length;
-            const indCtx = INDUSTRY_CONTEXT[industry];
-            const deptCtx = DEPARTMENT_CONTEXT[department];
-            let summary = `Analyzed ${steps.length} workflow steps across your ${department || 'organization'}.`;
-            if (highCount > 0) summary += ` ${highCount} step${highCount > 1 ? 's show' : ' shows'} high automation potential.`;
-            if (medCount > 0) summary += ` ${medCount} step${medCount > 1 ? 's have' : ' has'} medium automation potential with targeted improvements.`;
-            if (indCtx) summary += ` Given your ${industry.toLowerCase()} context, we recommend prioritizing ${indCtx.focus}.`;
-            if (deptCtx) summary += ` For ${department}, the key opportunity areas are ${deptCtx.focus}.`;
-            if (painPoints) summary += ` Your noted pain points — ${painPoints} — align with the automation opportunities identified below.`;
-            return summary;
-        }
-
-        function generateRecs(analyzedSteps, painPoints, department) {
-            const recs = [];
-            const seen = new Set();
-            // Department-specific recommendation first
-            const deptCtx = DEPARTMENT_CONTEXT[department];
-            if (deptCtx) { recs.push(deptCtx.rec); seen.add(deptCtx.rec); }
-            // High-potential steps next
-            const sorted = [...analyzedSteps].sort((a, b) => {
-                const order = { High: 0, Medium: 1, Low: 2 };
-                return (order[a.automationPotential] || 2) - (order[b.automationPotential] || 2);
-            });
-            for (const s of sorted) {
-                if (!seen.has(s.rec) && recs.length < 6) { recs.push(s.rec); seen.add(s.rec); }
-            }
-            if (painPoints && recs.length < 6) {
-                const lower = painPoints.toLowerCase();
-                if (lower.includes('slow') || lower.includes('delay') || lower.includes('bottleneck')) recs.push('Implement SLA-based escalation to eliminate process bottlenecks');
-                if (lower.includes('error') || lower.includes('mistake') || lower.includes('accuracy')) recs.push('Add automated validation rules and cross-system data integrity checks');
-                if (lower.includes('duplicate') || lower.includes('redundan')) recs.push('Consolidate duplicate workflows and establish single source of truth');
-            }
-            return recs.slice(0, 6);
         }
 
         function buildFlowSVG(analyzedSteps) {
@@ -1811,7 +2272,6 @@
             const svgH = rows * (nodeH + 60) + padY;
             const colors = { ai: { fill: '#1B3A6B', text: '#FFFFFF' }, human: { fill: '#D4922E', text: '#FFFFFF' }, system: { fill: '#6B6B6B', text: '#FFFFFF' } };
             let nodes = '', arrows = '', positions = [];
-
             analyzedSteps.forEach((s, i) => {
                 const row = Math.floor(i / perRow);
                 const col = i % perRow;
@@ -1823,7 +2283,6 @@
                 nodes += `<rect x="${x}" y="${y}" width="${nodeW}" height="${nodeH}" rx="6" fill="${c.fill}" />`;
                 nodes += `<text x="${x + nodeW / 2}" y="${y + nodeH / 2 + 1}" text-anchor="middle" dominant-baseline="central" fill="${c.text}" font-size="11" font-weight="500">${label}</text>`;
             });
-
             for (let i = 0; i < positions.length - 1; i++) {
                 const a = positions[i], b = positions[i + 1];
                 const sameRow = Math.floor(i / perRow) === Math.floor((i + 1) / perRow);
@@ -1837,13 +2296,10 @@
                     arrows += `<path d="M${x1},${y1} L${x1},${y1 + 20} L${x2},${y2 - 20} L${x2},${y2}" fill="none" stroke="#C8C8C8" stroke-width="1.5" marker-end="url(#arrowhead)" />`;
                 }
             }
-
-            // Legend
             const legendY = svgH - 10;
             const legend = `<rect x="${padX}" y="${legendY}" width="10" height="10" rx="2" fill="#1B3A6B"/><text x="${padX + 14}" y="${legendY + 9}" font-size="10" fill="#6B6B6B">AI-automatable</text>`
                 + `<rect x="${padX + 110}" y="${legendY}" width="10" height="10" rx="2" fill="#D4922E"/><text x="${padX + 124}" y="${legendY + 9}" font-size="10" fill="#6B6B6B">Human-driven</text>`
                 + `<rect x="${padX + 220}" y="${legendY}" width="10" height="10" rx="2" fill="#6B6B6B"/><text x="${padX + 234}" y="${legendY + 9}" font-size="10" fill="#6B6B6B">System/integration</text>`;
-
             return `<svg viewBox="0 0 ${svgW} ${svgH + 20}" width="100%" xmlns="http://www.w3.org/2000/svg">
                 <defs><marker id="arrowhead" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#C8C8C8"/></marker></defs>
                 ${arrows}${nodes}${legend}
@@ -1855,6 +2311,8 @@
             const department = document.getElementById('dD').value;
             const workflow = document.getElementById('dP').value.trim();
             const painPoints = document.getElementById('dX').value.trim();
+            const teamSize = parseInt(document.getElementById('dTS').value) || 0;
+            const hourlyCost = parseInt(document.getElementById('dHC').value) || 0;
             if (!workflow) { alert('Please describe the workflow.'); return; }
 
             const loader = document.getElementById('dL');
@@ -1864,19 +2322,21 @@
             const trackEl = document.getElementById('dLTrack');
 
             btn.disabled = true;
-            results.classList.remove('show');
-            /* Reset any previous animation states */
+            results.classList.remove('show', 'visible');
             results.querySelectorAll('.anim-in').forEach(el => el.classList.remove('anim-in'));
             results.querySelectorAll('.diag-bar-fill').forEach(el => { el.style.width = '0'; });
-
             loader.classList.add('show');
 
             const phases = [
-                { label: 'Mapping workflows',             pct: 18  },
-                { label: 'Parsing process steps',         pct: 36  },
-                { label: 'Evaluating automation potential',pct: 58  },
-                { label: 'Analysing workload distribution',pct: 76 },
-                { label: 'Generating recommendations',    pct: 92  }
+                { label: 'Mapping workflows',             pct: 12 },
+                { label: 'Parsing process steps',         pct: 24 },
+                { label: 'Analyzing automation potential', pct: 38 },
+                { label: 'Detecting effort patterns',     pct: 50 },
+                { label: 'Evaluating pain points',        pct: 62 },
+                { label: 'Computing readiness score',     pct: 74 },
+                { label: 'Estimating ROI',                pct: 84 },
+                { label: 'Building implementation roadmap',pct: 92 },
+                { label: 'Generating recommendations',    pct: 98 }
             ];
 
             function showPhase(idx) {
@@ -1891,13 +2351,11 @@
                 }, 180);
             }
 
-            /* Kick off phases */
             showPhase(0);
             const phaseTimers = phases.slice(1).map((p, i) =>
-                setTimeout(() => showPhase(i + 1), (i + 1) * 340)
+                setTimeout(() => showPhase(i + 1), (i + 1) * 260)
             );
 
-            /* Do the actual work after a brief theatrical delay */
             setTimeout(() => {
                 phaseTimers.forEach(t => clearTimeout(t));
                 if (phaseEl) {
@@ -1910,35 +2368,34 @@
                 }
 
                 setTimeout(() => {
-                    // 1. Parse steps
                     const rawSteps = parseSteps(workflow);
-                    if (rawSteps.length === 0) { rawSteps.push(workflow.substring(0, 60)); }
-                    // 2. Analyze
-                    const analyzed = rawSteps.map(s => analyzeStep(s, department));
-                    // 3. Workload
-                    const workload = calcWorkload(analyzed, industry, department);
-                    // 4. Summary
-                    const summary = generateSummary(analyzed, industry, department, painPoints);
-                    // 5. Recs
-                    const recs = generateRecs(analyzed, painPoints, department);
-                    // 6. Render
+                    if (rawSteps.length === 0) rawSteps.push(workflow.substring(0, 80));
+                    const analyzed = rawSteps.map(s => analyzeStepV2(s, department, industry));
+                    const painAnalysis = analyzePainPoints(painPoints, analyzed);
+                    const workload = calcWorkloadV2(analyzed, industry, department);
+                    const readiness = computeReadinessScore(analyzed, workload, industry, department, painAnalysis);
+                    const roi = estimateROI(analyzed, workload, teamSize, hourlyCost);
+                    const roadmap = generateRoadmap(analyzed, painAnalysis, department);
+                    const recs = generateRecsV2(analyzed, painAnalysis, department);
+                    const summary = generateSummaryV2(analyzed, industry, department, painAnalysis, readiness);
+                    const benchmark = INDUSTRY_BENCHMARKS[industry] || null;
+
                     loader.classList.remove('show');
                     btn.disabled = false;
-                    renderResults({ summary, workload, steps: analyzed, recs });
+                    renderResults({ summary, workload, steps: analyzed, recs, readiness, roi, roadmap, painAnalysis, benchmark, industry, teamSize, hourlyCost });
                 }, 320);
-            }, 1900);
+            }, 2400);
         }
 
         function renderResults(data) {
             const r = document.getElementById('dR');
             function at(ms, fn) { setTimeout(fn, ms); }
 
-            /* ── Compute metric strip values ── */
-            const highCount = data.steps.filter(s => s.automationPotential === 'High').length;
-            const medCount  = data.steps.filter(s => s.automationPotential === 'Medium').length;
+            const highCount = data.steps.filter(s => s.potentialLabel === 'High').length;
+            const medCount  = data.steps.filter(s => s.potentialLabel === 'Medium').length;
             const autoShare = data.workload.ai;
 
-            /* ── Build metric strip (above summary) ── */
+            /* Metric strip (4 items) */
             const stripEl = document.getElementById('dMetric');
             stripEl.innerHTML = `
                 <div class="diag-metric">
@@ -1950,17 +2407,34 @@
                     <div class="diag-metric-label">Medium-Potential Steps</div>
                 </div>
                 <div class="diag-metric">
+                    <div class="diag-metric-val readiness">${data.readiness.overall}</div>
+                    <div class="diag-metric-label">Readiness Score</div>
+                </div>
+                <div class="diag-metric">
                     <div class="diag-metric-val auto">${autoShare}<span style="font-size:1rem">%</span></div>
-                    <div class="diag-metric-label">Est. Automation Share</div>
+                    <div class="diag-metric-label">Automation Share</div>
                 </div>`;
             stripEl.classList.remove('anim-in');
 
-            /* ── Summary ── */
+            /* Gauge */
+            const gaugeEl = document.getElementById('dGauge');
+            gaugeEl.innerHTML = buildGaugeSVG(data.readiness.overall)
+                + `<div class="diag-gauge-label">${data.readiness.label}</div>`
+                + `<div class="diag-gauge-components">`
+                + Object.entries(data.readiness.components).map(([k, v]) => {
+                    const labels = { automation: 'Automation', maturity: 'Maturity', complexity: 'Simplicity', industry: 'Industry Fit' };
+                    return `<div class="diag-gauge-comp"><div class="diag-gauge-comp-val">${v.score}/${v.max}</div><div class="diag-gauge-comp-label">${labels[k]}</div></div>`;
+                }).join('')
+                + `</div>`;
+            gaugeEl.style.display = '';
+            gaugeEl.classList.remove('anim-in');
+
+            /* Summary */
             const sumEl = document.getElementById('dS');
             sumEl.textContent = data.summary;
             sumEl.classList.remove('anim-in');
 
-            /* ── Bars ── */
+            /* Bars */
             const diEl = document.getElementById('dDi');
             diEl.innerHTML = ['ai', 'human', 'system'].map(k => {
                 const label = k === 'ai' ? 'AI Automatable' : k === 'human' ? 'Human-Driven' : 'System/Integration';
@@ -1968,12 +2442,41 @@
                 return `<div class="diag-bar-row"><div class="diag-bar-label">${label}</div><div class="diag-bar-track"><div class="diag-bar-fill ${k}" data-pct="${pct}"></div></div><div class="diag-bar-pct ${k}">0%</div></div>`;
             }).join('');
 
-            /* ── Step table ── */
-            const stepsEl = document.getElementById('dA');
-            stepsEl.innerHTML = `<div class="diag-steps-hd"><div>Step</div><div>Current State</div><div>Potential</div><div>Benefit</div></div>`
-                + data.steps.map(s => `<div class="diag-step"><div><div class="diag-sn">${s.stepName}</div></div><div class="diag-ss">${s.currentState}</div><div><span class="diag-pot ${s.automationPotential}">${s.automationPotential}</span></div><div class="diag-benefit">${s.benefit}</div></div>`).join('');
+            /* Benchmark */
+            const benchEl = document.getElementById('dBench');
+            if (data.benchmark) {
+                const pos = autoShare > data.benchmark.avg ? 'above' : autoShare < data.benchmark.avg ? 'below' : 'at';
+                benchEl.innerHTML = `<div class="diag-bench-title">Industry Context</div>`
+                    + `<p>Organizations in ${data.industry} typically automate <strong>${data.benchmark.avg}%</strong> of similar workflows, with top-quartile performers reaching <strong>${data.benchmark.top}%</strong>. Your assessed automation share of <strong>${autoShare}%</strong> positions you <strong>${pos}</strong> the industry average.</p>`
+                    + `<p style="margin-top:0.5rem;font-size:0.82rem;color:var(--ink-3)">Common automation areas: ${data.benchmark.areas}. ${data.benchmark.note}.</p>`;
+                benchEl.style.display = '';
+                benchEl.classList.remove('anim-in');
+            } else { benchEl.style.display = 'none'; }
 
-            /* ── Recommendations ── */
+            /* Step table (5 columns) */
+            const stepsEl = document.getElementById('dA');
+            stepsEl.innerHTML = `<div class="diag-steps-hd"><div>Step</div><div>Current State</div><div>Potential</div><div>Confidence</div><div>Benefit</div></div>`
+                + data.steps.map(s => `<div class="diag-step"><div><div class="diag-sn">${s.stepName}</div></div><div class="diag-ss">${s.currentState}</div><div><span class="diag-pot ${s.potentialLabel}">${s.potentialLabel}</span></div><div><span class="diag-conf ${s.confidence}">${s.confidence}</span></div><div class="diag-benefit">${s.benefit}</div></div>`).join('');
+
+            /* Roadmap */
+            const roadmapEl = document.getElementById('dRoadmap');
+            const hasRoadmap = data.roadmap.quick.length + data.roadmap.medium.length + data.roadmap.strategic.length > 0;
+            if (hasRoadmap) {
+                const arrow = '<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;flex-shrink:0;color:var(--ink-4);margin-top:2px"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>';
+                function phaseHTML(items, title, cls, timeframe) {
+                    if (items.length === 0) return '';
+                    return `<div class="diag-roadmap-phase ${cls}"><div class="diag-roadmap-phase-title">${title}<span class="diag-roadmap-time">${timeframe}</span></div>${items.map(it => `<div class="diag-roadmap-item">${arrow}<div>${it.title}</div></div>`).join('')}</div>`;
+                }
+                roadmapEl.innerHTML = `<div class="diag-roadmap-title">Implementation Roadmap</div><div class="diag-roadmap-grid">`
+                    + phaseHTML(data.roadmap.quick, 'Quick Wins', 'quick', '0\u20133 months')
+                    + phaseHTML(data.roadmap.medium, 'Medium-Term', 'medium', '3\u20136 months')
+                    + phaseHTML(data.roadmap.strategic, 'Strategic', 'strategic', '6\u201312 months')
+                    + `</div>`;
+                roadmapEl.style.display = '';
+                roadmapEl.classList.remove('anim-in');
+            } else { roadmapEl.style.display = 'none'; }
+
+            /* Recommendations */
             const recsEl = document.getElementById('dRecs');
             if (data.recs.length > 0) {
                 const arrow = '<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>';
@@ -1981,46 +2484,35 @@
                 recsEl.style.display = ''; recsEl.classList.remove('anim-in');
             } else { recsEl.style.display = 'none'; }
 
-            /* ── Flowchart ── */
-            const flowEl = document.getElementById('dFlow');
-            if (data.steps.length >= 2) {
-                flowEl.innerHTML = `<div class="diag-flow-title">Workflow Visualization</div>` + buildFlowSVG(data.steps);
-                flowEl.style.display = ''; flowEl.classList.remove('anim-in');
-            } else { flowEl.style.display = 'none'; }
+            /* ROI */
+            const roiEl = document.getElementById('dROI');
+            if (data.teamSize || data.hourlyCost) {
+                const roi = data.roi;
+                const fmtD = v => 'CAD $' + v.toLocaleString();
+                roiEl.innerHTML = `<div class="diag-roi-title">ROI Estimation</div>`
+                    + `<div class="diag-roi-grid">`
+                    + `<div class="diag-roi-item"><div class="diag-roi-label">Est. Hours Saved/Month</div><div class="diag-roi-vals"><span class="diag-roi-cons">${roi.hoursPerMonth.conservative} hrs</span><span class="diag-roi-sep">\u2013</span><span class="diag-roi-opt">${roi.hoursPerMonth.optimistic} hrs</span></div></div>`
+                    + `<div class="diag-roi-item"><div class="diag-roi-label">Est. Annual Savings</div><div class="diag-roi-vals"><span class="diag-roi-cons">${fmtD(roi.annualSavings.conservative)}</span><span class="diag-roi-sep">\u2013</span><span class="diag-roi-opt">${fmtD(roi.annualSavings.optimistic)}</span></div></div>`
+                    + `</div>`
+                    + `<div class="diag-roi-note">Based on team of ${roi.teamSize} at $${roi.hourlyCost}/hr. Conservative (50% realization) to optimistic (85% realization).</div>`;
+                roiEl.style.display = '';
+                roiEl.classList.remove('anim-in');
+            } else { roiEl.style.display = 'none'; }
 
-            /* ══ ORCHESTRATED REVEAL ══
-               t=0    container fades in (opacity 0→1)
-               t=60   metric strip lifts in
-               t=180  summary lifts in
-               t=340  bar 1 slides + fills
-               t=520  bar 2 slides + fills
-               t=700  bar 3 slides + fills
-               t=980  step rows cascade (80ms each)
-               t=+    recommendations + items
-               t=+    flowchart
-            */
-
-            /* Show container — opacity stays 0 until 'visible' */
+            /* ══ ORCHESTRATED REVEAL ══ */
             r.classList.add('show');
-            at(30, () => {
-                r.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                r.classList.add('visible');
-            });
-
-            /* Metric strip */
+            at(30, () => { r.scrollIntoView({ behavior: 'smooth', block: 'start' }); r.classList.add('visible'); });
             at(60,  () => { stripEl.classList.add('anim-in'); });
+            at(220, () => { gaugeEl.classList.add('anim-in'); });
+            at(450, () => { sumEl.classList.add('anim-in'); });
 
-            /* Summary */
-            at(190, () => { sumEl.classList.add('anim-in'); });
-
-            /* Bars: staggered 180ms apart, each fills after sliding in */
             const barRows = diEl.querySelectorAll('.diag-bar-row');
             barRows.forEach((row, i) => {
-                const slideAt = 350 + i * 190;
+                const slideAt = 620 + i * 190;
                 at(slideAt, () => {
                     row.classList.add('anim-in');
                     at(160, () => {
-                        const fill  = row.querySelector('.diag-bar-fill');
+                        const fill = row.querySelector('.diag-bar-fill');
                         const pctEl = row.querySelector('.diag-bar-pct');
                         const target = parseInt(fill.dataset.pct);
                         fill.style.width = target + '%';
@@ -2037,15 +2529,24 @@
                 });
             });
 
-            /* Step rows: cascade after all bars finish */
-            const stepRows = stepsEl.querySelectorAll('.diag-step');
-            const stepBase = 350 + barRows.length * 190 + 280;
-            stepRows.forEach((row, i) => {
-                at(stepBase + i * 80, () => { row.classList.add('anim-in'); });
-            });
+            const benchAt = 620 + barRows.length * 190 + 200;
+            if (data.benchmark) at(benchAt, () => { benchEl.classList.add('anim-in'); });
 
-            /* Recommendations */
-            const recsBase = stepBase + stepRows.length * 80 + 140;
+            const stepRows = stepsEl.querySelectorAll('.diag-step');
+            const stepBase = benchAt + 280;
+            stepRows.forEach((row, i) => { at(stepBase + i * 80, () => { row.classList.add('anim-in'); }); });
+
+            const roadmapAt = stepBase + stepRows.length * 80 + 140;
+            if (hasRoadmap) {
+                at(roadmapAt, () => {
+                    roadmapEl.classList.add('anim-in');
+                    roadmapEl.querySelectorAll('.diag-roadmap-phase').forEach((phase, i) => {
+                        at(i * 150, () => { phase.classList.add('anim-in'); });
+                    });
+                });
+            }
+
+            const recsBase = roadmapAt + 500;
             at(recsBase, () => {
                 recsEl.classList.add('anim-in');
                 recsEl.querySelectorAll('.diag-rec-item').forEach((item, i) => {
@@ -2053,14 +2554,9 @@
                 });
             });
 
-            /* Flowchart: last, with SVG line draw-in */
-            at(recsBase + data.recs.length * 75 + 180, () => {
-                flowEl.classList.add('anim-in');
-                /* Stagger the individual SVG lines inside */
-                flowEl.querySelectorAll('svg line, svg path.flow-edge').forEach((el, i) => {
-                    el.style.animationDelay = (i * 60) + 'ms';
-                });
-            });
+            const roiAt = recsBase + data.recs.length * 75 + 180;
+            if (data.teamSize || data.hourlyCost) at(roiAt, () => { roiEl.classList.add('anim-in'); });
+
         }
 
         function resetD() {
@@ -2072,8 +2568,11 @@
             document.getElementById('dD').selectedIndex = 0;
             document.getElementById('dP').value = '';
             document.getElementById('dX').value = '';
+            const tsEl = document.getElementById('dTS'); if (tsEl) tsEl.value = '';
+            const hcEl = document.getElementById('dHC'); if (hcEl) hcEl.value = '';
             document.querySelector('.diag-body').scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
+
 
         /* ── Contact form ── */
         document.getElementById('cF').addEventListener('submit', async e => { e.preventDefault(); const f = e.target, b = f.querySelector('button[type="submit"]'), o = b.innerHTML; b.innerHTML = 'Sending...'; b.disabled = true; try { const r = await fetch(f.action, { method: 'POST', body: new FormData(f), headers: { 'Accept': 'application/json' } }); if (r.ok) { f.style.display = 'none'; document.getElementById('cfOk').classList.add('show'); } else throw 0; } catch { alert('Please email connect@unlock-solutions.com'); b.innerHTML = o; b.disabled = false; } });
