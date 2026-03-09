@@ -4197,9 +4197,92 @@
             return summary;
         }
 
+        /* ── Step-Instance Contextualization ── */
+        /* Tailors generic KB benefit/state text to the user's specific step.
+           The KB provides step-TYPE content (e.g., "invoice processing").
+           This function makes it step-INSTANCE specific (e.g., "matching invoices against POs"). */
+        function contextualizeStepContent(step, kbEntry, industry) {
+            const lower = step.stepName.toLowerCase();
+            const words = lower.split(/[\s,;:.!?()]+/).filter(w => w.length > 2);
+
+            /* Action verbs — extract the user's primary activity */
+            const verbs = ['receive','send','enter','match','route','post','generate','review','approve',
+                'check','verify','validate','collect','prepare','submit','process','handle','create',
+                'update','reconcile','compile','analyze','monitor','investigate','deploy','test','screen',
+                'schedule','assign','track','draft','extract','classify','translate','forecast','score',
+                'onboard','train','inspect','maintain','dispatch','configure','integrate','migrate',
+                'consolidate','audit','scan','search','format','distribute','notify','escalate',
+                'coordinate','manage','plan','organize','build','design','develop','write','run',
+                'conduct','complete','fulfill','resolve','sign','upload','download','publish','triage',
+                'archive','log','record','file','calculate','transfer','import','export','prioritize'];
+            const foundVerb = verbs.find(v => words.includes(v) || words.some(w => w.startsWith(v) && w.length <= v.length + 4));
+
+            /* Context nouns — what the step operates on */
+            const nouns = ['invoice','report','document','data','email','ticket','order','payment',
+                'record','form','contract','account','claim','budget','schedule','plan','application',
+                'request','file','spreadsheet','ledger','receipt','vendor','customer','employee',
+                'candidate','resume','letter','template','code','test','alert','log','error','meeting',
+                'presentation','proposal','compliance','audit','inventory','asset','equipment',
+                'shipment','requisition','purchase order','journal','reconciliation','approval',
+                'expense','credit','pipeline','lead','forecast','risk','incident','deployment'];
+            const foundNouns = nouns.filter(n => lower.includes(n));
+
+            /* Build a concise activity phrase from the user's step */
+            let activity = '';
+            let verbIng = '';
+            if (foundVerb) {
+                /* Handle gerund: drop trailing 'e' before -ing; double final consonant for CVC pattern */
+                const doublers = new Set(['submit','plan','run','log','scan','format','transfer']);
+                if (foundVerb.endsWith('e')) {
+                    verbIng = foundVerb.slice(0, -1) + 'ing';
+                } else if (doublers.has(foundVerb)) {
+                    verbIng = foundVerb + foundVerb.slice(-1) + 'ing';
+                } else {
+                    verbIng = foundVerb + 'ing';
+                }
+            }
+            if (foundVerb && foundNouns.length > 0) {
+                activity = verbIng + ' ' + foundNouns.slice(0, 2).join(' and ');
+            } else if (foundVerb) {
+                /* Verb only — use the step name truncated */
+                activity = verbIng + ' this step';
+            } else if (foundNouns.length > 0) {
+                activity = foundNouns[0] + ' processing';
+            }
+
+            /* The key differentiator is the VERB — two steps with the same noun ("invoice")
+               but different verbs ("receive" vs "match" vs "route") MUST produce different text.
+               Check if the KB text already contains the specific verb+noun combination. */
+            const verbNounCombo = (foundVerb && foundNouns.length > 0)
+                ? foundVerb + '.*' + foundNouns[0] : null;
+
+            /* Contextualize current state — prefix with what the user actually does */
+            if (activity && step.currentState) {
+                const stLower = step.currentState.toLowerCase();
+                /* Only skip contextualization if the FULL verb+noun combo is already present */
+                const comboPresent = verbNounCombo && new RegExp(verbNounCombo, 'i').test(stLower);
+                if (!comboPresent) {
+                    const base = step.currentState.charAt(0).toLowerCase() + step.currentState.slice(1);
+                    step.currentState = `For the ${activity} step: ${base}`;
+                }
+            }
+
+            /* Contextualize benefit — connect the automation outcome to the user's specific action */
+            if (activity && step.benefit) {
+                const bnLower = step.benefit.toLowerCase();
+                const comboPresent = verbNounCombo && new RegExp(verbNounCombo, 'i').test(bnLower);
+                if (!comboPresent) {
+                    const base = step.benefit.charAt(0).toLowerCase() + step.benefit.slice(1);
+                    step.benefit = `By automating the ${activity} step: ${base}`;
+                }
+            }
+
+            return step;
+        }
+
         /* ── Content Alignment Validator ── */
         /* Enforces strict process-domain locking across all output rows.
-           14 numbered rules map to user requirements. */
+           16 numbered rules map to user requirements. */
         function validateStepAlignment(analyzedSteps, industry, department) {
             const seenBenefits = new Set();
             const seenStates = new Set();
@@ -4235,7 +4318,7 @@
                 it: /\b(deploy|sprint|ci\/cd|code review|pull request|incident|outage|api gateway|kubernetes|devops|microservice|rollback)\b/i,
                 supply: /\b(warehouse|logistics|freight|shipment|carrier|bill of lading|pick list|3pl|purchase order|supplier|procurement cycle)\b/i,
                 legal: /\b(clause library|redline|litigation|deposition|precedent|statute|jurisdiction|estoppel|contract negotiat|legal hold)\b/i,
-                medical: /\b(patient|clinical|diagnosis|ehr|hipaa|treatment protocol|care plan|icd-10|medical record|referral)\b/i,
+                medical: /\b(patient|clinical|diagnosis|ehr|hipaa|treatment protocol|care plan|icd-10|medical record|referral|malpractice|credentialing|medical licens|facility privilege|privileging|clinical staff)\b/i,
                 support: /\b(ticket queue|sla breach|first.call resolution|customer complaint|call center|contact center|case escalat)\b/i,
                 sales: /\b(lead nurtur|pipeline|quota|territory|commission|sales funnel|prospect|cold call|deal stage|win rate)\b/i
             };
@@ -4258,6 +4341,12 @@
                     step.benefit = overlay ? overlay.benefit : kbEntry.benefit;
                     step.recs = { ...kbEntry.recs };
                     step.cat = kbEntry.cat;
+                }
+
+                /* ═══ RULE 1b: Step-instance contextualization ═══ */
+                /* Tailor generic KB text to reference the user's specific step description */
+                if (kbEntry) {
+                    contextualizeStepContent(step, kbEntry, industry);
                 }
 
                 /* ═══ RULE 2: Domain relevance — validate every row before output ═══ */
@@ -4322,23 +4411,24 @@
                 }
 
                 /* ═══ RULE 9: Prevent duplicate reuse of generic state/benefit across rows ═══ */
-                const baseBenefit = step.benefit.split(' — ')[0];
-                if (seenBenefits.has(baseBenefit)) {
+                /* Use full benefit/state text for dedup — Rule 1b's verb-based prefixes
+                   should already differentiate steps with the same KB entry.
+                   Only append disambiguation if truly identical after contextualization. */
+                if (seenBenefits.has(step.benefit)) {
                     if (step.primaryId !== 'UNMATCHED') {
                         const ctx = step.stepName.length > 40 ? step.stepName.substring(0, 40).trim() + '...' : step.stepName;
-                        step.benefit = baseBenefit + ' — as applied to ' + ctx.toLowerCase();
+                        step.benefit = step.benefit + ' — as applied to ' + ctx.toLowerCase();
                     }
                 }
-                seenBenefits.add(baseBenefit);
+                seenBenefits.add(step.benefit);
 
-                const baseState = step.currentState.split(' (')[0];
-                if (seenStates.has(baseState)) {
+                if (seenStates.has(step.currentState)) {
                     if (step.primaryId !== 'UNMATCHED') {
                         const ctx = step.stepName.length > 40 ? step.stepName.substring(0, 40).trim() + '...' : step.stepName;
-                        step.currentState = baseState + ' (for ' + ctx.toLowerCase() + ')';
+                        step.currentState = step.currentState + ' (for ' + ctx.toLowerCase() + ')';
                     }
                 }
-                seenStates.add(baseState);
+                seenStates.add(step.currentState);
 
                 /* ═══ RULE 10: Prevent duplicate recs across rows ═══ */
                 if (step.recs) {
@@ -4390,7 +4480,7 @@
                     s.techTier = 'AI-Assisted';
                 }
                 /* Ensure tech tier language doesn't contradict the current state */
-                if (s.techTier === 'Agentic AI' && /\bmanual\b/i.test(s.currentState) && s.cat === 'human') {
+                if (s.techTier === 'Agentic AI' && /\bmanual/i.test(s.currentState) && s.cat === 'human') {
                     s.techTier = 'AI-Assisted';
                 }
             }
@@ -4436,7 +4526,7 @@
             const medSteps = steps.filter(s => s.potentialLabel === 'Medium');
             const lowSteps = steps.filter(s => s.potentialLabel === 'Low');
 
-            /* Complete type labels for all 63 STEP_KB entries */
+            /* Complete type labels for all 69 STEP_KB entries */
             const typeLabels = {
                 'DATA_ENTRY': 'manual data entry', 'INVOICE_PROC': 'invoice processing',
                 'DOC_UNDERSTAND': 'document processing', 'DOC_SCANNING': 'document scanning',
@@ -4507,7 +4597,7 @@
             /* Build "today" — describe the actual workflow steps, not a blended summary */
             let today = '';
             const typeNames = Object.keys(stepsByType);
-            const manualCount = steps.filter(s => s.cat === 'human' || s.automationPotential < 0.5 || /\bmanual\b/i.test(s.currentState)).length;
+            const manualCount = steps.filter(s => s.cat === 'human' || s.automationPotential < 0.5 || /\bmanual/i.test(s.currentState)).length;
 
             if (typeNames.length > 0) {
                 /* List the specific step types found in this workflow */
