@@ -456,12 +456,6 @@
             letter-spacing: 0.08em; color: rgba(255,255,255,0.7); text-transform: uppercase;
         }
 
-        .diag-badge {
-            font-family: var(--mono); font-size: 0.58rem; font-weight: 600;
-            letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold);
-            background: rgba(245,200,0,0.12); padding: 0.25rem 0.6rem; border-radius: 100px;
-        }
-
         .diag-body { padding: 2.5rem; }
         .diag-body .btn-k { background: var(--gold); color: var(--blue-dd); }
         .diag-body .btn-k:hover { background: var(--gold-l); }
@@ -483,6 +477,113 @@
         .diag-f textarea { resize: vertical; min-height: 90px; }
         .diag-f input::placeholder, .diag-f textarea::placeholder { color: var(--ink-5); }
         .diag-f select { cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23A0A0A0' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; }
+
+        /* ── Wizard ── */
+        .diag-wizard-progress {
+            display: grid; grid-template-columns: repeat(5, 1fr); gap: 0;
+            margin-bottom: 2rem; position: relative;
+        }
+        .diag-wiz-seg {
+            display: flex; flex-direction: column; align-items: center; gap: 0.4rem;
+            position: relative; cursor: default;
+        }
+        .diag-wiz-seg::before {
+            content: ''; position: absolute; top: 13px; left: -50%; right: 50%;
+            height: 2px; background: var(--rule); z-index: 0;
+        }
+        .diag-wiz-seg:first-child::before { display: none; }
+        .diag-wiz-seg.done::before, .diag-wiz-seg.active::before { background: var(--blue); }
+        .diag-wiz-dot {
+            width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-family: var(--mono); font-size: 0.65rem; font-weight: 700;
+            background: var(--warm); color: var(--ink-4); border: 2px solid var(--rule);
+            position: relative; z-index: 1; transition: all 0.3s var(--ease);
+        }
+        .diag-wiz-seg.active .diag-wiz-dot { background: var(--blue); color: #FFFFFF; border-color: var(--blue); }
+        .diag-wiz-seg.done .diag-wiz-dot { background: var(--blue-xl); color: var(--blue); border-color: var(--blue); }
+        .diag-wiz-lbl {
+            font-family: var(--mono); font-size: 0.55rem; font-weight: 500;
+            text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-5);
+            transition: color 0.3s;
+        }
+        .diag-wiz-seg.active .diag-wiz-lbl { color: var(--blue); }
+        .diag-wiz-seg.done .diag-wiz-lbl { color: var(--ink-3); }
+
+        .diag-wizard-step { display: none; animation: wizFadeIn 0.35s var(--ease) both; }
+        .diag-wizard-step.active { display: block; }
+        @keyframes wizFadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Step review panel */
+        .diag-parsed-step { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem; }
+        .diag-parsed-num { font-family: var(--mono); font-size: 0.7rem; color: var(--ink-4); min-width: 1.5rem; text-align: right; }
+        .diag-parsed-input { flex: 1; font-family: var(--sans); font-size: 0.85rem; padding: 0.5rem 0.7rem; border: 1px solid var(--rule); border-radius: 6px; background: var(--warm); color: var(--ink); transition: border-color 0.2s; }
+        .diag-parsed-input:focus { outline: none; border-color: var(--blue); background: #fff; }
+        .diag-parsed-actions { display: flex; gap: 0.25rem; }
+        .diag-parsed-btn { background: none; border: 1px solid var(--rule); border-radius: 4px; padding: 0.3rem 0.45rem; cursor: pointer; color: var(--ink-4); font-size: 0.7rem; line-height: 1; transition: all 0.2s; display: inline-flex; align-items: center; }
+        .diag-parsed-btn:hover { border-color: var(--blue); color: var(--blue); }
+        .diag-parsed-btn.del:hover { border-color: #c0392b; color: #c0392b; }
+        .diag-parsed-add { display: inline-flex; align-items: center; gap: 0.35rem; background: none; border: 1px dashed var(--rule); border-radius: 6px; padding: 0.45rem 0.9rem; cursor: pointer; color: var(--ink-4); font-size: 0.78rem; font-family: var(--sans); margin-top: 0.25rem; transition: all 0.2s; }
+        .diag-parsed-add:hover { border-color: var(--blue); color: var(--blue); }
+        @media(max-width:580px) {
+            .diag-parsed-step { flex-wrap: wrap; }
+            .diag-parsed-input { min-width: 0; }
+        }
+
+        .diag-wiz-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 1.25rem; gap: 1rem; }
+        .btn-wiz-next, .btn-wiz-back {
+            display: inline-flex; align-items: center; gap: 0.4rem;
+            font-family: var(--sans); font-size: 0.82rem; font-weight: 600;
+            padding: 0.65rem 1.5rem; border: none; cursor: pointer;
+            transition: all 0.25s var(--ease); letter-spacing: 0.02em;
+        }
+        .btn-wiz-next {
+            background: var(--gold); color: var(--blue-dd);
+            margin-left: auto;
+        }
+        .btn-wiz-next:hover { background: var(--gold-l); transform: translateY(-1px); }
+        .btn-wiz-next svg, .btn-wiz-back svg { width: 14px; height: 14px; }
+        .btn-wiz-back {
+            background: none; color: var(--ink-3); border: 1px solid var(--rule);
+        }
+        .btn-wiz-back:hover { color: var(--ink); border-color: var(--ink-4); }
+
+        .diag-wiz-tip {
+            font-size: 0.78rem; color: var(--ink-4); line-height: 1.6;
+            margin-top: 0.75rem; padding: 0.6rem 0.8rem;
+            background: var(--warm); border-left: 2px solid var(--blue-xl);
+        }
+        .diag-wiz-header { margin-bottom: 1.5rem; }
+        .diag-wiz-header h3 { font-family: var(--serif); font-size: 1.15rem; font-weight: 500; color: var(--ink); margin-bottom: 0.4rem; }
+        .diag-wiz-header p { font-size: 0.85rem; color: var(--ink-3); line-height: 1.6; }
+
+        .diag-pain-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.25rem; }
+        .diag-pain-tag {
+            font-family: var(--sans); font-size: 0.78rem; font-weight: 500;
+            padding: 0.45rem 0.9rem; border: 1px solid var(--rule);
+            background: var(--bg); color: var(--ink-3); cursor: pointer;
+            transition: all 0.2s var(--ease); border-radius: 100px;
+        }
+        .diag-pain-tag:hover { border-color: var(--blue); color: var(--blue); }
+        .diag-pain-tag.selected { background: var(--blue); color: #FFFFFF; border-color: var(--blue); }
+
+        .diag-wiz-err {
+            font-size: 0.75rem; color: #C0392B; margin-top: 0.4rem;
+            animation: wizFadeIn 0.25s var(--ease) both;
+        }
+
+        /* ─ Keyboard focus styles ─ */
+        .diag-f select:focus-visible, .diag-f input:focus-visible, .diag-f textarea:focus-visible {
+            outline: 2px solid var(--blue); outline-offset: 2px; border-color: var(--blue);
+        }
+        .btn-wiz-next:focus-visible, .btn-wiz-back:focus-visible, .btn-k:focus-visible {
+            outline: 2px solid var(--blue); outline-offset: 2px;
+        }
+        .diag-pain-tag:focus-visible {
+            outline: 2px solid var(--blue); outline-offset: 2px;
+        }
+        .btn-reset:focus-visible {
+            outline: 2px solid var(--blue); outline-offset: 2px;
+        }
 
         .diag-results { display: none; padding: 2.5rem; border-top: 1px solid var(--rule); }
         .diag-results.show { display: block; }
@@ -512,8 +613,8 @@
         .diag-bar-pct.system { color: var(--ink-3); }
 
         /* ── Step analysis table ── */
-        .diag-steps-hd { display: grid; grid-template-columns: 1fr 140px 90px 80px 1fr; gap: 1rem; padding: 0.75rem 0; border-bottom: 2px solid var(--blue); font-family: var(--mono); font-size: 0.6rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-4); }
-        .diag-step { display: grid; grid-template-columns: 1fr 140px 90px 80px 1fr; gap: 1rem; align-items: center; padding: 1rem 0; border-bottom: 1px solid var(--rule); }
+        .diag-steps-hd { display: grid; grid-template-columns: 1fr 140px 120px 90px 80px 1fr; gap: 1rem; padding: 0.75rem 0; border-bottom: 2px solid var(--blue); font-family: var(--mono); font-size: 0.6rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-4); }
+        .diag-step { display: grid; grid-template-columns: 1fr 140px 120px 90px 80px 1fr; gap: 1rem; align-items: start; padding: 1rem 0; border-bottom: 1px solid var(--rule); }
         .diag-step:last-child { border-bottom: none; }
         .diag-sn { font-size: 0.88rem; font-weight: 600; }
         .diag-ss { font-size: 0.78rem; color: var(--ink-3); margin-top: 0.15rem; }
@@ -532,16 +633,29 @@
         .diag-rec-icon svg { width: 16px; height: 16px; color: var(--blue); }
 
         /* ── SVG flowchart ── */
-        .diag-flow { margin-top: 2rem; border: 1px solid var(--rule); background: var(--surface); padding: 1.5rem; overflow-x: auto; }
-        .diag-flow-title { font-family: var(--mono); font-size: 0.65rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-4); margin-bottom: 1rem; }
-        .diag-flow svg { display: block; margin: 0 auto; }
-        .diag-flow text { font-family: var(--sans); }
 
         /* ── Confidence badge ── */
         .diag-conf { font-family: var(--mono); font-size: 0.62rem; font-weight: 600; padding: 0.3rem 0.65rem; display: inline-block; letter-spacing: 0.03em; }
         .diag-conf.High { background: var(--blue-xl); color: var(--blue); }
         .diag-conf.Medium { background: rgba(245,200,0,0.12); color: var(--gold-d); }
         .diag-conf.Low { background: #f5f5f5; color: var(--ink-4); }
+
+        /* ── Technology Tier badges ── */
+        .diag-tier { font-family: var(--mono); font-size: 0.58rem; font-weight: 700; padding: 0.25rem 0.55rem; display: inline-block; letter-spacing: 0.03em; white-space: nowrap; }
+        .diag-tier.agentic { background: #0d2d6b; color: #FFFFFF; }
+        .diag-tier.ai-assist { background: var(--blue-xl); color: var(--blue); }
+        .diag-tier.rpa { background: rgba(212,146,46,0.12); color: #A06B18; }
+        .diag-tier.workflow { background: #f0f5f0; color: #1B7A3D; }
+        .diag-tier.human-req { background: #f5f5f5; color: var(--ink-3); }
+
+        /* ── Per-step savings ── */
+        .diag-step-savings { font-family: var(--mono); font-size: 0.72rem; color: #1B7A3D; margin-top: 0.35rem; }
+
+        /* ── Risk callout ── */
+        .diag-step-risk { font-size: 0.76rem; font-style: italic; color: #B8860B; margin-top: 0.3rem; line-height: 1.5; }
+
+        /* ── Mobile-only labels for step cards ── */
+        .diag-step-lbl { display: none; font-family: var(--mono); font-size: 0.55rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-4); margin-bottom: 0.15rem; }
 
         /* ── Gauge ── */
         .diag-gauge { text-align: center; margin: 0 0 2rem; opacity: 0; transform: translateY(8px); transition: opacity 0.55s var(--ease-out), transform 0.55s var(--ease-out); }
@@ -579,7 +693,6 @@
         .diag-roi.anim-in { opacity: 1; transform: translateY(0); }
         .diag-roi-title { font-family: var(--mono); font-size: 0.65rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 1rem; }
         .diag-roi-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
-        .diag-roi-item { }
         .diag-roi-label { font-family: var(--mono); font-size: 0.6rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-4); margin-bottom: 0.4rem; }
         .diag-roi-vals { font-family: var(--serif); font-size: 1.2rem; color: var(--ink); }
         .diag-roi-cons { color: var(--ink-3); }
@@ -848,6 +961,11 @@
             .diag-roadmap-grid { grid-template-columns: 1fr; }
             .diag-gauge-components { grid-template-columns: repeat(2, 1fr); }
             .diag-roi-grid { grid-template-columns: 1fr; }
+            .diag-wiz-lbl { display: none; }
+            .diag-body { padding: 1.75rem; }
+            .diag-results { padding: 1.75rem; }
+            .diag-wiz-header h3 { font-size: 1.05rem; }
+            .diag-wiz-header p { font-size: 0.8rem; }
         }
         @media (max-width: 720px) {
             .hn { display: none; } .mt { display: flex; min-width: 44px; min-height: 44px; justify-content: center; align-items: center; }
@@ -856,6 +974,26 @@
             .diag-bar-row { grid-template-columns: 70px 1fr 40px; }
             .diag-steps-hd, .diag-step { grid-template-columns: 1fr; gap: 0.5rem; }
             .diag-steps-hd { display: none; }
+            .diag-step { padding: 1rem; background: var(--warm); margin-bottom: 0.75rem; border-bottom: none; border-left: 3px solid var(--ink-5); }
+            .diag-step[data-tier="agentic"] { border-left-color: #0d2d6b; }
+            .diag-step[data-tier="ai-assist"] { border-left-color: var(--blue); }
+            .diag-step[data-tier="rpa"] { border-left-color: #A06B18; }
+            .diag-step[data-tier="workflow"] { border-left-color: #1B7A3D; }
+            .diag-step[data-tier="human-req"] { border-left-color: var(--ink-4); }
+            .diag-step:last-child { margin-bottom: 0; }
+            .diag-sn { font-size: 0.85rem; }
+            .diag-step-lbl { display: block; }
+            .diag-body { padding: 1.25rem; }
+            .diag-results { padding: 1.25rem; }
+            .diag-pain-tag { font-size: 0.72rem; padding: 0.45rem 0.75rem; min-height: 36px; }
+            .diag-benchmark { padding: 1rem; font-size: 0.82rem; }
+            .diag-sum { padding: 1rem; font-size: 0.85rem; }
+            .btn-wiz-next, .btn-wiz-back { padding: 0.6rem 1.2rem; font-size: 0.78rem; min-height: 44px; }
+            .btn-k { font-size: 0.78rem; padding: 0.7rem 1.5rem; min-height: 44px; }
+            .diag-wiz-nav { margin-top: 1rem; }
+            .diag-roadmap-phase { padding: 1rem; }
+            .diag-recs { padding: 1.25rem; }
+            .diag-roi { padding: 1.25rem; }
             .ft { flex-direction: column; gap: 0.35rem; text-align: center; }
             .acc-head { grid-template-columns: 36px 1fr 32px; }
             .acc-nonum .acc-head { grid-template-columns: 1fr 32px; }
@@ -872,6 +1010,22 @@
             .acc-content { padding-left: 42px; }
             .acc-nonum .acc-content { padding-left: 0; }
             .cb-panel { width: calc(100% - 16px); right: 8px; bottom: 80px; height: calc(100dvh - 120px); max-height: 600px; }
+            .diag-body { padding: 1rem; }
+            .diag-results { padding: 1rem; }
+            .diag-wizard-progress { gap: 0.25rem; }
+            .diag-wiz-dot { width: 24px; height: 24px; font-size: 0.65rem; }
+            .diag-wiz-header h3 { font-size: 0.95rem; }
+            .diag-wiz-header p { font-size: 0.75rem; }
+            .diag-pain-tags { gap: 0.35rem; }
+            .diag-pain-tag { font-size: 0.68rem; padding: 0.35rem 0.6rem; }
+            .diag-metric-strip { grid-template-columns: 1fr; }
+            .diag-gauge-components { grid-template-columns: 1fr; }
+            .diag-chrome { padding: 0.6rem 0.8rem; }
+            .diag-title { font-size: 0.72rem; }
+            .diag-step-savings { font-size: 0.68rem; }
+            .diag-step-risk { font-size: 0.72rem; }
+            .btn-k { width: 100%; justify-content: center; }
+            .btn-wiz-next { flex: 1; justify-content: center; }
         }
 
         /* ══════════════ CHATBOT ══════════════ */
@@ -984,6 +1138,22 @@
 
         @media (max-width: 480px) {
             .cb-trigger { bottom: 16px; right: 16px; width: 54px; height: 54px; }
+            .diag-body { padding: 0.75rem; }
+            .diag-results { padding: 0.75rem; }
+            .diag-wiz-header h3 { font-size: 0.88rem; }
+            .diag-wiz-header p { font-size: 0.72rem; line-height: 1.4; }
+            .diag-wiz-tip { font-size: 0.7rem; }
+            .diag-f label { font-size: 0.72rem; }
+            .diag-f select, .diag-f input, .diag-f textarea { font-size: 0.78rem; padding: 0.55rem 0.7rem; }
+            .diag-benchmark { padding: 0.75rem; font-size: 0.78rem; }
+            .diag-sum { padding: 0.75rem; font-size: 0.8rem; }
+            .diag-roadmap-phase { padding: 0.75rem; }
+            .diag-recs { padding: 0.75rem; }
+            .diag-roi { padding: 0.75rem; }
+            .diag-step { padding: 0.75rem; font-size: 0.78rem; }
+            .btn-k { font-size: 0.75rem; padding: 0.6rem 1rem; }
+            .btn-wiz-next, .btn-wiz-back { font-size: 0.72rem; padding: 0.5rem 1rem; }
+            .diag-wiz-nav { gap: 0.5rem; flex-wrap: wrap; }
         }
 
         /* ══════════════════════════════════════════════════════════
@@ -1234,22 +1404,17 @@
         }
         .diag-rec-item.anim-in { opacity: 1; transform: translateX(0); }
 
-        /* ── Flowchart: draw-in ── */
-        .diag-flow {
-            opacity: 0; transform: translateY(8px);
-            transition: opacity 0.5s var(--ease-out), transform 0.5s var(--ease-out);
+        /* ── Reduced motion ── */
+        @media (prefers-reduced-motion: reduce) {
+            .diag-wizard-step { animation: none; }
+            .diag-results, .diag-metric, .diag-gauge, .diag-sum,
+            .diag-dist-bars, .diag-benchmark, .diag-step,
+            .diag-roadmap, .diag-recs, .diag-rec-item, .diag-roi {
+                opacity: 1; transform: none; transition: none;
+            }
+            .diag-bar-fill { transition: none; }
+            .diag-ld-track-fill { transition: none; }
         }
-        .diag-flow.anim-in { opacity: 1; transform: translateY(0); }
-        /* SVG lines inside flowchart draw in */
-        .diag-flow svg line, .diag-flow svg path.flow-edge {
-            stroke-dasharray: 400;
-            stroke-dashoffset: 400;
-        }
-        .diag-flow.anim-in svg line,
-        .diag-flow.anim-in svg path.flow-edge {
-            animation: flowLineDraw 0.9s var(--ease-out) forwards;
-        }
-        @keyframes flowLineDraw { to { stroke-dashoffset: 0; } }
 
         /* ══════════════ SPIDER — CLEAN ENTRANCE ══════════════ */
 
@@ -1585,15 +1750,57 @@
                     <div class="diag-chrome"><div class="diag-dots"><span class="diag-dot"></span><span class="diag-dot"></span><span class="diag-dot"></span></div><div class="diag-title">Automation Readiness Assessment</div></div>
                     <div class="diag-body">
                         <div class="diag-form" id="dF">
-                            <div class="diag-row"><div class="diag-f"><label>Industry</label><select id="dI"><option value="" disabled selected>Select industry</option><option>Financial Services</option><option>Healthcare</option><option>Manufacturing</option><option>Retail</option><option>Technology</option><option>Government</option><option>Energy & Utilities</option><option>Professional Services</option><option>Education</option><option>Telecommunications</option><option>Real Estate</option><option>Non-profit / NGO</option><option>Logistics & Transportation</option><option>Media & Entertainment</option></select></div><div class="diag-f"><label>Department</label><select id="dD"><option value="" disabled selected>Select department</option><option>Finance & Accounting</option><option>Human Resources</option><option>IT & Engineering</option><option>Operations</option><option>Sales & Marketing</option><option>Customer Service</option><option>Supply Chain</option><option>Legal</option><option>Procurement</option><option>Executive / C-Suite</option><option>Research & Development</option><option>Compliance & Risk</option></select></div></div>
-                            <div class="diag-f"><label>Describe the workflow</label><textarea id="dP" placeholder="e.g., Monthly financial close process — journal entries, reconciliation, approvals, and reporting across three teams..."></textarea></div>
-                            <div class="diag-f"><label>Pain points (optional)</label><input type="text" id="dX" placeholder="e.g., Manual data entry, slow approvals, duplicate work..."></div>
-                            <div class="diag-row"><div class="diag-f"><label>Team size (optional)</label><input type="number" id="dTS" placeholder="e.g., 8" min="1" max="500"></div><div class="diag-f"><label>Avg. hourly cost (optional, CAD)</label><input type="number" id="dHC" placeholder="e.g., 45" min="10" max="500"></div></div>
-                            <div style="margin-top:0.5rem"><button class="btn-k" id="dBtn" onclick="runD()">Run Assessment <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></button></div>
+                            <div class="diag-wizard-progress" id="dWizProg" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="5" aria-label="Assessment progress: step 1 of 5">
+                                <div class="diag-wiz-seg active" data-step="0"><span class="diag-wiz-dot">1</span><span class="diag-wiz-lbl">Context</span></div>
+                                <div class="diag-wiz-seg" data-step="1"><span class="diag-wiz-dot">2</span><span class="diag-wiz-lbl">Workflow</span></div>
+                                <div class="diag-wiz-seg" data-step="2"><span class="diag-wiz-dot">3</span><span class="diag-wiz-lbl">Review</span></div>
+                                <div class="diag-wiz-seg" data-step="3"><span class="diag-wiz-dot">4</span><span class="diag-wiz-lbl">Pain Points</span></div>
+                                <div class="diag-wiz-seg" data-step="4"><span class="diag-wiz-dot">5</span><span class="diag-wiz-lbl">Details</span></div>
+                            </div>
+                            <div class="diag-wizard-step active" data-wstep="0">
+                                <div class="diag-wiz-header"><h3>Tell us about your organization</h3><p>Select your industry and department so we can tailor the analysis with relevant benchmarks and automation patterns for your context.</p></div>
+                                <div class="diag-row"><div class="diag-f"><label for="dI">Industry</label><select id="dI"><option value="" disabled selected>Select industry</option><option>Financial Services</option><option>Healthcare</option><option>Manufacturing</option><option>Retail</option><option>Technology</option><option>Government</option><option>Energy & Utilities</option><option>Professional Services</option><option>Education</option><option>Telecommunications</option><option>Real Estate</option><option>Non-profit / NGO</option><option>Logistics & Transportation</option><option>Media & Entertainment</option></select></div><div class="diag-f"><label for="dD">Department</label><select id="dD"><option value="" disabled selected>Select department</option><option>Finance & Accounting</option><option>Human Resources</option><option>IT & Engineering</option><option>Operations</option><option>Sales & Marketing</option><option>Customer Service</option><option>Supply Chain</option><option>Legal</option><option>Procurement</option><option>Executive / C-Suite</option><option>Research & Development</option><option>Compliance & Risk</option></select></div></div>
+                                <div class="diag-wiz-nav"><button class="btn-wiz-next" onclick="wizNext()">Next <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></button></div>
+                            </div>
+                            <div class="diag-wizard-step" data-wstep="1">
+                                <div class="diag-wiz-header"><h3>Describe the workflow you want to assess</h3><p>Walk us through the process step by step. The more specific you are, the more accurate your assessment will be.</p></div>
+                                <div class="diag-f"><label for="dP">Workflow description</label><textarea id="dP" placeholder="e.g., 1. Receive invoices via email&#10;2. Manually enter data into accounting system&#10;3. Match against purchase orders&#10;4. Route for manager approval&#10;5. Post to general ledger&#10;6. Generate monthly reconciliation report"></textarea></div>
+                                <p class="diag-wiz-tip">Tip: use numbered lists, bullet points, or commas to separate steps. Include details like frequency (daily, weekly), volume (hundreds, thousands), and tools used (Excel, email).</p>
+                                <div class="diag-wiz-nav"><button class="btn-wiz-back" onclick="wizBack()"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg> Back</button><button class="btn-wiz-next" onclick="wizNext()">Next <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></button></div>
+                            </div>
+                            <div class="diag-wizard-step" data-wstep="2">
+                                <div class="diag-wiz-header"><h3>Review your workflow steps</h3><p>We parsed your description into individual steps. Edit, remove, or merge as needed.</p></div>
+                                <div id="dParsedSteps"></div>
+                                <div class="diag-wiz-nav"><button class="btn-wiz-back" onclick="wizBack()"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg> Back</button><button class="btn-wiz-next" onclick="wizNext()">Next <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></button></div>
+                            </div>
+                            <div class="diag-wizard-step" data-wstep="3">
+                                <div class="diag-wiz-header"><h3>What are the biggest pain points?</h3><p>Tell us what frustrates your team most. Click any common issues below or describe your own. This helps us prioritize the highest-impact improvements.</p></div>
+                                <div class="diag-pain-tags" id="dPainTags" role="group" aria-label="Common pain points">
+                                    <button type="button" class="diag-pain-tag" aria-pressed="false" onclick="togglePainTag(this)">Slow approvals</button>
+                                    <button type="button" class="diag-pain-tag" aria-pressed="false" onclick="togglePainTag(this)">Manual data entry</button>
+                                    <button type="button" class="diag-pain-tag" aria-pressed="false" onclick="togglePainTag(this)">Duplicate work</button>
+                                    <button type="button" class="diag-pain-tag" aria-pressed="false" onclick="togglePainTag(this)">Error-prone process</button>
+                                    <button type="button" class="diag-pain-tag" aria-pressed="false" onclick="togglePainTag(this)">No visibility</button>
+                                    <button type="button" class="diag-pain-tag" aria-pressed="false" onclick="togglePainTag(this)">Compliance risk</button>
+                                    <button type="button" class="diag-pain-tag" aria-pressed="false" onclick="togglePainTag(this)">Too many systems</button>
+                                    <button type="button" class="diag-pain-tag" aria-pressed="false" onclick="togglePainTag(this)">Can't scale</button>
+                                    <button type="button" class="diag-pain-tag" aria-pressed="false" onclick="togglePainTag(this)">High volume</button>
+                                    <button type="button" class="diag-pain-tag" aria-pressed="false" onclick="togglePainTag(this)">Knowledge risk</button>
+                                    <button type="button" class="diag-pain-tag" aria-pressed="false" onclick="togglePainTag(this)">Missed deadlines</button>
+                                    <button type="button" class="diag-pain-tag" aria-pressed="false" onclick="togglePainTag(this)">Customer complaints</button>
+                                </div>
+                                <div class="diag-f"><label for="dX">Additional details (optional)</label><textarea id="dX" rows="3" placeholder="Describe specific frustrations, bottlenecks, or issues not covered above..."></textarea></div>
+                                <div class="diag-wiz-nav"><button class="btn-wiz-back" onclick="wizBack()"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg> Back</button><button class="btn-wiz-next" onclick="wizNext()">Next <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></button></div>
+                            </div>
+                            <div class="diag-wizard-step" data-wstep="4">
+                                <div class="diag-wiz-header"><h3>Team and cost details</h3><p>Optional: provide team size and average hourly cost to generate an ROI estimate. Leave blank to skip.</p></div>
+                                <div class="diag-row"><div class="diag-f"><label for="dTS">Team size</label><input type="number" id="dTS" placeholder="e.g., 8" min="1" max="500"></div><div class="diag-f"><label for="dHC">Avg. hourly cost (CAD)</label><input type="number" id="dHC" placeholder="e.g., 45" min="10" max="500"></div></div>
+                                <div class="diag-wiz-nav"><button class="btn-wiz-back" onclick="wizBack()"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg> Back</button><button class="btn-k" id="dBtn" onclick="runD()">Run Assessment <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></button></div>
+                            </div>
                         </div>
                     </div>
-                    <div class="diag-ld" id="dL"><div class="diag-sp"></div><div style="font-size:0.82rem;color:var(--ink-4);margin-bottom:0.4rem">Running assessment</div><div class="diag-ld-status" id="dLPhase">Mapping workflows</div><div class="diag-ld-track"><div class="diag-ld-track-fill" id="dLTrack"></div></div></div>
-                    <div class="diag-results" id="dR">
+                    <div class="diag-ld" id="dL" role="status" aria-live="polite"><div class="diag-sp"></div><div style="font-size:0.82rem;color:var(--ink-4);margin-bottom:0.4rem">Running assessment</div><div class="diag-ld-status" id="dLPhase">Analyzing your workflow</div><div class="diag-ld-track"><div class="diag-ld-track-fill" id="dLTrack"></div></div></div>
+                    <div class="diag-results" id="dR" aria-live="polite">
                         <div id="dMetric" class="diag-metric-strip"></div>
                         <div id="dGauge" class="diag-gauge" style="display:none"></div>
                         <div id="dS" class="diag-sum"></div>
@@ -1707,88 +1914,97 @@
         /* ── Diagnostic — Client-Side Analysis Engine v2 ── */
         const STEP_KB = [
             /* Document Processing & Data Capture */
-            { id:'DATA_ENTRY', cat:'ai', potential:0.85, complexity:0.3, keys:['data entry','data input','manual entry','keying','typing','input data','enter data','data capture','transcribe','transcription','copy from','retype','key in'], stems:['enter','input','transcri','captur'], vn:[['enter','data'],['input','data'],['capture','data'],['type','information']], state:'Manual data entry from multiple sources', benefit:'70-85% time reduction via OCR/AI extraction', recs:{q:'Implement form templates with auto-fill and validation rules',m:'Deploy OCR/intelligent document processing for structured inputs',s:'Full AI extraction pipeline with continuous learning and exception routing'}, ts:0.75 },
-            { id:'INVOICE_PROC', cat:'ai', potential:0.85, complexity:0.35, keys:['invoice','billing','payment','payable','receivable','collection','remittance','invoice processing','accounts payable','accounts receivable'], stems:['invoic','bill','pay','remit'], vn:[['process','invoice'],['pay','invoice'],['match','invoice']], state:'Manual invoice processing and matching', benefit:'80% faster processing with auto-matching', recs:{q:'Standardize invoice receipt to single channel with auto-acknowledgment',m:'Deploy AI-powered invoice capture with three-way matching',s:'End-to-end procure-to-pay automation with auto-posting'}, ts:0.80 },
-            { id:'DOC_UNDERSTAND', cat:'ai', potential:0.82, complexity:0.4, keys:['document parsing','contract analysis','pdf extraction','form reading','document classification','extract from document','read document','parse document','document review'], stems:['pars','extract','classif'], vn:[['extract','data'],['parse','document'],['read','document'],['classify','document']], state:'Manual document reading and data extraction', benefit:'85% reduction in document processing time via AI', recs:{q:'Categorize documents by type and standardize naming',m:'Deploy document AI for structured extraction',s:'Intelligent document pipeline with auto-classification and routing'}, ts:0.78 },
-            { id:'DOC_SCANNING', cat:'ai', potential:0.80, complexity:0.25, keys:['scanning','digitization','paper to digital','image capture','ocr','scan document','digitize','paper-based','paper based','physical document'], stems:['scan','digit','captur'], vn:[['scan','document'],['digitize','record'],['capture','image']], state:'Paper-based document handling', benefit:'Eliminate paper with digital capture and OCR', recs:{q:'Set up mobile scanning with cloud storage',m:'Deploy OCR with automated filing and indexing',s:'Paperless workflow with AI extraction and routing'}, ts:0.70 },
-            { id:'FORM_PROC', cat:'ai', potential:0.78, complexity:0.3, keys:['form filling','application processing','intake form','registration form','fill out form','complete form','submit form','form submission'], stems:['form','registr','applicat'], vn:[['fill','form'],['process','application'],['submit','form']], state:'Manual form completion and processing', benefit:'Auto-populated forms with validation', recs:{q:'Create digital form templates with required fields',m:'Build auto-populated forms with system lookups',s:'Intelligent forms with AI pre-fill and adaptive fields'}, ts:0.65 },
+            { id:'DATA_ENTRY', cat:'ai', potential:0.90, complexity:0.25, keys:['data entry','data input','manual entry','keying','typing','input data','enter data','data capture','transcribe','transcription','copy from','retype','key in'], stems:['enter','input','transcri','captur'], vn:[['enter','data'],['input','data'],['capture','data'],['type','information']], state:'Manual data entry from multiple sources', benefit:'85-95% time reduction via AI extraction (99%+ accuracy on structured documents)', recs:{q:'Implement form templates with auto-fill and validation rules',m:'Deploy intelligent document processing with AI extraction',s:'Agentic AI pipeline with continuous learning, exception routing, and cross-system posting'}, ts:0.85 },
+            { id:'INVOICE_PROC', cat:'ai', potential:0.90, complexity:0.3, keys:['invoice','billing','payment','payable','receivable','collection','remittance','invoice processing','accounts payable','accounts receivable'], stems:['invoic','bill','pay','remit'], vn:[['process','invoice'],['pay','invoice'],['match','invoice']], state:'Manual invoice processing and matching', benefit:'90%+ faster processing; AI processes invoices in 1-2 seconds with auto-matching and GL posting', recs:{q:'Standardize invoice receipt to single channel with auto-acknowledgment',m:'Deploy AI-powered invoice capture with three-way matching',s:'Agentic procure-to-pay automation with autonomous exception handling and auto-posting'}, ts:0.88 },
+            { id:'DOC_UNDERSTAND', cat:'ai', potential:0.88, complexity:0.35, keys:['document parsing','contract analysis','pdf extraction','form reading','document classification','extract from document','read document','parse document','document review'], stems:['pars','extract','classif'], vn:[['extract','data'],['parse','document'],['read','document'],['classify','document']], state:'Manual document reading and data extraction', benefit:'90%+ reduction in document processing; modern AI achieves 99.2% accuracy across document types', recs:{q:'Categorize documents by type and standardize naming',m:'Deploy multimodal document AI for structured and unstructured extraction',s:'Agentic document pipeline with auto-classification, cross-referencing, and downstream action'}, ts:0.85 },
+            { id:'DOC_SCANNING', cat:'ai', potential:0.85, complexity:0.25, keys:['scanning','digitization','paper to digital','image capture','ocr','scan document','digitize','paper-based','paper based','physical document'], stems:['scan','digit','captur'], vn:[['scan','document'],['digitize','record'],['capture','image']], state:'Paper-based document handling', benefit:'Paper documents scanned, indexed, and searchable in seconds — eliminates physical filing, retrieval delays, and lost-document risk', recs:{q:'Set up mobile scanning with cloud storage',m:'Deploy OCR with automated filing and indexing',s:'Paperless workflow with AI extraction and routing'}, ts:0.70 },
+            { id:'FORM_PROC', cat:'ai', potential:0.78, complexity:0.3, keys:['form filling','application processing','intake form','registration form','fill out form','complete form','submit form','form submission'], stems:['form','registr','applicat'], vn:[['fill','form'],['process','application'],['submit','form']], state:'Manual form completion and processing', benefit:'Forms auto-fill from existing records, validate in real time, and flag errors before submission — cuts processing from minutes to seconds per form', recs:{q:'Create digital form templates with required fields',m:'Build auto-populated forms with system lookups',s:'Intelligent forms with AI pre-fill and adaptive fields'}, ts:0.65 },
 
             /* Generative AI & Content */
-            { id:'CONTENT_GEN', cat:'ai', potential:0.75, complexity:0.35, keys:['content creation','writing','drafting','copywriting','blog post','marketing copy','text generation','write content','create content','generate content','compose','author'], stems:['writ','draft','compos','author','generat'], vn:[['write','content'],['draft','email'],['create','copy'],['generate','text']], state:'Manual content creation and writing', benefit:'60-80% faster content production with AI drafting', recs:{q:'Create content templates and style guides',m:'Deploy AI writing assistant for first drafts',s:'AI content pipeline with brand voice training and auto-publishing'}, ts:0.60 },
-            { id:'SUMMARIZATION', cat:'ai', potential:0.80, complexity:0.3, keys:['summarize','summarization','brief','digest','condensing','abstract','synopsis','key takeaways','executive summary','tldr'], stems:['summar','digest','condens'], vn:[['summarize','report'],['create','summary'],['extract','takeaways']], state:'Manual reading and summarization', benefit:'Instant AI-generated summaries saving hours', recs:{q:'Standardize summary templates and formats',m:'Deploy AI summarization for reports and documents',s:'Auto-generated executive briefs with key insight extraction'}, ts:0.70 },
-            { id:'TRANSLATION', cat:'ai', potential:0.78, complexity:0.3, keys:['translate','translation','localization','multilingual','language conversion','interpret','foreign language','multi-language'], stems:['translat','localiz','interpret'], vn:[['translate','document'],['convert','language'],['localize','content']], state:'Manual translation or external translation services', benefit:'Near-instant AI translation with domain-specific accuracy', recs:{q:'Identify and prioritize high-volume translation needs',m:'Deploy AI translation with glossary management',s:'Real-time multilingual content pipeline with quality assurance'}, ts:0.65 },
-            { id:'TEMPLATE_GEN', cat:'ai', potential:0.72, complexity:0.25, keys:['template creation','boilerplate','standardized document','letter generation','mail merge','generate letter','form letter','document template','standard response'], stems:['templat','boilerplat','standardiz'], vn:[['generate','letter'],['create','template'],['merge','document']], state:'Manual document creation from templates', benefit:'Auto-generated documents with dynamic field population', recs:{q:'Build reusable templates with placeholder fields',m:'Deploy mail merge with CRM/database integration',s:'AI document assembly with conditional logic and personalization'}, ts:0.60 },
-            { id:'CODE_GEN', cat:'ai', potential:0.65, complexity:0.5, keys:['code generation','scripting','automation script','macro','formula writing','write code','build script','programming','develop software'], stems:['script','programm','cod','develop'], vn:[['write','code'],['build','script'],['create','macro']], state:'Manual coding and script development', benefit:'AI-assisted development accelerating delivery 2-3x', recs:{q:'Document common patterns and reusable snippets',m:'Deploy AI coding assistant for routine development',s:'AI-powered development platform with auto-testing and deployment'}, ts:0.50 },
-            { id:'EMAIL_DRAFT', cat:'ai', potential:0.74, complexity:0.2, keys:['draft email','write email','compose email','email response','reply to email','email template','canned response','standard reply'], stems:['email','respond','reply'], vn:[['draft','email'],['write','response'],['compose','reply']], state:'Manual email drafting and responses', benefit:'AI-drafted emails reducing response time 70%', recs:{q:'Create email templates for common scenarios',m:'Deploy AI email assistant with tone/brand control',s:'Intelligent email automation with context-aware responses'}, ts:0.65 },
+            { id:'CONTENT_GEN', cat:'ai', potential:0.82, complexity:0.3, keys:['content creation','writing','drafting','copywriting','blog post','marketing copy','text generation','write content','create content','generate content','compose','author'], stems:['writ','draft','compos','author','generat'], vn:[['write','content'],['draft','email'],['create','copy'],['generate','text']], state:'Manual content creation and writing', benefit:'70-90% faster content production; AI drafts, edits, and adapts content across formats and channels', recs:{q:'Create content templates and style guides for AI alignment',m:'Deploy AI writing assistant with brand voice and compliance guardrails',s:'Agentic content pipeline with multi-format generation, brand voice training, and auto-publishing'}, ts:0.70 },
+            { id:'SUMMARIZATION', cat:'ai', potential:0.80, complexity:0.3, keys:['summarize','summarization','brief','digest','condensing','abstract','synopsis','key takeaways','executive summary','tldr'], stems:['summar','digest','condens'], vn:[['summarize','report'],['create','summary'],['extract','takeaways']], state:'Manual reading and summarization', benefit:'A 50-page report summarized in under 10 seconds with key findings, risks, and action items extracted — replaces hours of manual reading', recs:{q:'Standardize summary templates and formats',m:'Deploy AI summarization for reports and documents',s:'Auto-generated executive briefs with key insight extraction'}, ts:0.70 },
+            { id:'TRANSLATION', cat:'ai', potential:0.78, complexity:0.3, keys:['translate','translation','localization','multilingual','language conversion','interpret','foreign language','multi-language'], stems:['translat','localiz','interpret'], vn:[['translate','document'],['convert','language'],['localize','content']], state:'Manual translation or external translation services', benefit:'Full documents translated in seconds with industry-specific terminology preserved — replaces multi-day turnaround from translation services', recs:{q:'Identify and prioritize high-volume translation needs',m:'Deploy AI translation with glossary management',s:'Real-time multilingual content pipeline with quality assurance'}, ts:0.65 },
+            { id:'TEMPLATE_GEN', cat:'ai', potential:0.72, complexity:0.25, keys:['template creation','boilerplate','standardized document','letter generation','mail merge','generate letter','form letter','document template','standard response'], stems:['templat','boilerplat','standardiz'], vn:[['generate','letter'],['create','template'],['merge','document']], state:'Manual document creation from templates', benefit:'Documents assembled from templates in seconds — fields auto-populated from CRM, ERP, or databases with conditional logic for variations', recs:{q:'Build reusable templates with placeholder fields',m:'Deploy mail merge with CRM/database integration',s:'AI document assembly with conditional logic and personalization'}, ts:0.60 },
+            { id:'CODE_GEN', cat:'ai', potential:0.78, complexity:0.4, keys:['code generation','scripting','automation script','macro','formula writing','write code','build script','programming','develop software'], stems:['script','programm','cod','develop'], vn:[['write','code'],['build','script'],['create','macro']], state:'Manual coding and script development', benefit:'AI writes 41% of all code; developers complete tasks 55% faster; PR cycle time reduced 75%', recs:{q:'Document common patterns and adopt AI coding assistant',m:'Deploy AI-powered development with auto-testing and code review',s:'Agentic development platform with autonomous task execution, testing, and deployment'}, ts:0.60 },
+            { id:'EMAIL_DRAFT', cat:'ai', potential:0.82, complexity:0.2, keys:['draft email','write email','compose email','email response','reply to email','email template','canned response','standard reply'], stems:['email','respond','reply'], vn:[['draft','email'],['write','response'],['compose','reply']], state:'Manual email drafting and responses', benefit:'AI agents draft context-aware responses in seconds with brand voice, compliance review, and personalization', recs:{q:'Create email templates for common scenarios',m:'Deploy AI email agent with tone, brand, and compliance guardrails',s:'Agentic email automation with CRM context, sentiment awareness, and autonomous follow-up'}, ts:0.72 },
 
             /* NLP & Text Analysis */
-            { id:'SENTIMENT', cat:'ai', potential:0.78, complexity:0.35, keys:['sentiment analysis','opinion mining','feedback analysis','satisfaction scoring','tone detection','review analysis','customer sentiment','mood analysis'], stems:['sentimen','satisfact','opinion'], vn:[['analyze','sentiment'],['score','satisfaction'],['detect','tone']], state:'Manual review reading and sentiment assessment', benefit:'Real-time automated sentiment scoring at scale', recs:{q:'Aggregate feedback into single dashboard',m:'Deploy sentiment analysis on customer feedback',s:'Real-time sentiment monitoring with auto-triggered interventions'}, ts:0.65 },
-            { id:'ENTITY_EXTRACT', cat:'ai', potential:0.82, complexity:0.4, keys:['entity extraction','named entity','data extraction','parsing fields','metadata extraction','extract information','pull data from','field extraction'], stems:['extract','pars','metadata'], vn:[['extract','entity'],['pull','data'],['parse','field']], state:'Manual data extraction from unstructured text', benefit:'Automated entity extraction with 90%+ accuracy', recs:{q:'Define target fields and extraction templates',m:'Deploy NLP extraction for key data fields',s:'AI extraction pipeline with custom model training'}, ts:0.72 },
-            { id:'TEXT_CLASSIFY', cat:'ai', potential:0.80, complexity:0.35, keys:['classify','categorize','tagging','labeling','sorting document','triage','routing','auto-tag','auto-categorize','sort into categories'], stems:['classif','categor','triage','label','tag'], vn:[['classify','document'],['categorize','ticket'],['tag','content'],['sort','request']], state:'Manual classification and categorization', benefit:'Instant auto-classification with consistent accuracy', recs:{q:'Define taxonomy and classification rules',m:'Deploy ML classification for high-volume items',s:'Self-improving classification with feedback loops'}, ts:0.68 },
-            { id:'SEARCH_RETRIEVAL', cat:'ai', potential:0.72, complexity:0.35, keys:['search','find information','lookup','query','information retrieval','knowledge base search','find document','search for'], stems:['search','retriev','lookup','query'], vn:[['search','document'],['find','information'],['query','database']], state:'Manual searching across multiple systems', benefit:'Unified semantic search across all repositories', recs:{q:'Consolidate document repositories and add metadata',m:'Deploy enterprise search with relevance ranking',s:'AI-powered semantic search with natural language queries'}, ts:0.55 },
-            { id:'CONVO_ANALYSIS', cat:'ai', potential:0.76, complexity:0.4, keys:['call analysis','transcript analysis','meeting notes','conversation mining','call scoring','analyze calls','review transcript','meeting summary'], stems:['transcript','convers','analyz'], vn:[['analyze','call'],['review','transcript'],['score','conversation']], state:'Manual call/meeting review and note-taking', benefit:'Automated transcription with insight extraction', recs:{q:'Record and transcribe key meetings',m:'Deploy conversation intelligence with topic detection',s:'AI meeting platform with auto-actions and coaching insights'}, ts:0.62 },
+            { id:'SENTIMENT', cat:'ai', potential:0.78, complexity:0.35, keys:['sentiment analysis','opinion mining','feedback analysis','satisfaction scoring','tone detection','review analysis','customer sentiment','mood analysis'], stems:['sentimen','satisfact','opinion'], vn:[['analyze','sentiment'],['score','satisfaction'],['detect','tone']], state:'Manual review reading and sentiment assessment', benefit:'Every review, survey, and social mention scored for sentiment in real time — surfaces negative trends within minutes instead of weeks', recs:{q:'Aggregate feedback into single dashboard',m:'Deploy sentiment analysis on customer feedback',s:'Real-time sentiment monitoring with auto-triggered interventions'}, ts:0.65 },
+            { id:'ENTITY_EXTRACT', cat:'ai', potential:0.82, complexity:0.4, keys:['entity extraction','named entity','data extraction','parsing fields','metadata extraction','extract information','pull data from','field extraction'], stems:['extract','pars','metadata'], vn:[['extract','entity'],['pull','data'],['parse','field']], state:'Manual data extraction from unstructured text', benefit:'Names, dates, amounts, and key fields pulled from unstructured text automatically — what took an analyst 20 minutes per document happens in seconds', recs:{q:'Define target fields and extraction templates',m:'Deploy NLP extraction for key data fields',s:'AI extraction pipeline with custom model training'}, ts:0.72 },
+            { id:'TEXT_CLASSIFY', cat:'ai', potential:0.85, complexity:0.3, keys:['classify','categorize','tagging','labeling','sorting document','triage','routing','auto-tag','auto-categorize','sort into categories'], stems:['classif','categor','triage','label','tag'], vn:[['classify','document'],['categorize','ticket'],['tag','content'],['sort','request']], state:'Manual classification and categorization', benefit:'99%+ auto-classification accuracy; multimodal AI processes text, images, and documents simultaneously', recs:{q:'Define taxonomy and classification rules',m:'Deploy multimodal AI classification for high-volume items',s:'Self-improving classification with agentic routing and feedback loops'}, ts:0.75 },
+            { id:'SEARCH_RETRIEVAL', cat:'ai', potential:0.78, complexity:0.35, keys:['search','find information','lookup','query','information retrieval','knowledge base search','find document','search for'], stems:['search','retriev','lookup','query'], vn:[['search','document'],['find','information'],['query','database']], state:'Manual searching across multiple systems', benefit:'Ask a question in plain language, get the right document from any system in seconds — no more hunting through folders, SharePoint, and email', recs:{q:'Consolidate document repositories and add metadata',m:'Deploy enterprise search with relevance ranking',s:'AI-powered semantic search with natural language queries'}, ts:0.55 },
+            { id:'CONVO_ANALYSIS', cat:'ai', potential:0.82, complexity:0.4, keys:['call analysis','transcript analysis','meeting notes','conversation mining','call scoring','analyze calls','review transcript','meeting summary'], stems:['transcript','convers','analyz'], vn:[['analyze','call'],['review','transcript'],['score','conversation']], state:'Manual call/meeting review and note-taking', benefit:'Calls and meetings transcribed with speaker labels, key topics tagged, and action items extracted — no one needs to take notes', recs:{q:'Record and transcribe key meetings',m:'Deploy conversation intelligence with topic detection',s:'AI meeting platform with auto-actions and coaching insights'}, ts:0.62 },
 
             /* Predictive Analytics & Decision Support */
-            { id:'DECISION', cat:'human', potential:0.35, complexity:0.6, keys:['decision','strategy','evaluate','assess','judgment','judgement','analysis','negotiate','strategic planning','business case'], stems:['decis','strateg','evaluat','negoti','judgment'], vn:[['make','decision'],['evaluate','option'],['assess','risk']], state:'Human decision-making and strategic analysis', benefit:'Data-enriched decision support with scenario modeling', recs:{q:'Standardize decision criteria and scoring rubrics',m:'Build data dashboards to inform key decisions',s:'AI-powered decision support with predictive scenario modeling'}, ts:0.25 },
-            { id:'LEAD_SCORING', cat:'ai', potential:0.82, complexity:0.4, keys:['lead scoring','lead qualification','prospect ranking','conversion prediction','pipeline scoring','qualify lead','rank prospect','score lead'], stems:['lead','prospect','scor','qualif'], vn:[['score','lead'],['qualify','prospect'],['rank','opportunity']], state:'Manual lead qualification and prioritization', benefit:'AI-scored leads improving conversion 30-50%', recs:{q:'Define ideal customer profile and scoring criteria',m:'Deploy ML lead scoring with CRM integration',s:'Predictive pipeline with propensity modeling and auto-routing'}, ts:0.65 },
-            { id:'CHURN_PREDICT', cat:'ai', potential:0.78, complexity:0.45, keys:['churn prediction','customer retention','attrition','customer lifetime value','risk of leaving','prevent churn','retain customer','loyalty'], stems:['churn','attrit','retent','loyalt'], vn:[['predict','churn'],['prevent','attrition'],['retain','customer']], state:'Reactive customer retention efforts', benefit:'Proactive churn prevention with early warning signals', recs:{q:'Track key churn indicators and health scores',m:'Deploy churn prediction model with alert triggers',s:'AI retention platform with automated intervention workflows'}, ts:0.55 },
-            { id:'DEMAND_FORECAST', cat:'ai', potential:0.80, complexity:0.45, keys:['demand forecasting','demand planning','sales forecast','volume prediction','trend analysis','projection','predict demand','forecast sales','predict volume'], stems:['forecast','predict','project','trend'], vn:[['forecast','demand'],['predict','volume'],['project','sales']], state:'Spreadsheet-based manual forecasting', benefit:'AI forecasting improving accuracy 25-40%', recs:{q:'Consolidate historical data and identify key drivers',m:'Deploy statistical forecasting with ML enhancement',s:'AI demand sensing with real-time market signal integration'}, ts:0.60 },
-            { id:'RISK_SCORING', cat:'ai', potential:0.80, complexity:0.45, keys:['risk scoring','risk assessment','credit scoring','fraud detection','anomaly scoring','threat assessment','risk analysis','detect fraud','flag suspicious'], stems:['risk','fraud','anomal','threat','suspicious'], vn:[['assess','risk'],['detect','fraud'],['score','credit'],['flag','anomaly']], state:'Manual risk assessment and scoring', benefit:'Real-time automated risk scoring with anomaly detection', recs:{q:'Define risk criteria and scoring thresholds',m:'Deploy automated risk scoring with rule engine',s:'AI risk platform with real-time detection and adaptive models'}, ts:0.65 },
-            { id:'RECOMMEND', cat:'ai', potential:0.76, complexity:0.4, keys:['recommend','suggestion','personalization','next best action','cross-sell','upsell','product recommendation','suggest','recommend product'], stems:['recommend','suggest','personaliz'], vn:[['recommend','product'],['suggest','action'],['personalize','experience']], state:'Generic one-size-fits-all recommendations', benefit:'AI-personalized recommendations increasing engagement 20-40%', recs:{q:'Segment customers and define recommendation rules',m:'Deploy recommendation engine with behavioral data',s:'Real-time AI personalization across all touchpoints'}, ts:0.55 },
+            { id:'DECISION', cat:'human', potential:0.35, complexity:0.6, keys:['decision','strategy','evaluate','assess','judgment','judgement','analysis','negotiate','strategic planning','business case'], stems:['decis','strateg','evaluat','negoti','judgment'], vn:[['make','decision'],['evaluate','option'],['assess','risk']], state:'Human decision-making and strategic analysis', benefit:'AI surfaces relevant data, runs what-if scenarios, and presents trade-offs — decisions backed by evidence instead of gut feel', recs:{q:'Standardize decision criteria and scoring rubrics',m:'Build data dashboards to inform key decisions',s:'AI-powered decision support with predictive scenario modeling'}, ts:0.25 },
+            { id:'LEAD_SCORING', cat:'ai', potential:0.82, complexity:0.4, keys:['lead scoring','lead qualification','prospect ranking','conversion prediction','pipeline scoring','qualify lead','rank prospect','score lead'], stems:['lead','prospect','scor','qualif'], vn:[['score','lead'],['qualify','prospect'],['rank','opportunity']], state:'Manual lead qualification and prioritization', benefit:'Every lead scored by buying signals, engagement history, and firmographic fit in real time — sales teams focus on the 20% of leads that drive 80% of revenue', recs:{q:'Define ideal customer profile and scoring criteria',m:'Deploy ML lead scoring with CRM integration',s:'Predictive pipeline with propensity modeling and auto-routing'}, ts:0.65 },
+            { id:'CHURN_PREDICT', cat:'ai', potential:0.78, complexity:0.45, keys:['churn prediction','customer retention','attrition','customer lifetime value','risk of leaving','prevent churn','retain customer','loyalty'], stems:['churn','attrit','retent','loyalt'], vn:[['predict','churn'],['prevent','attrition'],['retain','customer']], state:'Reactive customer retention efforts', benefit:'AI flags at-risk accounts weeks before they leave by tracking usage drops, support patterns, and engagement decay — teams intervene while there is still time', recs:{q:'Track key churn indicators and health scores',m:'Deploy churn prediction model with alert triggers',s:'AI retention platform with automated intervention workflows'}, ts:0.55 },
+            { id:'DEMAND_FORECAST', cat:'ai', potential:0.80, complexity:0.45, keys:['demand forecasting','demand planning','sales forecast','volume prediction','trend analysis','projection','predict demand','forecast sales','predict volume'], stems:['forecast','predict','project','trend'], vn:[['forecast','demand'],['predict','volume'],['project','sales']], state:'Spreadsheet-based manual forecasting', benefit:'ML models analyze historical patterns, seasonality, and external signals to forecast demand — replaces spreadsheet guesswork with forecasts that adapt weekly', recs:{q:'Consolidate historical data and identify key drivers',m:'Deploy statistical forecasting with ML enhancement',s:'AI demand sensing with real-time market signal integration'}, ts:0.60 },
+            { id:'RISK_SCORING', cat:'ai', potential:0.80, complexity:0.45, keys:['risk scoring','risk assessment','credit scoring','fraud detection','anomaly scoring','threat assessment','risk analysis','detect fraud','flag suspicious'], stems:['risk','fraud','anomal','threat','suspicious'], vn:[['assess','risk'],['detect','fraud'],['score','credit'],['flag','anomaly']], state:'Manual risk assessment and scoring', benefit:'Transactions, applications, and activities scored for risk in milliseconds — suspicious patterns flagged instantly instead of discovered during quarterly audits', recs:{q:'Define risk criteria and scoring thresholds',m:'Deploy automated risk scoring with rule engine',s:'AI risk platform with real-time detection and adaptive models'}, ts:0.65 },
+            { id:'RECOMMEND', cat:'ai', potential:0.76, complexity:0.4, keys:['recommend','suggestion','personalization','next best action','cross-sell','upsell','product recommendation','suggest','recommend product'], stems:['recommend','suggest','personaliz'], vn:[['recommend','product'],['suggest','action'],['personalize','experience']], state:'Generic one-size-fits-all recommendations', benefit:'Each customer sees products, content, or next steps tailored to their behavior and profile — turns generic experiences into personalized journeys that convert', recs:{q:'Segment customers and define recommendation rules',m:'Deploy recommendation engine with behavioral data',s:'Real-time AI personalization across all touchpoints'}, ts:0.55 },
 
             /* Customer Experience */
-            { id:'CHATBOT', cat:'ai', potential:0.80, complexity:0.4, keys:['chatbot','virtual agent','self-service','faq bot','automated response','conversational ai','help bot','virtual assistant','chat support','auto-reply'], stems:['chatbot','selfserv','automat'], vn:[['deploy','chatbot'],['automate','response'],['build','self-service']], state:'All inquiries handled by human agents', benefit:'40-60% of queries resolved by AI without human intervention', recs:{q:'Create FAQ database and common response templates',m:'Deploy AI chatbot for tier-1 support queries',s:'Conversational AI platform with handoff and continuous learning'}, ts:0.55 },
-            { id:'TICKET_SUPPORT', cat:'system', potential:0.72, complexity:0.35, keys:['ticket','incident','request','support','helpdesk','help desk','case','issue','troubleshoot','service request','support ticket'], stems:['ticket','incident','support','troubleshoot'], vn:[['create','ticket'],['resolve','incident'],['handle','request']], state:'Manual ticket routing and triage', benefit:'AI-powered categorization and intelligent routing', recs:{q:'Standardize ticket categories and priority levels',m:'Deploy auto-routing with SLA tracking',s:'AI ticket platform with suggested resolutions and auto-resolution'}, ts:0.55 },
-            { id:'PERSONALIZE', cat:'ai', potential:0.74, complexity:0.45, keys:['personalization','personalize','tailored','custom experience','user profiling','behavioral targeting','customize','targeted content'], stems:['personaliz','tailor','customiz','target'], vn:[['personalize','experience'],['tailor','content'],['target','user']], state:'Generic undifferentiated customer experience', benefit:'Personalized experiences improving satisfaction 25-35%', recs:{q:'Define customer segments and basic personalization rules',m:'Deploy behavioral targeting with dynamic content',s:'AI-driven real-time personalization across all channels'}, ts:0.50 },
-            { id:'CUST_FEEDBACK', cat:'ai', potential:0.72, complexity:0.3, keys:['survey','nps','customer feedback','voice of customer','satisfaction','csat','feedback collection','customer survey','feedback analysis'], stems:['survey','feedback','satisfact'], vn:[['collect','feedback'],['analyze','survey'],['measure','satisfaction']], state:'Ad-hoc manual feedback collection', benefit:'Automated feedback loops with sentiment analysis', recs:{q:'Implement automated post-interaction surveys',m:'Deploy feedback analytics with trend detection',s:'Closed-loop feedback system with AI-driven action triggers'}, ts:0.55 },
+            { id:'CHATBOT', cat:'ai', potential:0.85, complexity:0.35, keys:['chatbot','virtual agent','self-service','faq bot','automated response','conversational ai','help bot','virtual assistant','chat support','auto-reply'], stems:['chatbot','selfserv','automat'], vn:[['deploy','chatbot'],['automate','response'],['build','self-service']], state:'All inquiries handled by human agents', benefit:'AI agents now deflect 45-80% of queries; first response time drops from 12 minutes to 12 seconds', recs:{q:'Create FAQ database and common response templates',m:'Deploy agentic AI for tier-1 and tier-2 support with autonomous resolution',s:'Multi-agent customer platform with sentiment analysis, handoff orchestration, and continuous learning'}, ts:0.65 },
+            { id:'TICKET_SUPPORT', cat:'ai', potential:0.80, complexity:0.3, keys:['ticket','incident','request','support','helpdesk','help desk','case','issue','troubleshoot','service request','support ticket'], stems:['ticket','incident','support','troubleshoot'], vn:[['create','ticket'],['resolve','incident'],['handle','request']], state:'Manual ticket routing and triage', benefit:'AI agents autonomously resolve 45-80% of tier-1 tickets; resolution time drops from 60+ minutes to under 2 minutes', recs:{q:'Standardize ticket categories and priority levels',m:'Deploy AI-powered triage with autonomous tier-1 resolution',s:'Multi-agent service platform with predictive escalation and automated remediation playbooks'}, ts:0.65 },
+            { id:'PERSONALIZE', cat:'ai', potential:0.74, complexity:0.45, keys:['personalization','personalize','tailored','custom experience','user profiling','behavioral targeting','customize','targeted content'], stems:['personaliz','tailor','customiz','target'], vn:[['personalize','experience'],['tailor','content'],['target','user']], state:'Generic undifferentiated customer experience', benefit:'Every touchpoint adapts to the individual — right message, right channel, right time — based on real behavior data, not static segments', recs:{q:'Define customer segments and basic personalization rules',m:'Deploy behavioral targeting with dynamic content',s:'AI-driven real-time personalization across all channels'}, ts:0.50 },
+            { id:'CUST_FEEDBACK', cat:'ai', potential:0.72, complexity:0.3, keys:['survey','nps','customer feedback','voice of customer','satisfaction','csat','feedback collection','customer survey','feedback analysis'], stems:['survey','feedback','satisfact'], vn:[['collect','feedback'],['analyze','survey'],['measure','satisfaction']], state:'Ad-hoc manual feedback collection', benefit:'Surveys triggered automatically at key moments, responses analyzed for themes and sentiment, and negative feedback routed to the right team within minutes', recs:{q:'Implement automated post-interaction surveys',m:'Deploy feedback analytics with trend detection',s:'Closed-loop feedback system with AI-driven action triggers'}, ts:0.55 },
 
             /* Workflow Orchestration & RPA */
-            { id:'APPROVAL', cat:'human', potential:0.72, complexity:0.3, keys:['approval','approve','sign-off','sign off','authorize','authorise','escalat','get approval','approval workflow','request approval'], stems:['approv','authoriz','escalat','signoff'], vn:[['get','approval'],['request','sign-off'],['escalate','request']], state:'Email-based approval chains with delays', benefit:'Automated routing with SLA tracking and mobile approvals', recs:{q:'Enable mobile approvals and set auto-approval thresholds',m:'Deploy rule-based approval routing with auto-escalation',s:'Intelligent approval orchestration with risk-based auto-decisions'}, ts:0.55 },
-            { id:'EMAIL_COMMS', cat:'system', potential:0.75, complexity:0.25, keys:['email','communication','notify','notification','alert','send','distribute','correspondence','send notification','email notification'], stems:['email','notif','alert','correspond'], vn:[['send','email'],['notify','team'],['distribute','report']], state:'Manual email and notification management', benefit:'Event-driven automated communications', recs:{q:'Create notification templates for common events',m:'Deploy event-triggered email workflows',s:'Intelligent communication hub with channel optimization'}, ts:0.60 },
-            { id:'SCHEDULING', cat:'system', potential:0.68, complexity:0.35, keys:['schedule','scheduling','roster','shift','calendar','planning','plan','resource allocation','book meeting','appointment'], stems:['schedul','roster','calendar','allocat'], vn:[['schedule','meeting'],['plan','resource'],['allocate','staff']], state:'Spreadsheet-based manual scheduling', benefit:'Optimized scheduling with constraint-based algorithms', recs:{q:'Digitize scheduling with shared calendar tools',m:'Deploy scheduling optimization with constraint handling',s:'AI scheduling with demand forecasting and auto-optimization'}, ts:0.50 },
-            { id:'ONBOARDING', cat:'system', potential:0.78, complexity:0.35, keys:['onboard','orientation','provision','setup','new hire','new employee','welcome','employee onboarding','user onboarding','account setup'], stems:['onboard','orient','provision','setup'], vn:[['onboard','employee'],['provision','account'],['setup','user']], state:'Manual onboarding with checklists', benefit:'Automated provisioning and task orchestration', recs:{q:'Create digital onboarding checklist with assignments',m:'Deploy automated provisioning and welcome workflows',s:'End-to-end onboarding automation with progress tracking'}, ts:0.60 },
-            { id:'TASK_ASSIGN', cat:'system', potential:0.72, complexity:0.3, keys:['task assignment','work allocation','dispatching','routing work','workload balancing','queue management','assign task','delegate work','distribute work'], stems:['assign','dispatch','allocat','delegat'], vn:[['assign','task'],['distribute','work'],['balance','workload']], state:'Manual task assignment and work distribution', benefit:'Automated work routing with load balancing', recs:{q:'Define assignment rules and capacity limits',m:'Deploy auto-routing with skills-based matching',s:'AI workload optimization with predictive capacity planning'}, ts:0.55 },
-            { id:'STATUS_TRACK', cat:'system', potential:0.70, complexity:0.25, keys:['status tracking','progress monitoring','milestone tracking','status update','follow-up','tracking','track progress','monitor status','check status'], stems:['track','monitor','status','progress','followup'], vn:[['track','progress'],['monitor','status'],['update','milestone']], state:'Manual status checks via email and meetings', benefit:'Real-time automated status dashboards', recs:{q:'Create shared status board with defined stages',m:'Deploy automated progress tracking with alerts',s:'Predictive project monitoring with risk-based notifications'}, ts:0.50 },
+            { id:'APPROVAL', cat:'system', potential:0.65, complexity:0.3, keys:['approval','approve','sign-off','sign off','authorize','authorise','escalat','get approval','approval workflow','request approval'], stems:['approv','authoriz','escalat','signoff'], vn:[['get','approval'],['request','sign-off'],['escalate','request']], state:'Email-based approval chains with delays', benefit:'Requests route to the right approver instantly, SLA clocks track every step, and managers approve from their phone — bottlenecks that took days resolve in hours', recs:{q:'Enable mobile approvals and set auto-approval thresholds',m:'Deploy rule-based approval routing with auto-escalation',s:'Intelligent approval orchestration with risk-based auto-decisions'}, ts:0.55 },
+            { id:'EMAIL_COMMS', cat:'system', potential:0.75, complexity:0.25, keys:['email','communication','notify','notification','alert','send','distribute','correspondence','send notification','email notification'], stems:['email','notif','alert','correspond'], vn:[['send','email'],['notify','team'],['distribute','report']], state:'Manual email and notification management', benefit:'Notifications fire automatically when events happen — order shipped, approval needed, threshold breached — no one has to remember to send an email', recs:{q:'Create notification templates for common events',m:'Deploy event-triggered email workflows',s:'Intelligent communication hub with channel optimization'}, ts:0.60 },
+            { id:'SCHEDULING', cat:'ai', potential:0.68, complexity:0.35, keys:['schedule','scheduling','roster','shift','calendar','planning','plan','resource allocation','book meeting','appointment'], stems:['schedul','roster','calendar','allocat'], vn:[['schedule','meeting'],['plan','resource'],['allocate','staff']], state:'Spreadsheet-based manual scheduling', benefit:'AI builds schedules in seconds factoring in availability, skills, workload, and preferences — handles conflicts and shift swaps that used to take hours of coordination', recs:{q:'Digitize scheduling with shared calendar tools',m:'Deploy scheduling optimization with constraint handling',s:'AI scheduling with demand forecasting and auto-optimization'}, ts:0.50 },
+            { id:'ONBOARDING', cat:'system', potential:0.78, complexity:0.35, keys:['onboard','orientation','provision','setup','new hire','new employee','welcome','employee onboarding','user onboarding','account setup'], stems:['onboard','orient','provision','setup'], vn:[['onboard','employee'],['provision','account'],['setup','user']], state:'Manual onboarding with checklists', benefit:'New hires get accounts, equipment, and training assignments provisioned automatically on day one — eliminates the 2-3 week ramp-up of manual onboarding', recs:{q:'Create digital onboarding checklist with assignments',m:'Deploy automated provisioning and welcome workflows',s:'End-to-end onboarding automation with progress tracking'}, ts:0.60 },
+            { id:'TASK_ASSIGN', cat:'system', potential:0.72, complexity:0.3, keys:['task assignment','work allocation','dispatching','routing work','workload balancing','queue management','assign task','delegate work','distribute work'], stems:['assign','dispatch','allocat','delegat'], vn:[['assign','task'],['distribute','work'],['balance','workload']], state:'Manual task assignment and work distribution', benefit:'Work items route to the right person based on skills, availability, and current workload — no more cherry-picking, uneven queues, or tasks falling through cracks', recs:{q:'Define assignment rules and capacity limits',m:'Deploy auto-routing with skills-based matching',s:'AI workload optimization with predictive capacity planning'}, ts:0.55 },
+            { id:'STATUS_TRACK', cat:'system', potential:0.70, complexity:0.25, keys:['status tracking','progress monitoring','milestone tracking','status update','follow-up','tracking','track progress','monitor status','check status'], stems:['track','monitor','status','progress','followup'], vn:[['track','progress'],['monitor','status'],['update','milestone']], state:'Manual status checks via email and meetings', benefit:'Live dashboards update automatically as work progresses — no more status meetings, email chains asking for updates, or stale spreadsheets', recs:{q:'Create shared status board with defined stages',m:'Deploy automated progress tracking with alerts',s:'Predictive project monitoring with risk-based notifications'}, ts:0.50 },
 
             /* Financial Operations */
-            { id:'RECONCILIATION', cat:'ai', potential:0.85, complexity:0.35, keys:['reconciliation','reconcile','matching','cross-reference','compare','variance','discrepancy','three-way match','bank reconciliation'], stems:['reconcil','match','compar','varianc'], vn:[['reconcile','account'],['match','transaction'],['compare','record']], state:'Manual cross-referencing across systems', benefit:'Continuous automated matching with exception flagging', recs:{q:'Standardize data formats across systems',m:'Deploy automated three-way matching with exception flagging',s:'AI reconciliation with anomaly detection and auto-resolution'}, ts:0.75 },
-            { id:'JOURNAL_POST', cat:'ai', potential:0.82, complexity:0.3, keys:['journal','posting','ledger','booking','accrual','journal entry','gl','general ledger','post entry','book entry'], stems:['journal','ledger','accru','booking','posting'], vn:[['post','journal'],['book','entry'],['create','accrual']], state:'Manual journal entry preparation and posting', benefit:'Automated journal generation with variance checks', recs:{q:'Standardize recurring journal templates',m:'Automate recurring journals with rule-based posting',s:'AI journal engine with anomaly detection and auto-correction'}, ts:0.70 },
-            { id:'FINANCIAL_CLOSE', cat:'ai', potential:0.82, complexity:0.4, keys:['close','month end','month-end','period end','closing','year end','year-end','financial close','close process','close cycle'], stems:['close','period','closing'], vn:[['close','books'],['complete','close'],['finalize','period']], state:'Manual period-end close process', benefit:'40-60% reduction in close cycle time', recs:{q:'Create close checklist with task dependencies',m:'Deploy close management with auto-task sequencing',s:'AI-orchestrated close with predictive completion and auto-reconciliation'}, ts:0.65 },
-            { id:'REPORTING', cat:'ai', potential:0.80, complexity:0.3, keys:['report','reporting','dashboard','analytics','kpi','metric','visualization','visualise','generate report','build dashboard','create report'], stems:['report','dashboard','analyt','visual','metric'], vn:[['generate','report'],['build','dashboard'],['track','kpi']], state:'Manual report generation and distribution', benefit:'Real-time auto-generated dashboards', recs:{q:'Define standard report templates and schedules',m:'Build automated reporting with scheduled distribution',s:'Self-service BI platform with AI-generated insights'}, ts:0.65 },
+            { id:'RECONCILIATION', cat:'ai', potential:0.90, complexity:0.3, keys:['reconciliation','reconcile','matching','cross-reference','compare','variance','discrepancy','three-way match','bank reconciliation'], stems:['reconcil','match','compar','varianc'], vn:[['reconcile','account'],['match','transaction'],['compare','record']], state:'Manual cross-referencing across systems', benefit:'AI agents eliminate 85-90% of reconciliation work; automated matching reduces errors by 80% and speeds close by 50%', recs:{q:'Standardize data formats across systems',m:'Deploy AI-powered continuous matching with exception flagging',s:'Agentic reconciliation with anomaly detection, auto-resolution, and audit trail generation'}, ts:0.85 },
+            { id:'JOURNAL_POST', cat:'ai', potential:0.82, complexity:0.3, keys:['journal','posting','ledger','booking','accrual','journal entry','gl','general ledger','post entry','book entry'], stems:['journal','ledger','accru','booking','posting'], vn:[['post','journal'],['book','entry'],['create','accrual']], state:'Manual journal entry preparation and posting', benefit:'Recurring journals generated and posted automatically with built-in variance checks — catches anomalies before they hit the trial balance', recs:{q:'Standardize recurring journal templates',m:'Automate recurring journals with rule-based posting',s:'AI journal engine with anomaly detection and auto-correction'}, ts:0.70 },
+            { id:'FINANCIAL_CLOSE', cat:'ai', potential:0.88, complexity:0.35, keys:['close','month end','month-end','period end','closing','year end','year-end','financial close','close process','close cycle'], stems:['close','period','closing'], vn:[['close','books'],['complete','close'],['finalize','period']], state:'Manual period-end close process', benefit:'50-75% reduction in close cycle time; AI agents orchestrate journal posting, reconciliation, and variance analysis autonomously', recs:{q:'Create close checklist with task dependencies',m:'Deploy AI-powered close management with auto-task sequencing and exception routing',s:'Agentic close orchestration with predictive completion, auto-reconciliation, and real-time audit trails'}, ts:0.75 },
+            { id:'REPORTING', cat:'ai', potential:0.85, complexity:0.25, keys:['report','reporting','dashboard','analytics','kpi','metric','visualization','visualise','generate report','build dashboard','create report'], stems:['report','dashboard','analyt','visual','metric'], vn:[['generate','report'],['build','dashboard'],['track','kpi']], state:'Manual report generation and distribution', benefit:'AI-generated dashboards with natural language insights; forecast cycles cut from 28 days to 8', recs:{q:'Define standard report templates and schedules',m:'Build automated reporting with AI-generated narrative insights',s:'Self-service BI platform with agentic data exploration and auto-generated executive briefs'}, ts:0.75 },
 
             /* Data Quality & Governance */
-            { id:'DATA_CLEANSE', cat:'ai', potential:0.78, complexity:0.35, keys:['data cleaning','data cleansing','deduplication','duplicate removal','data hygiene','scrubbing','normalization','clean data','remove duplicates'], stems:['clean','deduplic','scrub','normaliz','hygien'], vn:[['clean','data'],['remove','duplicate'],['normalize','record']], state:'Manual data cleaning and deduplication', benefit:'Automated data quality with 95%+ accuracy', recs:{q:'Profile data quality and identify top issues',m:'Deploy automated cleansing and dedup pipelines',s:'Continuous data quality platform with ML-based correction'}, ts:0.65 },
-            { id:'DATA_VALIDATE', cat:'ai', potential:0.80, complexity:0.3, keys:['data validation','data quality check','integrity check','completeness check','accuracy verification','validate data','check data','verify data'], stems:['validat','integrit','verif','accura'], vn:[['validate','data'],['check','accuracy'],['verify','completeness']], state:'Manual data verification and quality checks', benefit:'Real-time automated validation with error prevention', recs:{q:'Define validation rules for critical fields',m:'Deploy automated validation at data entry points',s:'AI data quality monitoring with predictive error detection'}, ts:0.68 },
-            { id:'MASTER_DATA', cat:'system', potential:0.70, complexity:0.5, keys:['master data','mdm','golden record','single source of truth','data stewardship','reference data','data governance','standardize data'], stems:['master','steward','governan'], vn:[['manage','master data'],['establish','source of truth'],['govern','data']], state:'Fragmented data across multiple systems', benefit:'Unified master data with single source of truth', recs:{q:'Identify critical master data domains and owners',m:'Implement MDM with synchronization rules',s:'Enterprise data governance platform with AI stewardship'}, ts:0.45 },
-            { id:'COMPLIANCE_GOV', cat:'human', potential:0.65, complexity:0.4, keys:['compliance','regulatory','audit trail','control','sox','gdpr','policy','governance','regulation','comply','audit finding'], stems:['complian','regulat','audit','governan','policy'], vn:[['ensure','compliance'],['monitor','regulation'],['maintain','audit trail']], state:'Manual compliance tracking and reporting', benefit:'Continuous automated compliance monitoring', recs:{q:'Create compliance checklists with mandatory sign-offs',m:'Deploy automated audit trail and control monitoring',s:'Continuous compliance platform with real-time risk scoring'}, ts:0.50 },
+            { id:'DATA_CLEANSE', cat:'ai', potential:0.78, complexity:0.35, keys:['data cleaning','data cleansing','deduplication','duplicate removal','data hygiene','scrubbing','normalization','clean data','remove duplicates'], stems:['clean','deduplic','scrub','normaliz','hygien'], vn:[['clean','data'],['remove','duplicate'],['normalize','record']], state:'Manual data cleaning and deduplication', benefit:'Duplicates merged, formats standardized, and missing fields flagged automatically — clean data without the monthly cleanup sprints', recs:{q:'Profile data quality and identify top issues',m:'Deploy automated cleansing and dedup pipelines',s:'Continuous data quality platform with ML-based correction'}, ts:0.65 },
+            { id:'DATA_VALIDATE', cat:'ai', potential:0.80, complexity:0.3, keys:['data validation','data quality check','integrity check','completeness check','accuracy verification','validate data','check data','verify data'], stems:['validat','integrit','verif','accura'], vn:[['validate','data'],['check','accuracy'],['verify','completeness']], state:'Manual data verification and quality checks', benefit:'Data validated at the point of entry — invalid formats, out-of-range values, and missing fields caught before they propagate downstream', recs:{q:'Define validation rules for critical fields',m:'Deploy automated validation at data entry points',s:'AI data quality monitoring with predictive error detection'}, ts:0.68 },
+            { id:'MASTER_DATA', cat:'system', potential:0.70, complexity:0.5, keys:['master data','mdm','golden record','single source of truth','data stewardship','reference data','data governance','standardize data'], stems:['master','steward','governan'], vn:[['manage','master data'],['establish','source of truth'],['govern','data']], state:'Fragmented data across multiple systems', benefit:'One golden record per customer, vendor, and product across all systems — no more conflicting data between departments causing rework', recs:{q:'Identify critical master data domains and owners',m:'Implement MDM with synchronization rules',s:'Enterprise data governance platform with AI stewardship'}, ts:0.45 },
+            { id:'COMPLIANCE_GOV', cat:'ai', potential:0.75, complexity:0.35, keys:['compliance','regulatory','audit trail','control','sox','gdpr','policy','governance','regulation','comply','audit finding'], stems:['complian','regulat','audit','governan','policy'], vn:[['ensure','compliance'],['monitor','regulation'],['maintain','audit trail']], state:'Manual compliance tracking and reporting', benefit:'NLP now handles 89% of regulatory document analysis; AI delivers 92% improvement in audit trail integrity', recs:{q:'Create compliance checklists with mandatory sign-offs',m:'Deploy AI-powered continuous compliance monitoring with automated audit trails',s:'Agentic compliance platform with real-time regulatory change detection, risk scoring, and auto-reporting'}, ts:0.60 },
 
             /* Knowledge Management */
-            { id:'KNOWLEDGE_BASE', cat:'system', potential:0.68, complexity:0.35, keys:['knowledge base','wiki','documentation','knowledge management','institutional knowledge','sop','standard operating procedure','document process'], stems:['knowledg','document','wiki'], vn:[['build','knowledge base'],['document','process'],['create','wiki']], state:'Tribal knowledge and undocumented processes', benefit:'Searchable knowledge base reducing onboarding time 50%', recs:{q:'Document top 10 critical processes as SOPs',m:'Build searchable knowledge base with tagging',s:'AI knowledge platform with auto-capture and recommendations'}, ts:0.45 },
-            { id:'DOC_SEARCH', cat:'ai', potential:0.74, complexity:0.35, keys:['document search','information retrieval','file finding','content discovery','enterprise search','find file','locate document'], stems:['search','retriev','discov','locat'], vn:[['search','document'],['find','file'],['locate','information']], state:'Manual searching across file shares and systems', benefit:'Unified search across all document repositories', recs:{q:'Organize and tag documents with consistent metadata',m:'Deploy enterprise search with relevance ranking',s:'AI semantic search with natural language queries'}, ts:0.55 },
-            { id:'TRAINING', cat:'human', potential:0.40, complexity:0.35, keys:['training','learning','development','course','certification','skill','upskill','employee training','train staff','learning management'], stems:['train','learn','certif','upskill'], vn:[['train','staff'],['develop','skill'],['deliver','course']], state:'Ad-hoc training delivery', benefit:'Structured LMS-based learning paths', recs:{q:'Create training catalog with role-based paths',m:'Deploy LMS with progress tracking and assessments',s:'AI-personalized learning with adaptive content and skill gap analysis'}, ts:0.30 },
+            { id:'KNOWLEDGE_BASE', cat:'system', potential:0.74, complexity:0.35, keys:['knowledge base','wiki','documentation','knowledge management','institutional knowledge','sop','standard operating procedure','document process'], stems:['knowledg','document','wiki'], vn:[['build','knowledge base'],['document','process'],['create','wiki']], state:'Tribal knowledge and undocumented processes', benefit:'Tribal knowledge captured in a searchable system — new hires find answers in seconds instead of asking around for days', recs:{q:'Document top 10 critical processes as SOPs',m:'Build searchable knowledge base with tagging',s:'AI knowledge platform with auto-capture and recommendations'}, ts:0.45 },
+            { id:'DOC_SEARCH', cat:'ai', potential:0.74, complexity:0.35, keys:['document search','information retrieval','file finding','content discovery','enterprise search','find file','locate document'], stems:['search','retriev','discov','locat'], vn:[['search','document'],['find','file'],['locate','information']], state:'Manual searching across file shares and systems', benefit:'One search bar finds documents across SharePoint, shared drives, email, and cloud storage — ends the 20-minute hunt through folders', recs:{q:'Organize and tag documents with consistent metadata',m:'Deploy enterprise search with relevance ranking',s:'AI semantic search with natural language queries'}, ts:0.55 },
+            { id:'TRAINING', cat:'human', potential:0.40, complexity:0.35, keys:['training','learning','development','course','certification','skill','upskill','employee training','train staff','learning management'], stems:['train','learn','certif','upskill'], vn:[['train','staff'],['develop','skill'],['deliver','course']], state:'Ad-hoc training delivery', benefit:'AI adapts training content to each role, pace, and knowledge gaps — targeted learning replaces one-size-fits-all classroom sessions', recs:{q:'Create training catalog with role-based paths',m:'Deploy LMS with progress tracking and assessments',s:'AI-personalized learning with adaptive content and skill gap analysis'}, ts:0.30 },
 
             /* Integration & API */
-            { id:'DATA_TRANSFER', cat:'system', potential:0.80, complexity:0.35, keys:['transfer','migrate','integration','import','export','sync','synchronize','etl','extract','load','data transfer','system integration','move data'], stems:['transfer','migrat','integrat','sync','import','export'], vn:[['transfer','data'],['sync','system'],['import','file'],['export','data']], state:'Manual data transfer between systems', benefit:'Real-time automated integration', recs:{q:'Map data flows and identify manual transfer points',m:'Build API connectors for top system pairs',s:'Integration platform with real-time sync and error handling'}, ts:0.70 },
-            { id:'API_MGMT', cat:'system', potential:0.75, complexity:0.45, keys:['api','webhook','middleware','connector','integration platform','ipaas','rest','microservice','api management','api integration'], stems:['api','webhook','middlewar','connector'], vn:[['build','api'],['connect','system'],['integrate','platform']], state:'Point-to-point custom integrations', benefit:'Managed API platform with reusable connectors', recs:{q:'Inventory existing integrations and document APIs',m:'Deploy integration platform with standard connectors',s:'Enterprise iPaaS with API governance and monitoring'}, ts:0.55 },
-            { id:'LEGACY_MOD', cat:'system', potential:0.65, complexity:0.6, keys:['legacy system','mainframe','migration','modernization','system replacement','technical debt','outdated system','old system','replace system'], stems:['legacy','mainframe','moderniz','migrat'], vn:[['replace','system'],['modernize','platform'],['migrate','application']], state:'Reliance on outdated legacy systems', benefit:'Modern platform with improved agility and lower maintenance', recs:{q:'Assess legacy systems and prioritize by risk/value',m:'Build integration wrappers around legacy systems',s:'Phased platform modernization with data migration'}, ts:0.40 },
+            { id:'DATA_TRANSFER', cat:'ai', potential:0.85, complexity:0.3, keys:['transfer','migrate','integration','import','export','sync','synchronize','etl','extract','load','data transfer','system integration','move data'], stems:['transfer','migrat','integrat','sync','import','export'], vn:[['transfer','data'],['sync','system'],['import','file'],['export','data']], state:'Manual data transfer between systems', benefit:'Real-time automated integration; AI agents handle data transformation, validation, and cross-system posting autonomously', recs:{q:'Map data flows and identify manual transfer points',m:'Build API connectors with AI-powered data transformation',s:'Agentic integration platform with self-healing connectors, real-time sync, and automated error resolution'}, ts:0.75 },
+            { id:'API_MGMT', cat:'system', potential:0.75, complexity:0.45, keys:['api','webhook','middleware','connector','integration platform','ipaas','rest api','microservice','api management','api integration'], stems:['api','webhook','middlewar','connector'], vn:[['build','api'],['connect','system'],['integrate','platform']], state:'Point-to-point custom integrations', benefit:'Pre-built connectors link systems in days instead of months — new integrations reuse existing APIs instead of building from scratch', recs:{q:'Inventory existing integrations and document APIs',m:'Deploy integration platform with standard connectors',s:'Enterprise iPaaS with API governance and monitoring'}, ts:0.55 },
+            { id:'LEGACY_MOD', cat:'system', potential:0.55, complexity:0.6, keys:['legacy system','mainframe','migration','modernization','system replacement','technical debt','outdated system','old system','replace system'], stems:['legacy','mainframe','moderniz','migrat'], vn:[['replace','system'],['modernize','platform'],['migrate','application']], state:'Reliance on outdated legacy systems', benefit:'Legacy systems wrapped or replaced incrementally — maintenance costs drop, new features deploy in weeks instead of quarters, and vendor lock-in dissolves', recs:{q:'Assess legacy systems and prioritize by risk/value',m:'Build integration wrappers around legacy systems',s:'Phased platform modernization with data migration'}, ts:0.40 },
 
             /* HR & People Ops */
-            { id:'PERF_MGMT', cat:'human', potential:0.55, complexity:0.35, keys:['performance review','evaluation','appraisal','goal setting','okr','talent assessment','360 feedback','performance management','review cycle'], stems:['perform','evaluat','apprais','talent'], vn:[['conduct','review'],['evaluate','performance'],['set','goal']], state:'Manual performance review cycles', benefit:'Streamlined reviews with data-driven insights', recs:{q:'Standardize review templates and timelines',m:'Deploy performance platform with goal tracking',s:'AI-enhanced performance management with predictive talent insights'}, ts:0.40 },
-            { id:'WORKFORCE_PLAN', cat:'human', potential:0.58, complexity:0.45, keys:['workforce planning','headcount','staffing','resource planning','capacity planning','skills gap','talent planning','staffing plan'], stems:['workforc','headcount','staffing','capacit'], vn:[['plan','workforce'],['forecast','headcount'],['assess','capacity']], state:'Spreadsheet-based workforce planning', benefit:'Data-driven workforce planning with gap analysis', recs:{q:'Centralize headcount data and define planning cycle',m:'Deploy workforce analytics with skills tracking',s:'AI workforce planning with attrition prediction and skills forecasting'}, ts:0.35 },
+            { id:'PERF_MGMT', cat:'human', potential:0.55, complexity:0.35, keys:['performance review','evaluation','appraisal','goal setting','okr','talent assessment','360 feedback','performance management','review cycle'], stems:['perform','evaluat','apprais','talent'], vn:[['conduct','review'],['evaluate','performance'],['set','goal']], state:'Manual performance review cycles', benefit:'Performance data aggregated automatically from project systems, peer feedback, and OKRs — managers review evidence, not memory', recs:{q:'Standardize review templates and timelines',m:'Deploy performance platform with goal tracking',s:'AI-enhanced performance management with predictive talent insights'}, ts:0.40 },
+            { id:'WORKFORCE_PLAN', cat:'human', potential:0.58, complexity:0.45, keys:['workforce planning','headcount','staffing','resource planning','capacity planning','skills gap','talent planning','staffing plan'], stems:['workforc','headcount','staffing','capacit'], vn:[['plan','workforce'],['forecast','headcount'],['assess','capacity']], state:'Spreadsheet-based workforce planning', benefit:'AI models project attrition, skill gaps, and hiring needs 6-12 months out — workforce plans built on data instead of headcount guesses', recs:{q:'Centralize headcount data and define planning cycle',m:'Deploy workforce analytics with skills tracking',s:'AI workforce planning with attrition prediction and skills forecasting'}, ts:0.35 },
 
             /* Supply Chain & Logistics */
-            { id:'PROCUREMENT', cat:'system', potential:0.72, complexity:0.35, keys:['procure','purchase','requisition','order','vendor','supplier','sourcing','rfp','rfq','po','purchase order','procurement','buy'], stems:['procur','purchas','requisit','vendor','suppli'], vn:[['submit','requisition'],['approve','purchase'],['select','vendor']], state:'Manual procurement process with paper trails', benefit:'Streamlined e-procurement with auto-approvals', recs:{q:'Digitize purchase requisition forms',m:'Deploy e-procurement with catalog and auto-PO generation',s:'AI procurement with spend analytics and supplier risk monitoring'}, ts:0.55 },
-            { id:'INVENTORY', cat:'system', potential:0.78, complexity:0.35, keys:['inventory','stock','warehouse','fulfillment','shipping','logistics','supply chain','delivery','inventory management','track inventory'], stems:['inventor','warehous','fulfil','logistic','shipment'], vn:[['manage','inventory'],['track','shipment'],['fulfill','order']], state:'Manual inventory and logistics tracking', benefit:'Real-time automated inventory management', recs:{q:'Implement barcode/QR scanning for inventory counts',m:'Deploy inventory management with reorder triggers',s:'AI inventory optimization with demand sensing'}, ts:0.60 },
-            { id:'QUALITY_INSPECT', cat:'human', potential:0.68, complexity:0.4, keys:['quality inspection','quality control','defect detection','testing','qa','inspection','sampling','quality check','inspect product'], stems:['inspect','defect','qualit','sampl'], vn:[['inspect','product'],['detect','defect'],['test','quality']], state:'Manual quality inspection and testing', benefit:'AI-assisted inspection with automated defect detection', recs:{q:'Standardize inspection checklists and criteria',m:'Deploy automated testing with statistical controls',s:'AI vision-based inspection with predictive quality analytics'}, ts:0.50 },
+            { id:'PROCUREMENT', cat:'system', potential:0.72, complexity:0.35, keys:['procure','purchase','requisition','order','vendor','supplier','sourcing','rfp','rfq','po','purchase order','procurement','buy'], stems:['procur','purchas','requisit','vendor','suppli'], vn:[['submit','requisition'],['approve','purchase'],['select','vendor']], state:'Manual procurement process with paper trails', benefit:'Requisitions flow through catalog selection, auto-approval for low-risk purchases, and PO generation in minutes — eliminates paper trails and email chains', recs:{q:'Digitize purchase requisition forms',m:'Deploy e-procurement with catalog and auto-PO generation',s:'AI procurement with spend analytics and supplier risk monitoring'}, ts:0.55 },
+            { id:'INVENTORY', cat:'system', potential:0.78, complexity:0.35, keys:['inventory','stock','warehouse','fulfillment','shipping','logistics','supply chain','delivery','inventory management','track inventory'], stems:['inventor','warehous','fulfil','logistic','shipment'], vn:[['manage','inventory'],['track','shipment'],['fulfill','order']], state:'Manual inventory and logistics tracking', benefit:'Stock levels update in real time across all locations — reorder points trigger automatically, overstock and stockouts caught before they cost money', recs:{q:'Implement barcode/QR scanning for inventory counts',m:'Deploy inventory management with reorder triggers',s:'AI inventory optimization with demand sensing'}, ts:0.60 },
+            { id:'QUALITY_INSPECT', cat:'ai', potential:0.68, complexity:0.4, keys:['quality inspection','quality control','defect detection','testing','qa','inspection','sampling','quality check','inspect product'], stems:['inspect','defect','qualit','sampl'], vn:[['inspect','product'],['detect','defect'],['test','quality']], state:'Manual quality inspection and testing', benefit:'Computer vision spots defects on the line in milliseconds — catches issues human inspectors miss and scales to 100% inspection without added headcount', recs:{q:'Standardize inspection checklists and criteria',m:'Deploy automated testing with statistical controls',s:'AI vision-based inspection with predictive quality analytics'}, ts:0.50 },
 
             /* Compliance & Risk */
-            { id:'REVIEW_AUDIT', cat:'human', potential:0.60, complexity:0.35, keys:['review','audit','check','verify','validation','validate','quality','qa','inspect','peer review','manual review','double check'], stems:['review','audit','verif','validat','inspect'], vn:[['review','document'],['audit','process'],['verify','result']], state:'Manual review and verification', benefit:'AI-assisted review with anomaly flagging', recs:{q:'Define review criteria and checklists',m:'Deploy AI pre-screening to flag exceptions before human review',s:'AI review platform with continuous learning and auto-approval for low-risk items'}, ts:0.45 },
-            { id:'CONTRACT_MGMT', cat:'ai', potential:0.76, complexity:0.4, keys:['contract management','contract review','clause analysis','obligation tracking','renewal','sla monitoring','manage contract','review contract'], stems:['contract','clause','obligat','renew'], vn:[['review','contract'],['track','obligation'],['manage','renewal']], state:'Manual contract tracking and review', benefit:'AI-powered contract analysis with auto-extraction', recs:{q:'Create contract register with key dates and alerts',m:'Deploy CLM with AI clause review',s:'Intelligent contract platform with risk scoring and auto-negotiation support'}, ts:0.55 },
-            { id:'INCIDENT_MGMT', cat:'system', potential:0.72, complexity:0.4, keys:['incident response','breach','security incident','disaster recovery','business continuity','escalation protocol','crisis management','respond to incident'], stems:['incident','breach','disaster','crisis','escal'], vn:[['respond','incident'],['manage','crisis'],['escalate','breach']], state:'Ad-hoc incident response procedures', benefit:'Automated incident detection and response playbooks', recs:{q:'Document incident response playbooks',m:'Deploy automated detection with playbook execution',s:'AI-powered incident platform with predictive alerts and auto-remediation'}, ts:0.50 },
+            { id:'REVIEW_AUDIT', cat:'human', potential:0.60, complexity:0.35, keys:['review','audit','check','verify','validation','validate','quality','qa','inspect','peer review','manual review','double check'], stems:['review','audit','verif','validat','inspect'], vn:[['review','document'],['audit','process'],['verify','result']], state:'Manual review and verification', benefit:'AI pre-screens documents and flags anomalies before human review — reviewers focus on the 10-15% that actually need judgment instead of reading everything', recs:{q:'Define review criteria and checklists',m:'Deploy AI pre-screening to flag exceptions before human review',s:'AI review platform with continuous learning and auto-approval for low-risk items'}, ts:0.45 },
+            { id:'CONTRACT_MGMT', cat:'ai', potential:0.76, complexity:0.4, keys:['contract management','contract review','clause analysis','obligation tracking','renewal','sla monitoring','manage contract','review contract'], stems:['contract','clause','obligat','renew'], vn:[['review','contract'],['track','obligation'],['manage','renewal']], state:'Manual contract tracking and review', benefit:'AI reads contracts in seconds, extracts key clauses, flags risky language, and tracks obligations and renewal dates — replaces days of legal review per contract', recs:{q:'Create contract register with key dates and alerts',m:'Deploy CLM with AI clause review',s:'Intelligent contract platform with risk scoring and auto-negotiation support'}, ts:0.55 },
+            { id:'INCIDENT_MGMT', cat:'system', potential:0.72, complexity:0.4, keys:['incident response','breach','security incident','disaster recovery','business continuity','escalation protocol','crisis management','respond to incident'], stems:['incident','breach','disaster','crisis','escal'], vn:[['respond','incident'],['manage','crisis'],['escalate','breach']], state:'Ad-hoc incident response procedures', benefit:'Incidents detected by monitoring systems trigger automated playbooks — containment starts in seconds, not hours, with full audit trails and stakeholder notifications', recs:{q:'Document incident response playbooks',m:'Deploy automated detection with playbook execution',s:'AI-powered incident platform with predictive alerts and auto-remediation'}, ts:0.50 },
+
+            /* Operations, Monitoring & Field Services */
+            { id:'EQUIP_MONITOR', cat:'ai', potential:0.82, complexity:0.4, keys:['monitor','sensors','grid sensors','monitoring','scada','telemetry','sensor data','condition monitoring','equipment monitoring','real-time monitoring','grid monitoring','performance monitoring','alarm management','fault detection','anomaly detection'], stems:['monitor','scada','telemetr','sensor','alarm','fault'], vn:[['monitor','equipment'],['monitor','sensor'],['detect','fault'],['analyze','sensor'],['track','performance']], state:'Manual monitoring of equipment and system performance via periodic checks or basic alarms', benefit:'AI continuously analyzes sensor feeds, detects anomalies before they become failures, and prioritizes alerts — operators focus on real issues instead of drowning in false alarms', recs:{q:'Consolidate monitoring feeds into a single dashboard with alert thresholds',m:'Deploy AI-powered condition monitoring with predictive fault detection and automated alert prioritization',s:'Digital twin platform with real-time anomaly detection, predictive maintenance scheduling, and autonomous response playbooks'}, ts:0.70 },
+            { id:'OUTAGE_MGMT', cat:'system', potential:0.75, complexity:0.45, keys:['restoration','coordinate restoration','restoration sequencing','outage','outage management','power outage','service disruption','fault isolation','trouble dispatch','crew dispatch','storm response','emergency response','service restoration'], stems:['outage','restor','disrupt','dispatch'], vn:[['manage','outage'],['restore','service'],['dispatch','crew'],['isolate','fault'],['coordinate','restoration']], state:'Reactive outage response with manual crew coordination and customer notification', benefit:'Outages detected in seconds via smart grid sensors, crews auto-dispatched to the right location with optimal routing, and customers notified automatically with real-time ETAs', recs:{q:'Digitize outage reporting and create crew dispatch checklists',m:'Deploy outage management system with automated detection, crew dispatch, and customer notification',s:'AI-powered grid resilience platform with predictive outage modeling, autonomous switching, and self-healing network capabilities'}, ts:0.60 },
+            { id:'MAINT_MGMT', cat:'system', potential:0.78, complexity:0.35, keys:['maintenance planning','preventive maintenance','predictive maintenance','work order','maintenance schedule','asset maintenance','equipment maintenance','maintenance workflow','corrective maintenance','pm schedule','maintenance program'], stems:['mainten','workorder'], vn:[['schedule','maintenance'],['create','work order'],['plan','maintenance'],['maintain','equipment']], state:'Calendar-based or reactive maintenance with manual work order tracking', benefit:'Maintenance shifts from calendar-based to condition-based — AI predicts failures before they happen, auto-generates work orders, and optimizes technician schedules to reduce downtime 30-50%', recs:{q:'Digitize work orders and build an asset register with maintenance history',m:'Deploy CMMS with preventive maintenance scheduling and mobile work order management',s:'AI predictive maintenance platform analyzing vibration, temperature, and performance data to schedule repairs before failures occur'}, ts:0.65 },
+            { id:'WORK_EXECUTION', cat:'human', potential:0.55, complexity:0.45, keys:['repair','repair execution','fix equipment','hands-on','physical work','installation','install equipment','replace component','rebuild','overhaul','corrective repair','troubleshoot equipment','wire','wiring','assembly','disassembly','commissioning','decommission'], stems:['repair','install','rebuild','overhaul','troubleshoot','commission','assembl','wire'], vn:[['repair','equipment'],['fix','issue'],['install','component'],['replace','part'],['troubleshoot','fault'],['execute','repair']], state:'Technicians rely on experience, paper procedures, and phone calls to senior staff when stuck', benefit:'AR-guided step-by-step procedures overlaid on equipment, digital safety checklists auto-enforced before work begins, parts confirmed available before dispatch, and remote expert video assistance when needed — faster repairs with fewer return visits', recs:{q:'Convert paper repair procedures to digital checklists accessible on mobile devices',m:'Deploy mobile work execution platform with digital procedures, photo capture, and parts lookup',s:'AR-assisted repair platform with IoT diagnostics, remote expert collaboration, and AI-recommended repair sequences based on fault codes and equipment history'}, ts:0.35 },
+            { id:'ASSET_MGMT', cat:'system', potential:0.72, complexity:0.4, keys:['asset management','asset tracking','asset lifecycle','infrastructure management','grid management','fleet management','capital planning','asset register','asset inventory','equipment tracking'], stems:['asset','fleet','infrastru','capital'], vn:[['track','asset'],['manage','infrastructure'],['plan','capital'],['monitor','fleet']], state:'Spreadsheet-based asset tracking with incomplete lifecycle data', benefit:'Every asset tracked from procurement to decommission with real-time condition data — replacement decisions backed by cost and risk analytics instead of age-based rules', recs:{q:'Build a complete asset register with location, condition, and criticality ratings',m:'Deploy asset management system with lifecycle tracking, condition monitoring, and capital planning',s:'AI-powered asset analytics with remaining useful life prediction, risk-based prioritization, and optimized capital expenditure planning'}, ts:0.55 },
+            { id:'FIELD_SERVICE', cat:'system', potential:0.75, complexity:0.35, keys:['field service','field operations','field crew','technician dispatch','service call','site visit','field inspection','mobile workforce','field work','on-site'], stems:['field','technic','site','crew'], vn:[['dispatch','technician'],['schedule','visit'],['assign','crew'],['inspect','site']], state:'Manual field crew scheduling with paper-based job tickets and phone coordination', benefit:'Jobs auto-assigned to the nearest qualified technician, routes optimized in real time, and field reports submitted digitally from the site — eliminates phone tag and paper trails', recs:{q:'Digitize field job tickets and create a technician skills matrix',m:'Deploy field service management with GPS routing, mobile job completion, and automated scheduling',s:'AI-optimized field operations with predictive scheduling, dynamic re-routing, and augmented reality-assisted repairs'}, ts:0.60 },
+            { id:'SAFETY_ENV', cat:'human', potential:0.65, complexity:0.4, keys:['safety','environmental','ehs','safety incident','safety inspection','environmental compliance','permit','lockout tagout','hazard','safety report','environmental monitoring'], stems:['safety','hazard','permit','environ','ehs'], vn:[['report','incident'],['inspect','safety'],['monitor','environmental'],['manage','permit']], state:'Paper-based safety reporting with manual compliance tracking', benefit:'Safety incidents reported from mobile devices in real time, hazard trends analyzed automatically, and compliance documentation generated continuously — replaces end-of-month paper reviews', recs:{q:'Digitize safety checklists and incident reporting forms',m:'Deploy EHS platform with mobile reporting, trend analysis, and automated regulatory submissions',s:'AI safety platform with predictive hazard identification, real-time environmental monitoring, and automated permit management'}, ts:0.45 },
 
             /* Miscellaneous */
-            { id:'PROJECT_MGMT', cat:'human', potential:0.55, complexity:0.35, keys:['project management','project tracking','milestone','project plan','pmo','sprint','agile','manage project','track project'], stems:['project','mileston','sprint','agile'], vn:[['manage','project'],['track','milestone'],['plan','sprint']], state:'Manual project tracking and coordination', benefit:'Automated project management with resource optimization', recs:{q:'Adopt standardized project templates',m:'Deploy project management platform with auto-tracking',s:'AI project management with predictive risk and resource optimization'}, ts:0.40 },
-            { id:'MEETING_MGMT', cat:'ai', potential:0.72, complexity:0.25, keys:['meeting notes','agenda','action items','minutes','meeting scheduling','calendar coordination','take notes','meeting summary','record meeting'], stems:['meeting','agenda','minutes','action'], vn:[['take','notes'],['schedule','meeting'],['track','action items']], state:'Manual note-taking and meeting coordination', benefit:'AI transcription with auto-extracted action items', recs:{q:'Use templates for agendas and minutes',m:'Deploy AI meeting assistant with transcription',s:'Intelligent meeting platform with auto-actions and follow-up tracking'}, ts:0.58 }
+            { id:'PROJECT_MGMT', cat:'human', potential:0.48, complexity:0.35, keys:['project management','project tracking','milestone','project plan','pmo','sprint','agile','manage project','track project'], stems:['project','mileston','sprint','agile'], vn:[['manage','project'],['track','milestone'],['plan','sprint']], state:'Manual project tracking and coordination', benefit:'Tasks auto-assigned based on skills and capacity, progress tracked in real time, and at-risk milestones flagged before deadlines are missed', recs:{q:'Adopt standardized project templates',m:'Deploy project management platform with auto-tracking',s:'AI project management with predictive risk and resource optimization'}, ts:0.40 },
+            { id:'MEETING_MGMT', cat:'ai', potential:0.72, complexity:0.25, keys:['meeting notes','agenda','action items','minutes','meeting scheduling','calendar coordination','take notes','meeting summary','record meeting'], stems:['meeting','agenda','minutes','action'], vn:[['take','notes'],['schedule','meeting'],['track','action items']], state:'Manual note-taking and meeting coordination', benefit:'Meetings transcribed live with action items, decisions, and owners extracted automatically — follow-ups assigned and tracked without anyone writing minutes', recs:{q:'Use templates for agendas and minutes',m:'Deploy AI meeting assistant with transcription',s:'Intelligent meeting platform with auto-actions and follow-up tracking'}, ts:0.58 }
         ];
 
         const SIGNAL_WORDS = {
@@ -1801,7 +2017,9 @@
             error_prone:   { words:['error-prone','error prone','mistakes','inaccurate','mistype','wrong data','keeps breaking','always errors','fat finger'], boost:0.10 },
             high_volume:   { words:['hundreds','thousands','high volume','high-volume','bulk','batch','large number','tons of','massive amount'], boost:0.10 },
             waiting:       { words:['waiting for','wait for','pending','bottleneck','backlog','queue','delayed','stuck','held up','blocked by'], boost:0.08 },
-            paper_based:   { words:['paper','printed','printout','physical copy','filing cabinet','binder','paper trail'], boost:0.12 }
+            paper_based:   { words:['paper','printed','printout','physical copy','filing cabinet','binder','paper trail'], boost:0.12 },
+            legacy_tools:  { words:['legacy system','old system','outdated','mainframe','manual workaround','no api','no integration','standalone'], boost:0.10 },
+            multi_system:  { words:['multiple systems','several systems','three systems','different platforms','different tools','switching between','toggling'], boost:0.10 }
         };
 
         const ANTI_SIGNAL_WORDS = {
@@ -1833,37 +2051,37 @@
         };
 
         const INDUSTRY_BENCHMARKS = {
-            'Financial Services': { avg:42, top:68, areas:'reconciliation, compliance monitoring, and financial reporting', note:'Financial services leads in compliance automation but lags in customer-facing AI' },
-            'Healthcare': { avg:31, top:52, areas:'clinical documentation, billing, and patient scheduling', note:'Healthcare adoption accelerating post-pandemic in telehealth and documentation' },
-            'Manufacturing': { avg:38, top:61, areas:'quality control, predictive maintenance, and supply chain optimization', note:'Industry 4.0 driving rapid adoption of IoT-integrated AI' },
-            'Retail': { avg:35, top:58, areas:'inventory management, demand forecasting, and personalized marketing', note:'Omnichannel operations creating new automation opportunities' },
-            'Technology': { avg:52, top:78, areas:'CI/CD pipelines, incident management, and customer support', note:'Technology sector leads overall automation adoption in DevOps and MLOps' },
-            'Government': { avg:22, top:38, areas:'document processing, citizen services, and compliance reporting', note:'Government automation growing steadily driven by digital service mandates' },
-            'Energy & Utilities': { avg:33, top:55, areas:'asset monitoring, field operations, and regulatory compliance', note:'Smart grid and IoT driving new automation categories' },
-            'Professional Services': { avg:36, top:59, areas:'time tracking, document generation, and client reporting', note:'AI augmentation of knowledge work is the fastest-growing segment' },
-            'Education': { avg:25, top:42, areas:'enrollment processing, grading, and student communications', note:'EdTech and LMS adoption accelerating administrative automation' },
-            'Telecommunications': { avg:44, top:67, areas:'network monitoring, customer service, and billing operations', note:'Telecom leveraging AI for network optimization and churn prevention' },
-            'Real Estate': { avg:28, top:45, areas:'lease management, property marketing, and tenant communications', note:'PropTech driving automation in property management and transactions' },
-            'Non-profit / NGO': { avg:20, top:35, areas:'donor management, grant reporting, and program tracking', note:'Cost-effective automation tools making AI accessible to mission-driven organizations' },
-            'Logistics & Transportation': { avg:40, top:63, areas:'route optimization, fleet management, and shipment tracking', note:'Real-time visibility and autonomous systems transforming logistics' },
-            'Media & Entertainment': { avg:34, top:56, areas:'content tagging, rights management, and audience analytics', note:'Generative AI creating new automation categories in content production' }
+            'Financial Services': { avg:52, top:74, areas:'reconciliation, compliance monitoring, agentic payment processing, and regulatory reporting', note:'92% of global banks have active AI deployments; Forrester projects one-third of B2B payment transactions will involve autonomous agents by end of 2026' },
+            'Healthcare': { avg:40, top:58, areas:'clinical documentation, claims processing, patient scheduling, and care coordination', note:'Fastest AI adoption growth rate of any industry (36.8% CAGR); 68% already using AI agents, though only 1% report fully mature deployment' },
+            'Manufacturing': { avg:48, top:68, areas:'predictive maintenance, quality control, supply chain optimization, and production scheduling', note:'77% of manufacturers now utilize AI (up 7% YoY); Gartner projects semiautonomous agents will orchestrate 10% of key production operations by 2030' },
+            'Retail': { avg:45, top:65, areas:'demand forecasting, inventory optimization, personalized marketing, and customer service AI', note:'80% of retail executives adopting AI automation; AI agents now deflecting 53% of customer queries in leading deployments' },
+            'Technology': { avg:65, top:84, areas:'CI/CD pipelines, agentic coding, incident management, and customer support', note:'84% of developers use AI coding tools; AI now writes 41% of all code; 90% of Fortune 100 companies adopted GitHub Copilot' },
+            'Government': { avg:30, top:46, areas:'document processing, citizen services, compliance reporting, and predictive analytics', note:'Adoption growing steadily driven by digital service mandates; NLP expected to handle 89% of regulatory document analysis automatically by 2026' },
+            'Energy & Utilities': { avg:42, top:62, areas:'predictive maintenance, field workforce optimization, outage management, and grid analytics', note:'40%+ of utility companies using AI; executives report 10% improvement in service reliability and 11% boost in grid uptime' },
+            'Professional Services': { avg:46, top:66, areas:'document generation, contract analysis, client reporting, and knowledge management', note:'Legal AI adoption doubling year-over-year; 26% of legal orgs actively using generative AI (up from 14% in 2024); 16% already deploying agentic AI' },
+            'Education': { avg:33, top:50, areas:'enrollment processing, adaptive learning, student communications, and administrative automation', note:'86% of higher education students use AI as primary research tool; 63% of K-12 teachers have incorporated GenAI into instruction' },
+            'Telecommunications': { avg:58, top:78, areas:'autonomous network management, customer service AI, billing operations, and churn prevention', note:'97% of telecom providers using AI; 44% have fully deployed agentic AI in customer-facing chatbots; 68% integrating autonomous agents into core operations in 2026' },
+            'Real Estate': { avg:34, top:52, areas:'lease management, property marketing, price modeling, and tenant communications', note:'PropTech driving automation in property management; AI-powered analytics improving investment decisions and leasing workflows' },
+            'Non-profit / NGO': { avg:26, top:40, areas:'donor management, grant reporting, program tracking, and fundraising automation', note:'92% of nonprofits have adopted AI, but only 7% report expanded capability; 47% have no AI governance policy' },
+            'Logistics & Transportation': { avg:50, top:70, areas:'route optimization, fleet management, shipment tracking, and demand planning', note:'49% of logistics leaders report significant AI impact; 44% using AI in transportation planning; autonomous systems transforming operations' },
+            'Media & Entertainment': { avg:46, top:66, areas:'content production, audience analytics, rights management, and ad optimization', note:'GenAI usage rose from 33% to 71% between 2022 and 2024; AI influences 69% of global ad revenue, projected to reach 94% by 2029' }
         };
 
         const INDUSTRY_CONTEXT = {
-            'Financial Services': { focus: 'regulatory compliance, risk management, and audit trails', aiBoost: 5 },
-            'Healthcare': { focus: 'patient data accuracy, HIPAA compliance, and care coordination', aiBoost: 3 },
-            'Manufacturing': { focus: 'supply chain efficiency, quality control, and production scheduling', aiBoost: 4 },
-            'Retail': { focus: 'inventory optimization, customer experience, and omnichannel operations', aiBoost: 4 },
-            'Technology': { focus: 'development velocity, CI/CD automation, and platform scalability', aiBoost: 6 },
-            'Government': { focus: 'transparency, compliance, citizen service delivery, and audit readiness', aiBoost: 2 },
-            'Energy & Utilities': { focus: 'asset management, regulatory compliance, and field operations', aiBoost: 3 },
-            'Professional Services': { focus: 'utilization rates, project delivery, and client engagement', aiBoost: 5 },
-            'Education': { focus: 'student lifecycle management, accreditation compliance, and learning outcomes', aiBoost: 3 },
-            'Telecommunications': { focus: 'network operations, subscriber management, and service assurance', aiBoost: 5 },
-            'Real Estate': { focus: 'lease management, property operations, and tenant experience', aiBoost: 3 },
-            'Non-profit / NGO': { focus: 'donor management, grant compliance, and program impact measurement', aiBoost: 2 },
-            'Logistics & Transportation': { focus: 'fleet management, route optimization, and shipment visibility', aiBoost: 5 },
-            'Media & Entertainment': { focus: 'content workflow orchestration, rights management, and audience analytics', aiBoost: 4 }
+            'Financial Services': { focus: 'agentic compliance monitoring, autonomous payment processing, and AI-powered risk management', aiBoost: 6 },
+            'Healthcare': { focus: 'AI clinical documentation, autonomous claims processing, and intelligent care coordination', aiBoost: 4 },
+            'Manufacturing': { focus: 'predictive maintenance, AI quality control, and autonomous supply chain optimization', aiBoost: 5 },
+            'Retail': { focus: 'AI demand forecasting, autonomous inventory management, and personalized customer engagement', aiBoost: 5 },
+            'Technology': { focus: 'agentic coding and DevOps, AI-powered incident resolution, and autonomous testing', aiBoost: 7 },
+            'Government': { focus: 'AI document processing, automated compliance reporting, and intelligent citizen services', aiBoost: 3 },
+            'Energy & Utilities': { focus: 'AI predictive maintenance, autonomous grid management, and intelligent field operations', aiBoost: 4 },
+            'Professional Services': { focus: 'AI contract analysis, autonomous knowledge management, and agentic client delivery', aiBoost: 5 },
+            'Education': { focus: 'adaptive learning platforms, AI administrative automation, and intelligent student engagement', aiBoost: 3 },
+            'Telecommunications': { focus: 'autonomous network management, AI customer agents, and predictive churn prevention', aiBoost: 6 },
+            'Real Estate': { focus: 'AI property analytics, automated lease management, and intelligent tenant experience', aiBoost: 3 },
+            'Non-profit / NGO': { focus: 'AI donor engagement, automated grant reporting, and intelligent program measurement', aiBoost: 2 },
+            'Logistics & Transportation': { focus: 'autonomous route optimization, AI demand sensing, and real-time shipment intelligence', aiBoost: 5 },
+            'Media & Entertainment': { focus: 'AI content production, autonomous ad optimization, and intelligent rights management', aiBoost: 5 }
         };
 
         const DEPARTMENT_CONTEXT = {
@@ -1881,6 +2099,96 @@
             'Compliance & Risk': { focus: 'regulatory adherence, risk assessment, and audit readiness', aiBoost: 3, keywords: ['audit','compliance','risk','control','regulation','policy','monitoring','report','assessment','sox'], rec: 'Implement continuous compliance monitoring with automated audit trail generation and risk scoring' }
         };
 
+        /* ── Context Overlays — industry-specific state/benefit text for key KB matches ── */
+        const CONTEXT_OVERLAYS = {
+            'DATA_ENTRY': {
+                'Healthcare': { state: 'Manual patient data entry across EHR systems', benefit: '85-95% time reduction via multimodal AI extraction with clinical validation and cross-system posting' },
+                'Financial Services': { state: 'Manual data entry across GL and sub-ledger systems', benefit: '85-95% time reduction via AI agents with 99%+ accuracy, auto-reconciliation, and compliance checks' },
+                'Government': { state: 'Manual data entry across citizen service systems', benefit: '85-95% time reduction via intelligent form processing with NLP-powered document understanding' },
+                'Manufacturing': { state: 'Manual data entry across production and inventory systems', benefit: '85-95% time reduction via IoT sensor integration, computer vision, and AI capture' },
+                'Retail': { state: 'Manual data entry across POS and inventory systems', benefit: '85-95% time reduction via automated omnichannel feed integration with AI validation' }
+            },
+            'RECONCILIATION': {
+                'Financial Services': { state: 'Manual cross-referencing across trading and settlement systems', benefit: 'AI agents eliminate 85-90% of reconciliation work; errors reduced 80% with continuous automated matching' },
+                'Healthcare': { state: 'Manual claims reconciliation across payer systems', benefit: 'AI-powered EOB matching eliminates 85% of manual effort with auto-exception routing' },
+                'Retail': { state: 'Manual reconciliation across POS, inventory, and e-commerce channels', benefit: 'Agentic omnichannel reconciliation eliminates 85% of manual effort with real-time variance detection' },
+                'Government': { state: 'Manual reconciliation across fund accounting systems', benefit: 'Automated fund balance matching with AI-powered anomaly detection and audit trail generation' }
+            },
+            'INVOICE_PROC': {
+                'Financial Services': { state: 'Manual invoice processing across treasury and AP systems', benefit: 'AI processes invoices in 1-2 seconds; autonomous three-way matching with auto-posting to GL and exception routing' },
+                'Healthcare': { state: 'Manual claim and invoice processing across payer networks', benefit: 'AI agents process claims in seconds with automated adjudication, coding validation, and payer-specific rule application' },
+                'Manufacturing': { state: 'Manual invoice matching against purchase orders and goods receipts', benefit: 'AI-powered three-way matching in ERP processes invoices 90% faster with autonomous exception handling' },
+                'Government': { state: 'Manual invoice processing with appropriation and fund validation', benefit: 'AI agents validate appropriation codes, fund balances, and compliance requirements autonomously' }
+            },
+            'APPROVAL': {
+                'Financial Services': { state: 'Multi-level approval chains across compliance and risk teams', benefit: 'Automated routing with risk-based approval thresholds' },
+                'Healthcare': { state: 'Clinical and administrative approval workflows across departments', benefit: 'Automated routing with credential and privilege validation' },
+                'Government': { state: 'Hierarchical approval chains with delegation of authority rules', benefit: 'Automated routing with policy-based approval thresholds' }
+            },
+            'REPORTING': {
+                'Financial Services': { state: 'Manual compilation of regulatory and management reports', benefit: 'Real-time dashboards with automated regulatory filing' },
+                'Healthcare': { state: 'Manual compilation of clinical quality and compliance reports', benefit: 'Automated quality measure calculation and submission' },
+                'Government': { state: 'Manual compilation of program performance and compliance reports', benefit: 'Automated reporting with audit trail generation' },
+                'Manufacturing': { state: 'Manual compilation of production and quality reports', benefit: 'Real-time OEE dashboards with automated shift reporting' }
+            },
+            'SCHEDULING': {
+                'Healthcare': { state: 'Manual patient and staff scheduling across departments', benefit: 'AI-optimized scheduling with preference matching and no-show prediction' },
+                'Manufacturing': { state: 'Manual production scheduling across work centers', benefit: 'AI-optimized scheduling with constraint-based planning' },
+                'Retail': { state: 'Manual staff scheduling across locations and shifts', benefit: 'AI-optimized scheduling with demand-based staffing' },
+                'Education': { state: 'Manual class and faculty scheduling with room constraints', benefit: 'AI-optimized scheduling with constraint satisfaction' }
+            },
+            'COMPLIANCE': {
+                'Financial Services': { state: 'Manual compliance monitoring across regulatory frameworks', benefit: 'Continuous automated monitoring with real-time alert generation' },
+                'Healthcare': { state: 'Manual HIPAA and clinical compliance tracking', benefit: 'Automated compliance monitoring with PHI access auditing' },
+                'Government': { state: 'Manual regulatory and policy compliance tracking', benefit: 'Automated compliance monitoring with policy change detection' },
+                'Energy & Utilities': { state: 'Manual environmental and safety compliance tracking', benefit: 'Automated monitoring with sensor-driven compliance validation' }
+            },
+            'ONBOARDING': {
+                'Financial Services': { state: 'Manual client/employee onboarding with KYC/AML checks', benefit: 'Automated identity verification and document collection with compliance validation' },
+                'Healthcare': { state: 'Manual credentialing and onboarding for clinical staff', benefit: 'Automated credential verification with privilege delineation' },
+                'Technology': { state: 'Manual developer and employee onboarding across tools and systems', benefit: 'Automated provisioning with self-service environment setup' },
+                'Government': { state: 'Manual employee onboarding with security clearance processing', benefit: 'Automated onboarding with integrated background check workflows' }
+            },
+            'EMAIL_COMM': {
+                'Financial Services': { state: 'Manual client communications across advisory and operations', benefit: 'AI-drafted communications with compliance review and personalization' },
+                'Healthcare': { state: 'Manual patient communications across care coordination', benefit: 'Automated patient outreach with clinical context and preference matching' },
+                'Customer Service': { state: 'Manual response drafting for customer inquiries', benefit: 'AI-assisted response generation with knowledge base integration' }
+            },
+            'QUALITY': {
+                'Manufacturing': { state: 'Manual quality inspection and defect tracking', benefit: 'AI-powered visual inspection with automated defect classification' },
+                'Healthcare': { state: 'Manual clinical quality measure tracking and reporting', benefit: 'Automated quality measure calculation with real-time dashboards' },
+                'Professional Services': { state: 'Manual deliverable review and quality assurance', benefit: 'Automated quality checklists with peer review routing' }
+            },
+            'TICKET_MGMT': {
+                'Technology': { state: 'Manual ticket triage and routing across engineering teams', benefit: 'AI-powered classification with auto-routing and suggested resolutions' },
+                'Customer Service': { state: 'Manual ticket classification and escalation', benefit: 'AI-powered triage with sentiment analysis and priority scoring' },
+                'IT & Engineering': { state: 'Manual incident triage across monitoring systems', benefit: 'AIOps-driven classification with automated remediation playbooks' }
+            },
+            'EQUIP_MONITOR': {
+                'Energy & Utilities': { state: 'Manual SCADA monitoring with operator-dependent alarm response across grid substations', benefit: 'AI correlates grid sensor data, weather, and load patterns to predict equipment failures 2-4 weeks in advance — reduces unplanned outages and extends asset life' },
+                'Manufacturing': { state: 'Periodic manual equipment checks with reactive maintenance culture', benefit: 'IoT sensors feed AI models that detect vibration, temperature, and performance anomalies — failures predicted days before they happen' },
+                'Telecommunications': { state: 'Network monitoring with high false-alarm rates across distributed infrastructure', benefit: 'AI filters noise from real alerts, correlates across network layers, and auto-diagnoses root cause — operators handle real problems instead of chasing phantoms' }
+            },
+            'OUTAGE_MGMT': {
+                'Energy & Utilities': { state: 'Reactive outage response with manual fault isolation, radio-based crew dispatch, and delayed customer notification', benefit: 'Smart grid sensors detect and locate faults in seconds, FLISR auto-isolates and reroutes power, crews dispatch with GPS-optimized routes, and customers get automated ETAs' },
+                'Telecommunications': { state: 'Manual service outage detection relying on customer reports', benefit: 'Network probes detect outages before customers notice, auto-ticket creation with impact analysis, and affected customers notified with real-time restoration updates' }
+            },
+            'MAINT_MGMT': {
+                'Energy & Utilities': { state: 'Calendar-based maintenance schedules for grid assets with paper-based work orders', benefit: 'Condition-based maintenance driven by transformer oil analysis, thermal imaging, and load data — work orders auto-generated and optimized to minimize planned outages' },
+                'Manufacturing': { state: 'Reactive or calendar-based maintenance with manual work order tracking', benefit: 'Predictive maintenance using vibration, temperature, and OEE data — AI schedules repairs during planned downtime, cutting unplanned stops by 30-50%' },
+                'Real Estate': { state: 'Tenant-reported maintenance with manual work order dispatching', benefit: 'Tenants submit requests via app, AI categorizes and routes to the right trade, technicians receive mobile work orders with building access and history' }
+            },
+            'FIELD_SERVICE': {
+                'Energy & Utilities': { state: 'Manual crew dispatch with paper job packets and radio coordination for line, substation, and meter work', benefit: 'AI assigns jobs to nearest qualified crew, optimizes daily routes, and pushes digital job packets to mobile devices — eliminates morning dispatch meetings and paper trails' },
+                'Telecommunications': { state: 'Manual technician scheduling for installations and repairs', benefit: 'AI schedules technicians by skill, location, and parts availability — dynamic re-routing when emergencies arise, with real-time customer appointment updates' }
+            },
+            'WORK_EXECUTION': {
+                'Energy & Utilities': { state: 'Line crews and substation technicians work from paper procedures, rely on tribal knowledge, and call supervisors when they hit unknowns', benefit: 'Digital procedures on ruggedized tablets with AR overlays for complex equipment, automated lockout/tagout verification, IoT diagnostics pushed to the crew before arrival, and remote video support from engineering — fewer errors, faster restoration, safer work' },
+                'Manufacturing': { state: 'Maintenance technicians rely on experience and paper manuals for equipment repairs and changeovers', benefit: 'Digital work instructions with step-by-step photos, IoT fault codes pre-loaded on the tech\'s tablet, parts pre-staged by the system, and AI-suggested repair sequences from historical data — first-time fix rates improve 25-40%' },
+                'Telecommunications': { state: 'Field technicians troubleshoot with printed guides and phone support from senior techs', benefit: 'AI diagnoses the issue from remote telemetry before the tech arrives, AR overlays guide cable routing and equipment configuration, and digital completion reports submit automatically — truck rolls cut by 20-30%' }
+            }
+        };
+
         /* ── Stemmer ── */
         function simpleStem(word) {
             if (word.length < 4) return word;
@@ -1891,9 +2199,56 @@
             return word;
         }
 
+        /* ── Build bigrams from word array ── */
+        function buildBigrams(words) {
+            const bigrams = [];
+            for (let i = 0; i < words.length - 1; i++) {
+                bigrams.push(words[i] + ' ' + words[i + 1]);
+            }
+            return bigrams;
+        }
+
+        /* ── Process patterns — common multi-step workflows that boost related KB matches ── */
+        const PROCESS_PATTERNS = [
+            { pattern: ['receive', 'validate', 'post'],       boostIds: ['INVOICE_PROC', 'DATA_ENTRY', 'JOURNAL_POST'], bonus: 2.0 },
+            { pattern: ['collect', 'enter', 'reconcile'],     boostIds: ['DATA_ENTRY', 'RECONCILIATION'], bonus: 2.0 },
+            { pattern: ['review', 'approve', 'distribute'],   boostIds: ['APPROVAL', 'EMAIL_COMMS', 'REPORTING'], bonus: 1.5 },
+            { pattern: ['extract', 'transform', 'load'],      boostIds: ['DATA_TRANSFER', 'DATA_ENTRY'], bonus: 2.5 },
+            { pattern: ['triage', 'assign', 'resolve'],       boostIds: ['TICKET_SUPPORT', 'TASK_ASSIGN'], bonus: 2.0 },
+            { pattern: ['schedule', 'notify', 'confirm'],     boostIds: ['SCHEDULING', 'EMAIL_COMMS'], bonus: 1.5 },
+            { pattern: ['scan', 'enter', 'verify'],           boostIds: ['DOC_SCANNING', 'DATA_ENTRY', 'DATA_VALIDATE'], bonus: 2.0 },
+            { pattern: ['draft', 'review', 'approve'],        boostIds: ['CONTENT_GEN', 'REVIEW_AUDIT', 'APPROVAL'], bonus: 1.5 },
+            { pattern: ['record', 'reconcile', 'report'],     boostIds: ['JOURNAL_POST', 'RECONCILIATION', 'REPORTING'], bonus: 2.0 },
+            { pattern: ['onboard', 'train', 'provision'],     boostIds: ['ONBOARDING', 'TRAINING'], bonus: 1.5 },
+            { pattern: ['monitor', 'detect', 'escalate'],     boostIds: ['EQUIP_MONITOR', 'INCIDENT_MGMT', 'RISK_SCORING'], bonus: 1.5 },
+            { pattern: ['receive', 'classify', 'route'],      boostIds: ['TEXT_CLASSIFY', 'TICKET_SUPPORT', 'TASK_ASSIGN'], bonus: 2.0 },
+            { pattern: ['forecast', 'plan', 'order'],         boostIds: ['DEMAND_FORECAST', 'PROCUREMENT', 'INVENTORY'], bonus: 1.5 },
+            { pattern: ['monitor', 'maintain', 'repair'],     boostIds: ['EQUIP_MONITOR', 'MAINT_MGMT', 'ASSET_MGMT'], bonus: 2.0 },
+            { pattern: ['detect', 'isolate', 'restore'],      boostIds: ['OUTAGE_MGMT', 'INCIDENT_MGMT', 'EQUIP_MONITOR'], bonus: 2.0 },
+            { pattern: ['dispatch', 'inspect', 'report'],     boostIds: ['FIELD_SERVICE', 'MAINT_MGMT', 'SAFETY_ENV'], bonus: 1.5 }
+        ];
+
+        /* ── Detect which process patterns are present in overall workflow text ── */
+        function detectProcessPatterns(fullText) {
+            const lower = fullText.toLowerCase();
+            const hits = {};
+            for (const pp of PROCESS_PATTERNS) {
+                const matchCount = pp.pattern.filter(verb => {
+                    const stem = simpleStem(verb);
+                    return lower.includes(verb) || lower.includes(stem);
+                }).length;
+                if (matchCount >= 2) {
+                    for (const id of pp.boostIds) {
+                        hits[id] = (hits[id] || 0) + pp.bonus * (matchCount / pp.pattern.length);
+                    }
+                }
+            }
+            return hits;
+        }
+
         /* ── Score a step against one KB entry ── */
-        function scoreStepAgainstEntry(words, lower, stemmedWords, entry, deptKeys) {
-            let score = 0, matched = [];
+        function scoreStepAgainstEntry(words, lower, stemmedWords, entry, deptKeys, patternBoosts) {
+            let score = 0, matched = [], directMatches = 0;
             /* Primary key + synonym matching (combined in keys array) */
             for (const key of entry.keys) {
                 if (lower.includes(key)) {
@@ -1902,7 +2257,24 @@
                     const weight = entry.keys.indexOf(key) < 3 ? 3.0 : 1.5;
                     score += weight * wc;
                     matched.push(key);
+                    directMatches++;
                     if (deptKeys && deptKeys.includes(key)) score += 1.0;
+                }
+            }
+            /* Bigram matching — catch adjacent word pairs that relate to KB entry */
+            const bigrams = buildBigrams(words);
+            for (const key of entry.keys) {
+                if (key.includes(' ') && !matched.includes(key)) {
+                    for (const bg of bigrams) {
+                        const bgStems = bg.split(' ').map(simpleStem).join(' ');
+                        const keyStems = key.split(' ').map(simpleStem).join(' ');
+                        if (bgStems === keyStems) {
+                            score += 2.0;
+                            matched.push(key + ' (bigram)');
+                            directMatches++;
+                            break;
+                        }
+                    }
                 }
             }
             /* Stem matching */
@@ -1911,6 +2283,7 @@
                     const stemHit = stemmedWords.some(sw => sw.startsWith(stem) && sw.length >= stem.length);
                     if (stemHit && !matched.some(m => m.includes(stem))) {
                         score += 0.8;
+                        directMatches++;
                     }
                 }
             }
@@ -1922,8 +2295,14 @@
                     if (hasVerb && hasNoun) {
                         score += 4.0;
                         matched.push(verb + ' ' + noun);
+                        directMatches++;
                     }
                 }
+            }
+            /* Process pattern bonus — only applies if the step itself has at least 1 direct match */
+            if (patternBoosts && patternBoosts[entry.id] && directMatches > 0) {
+                score += patternBoosts[entry.id];
+                matched.push('pattern:' + entry.id);
             }
             return { score, matched };
         }
@@ -1949,8 +2328,96 @@
             return Math.min(freq * dur * vol, 10.0);
         }
 
+        /* ── Heuristic classify for unmatched steps ── */
+        function heuristicClassify(stepText) {
+            const lower = stepText.toLowerCase();
+            const words = lower.split(/[\s,;:.!?()]+/).filter(w => w.length > 2);
+
+            const verbGroups = {
+                data:    ['enter','record','calculate','compile','file','log','input','transcribe','capture','type','key','tabulate','tally','count','sum','total','aggregate','consolidate'],
+                comm:    ['send','notify','distribute','escalate','route','email','forward','communicate','broadcast','alert','share','publish','announce','circulate','relay','transmit'],
+                review:  ['review','check','verify','approve','resolve','evaluate','assess','examine','audit','inspect','validate','confirm','proofread','vet','sign off','authorize','certify'],
+                manage:  ['manage','coordinate','organize','maintain','track','monitor','oversee','schedule','assign','plan','prioritize','allocate','delegate','administer','supervise','facilitate'],
+                create:  ['create','build','design','develop','draft','write','compose','prepare','assemble','generate','produce','make','format','configure','setup','set up'],
+                process: ['process','handle','execute','perform','complete','fulfill','run','conduct','carry out','implement','deliver','operate','action']
+            };
+
+            const catMap   = { data: 'ai', comm: 'system', review: 'human', manage: 'system', create: 'ai', process: 'system' };
+            const potMap   = { data: 0.55, comm: 0.60, review: 0.45, manage: 0.50, create: 0.52, process: 0.50 };
+
+            /* Extract context nouns for better descriptions */
+            const contextNouns = ['report','document','data','file','form','record','invoice','email','ticket','request','order','schedule','plan','budget','contract','account','payment','claim','application','submission','correspondence','spreadsheet','database','system','workflow','process','task','project','meeting','agenda'];
+            const foundNoun = contextNouns.find(n => lower.includes(n)) || 'task';
+
+            for (const [group, verbs] of Object.entries(verbGroups)) {
+                for (const v of verbs) {
+                    if (words.includes(v) || words.some(w => w.startsWith(simpleStem(v)) && w.length >= 3)) {
+                        const label = v.charAt(0).toUpperCase() + v.slice(1);
+                        const nounLabel = foundNoun.charAt(0).toUpperCase() + foundNoun.slice(1);
+                        const benefitMap = {
+                            data: `${nounLabel}s captured and validated automatically at source — eliminates re-keying, reduces errors, and frees the team from repetitive ${foundNoun} work`,
+                            comm: `${nounLabel} ${v} happens automatically when triggered by events — no one has to remember, chase, or manually ${v} ${foundNoun}s`,
+                            review: `AI pre-screens ${foundNoun}s and flags exceptions — reviewers focus on the items that actually need human judgment instead of checking everything`,
+                            manage: `${nounLabel} ${v} tracked and coordinated automatically with live visibility — replaces manual follow-ups, status emails, and spreadsheet tracking`,
+                            create: `${nounLabel}s generated from templates and data in seconds — consistent quality without the manual effort of building each one from scratch`,
+                            process: `${nounLabel} processing runs end-to-end with automated handoffs — what currently takes manual effort completes in minutes with audit trails`
+                        };
+                        return {
+                            cat: catMap[group],
+                            potential: potMap[group],
+                            state: `Manual ${foundNoun} ${v} process`,
+                            benefit: benefitMap[group],
+                            recs: {
+                                q: `Standardize the ${foundNoun} ${v} procedure and document steps`,
+                                m: `Deploy targeted automation for ${foundNoun}-related ${v} tasks with exception handling`,
+                                s: `Build end-to-end ${foundNoun} automation with AI-driven decisions and continuous learning`
+                            }
+                        };
+                    }
+                }
+            }
+            return null;
+        }
+
+        /* ── Technology Tier determination ── */
+        function determineTechTier(cat, potential, complexity) {
+            if (cat === 'human' && potential < 0.45) return 'Human Required';
+            if (cat === 'human' && potential >= 0.45) return 'AI-Assisted';
+            if (cat === 'system' && complexity <= 0.3) return 'Workflow Automation';
+            if (cat === 'system' && complexity > 0.3) return 'RPA / Integration';
+            if (cat === 'ai' && complexity <= 0.35 && potential >= 0.80) return 'Agentic AI';
+            if (cat === 'ai' && potential >= 0.80) return 'AI-Assisted';
+            if (cat === 'ai' && complexity <= 0.35 && potential < 0.70) return 'Workflow Automation';
+            if (cat === 'ai' && complexity > 0.35) return 'RPA / Integration';
+            return 'AI-Assisted';
+        }
+
+        function tierClass(tier) {
+            const map = { 'Agentic AI': 'agentic', 'AI-Assisted': 'ai-assist', 'RPA / Integration': 'rpa', 'Workflow Automation': 'workflow', 'Human Required': 'human-req' };
+            return map[tier] || 'ai-assist';
+        }
+
+        /* ── Risk/Prerequisite callouts ── */
+        function deriveRiskNote(step, industry) {
+            const regulated = ['Healthcare', 'Financial Services', 'Government'];
+            const operationalIds = new Set(['SCHEDULING', 'EMAIL_COMMS', 'FIELD_SERVICE', 'REPORTING', 'DATA_ENTRY', 'ONBOARDING', 'TICKET_MGMT']);
+            if (step.cat === 'ai' && regulated.includes(industry) && !operationalIds.has(step.primaryId))
+                return 'Regulatory compliance review required \u2014 human-in-the-loop may be mandated';
+            if (step.complexity > 0.5)
+                return 'Multi-system integration adds 4\u20138 weeks to implementation';
+            if (step.techTier === 'Agentic AI')
+                return 'Requires robust testing, monitoring, and fallback protocols before autonomous deployment';
+            if (step.complexity > 0.4)
+                return 'Requires integration architecture review';
+            if (step.primaryId === 'LEGACY_MOD')
+                return 'Legacy system assessment needed before automation';
+            if (step.techTier === 'RPA / Integration')
+                return 'Stable process definition and API access required';
+            return '';
+        }
+
         /* ── Analyze a single step (v2) ── */
-        function analyzeStepV2(stepText, department, industry) {
+        function analyzeStepV2(stepText, department, industry, patternBoosts) {
             const lower = stepText.toLowerCase();
             const words = lower.split(/[\s,;:.!?()]+/).filter(w => w.length > 1);
             const stemmedWords = words.map(simpleStem);
@@ -1960,8 +2427,8 @@
             /* Score against all KB entries */
             let results = [];
             for (const entry of STEP_KB) {
-                const { score, matched } = scoreStepAgainstEntry(words, lower, stemmedWords, entry, deptKeys);
-                if (score >= 0.8) results.push({ entry, score, matched });
+                const { score, matched } = scoreStepAgainstEntry(words, lower, stemmedWords, entry, deptKeys, patternBoosts);
+                if (score >= 1.5) results.push({ entry, score, matched });
             }
             results.sort((a, b) => b.score - a.score);
             const topMatches = results.slice(0, 3);
@@ -1977,12 +2444,28 @@
                 recs = best.recs;
                 primaryId = best.id;
             } else {
-                basePotential = 0.45;
-                cat = 'human';
-                state = 'Current process requires manual effort';
-                benefit = 'Efficiency gains through standardization and partial automation';
-                recs = { q:'Standardize workflow steps and document procedures', m:'Evaluate targeted automation for repetitive elements', s:'Build end-to-end workflow automation with exception handling' };
+                const heuristic = heuristicClassify(stepText);
+                if (heuristic) {
+                    basePotential = heuristic.potential;
+                    cat = heuristic.cat;
+                    state = heuristic.state;
+                    benefit = heuristic.benefit;
+                    recs = heuristic.recs;
+                } else {
+                    basePotential = 0.45;
+                    cat = 'human';
+                    state = 'Current process relies on manual coordination and effort';
+                    benefit = 'Standardize the process first, then automate the repetitive components — even partial automation frees the team to focus on the parts that need human judgment';
+                    recs = { q:'Map the process end-to-end and identify which steps are rules-based vs. judgment-based', m:'Automate the rules-based steps and build dashboards for the judgment-based ones', s:'Orchestrate the full workflow with AI handling routine decisions and humans handling exceptions' };
+                }
                 primaryId = 'UNMATCHED';
+            }
+
+            /* Context overlay — industry-specific state/benefit */
+            if (primaryId !== 'UNMATCHED' && CONTEXT_OVERLAYS[primaryId] && CONTEXT_OVERLAYS[primaryId][industry]) {
+                const overlay = CONTEXT_OVERLAYS[primaryId][industry];
+                state = overlay.state;
+                benefit = overlay.benefit;
             }
 
             /* Signal word boosts */
@@ -2023,6 +2506,9 @@
 
             const effortWeight = detectEffort(stepText);
 
+            const complexity = topMatches.length > 0 ? topMatches[0].entry.complexity : 0.5;
+            const techTier = determineTechTier(cat, basePotential, complexity);
+
             return {
                 stepName: stepText,
                 automationPotential: basePotential,
@@ -2035,7 +2521,8 @@
                 effortWeight,
                 signals: { boosters, reducers },
                 primaryId,
-                complexity: topMatches.length > 0 ? topMatches[0].entry.complexity : 0.5,
+                complexity,
+                techTier,
                 timeSavings: topMatches.length > 0 ? (topMatches[0].entry.ts || 0.5) : 0.3
             };
         }
@@ -2218,6 +2705,84 @@
             return summary;
         }
 
+        /* ── Before/After Narrative ── */
+        function generateNarrative(steps, industry, department, roi, readiness) {
+            const n = steps.length;
+            const highSteps = steps.filter(s => s.potentialLabel === 'High');
+            const medSteps = steps.filter(s => s.potentialLabel === 'Medium');
+
+            /* Identify top step types by category */
+            const catCounts = { ai: 0, system: 0, human: 0 };
+            const stepTypes = {};
+            for (const s of steps) {
+                catCounts[s.cat] = (catCounts[s.cat] || 0) + 1;
+                const id = s.primaryId;
+                if (id !== 'UNMATCHED') stepTypes[id] = (stepTypes[id] || 0) + 1;
+            }
+
+            /* Map IDs to readable labels */
+            const typeLabels = {
+                'DATA_ENTRY': 'manual data entry', 'INVOICE_PROC': 'invoice processing',
+                'RECONCILIATION': 'reconciliation', 'APPROVAL': 'approvals',
+                'REPORTING': 'reporting', 'SCHEDULING': 'scheduling',
+                'COMPLIANCE': 'compliance monitoring', 'EMAIL_COMM': 'communications',
+                'QUALITY': 'quality checks', 'TICKET_MGMT': 'ticket management',
+                'ONBOARDING': 'onboarding', 'DOCUMENT': 'document processing'
+            };
+
+            const topTypes = Object.entries(stepTypes)
+                .sort((a, b) => b[1] - a[1])
+                .slice(0, 3)
+                .map(([id]) => typeLabels[id] || id.toLowerCase().replace(/_/g, ' '));
+
+            /* Department-specific high-value activities */
+            const highValueActivities = {
+                'Finance & Accounting': 'strategic analysis and advisory',
+                'Human Resources': 'talent strategy and employee engagement',
+                'IT & Engineering': 'innovation and platform improvement',
+                'Operations': 'process optimization and continuous improvement',
+                'Sales & Marketing': 'client relationships and pipeline development',
+                'Customer Service': 'complex case resolution and customer advocacy',
+                'Supply Chain': 'supplier strategy and demand planning',
+                'Legal': 'strategic counsel and risk assessment',
+                'Procurement': 'strategic sourcing and supplier negotiation',
+                'Executive / C-Suite': 'strategic planning and stakeholder engagement',
+                'Research & Development': 'innovation and experimental design',
+                'Compliance & Risk': 'proactive risk mitigation and regulatory strategy'
+            };
+            const highValue = highValueActivities[department] || 'higher-value strategic work';
+
+            /* Build "today" sentence */
+            const manualCount = steps.filter(s => s.cat === 'human' || s.automationPotential < 0.5).length;
+            const typeStr = topTypes.length > 0
+                ? topTypes.slice(0, -1).join(', ') + (topTypes.length > 1 ? ', and ' : '') + topTypes[topTypes.length - 1]
+                : 'manual processing tasks';
+
+            let today = `Today, your <strong>${department || 'operations'}</strong> team spends significant time on <strong>${typeStr}</strong>.`;
+            if (manualCount > 0) today += ` <strong>${manualCount} of ${n}</strong> steps rely heavily on manual effort`;
+            /* Append detected pain points info if available */
+            today += '.';
+
+            /* Build "future" sentence */
+            let future = '';
+            if (highSteps.length > 0) {
+                const topOpp = highSteps[0].stepName;
+                const topSavings = Math.round(highSteps[0].timeSavings * 100);
+                future = `With targeted automation, <strong>${esc(topOpp.toLowerCase())}</strong> alone could reduce processing time by <strong>${topSavings}%</strong>.`;
+                if (highSteps.length > 1) {
+                    future += ` Combined with <strong>${esc(highSteps[1].stepName.toLowerCase())}</strong>, your team could redirect meaningful hours to <strong>${highValue}</strong>.`;
+                } else if (medSteps.length > 0) {
+                    future += ` Paired with improvements to <strong>${esc(medSteps[0].stepName.toLowerCase())}</strong>, your team could redirect capacity to <strong>${highValue}</strong>.`;
+                }
+            } else if (medSteps.length > 0) {
+                future = `With incremental automation of <strong>${esc(medSteps[0].stepName.toLowerCase())}</strong> and related steps, your team could free up capacity for <strong>${highValue}</strong>.`;
+            } else {
+                future = `Process standardization and targeted improvements could free your team to focus on <strong>${highValue}</strong>.`;
+            }
+
+            return `<p style="margin:0 0 0.5rem">${today}</p><p style="margin:0">${future}</p>`;
+        }
+
         /* ── Gauge SVG builder ── */
         function buildGaugeSVG(score) {
             const r = 70, cx = 90, cy = 85, sw = 10;
@@ -2248,72 +2813,175 @@
 
         function parseSteps(text) {
             let steps = [];
-            const numbered = text.match(/(?:^|\n)\s*\d+[\.\)]\s*[^\n\d]+/g);
+            const numbered = text.match(/(?:^|\n)\s*\d+[\.\)]\s+[^\n]+/g);
             if (numbered && numbered.length >= 2) {
-                steps = numbered.map(s => s.replace(/^\s*\d+[\.\)]\s*/, '').trim());
+                steps = numbered.map(s => s.replace(/^\s*\d+[\.\)]\s+/, '').trim());
             } else {
-                const dashed = text.match(/(?:^|\n)\s*[-\u2013\u2014\u2022]\s*[^\n\-\u2013\u2014\u2022]+/g);
+                const dashed = text.match(/(?:^|\n)\s*[-\u2013\u2014\u2022]\s+[^\n]+/g);
                 if (dashed && dashed.length >= 2) {
-                    steps = dashed.map(s => s.replace(/^\s*[-\u2013\u2014\u2022]\s*/, '').trim());
+                    steps = dashed.map(s => s.replace(/^\s*[-\u2013\u2014\u2022]\s+/, '').trim());
                 } else {
-                    steps = text.split(/[,;]\s*|\s+(?:and|then|followed by|next|after that)\s+/i)
+                    /* Split on sequencing words first, then comma/and/then */
+                    steps = text.split(/\s*(?:,\s*|\s+(?:and|then|followed by|next|after that|finally|subsequently|lastly)\s+)\s*/i)
                         .map(s => s.replace(/^[\s.]+|[\s.]+$/g, '').trim())
                         .filter(s => s.length > 2);
+                    /* Split on "first...then...finally" when embedded */
+                    if (steps.length === 1) {
+                        const seqSplit = text.split(/\s*\b(?:first|then|next|finally|afterwards|subsequently|lastly)\b\s*/i)
+                            .map(s => s.replace(/^[\s,.]+|[\s,.]+$/g, '').trim())
+                            .filter(s => s.length > 2);
+                        if (seqSplit.length >= 2) steps = seqSplit;
+                    }
+                    /* Split long steps with multiple verb phrases */
+                    const actionVerbs = /^(process|handle|manage|review|check|update|create|send|receive|collect|track|prepare|submit|complete|coordinate|organize|compile|maintain|monitor|distribute|calculate|file|log|record|enter|verify|validate|approve|generate|schedule|assign|route|notify|escalate|resolve|close|archive|post|match|reconcile|upload|download|extract|transform|load|format|analyze|assess|evaluate|inspect|test|deploy|configure|install|migrate|integrate|export|import|publish|draft|edit|sign|scan|print|copy|transfer|aggregate|consolidate|report|audit|classify|sort|tag|label|prioritize|delegate|dispatch|fulfill|package|ship|deliver|invoice|bill|pay|reimburse|budget|forecast|plan|design|build|develop|implement|launch|release|onboard|offboard|train|certify|accredit|license|register|enroll|admit|discharge|prescribe|diagnose|triage|screen)\b/i;
+                    const expanded = [];
+                    for (const step of steps) {
+                        if (step.length > 60) {
+                            const parts = step.split(/,\s*/).filter(s => s.trim().length > 2);
+                            if (parts.length >= 2 && parts.filter(p => actionVerbs.test(p.trim())).length >= 2) {
+                                expanded.push(...parts.map(p => p.trim()));
+                                continue;
+                            }
+                        }
+                        expanded.push(step);
+                    }
+                    steps = expanded;
                 }
             }
-            return steps.map(s => s.charAt(0).toUpperCase() + s.slice(1)).filter(s => s.length > 0);
+            /* Strip leading articles/pronouns for cleaner step names */
+            const leadStrip = /^(?:we\s+|the\s+team\s+|our\s+staff\s+|our\s+team\s+|the\s+staff\s+|staff\s+|team\s+|they\s+|i\s+)/i;
+            return steps
+                .map(s => s.replace(leadStrip, '').trim())
+                .map(s => s.charAt(0).toUpperCase() + s.slice(1))
+                .filter(s => s.length > 0);
         }
 
-        function buildFlowSVG(analyzedSteps) {
-            const nodeW = 160, nodeH = 44, gapX = 40, padX = 20, padY = 20;
-            const perRow = Math.min(analyzedSteps.length, 4);
-            const rows = Math.ceil(analyzedSteps.length / perRow);
-            const svgW = perRow * (nodeW + gapX) - gapX + padX * 2;
-            const svgH = rows * (nodeH + 60) + padY;
-            const colors = { ai: { fill: '#1B3A6B', text: '#FFFFFF' }, human: { fill: '#D4922E', text: '#FFFFFF' }, system: { fill: '#6B6B6B', text: '#FFFFFF' } };
-            let nodes = '', arrows = '', positions = [];
-            analyzedSteps.forEach((s, i) => {
-                const row = Math.floor(i / perRow);
-                const col = i % perRow;
-                const x = padX + col * (nodeW + gapX);
-                const y = padY + row * (nodeH + 60);
-                positions.push({ x: x + nodeW / 2, y, w: nodeW, h: nodeH });
-                const c = colors[s.cat] || colors.human;
-                const label = s.stepName.length > 22 ? s.stepName.substring(0, 20) + '...' : s.stepName;
-                nodes += `<rect x="${x}" y="${y}" width="${nodeW}" height="${nodeH}" rx="6" fill="${c.fill}" />`;
-                nodes += `<text x="${x + nodeW / 2}" y="${y + nodeH / 2 + 1}" text-anchor="middle" dominant-baseline="central" fill="${c.text}" font-size="11" font-weight="500">${label}</text>`;
+        /* ── Pain tag toggling ── */
+        function togglePainTag(btn) {
+            btn.classList.toggle('selected');
+            btn.setAttribute('aria-pressed', btn.classList.contains('selected'));
+        }
+        function getSelectedPainTags() {
+            return Array.from(document.querySelectorAll('.diag-pain-tag.selected')).map(b => b.textContent);
+        }
+
+        /* ── HTML-escape user strings ── */
+        function esc(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+
+        /* ── Wizard navigation ── */
+        let wizardStep = 0;
+        function wizSetStep(step) {
+            const allSteps = document.querySelectorAll('.diag-wizard-step');
+            const allSegs = document.querySelectorAll('.diag-wiz-seg');
+            allSteps.forEach(el => el.classList.remove('active'));
+            allSegs.forEach((seg, i) => {
+                seg.classList.remove('active', 'done');
+                if (i < step) seg.classList.add('done');
+                else if (i === step) seg.classList.add('active');
             });
-            for (let i = 0; i < positions.length - 1; i++) {
-                const a = positions[i], b = positions[i + 1];
-                const sameRow = Math.floor(i / perRow) === Math.floor((i + 1) / perRow);
-                if (sameRow) {
-                    const x1 = a.x + a.w / 2, y1 = a.y + a.h / 2;
-                    const x2 = b.x - b.w / 2, y2 = b.y + b.h / 2;
-                    arrows += `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="#C8C8C8" stroke-width="1.5" marker-end="url(#arrowhead)" />`;
-                } else {
-                    const x1 = a.x, y1 = a.y + a.h;
-                    const x2 = b.x, y2 = b.y;
-                    arrows += `<path d="M${x1},${y1} L${x1},${y1 + 20} L${x2},${y2 - 20} L${x2},${y2}" fill="none" stroke="#C8C8C8" stroke-width="1.5" marker-end="url(#arrowhead)" />`;
-                }
+            const target = document.querySelector(`.diag-wizard-step[data-wstep="${step}"]`);
+            if (target) {
+                target.style.animation = 'none';
+                target.offsetHeight;
+                target.style.animation = '';
+                target.classList.add('active');
             }
-            const legendY = svgH - 10;
-            const legend = `<rect x="${padX}" y="${legendY}" width="10" height="10" rx="2" fill="#1B3A6B"/><text x="${padX + 14}" y="${legendY + 9}" font-size="10" fill="#6B6B6B">AI-automatable</text>`
-                + `<rect x="${padX + 110}" y="${legendY}" width="10" height="10" rx="2" fill="#D4922E"/><text x="${padX + 124}" y="${legendY + 9}" font-size="10" fill="#6B6B6B">Human-driven</text>`
-                + `<rect x="${padX + 220}" y="${legendY}" width="10" height="10" rx="2" fill="#6B6B6B"/><text x="${padX + 234}" y="${legendY + 9}" font-size="10" fill="#6B6B6B">System/integration</text>`;
-            return `<svg viewBox="0 0 ${svgW} ${svgH + 20}" width="100%" xmlns="http://www.w3.org/2000/svg">
-                <defs><marker id="arrowhead" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#C8C8C8"/></marker></defs>
-                ${arrows}${nodes}${legend}
-            </svg>`;
+            wizardStep = step;
+            const prog = document.getElementById('dWizProg');
+            if (prog) {
+                prog.setAttribute('aria-valuenow', step + 1);
+                prog.setAttribute('aria-label', `Assessment progress: step ${step + 1} of 5`);
+            }
+        }
+        function wizNext() {
+            document.querySelectorAll('.diag-wiz-err').forEach(e => e.remove());
+            if (wizardStep === 0) {
+                const ind = document.getElementById('dI');
+                const dept = document.getElementById('dD');
+                if (!ind.value || ind.selectedIndex === 0) { wizShowErr(ind.closest('.diag-f'), 'Please select an industry'); return; }
+                if (!dept.value || dept.selectedIndex === 0) { wizShowErr(dept.closest('.diag-f'), 'Please select a department'); return; }
+            } else if (wizardStep === 1) {
+                const wf = document.getElementById('dP');
+                if (!wf.value.trim()) { wizShowErr(wf.closest('.diag-f'), 'Please describe the workflow'); return; }
+                parseAndShowSteps();
+            } else if (wizardStep === 2) {
+                const inputs = document.querySelectorAll('#dParsedSteps .diag-parsed-input');
+                const valid = Array.from(inputs).filter(el => el.value.trim().length > 0);
+                if (valid.length === 0) { wizShowErr(document.getElementById('dParsedSteps'), 'At least one step is required'); return; }
+            }
+            if (wizardStep < 4) wizSetStep(wizardStep + 1);
+        }
+        function wizBack() {
+            document.querySelectorAll('.diag-wiz-err').forEach(e => e.remove());
+            if (wizardStep > 0) wizSetStep(wizardStep - 1);
+        }
+
+        /* ── Step review helpers ── */
+        let lastParsedWorkflow = '';
+        function parseAndShowSteps() {
+            const text = document.getElementById('dP').value.trim();
+            if (text === lastParsedWorkflow && document.querySelectorAll('#dParsedSteps .diag-parsed-input').length > 0) return;
+            lastParsedWorkflow = text;
+            const steps = parseSteps(text);
+            if (steps.length === 0) steps.push(text.substring(0, 80));
+            renderParsedSteps(steps);
+        }
+        function renderParsedSteps(steps) {
+            const container = document.getElementById('dParsedSteps');
+            container.innerHTML = '';
+            steps.forEach((s, i) => {
+                const row = document.createElement('div');
+                row.className = 'diag-parsed-step';
+                row.innerHTML = `<span class="diag-parsed-num">${i + 1}.</span><input class="diag-parsed-input" type="text" value="${esc(s)}"><div class="diag-parsed-actions">${i > 0 ? '<button type="button" class="diag-parsed-btn" title="Merge with previous step" onclick="mergeStepUp(' + i + ')">&#x2191; Merge</button>' : ''}<button type="button" class="diag-parsed-btn del" title="Remove step" onclick="deleteStep(' + i + ')">&#x2715;</button></div>`;
+                container.appendChild(row);
+            });
+            const addBtn = document.createElement('button');
+            addBtn.type = 'button';
+            addBtn.className = 'diag-parsed-add';
+            addBtn.innerHTML = '+ Add step';
+            addBtn.onclick = function() { addParsedStep(); };
+            container.appendChild(addBtn);
+        }
+        function getCurrentParsedSteps() {
+            return Array.from(document.querySelectorAll('#dParsedSteps .diag-parsed-input')).map(el => el.value.trim()).filter(s => s.length > 0);
+        }
+        function deleteStep(idx) {
+            const steps = getCurrentParsedSteps();
+            if (steps.length <= 1) return;
+            steps.splice(idx, 1);
+            renderParsedSteps(steps);
+        }
+        function mergeStepUp(idx) {
+            const steps = getCurrentParsedSteps();
+            if (idx < 1 || idx >= steps.length) return;
+            steps[idx - 1] = steps[idx - 1] + ' and ' + steps[idx].charAt(0).toLowerCase() + steps[idx].slice(1);
+            steps.splice(idx, 1);
+            renderParsedSteps(steps);
+        }
+        function addParsedStep() {
+            const steps = getCurrentParsedSteps();
+            steps.push('');
+            renderParsedSteps(steps);
+            const inputs = document.querySelectorAll('#dParsedSteps .diag-parsed-input');
+            if (inputs.length > 0) inputs[inputs.length - 1].focus();
+        }
+        function wizShowErr(parent, msg) {
+            const el = document.createElement('div');
+            el.className = 'diag-wiz-err';
+            el.textContent = msg;
+            parent.appendChild(el);
         }
 
         function runD() {
             const industry = document.getElementById('dI').value;
             const department = document.getElementById('dD').value;
             const workflow = document.getElementById('dP').value.trim();
-            const painPoints = document.getElementById('dX').value.trim();
+            const painTags = getSelectedPainTags();
+            const painText = document.getElementById('dX').value.trim();
+            const painPoints = [painTags.join(', '), painText].filter(s => s).join(', ');
             const teamSize = parseInt(document.getElementById('dTS').value) || 0;
             const hourlyCost = parseInt(document.getElementById('dHC').value) || 0;
-            if (!workflow) { alert('Please describe the workflow.'); return; }
+            if (!industry || !department || !workflow) { alert('Please complete all required fields.'); return; }
 
             const loader = document.getElementById('dL');
             const results = document.getElementById('dR');
@@ -2327,50 +2995,34 @@
             results.querySelectorAll('.diag-bar-fill').forEach(el => { el.style.width = '0'; });
             loader.classList.add('show');
 
-            const phases = [
-                { label: 'Mapping workflows',             pct: 12 },
-                { label: 'Parsing process steps',         pct: 24 },
-                { label: 'Analyzing automation potential', pct: 38 },
-                { label: 'Detecting effort patterns',     pct: 50 },
-                { label: 'Evaluating pain points',        pct: 62 },
-                { label: 'Computing readiness score',     pct: 74 },
-                { label: 'Estimating ROI',                pct: 84 },
-                { label: 'Building implementation roadmap',pct: 92 },
-                { label: 'Generating recommendations',    pct: 98 }
-            ];
-
-            function showPhase(idx) {
-                if (!phaseEl) return;
-                phaseEl.classList.remove('show');
-                setTimeout(() => {
-                    if (idx < phases.length) {
-                        phaseEl.textContent = phases[idx].label;
-                        if (trackEl) trackEl.style.width = phases[idx].pct + '%';
-                    }
-                    phaseEl.classList.add('show');
-                }, 180);
-            }
-
-            showPhase(0);
-            const phaseTimers = phases.slice(1).map((p, i) =>
-                setTimeout(() => showPhase(i + 1), (i + 1) * 260)
-            );
+            if (phaseEl) { phaseEl.textContent = 'Analyzing your workflow'; phaseEl.classList.add('show'); }
+            if (trackEl) { trackEl.style.transition = 'width 0.4s ease'; trackEl.style.width = '100%'; }
 
             setTimeout(() => {
-                phaseTimers.forEach(t => clearTimeout(t));
-                if (phaseEl) {
-                    phaseEl.classList.remove('show');
-                    setTimeout(() => {
-                        phaseEl.textContent = 'Complete';
-                        if (trackEl) trackEl.style.width = '100%';
-                        phaseEl.classList.add('show');
-                    }, 180);
-                }
-
-                setTimeout(() => {
-                    const rawSteps = parseSteps(workflow);
+                try {
+                    /* Read steps from the review panel instead of re-parsing */
+                    const reviewInputs = document.querySelectorAll('#dParsedSteps .diag-parsed-input');
+                    let rawSteps;
+                    if (reviewInputs.length > 0) {
+                        rawSteps = Array.from(reviewInputs).map(el => el.value.trim()).filter(s => s.length > 0);
+                    } else {
+                        rawSteps = parseSteps(workflow);
+                    }
                     if (rawSteps.length === 0) rawSteps.push(workflow.substring(0, 80));
-                    const analyzed = rawSteps.map(s => analyzeStepV2(s, department, industry));
+                    const patternBoosts = detectProcessPatterns(workflow);
+                    const analyzed = rawSteps.map(s => analyzeStepV2(s, department, industry, patternBoosts));
+
+                    /* Per-step savings + risk notes */
+                    const totalWeight = analyzed.reduce((s, x) => s + x.effortWeight, 0) || 1;
+                    const baseHrs = (teamSize || 0) * 160;
+                    const hc = hourlyCost || 0;
+                    for (const step of analyzed) {
+                        const alloc = baseHrs * (step.effortWeight / totalWeight);
+                        const saved = Math.round(alloc * step.timeSavings);
+                        step.stepSavings = (teamSize && hourlyCost) ? `~${saved} hrs/mo saved (~$${(saved * hc).toLocaleString()}/mo)` : '';
+                        step.riskNote = deriveRiskNote(step, industry);
+                    }
+
                     const painAnalysis = analyzePainPoints(painPoints, analyzed);
                     const workload = calcWorkloadV2(analyzed, industry, department);
                     const readiness = computeReadinessScore(analyzed, workload, industry, department, painAnalysis);
@@ -2378,13 +3030,21 @@
                     const roadmap = generateRoadmap(analyzed, painAnalysis, department);
                     const recs = generateRecsV2(analyzed, painAnalysis, department);
                     const summary = generateSummaryV2(analyzed, industry, department, painAnalysis, readiness);
+                    const narrative = generateNarrative(analyzed, industry, department, roi, readiness);
                     const benchmark = INDUSTRY_BENCHMARKS[industry] || null;
 
                     loader.classList.remove('show');
+                    if (trackEl) { trackEl.style.transition = ''; trackEl.style.width = '0'; }
                     btn.disabled = false;
-                    renderResults({ summary, workload, steps: analyzed, recs, readiness, roi, roadmap, painAnalysis, benchmark, industry, teamSize, hourlyCost });
-                }, 320);
-            }, 2400);
+                    renderResults({ summary, narrative, workload, steps: analyzed, recs, readiness, roi, roadmap, painAnalysis, benchmark, industry, teamSize, hourlyCost });
+                } catch (err) {
+                    loader.classList.remove('show');
+                    if (trackEl) { trackEl.style.transition = ''; trackEl.style.width = '0'; }
+                    btn.disabled = false;
+                    console.error('Assessment error:', err);
+                    wizShowErr(document.getElementById('dF'), 'Something went wrong. Please try again.');
+                }
+            }, 400);
         }
 
         function renderResults(data) {
@@ -2429,9 +3089,9 @@
             gaugeEl.style.display = '';
             gaugeEl.classList.remove('anim-in');
 
-            /* Summary */
+            /* Summary — use narrative (before/after) if available, fallback to flat summary */
             const sumEl = document.getElementById('dS');
-            sumEl.textContent = data.summary;
+            sumEl.innerHTML = data.narrative || data.summary;
             sumEl.classList.remove('anim-in');
 
             /* Bars */
@@ -2448,15 +3108,21 @@
                 const pos = autoShare > data.benchmark.avg ? 'above' : autoShare < data.benchmark.avg ? 'below' : 'at';
                 benchEl.innerHTML = `<div class="diag-bench-title">Industry Context</div>`
                     + `<p>Organizations in ${data.industry} typically automate <strong>${data.benchmark.avg}%</strong> of similar workflows, with top-quartile performers reaching <strong>${data.benchmark.top}%</strong>. Your assessed automation share of <strong>${autoShare}%</strong> positions you <strong>${pos}</strong> the industry average.</p>`
-                    + `<p style="margin-top:0.5rem;font-size:0.82rem;color:var(--ink-3)">Common automation areas: ${data.benchmark.areas}. ${data.benchmark.note}.</p>`;
+                    + `<p style="margin-top:0.5rem;font-size:0.82rem;color:var(--ink-3)">Common automation areas: ${data.benchmark.areas}. ${data.benchmark.note}. Based on cross-industry automation maturity research from McKinsey, Gartner, Forrester, and Deloitte, 2025\u20132026.</p>`;
                 benchEl.style.display = '';
                 benchEl.classList.remove('anim-in');
             } else { benchEl.style.display = 'none'; }
 
-            /* Step table (5 columns) */
+            /* Step table (6 columns) */
             const stepsEl = document.getElementById('dA');
-            stepsEl.innerHTML = `<div class="diag-steps-hd"><div>Step</div><div>Current State</div><div>Potential</div><div>Confidence</div><div>Benefit</div></div>`
-                + data.steps.map(s => `<div class="diag-step"><div><div class="diag-sn">${s.stepName}</div></div><div class="diag-ss">${s.currentState}</div><div><span class="diag-pot ${s.potentialLabel}">${s.potentialLabel}</span></div><div><span class="diag-conf ${s.confidence}">${s.confidence}</span></div><div class="diag-benefit">${s.benefit}</div></div>`).join('');
+            stepsEl.innerHTML = `<div class="diag-steps-hd"><div>Step</div><div>Current State</div><div>Technology</div><div>Potential</div><div>Confidence</div><div>Benefit</div></div>`
+                + data.steps.map(s => {
+                    const tc = tierClass(s.techTier);
+                    let benefitExtra = '';
+                    if (s.riskNote) benefitExtra += `<div class="diag-step-risk">${s.riskNote}</div>`;
+                    if (s.stepSavings) benefitExtra += `<div class="diag-step-savings">${s.stepSavings}</div>`;
+                    return `<div class="diag-step" data-tier="${tc}"><div><div class="diag-sn">${esc(s.stepName)}</div></div><div><div class="diag-step-lbl">Current State</div><div class="diag-ss">${s.currentState}</div></div><div><div class="diag-step-lbl">Technology</div><span class="diag-tier ${tc}">${s.techTier}</span></div><div><div class="diag-step-lbl">Potential</div><span class="diag-pot ${s.potentialLabel}">${s.potentialLabel}</span></div><div><div class="diag-step-lbl">Confidence</div><span class="diag-conf ${s.confidence}">${s.confidence}</span></div><div><div class="diag-step-lbl">Benefit</div><div class="diag-benefit">${s.benefit}${benefitExtra}</div></div></div>`;
+                }).join('');
 
             /* Roadmap */
             const roadmapEl = document.getElementById('dRoadmap');
@@ -2568,8 +3234,12 @@
             document.getElementById('dD').selectedIndex = 0;
             document.getElementById('dP').value = '';
             document.getElementById('dX').value = '';
+            document.querySelectorAll('.diag-pain-tag.selected').forEach(t => { t.classList.remove('selected'); t.setAttribute('aria-pressed', 'false'); });
+            const psEl = document.getElementById('dParsedSteps'); if (psEl) psEl.innerHTML = '';
+            lastParsedWorkflow = '';
             const tsEl = document.getElementById('dTS'); if (tsEl) tsEl.value = '';
             const hcEl = document.getElementById('dHC'); if (hcEl) hcEl.value = '';
+            wizSetStep(0);
             document.querySelector('.diag-body').scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
 
