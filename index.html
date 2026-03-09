@@ -2026,7 +2026,16 @@
 
             /* Miscellaneous */
             { id:'PROJECT_MGMT', cat:'human', potential:0.48, complexity:0.35, keys:['project management','project tracking','milestone','project plan','pmo','sprint','agile','manage project','track project'], stems:['project','mileston','sprint','agile'], vn:[['manage','project'],['track','milestone'],['plan','sprint']], state:'Manual project tracking and coordination', benefit:'Tasks auto-assigned based on skills and capacity, progress tracked in real time, and at-risk milestones flagged before deadlines are missed', recs:{q:'Adopt standardized project templates',m:'Deploy project management platform with auto-tracking',s:'AI project management with predictive risk and resource optimization'}, ts:0.40 },
-            { id:'MEETING_MGMT', cat:'ai', potential:0.72, complexity:0.25, keys:['meeting notes','agenda','action items','minutes','meeting scheduling','calendar coordination','take notes','meeting summary','record meeting'], stems:['meeting','agenda','minutes','action'], vn:[['take','notes'],['schedule','meeting'],['track','action items']], state:'Manual note-taking and meeting coordination', benefit:'Meetings transcribed live with action items, decisions, and owners extracted automatically — follow-ups assigned and tracked without anyone writing minutes', recs:{q:'Use templates for agendas and minutes',m:'Deploy AI meeting assistant with transcription',s:'Intelligent meeting platform with auto-actions and follow-up tracking'}, ts:0.58 }
+            { id:'MEETING_MGMT', cat:'ai', potential:0.72, complexity:0.25, keys:['meeting notes','agenda','action items','minutes','meeting scheduling','calendar coordination','take notes','meeting summary','record meeting'], stems:['meeting','agenda','minutes','action'], vn:[['take','notes'],['schedule','meeting'],['track','action items']], state:'Manual note-taking and meeting coordination', benefit:'Meetings transcribed live with action items, decisions, and owners extracted automatically — follow-ups assigned and tracked without anyone writing minutes', recs:{q:'Use templates for agendas and minutes',m:'Deploy AI meeting assistant with transcription',s:'Intelligent meeting platform with auto-actions and follow-up tracking'}, ts:0.58 },
+
+            /* IT DevOps & QA */
+            { id:'LOG_ANALYSIS', cat:'ai', potential:0.82, complexity:0.4, keys:['log analysis','error trace','debug','troubleshoot','investigate logs','log review','root cause','stack trace','error investigation','diagnostics'], stems:['debug','troubleshoot','diagnost','investig'], vn:[['analyze','log'],['investigate','error'],['trace','issue'],['debug','system']], state:'Engineers manually search through logs and traces to identify root causes', benefit:'AI-powered observability correlates logs, metrics, and traces across systems to surface root causes in seconds — reducing mean time to resolution dramatically', recs:{q:'Centralize logs into a unified observability platform with structured formatting',m:'Deploy AI-powered log analysis with anomaly detection and automated root cause correlation',s:'Agentic observability platform that auto-detects, diagnoses, and initiates remediation for known issue patterns'}, ts:0.75 },
+            { id:'CI_CD_DEPLOY', cat:'system', potential:0.80, complexity:0.45, keys:['deploy','deployment','release','ci/cd','pipeline','staging','production push','code release','ship code','go live','rollout'], stems:['deploy','releas','pipelin','rollout'], vn:[['deploy','code'],['release','build'],['push','production'],['run','pipeline']], state:'Deployments require manual steps, environment configuration, and coordination across teams', benefit:'Automated CI/CD pipelines handle build, test, and deployment with zero-touch releases — rollbacks are instant and deployments become routine rather than risky events', recs:{q:'Standardize deployment checklists and implement basic CI pipeline',m:'Deploy full CI/CD with automated testing gates, environment promotion, and rollback capability',s:'Autonomous deployment orchestration with canary releases, auto-rollback on anomaly detection, and self-healing infrastructure'}, ts:0.78 },
+            { id:'TEST_QA', cat:'ai', potential:0.75, complexity:0.4, keys:['test','testing','qa','quality assurance','automated test','test suite','regression','unit test','integration test','test case','verify functionality'], stems:['test','verif','regress','validat'], vn:[['run','test'],['verify','functionality'],['test','code'],['validate','build']], state:'Testing is manual or semi-automated with incomplete coverage and slow feedback cycles', benefit:'AI-augmented testing generates test cases from code changes, identifies high-risk areas for targeted testing, and maintains regression suites automatically — dramatically increasing coverage with less manual effort', recs:{q:'Identify critical paths and implement automated smoke tests for high-risk flows',m:'Deploy AI-powered test generation with automatic regression suite maintenance',s:'Autonomous QA agents that generate, execute, and maintain test suites based on code changes and production telemetry'}, ts:0.70 },
+            /* HR & Talent */
+            { id:'RECRUITING', cat:'ai', potential:0.78, complexity:0.35, keys:['recruit','hiring','talent acquisition','job posting','job requisition','candidate sourcing','sourcing candidates','post job','career page','applicant tracking'], stems:['recruit','hire','sourc','applic'], vn:[['post','job'],['source','candidate'],['recruit','talent'],['hire','employee']], state:'Recruiting relies on manual job board postings, resume collection, and spreadsheet-based candidate tracking', benefit:'AI-powered talent platforms auto-distribute postings to optimal channels, source passive candidates, and rank applicants against role requirements — reducing time-to-fill significantly', recs:{q:'Consolidate job postings to a single ATS with standardized templates',m:'Deploy AI-powered candidate sourcing with automated screening and ranking',s:'Agentic talent acquisition platform that sources, screens, schedules, and nurtures candidates autonomously'}, ts:0.72 },
+            { id:'RESUME_SCREEN', cat:'ai', potential:0.85, complexity:0.3, keys:['screen resume','review resume','shortlist','cv review','resume screening','candidate screening','application review','evaluate candidates','filter applicants','resume parsing'], stems:['screen','shortlist','resum','cv'], vn:[['screen','resume'],['review','application'],['shortlist','candidate'],['evaluate','applicant']], state:'Hiring managers manually review each resume against job requirements — time-consuming and inconsistent', benefit:'AI screening matches candidate qualifications to role requirements with consistent scoring — processing hundreds of applications in minutes while reducing unconscious bias through structured evaluation', recs:{q:'Define standardized scoring criteria for each role before screening begins',m:'Deploy AI resume screening with skills matching and bias-aware ranking',s:'Agentic screening pipeline that parses, scores, and shortlists candidates with human review only for borderlines'}, ts:0.80 },
+            { id:'BACKGROUND_CHECK', cat:'system', potential:0.72, complexity:0.35, keys:['background check','reference check','verification','credential check','employment verification','criminal check','security clearance','vetting','due diligence check'], stems:['verif','clear','vet','screen'], vn:[['verify','background'],['check','reference'],['conduct','verification'],['run','check']], state:'Background and reference checks involve manual outreach, document collection, and multi-day turnaround', benefit:'Automated verification platforms run criminal, employment, and credential checks in parallel — reducing turnaround from weeks to days with real-time status tracking', recs:{q:'Standardize verification requirements by role level and create a checklist template',m:'Deploy automated background check integration with real-time status tracking and exception alerts',s:'End-to-end verification orchestration with automated outreach, document validation, and compliance-ready audit trails'}, ts:0.65 }
         ];
 
         const SIGNAL_WORDS = {
@@ -2064,7 +2073,7 @@
             compliance_risk:{ keys:['compliance','audit','regulation','regulatory','risk','non-compliant','failed audit','finding','penalty'], label:'Compliance & Audit Risk', potentialBoost:0.03, priorityBoost:1.4, recs:{q:'Create compliance checklists with mandatory sign-offs',m:'Implement automated audit trail generation',s:'Deploy continuous compliance monitoring with real-time risk scoring'} },
             communication:  { keys:['miscommunication','silos','no communication','email chain','lost email','unclear','confusion','coordination','disconnect','nobody knows'], label:'Communication Gaps', potentialBoost:0.04, priorityBoost:1.3, recs:{q:'Standardize notification templates and escalation paths',m:'Deploy workflow-triggered notifications with status updates',s:'Build integrated collaboration hub with AI-powered routing'} },
             scaling:        { keys:['cant scale','doesnt scale','growth','expansion','increasing','more staff','hiring','growing fast','keep up with growth'], label:'Scalability Constraints', potentialBoost:0.06, priorityBoost:1.5, recs:{q:'Identify and automate top capacity constraints',m:'Build scalable workflow templates with self-service',s:'Implement AI-augmented operations that scale without proportional headcount'} },
-            cost:           { keys:['expensive','cost','budget','over budget','spend too much','waste','inefficient spend','too costly','burning money'], label:'Cost Pressure', potentialBoost:0.05, priorityBoost:1.6, recs:{q:'Quick spend analysis to identify top waste categories',m:'Automate cost-heavy manual processes with highest ROI',s:'Deploy comprehensive automation reducing operational cost 30-50%'} },
+            cost:           { keys:['expensive','cost','budget','over budget','spend too much','waste','inefficient spend','too costly','burning money'], label:'Cost Pressure', potentialBoost:0.05, priorityBoost:1.6, recs:{q:'Quick spend analysis to identify top waste categories',m:'Automate cost-heavy manual processes with highest ROI',s:'Deploy comprehensive automation targeting the highest-cost manual processes for measurable cost reduction'} },
             knowledge:      { keys:['knowledge loss','tribal knowledge','key person','single point','bus factor','undocumented','only one person','if they leave','institutional knowledge'], label:'Knowledge Risk', potentialBoost:0.04, priorityBoost:1.4, recs:{q:'Document top 5 critical processes with step-by-step SOPs',m:'Build searchable knowledge base with process documentation',s:'Deploy AI-powered knowledge capture and process standardization'} },
             timeliness:     { keys:['deadline','late','missed deadline','overdue','behind schedule','time pressure','rush','crunch','cant finish on time'], label:'Timeliness Issues', potentialBoost:0.05, priorityBoost:1.5, recs:{q:'Implement deadline tracking with automated reminders',m:'Build SLA monitoring with proactive escalation',s:'Deploy predictive analytics for deadline risk and resource optimization'} },
             data_quality:   { keys:['bad data','dirty data','inconsistent','data quality','unreliable','stale data','outdated','data doesnt match','conflicting data'], label:'Data Quality Issues', potentialBoost:0.06, priorityBoost:1.7, recs:{q:'Implement input validation and required-field rules',m:'Build automated data quality scoring and cleansing',s:'Deploy master data management with AI-powered stewardship'} },
@@ -2194,7 +2203,7 @@
                 },
                 'Operations': {
                     landscape: 'Process mining combined with AI is revealing hidden inefficiencies in trade settlement, payments, and account servicing workflows.',
-                    keyTrend: 'Straight-through processing rates are climbing past 95% as AI agents handle exception resolution that previously required manual intervention.',
+                    keyTrend: 'Straight-through processing rates are increasing significantly as AI agents handle exception resolution that previously required manual intervention.',
                     techNote: 'Layer process mining on core banking workflows and deploy AI agents to handle the top 10 exception types autonomously.'
                 },
                 'Customer Service': {
@@ -2253,7 +2262,7 @@
                 },
                 'Research & Development': {
                     landscape: 'AI is accelerating materials discovery, formulation optimization, and prototype testing through simulation-driven experimentation.',
-                    keyTrend: 'Generative design tools now explore thousands of material and geometry combinations, reducing physical prototyping cycles by 60% or more.',
+                    keyTrend: 'Generative design tools now explore thousands of material and geometry combinations, significantly reducing physical prototyping cycles.',
                     techNote: 'Deploy generative design and AI-driven simulation tools that optimize material selection and reduce physical prototype iterations.'
                 }
             },
@@ -3565,6 +3574,102 @@
                 'Non-profit / NGO': { state: 'Manual coordination of board meetings, donor calls, and program reviews with volunteer note-takers', benefit: 'AI-powered meeting management with automated minute generation, donor follow-up tracking, and board resolution documentation' },
                 'Logistics & Transportation': { state: 'Manual coordination of driver briefings, safety meetings, and operations reviews', benefit: 'Automated meeting management with fleet data pre-loading, AI transcription, and action items linked to dispatch and safety systems' },
                 'Media & Entertainment': { state: 'Manual coordination of production meetings, creative reviews, and stakeholder calls with scattered notes', benefit: 'AI-powered meeting management with production schedule context, real-time transcription, and action items linked to production tracking' }
+            },
+            'LOG_ANALYSIS': {
+                'Financial Services': { state:'Engineers manually correlate transaction logs, audit trails, and security events across trading and banking platforms', benefit:'AI observability correlates logs across core banking, trading, and payment systems — surfacing transaction anomalies and security events in seconds' },
+                'Healthcare': { state:'IT teams manually search through EHR system logs, HL7 interface errors, and clinical device alerts', benefit:'AI correlates clinical system logs, interface errors, and device telemetry — identifying patient-impacting issues before they escalate' },
+                'Manufacturing': { state:'Engineers manually review PLC logs, SCADA alerts, and MES error traces across production lines', benefit:'AI-powered OT observability correlates PLC, SCADA, and MES logs to pinpoint production issues and predict equipment failures' },
+                'Retail': { state:'Teams manually search POS system logs, e-commerce errors, and inventory sync failures', benefit:'AI correlates POS, e-commerce, and inventory system logs to identify transaction failures and sync issues in real time' },
+                'Technology': { state:'Engineers investigate distributed system logs, microservice traces, and cloud infrastructure metrics', benefit:'AI observability auto-correlates traces across microservices, maps error propagation, and identifies root causes in distributed systems within seconds' },
+                'Government': { state:'IT staff manually review system access logs, citizen portal errors, and integration failures across legacy systems', benefit:'AI-powered log analysis identifies citizen-impacting service disruptions and security events across government systems with automated escalation' },
+                'Energy & Utilities': { state:'Engineers manually correlate SCADA logs, grid sensor data, and outage management system alerts', benefit:'AI observability correlates grid telemetry, SCADA events, and outage data to identify cascading failures and predict equipment issues' },
+                'Professional Services': { state:'IT teams manually review application logs, client portal errors, and integration failures', benefit:'AI log analysis auto-detects client-impacting issues, correlates across SaaS tools, and surfaces root causes before clients report problems' },
+                'Education': { state:'IT staff manually review LMS logs, student portal errors, and system access issues', benefit:'AI correlates learning platform logs, authentication events, and integration errors to resolve student-impacting issues proactively' },
+                'Telecommunications': { state:'Engineers manually trace network logs, OSS/BSS errors, and service provisioning failures', benefit:'AI correlates network, OSS/BSS, and provisioning logs to identify service-impacting issues and predict network degradation' },
+                'Real Estate': { state:'Teams manually review property management system logs and tenant portal errors', benefit:'AI auto-detects tenant-impacting issues across property management and building systems with automated alerting' },
+                'Non-profit / NGO': { state:'IT staff manually review donor platform logs, website errors, and CRM sync failures', benefit:'AI correlates donor platform, website, and CRM logs to identify issues impacting donor experience and data integrity' },
+                'Logistics & Transportation': { state:'Teams manually correlate TMS logs, GPS tracking errors, and dispatch system failures', benefit:'AI observability correlates TMS, GPS, and dispatch logs to identify shipment-impacting issues and predict system failures' },
+                'Media & Entertainment': { state:'Engineers manually review CDN logs, streaming errors, and content delivery failures', benefit:'AI correlates streaming, CDN, and content platform logs to identify viewer-impacting quality issues in real time' }
+            },
+            'CI_CD_DEPLOY': {
+                'Financial Services': { state:'Code releases require change advisory board approval, manual environment promotion, and after-hours deployment windows', benefit:'Automated CI/CD with compliance gates handles regulatory change control, environment promotion, and audit-ready deployment records' },
+                'Healthcare': { state:'Clinical system updates require FDA/HIPAA validation, manual testing, and coordinated downtime windows', benefit:'Automated pipelines with compliance validation gates handle HIPAA-compliant deployments with full audit trails and automated rollback' },
+                'Manufacturing': { state:'MES and PLC code changes require manual validation, production-window deployments, and extensive rollback procedures', benefit:'Automated deployment pipelines with OT-specific validation gates enable safe production system updates with instant rollback' },
+                'Retail': { state:'E-commerce and POS updates require coordinated deployment across stores, warehouses, and online channels', benefit:'Automated multi-channel deployment pipelines push updates across POS, e-commerce, and warehouse systems with canary releases and auto-rollback' },
+                'Technology': { state:'Microservice deployments require coordination across teams, environment management, and manual smoke testing', benefit:'Fully automated CI/CD with canary deployments, feature flags, and auto-rollback enables multiple daily releases with zero-downtime' },
+                'Government': { state:'System updates require security authorization, ATO compliance checks, and coordinated deployment across classified and unclassified networks', benefit:'Automated CI/CD with FedRAMP and ATO compliance gates handles secure deployments with full audit trails and authority-to-operate documentation' },
+                'Energy & Utilities': { state:'SCADA and grid system updates require strict change control, safety validation, and narrow maintenance windows', benefit:'Automated deployment with safety-critical validation gates enables OT system updates with rollback capability and full regulatory audit trails' },
+                'Professional Services': { state:'Client-facing platform updates require coordination across engagements, data migration validation, and client notification', benefit:'Automated CI/CD handles multi-tenant deployments with client-specific validation and zero-downtime migration' },
+                'Education': { state:'LMS and student portal updates require academic calendar awareness, data migration validation, and minimal disruption', benefit:'Automated deployments with academic-calendar-aware scheduling and student-data-safe migration gates' },
+                'Telecommunications': { state:'Network and BSS system updates require service-impact analysis, rollback plans, and narrow maintenance windows', benefit:'Automated CI/CD with network-impact analysis gates enables OSS/BSS updates with service-aware scheduling and instant rollback' },
+                'Real Estate': { state:'Property management system updates require tenant notification, data backup, and multi-property coordination', benefit:'Automated deployment pipelines handle multi-property system updates with tenant-aware scheduling and data validation' },
+                'Non-profit / NGO': { state:'Donor platform and website updates require content freeze coordination, donation-flow testing, and data integrity checks', benefit:'Automated CI/CD handles platform updates with donation-flow validation gates and donor-data-safe deployment' },
+                'Logistics & Transportation': { state:'TMS and routing system updates require shipment-aware scheduling, driver app coordination, and data migration', benefit:'Automated deployment with shipment-aware scheduling gates enables TMS updates without disrupting active deliveries' },
+                'Media & Entertainment': { state:'Content platform updates require audience-aware timing, DRM validation, and multi-region rollout coordination', benefit:'Automated CI/CD with audience-aware deployment windows and content-delivery validation handles multi-region releases' }
+            },
+            'TEST_QA': {
+                'Financial Services': { state:'QA teams manually execute test scripts for trading, payment, and regulatory compliance scenarios', benefit:'AI generates and maintains test suites for financial transaction flows, compliance scenarios, and regulatory edge cases — ensuring coverage across trading, payment, and reporting paths' },
+                'Healthcare': { state:'Testing clinical systems requires manual validation against FDA/HIPAA requirements and patient safety scenarios', benefit:'AI-augmented testing auto-generates clinical workflow test cases, HIPAA compliance scenarios, and patient safety validations with full regulatory traceability' },
+                'Manufacturing': { state:'QA manually validates MES workflows, production recipes, and equipment integration scenarios', benefit:'AI generates test cases for production workflows, equipment integrations, and recipe validations — catching manufacturing-specific edge cases humans miss' },
+                'Retail': { state:'Testing spans POS terminals, e-commerce flows, inventory sync, and payment processing across channels', benefit:'AI-powered testing covers omnichannel flows — POS, e-commerce, inventory, and payment scenarios — with automated regression across all customer touchpoints' },
+                'Technology': { state:'Developers write and maintain unit, integration, and end-to-end tests across microservices', benefit:'AI generates tests from code diffs, identifies regression risk areas, and maintains test suites across microservices — increasing coverage while reducing test maintenance burden' },
+                'Government': { state:'Testing government systems requires security validation, accessibility compliance, and multi-browser certification', benefit:'AI-augmented testing auto-generates accessibility, security, and compliance test cases with WCAG and FedRAMP validation built in' },
+                'Energy & Utilities': { state:'Testing SCADA and grid systems requires safety-critical validation and regulatory compliance verification', benefit:'AI generates safety-critical test scenarios for grid and SCADA systems with regulatory compliance validation and failure-mode coverage' },
+                'Professional Services': { state:'QA validates client deliverable platforms, reporting accuracy, and multi-tenant isolation', benefit:'AI generates client-specific test scenarios, validates reporting accuracy, and ensures multi-tenant data isolation across engagements' },
+                'Education': { state:'Testing covers LMS functionality, accessibility compliance, and student data privacy scenarios', benefit:'AI generates test cases for learning workflows, accessibility compliance, and student data privacy with FERPA validation' },
+                'Telecommunications': { state:'Testing covers network provisioning, billing accuracy, and service activation across OSS/BSS', benefit:'AI generates test scenarios for service provisioning, billing edge cases, and network configuration validation across OSS/BSS systems' },
+                'Real Estate': { state:'Testing property management workflows, lease calculations, and tenant portal functionality', benefit:'AI generates test cases for lease calculation accuracy, tenant portal flows, and property management workflow validation' },
+                'Non-profit / NGO': { state:'Testing donation flows, grant reporting, and constituent management across platforms', benefit:'AI generates test cases for donation processing, grant compliance reporting, and constituent data integrity' },
+                'Logistics & Transportation': { state:'Testing TMS routing algorithms, shipment tracking, and carrier integration accuracy', benefit:'AI generates test scenarios for route optimization, shipment tracking accuracy, and carrier API integration validation' },
+                'Media & Entertainment': { state:'Testing content delivery, DRM enforcement, streaming quality, and rights management', benefit:'AI generates test cases for content delivery quality, DRM validation, and streaming performance across devices and regions' }
+            },
+            'RECRUITING': {
+                'Financial Services': { state:'Recruiting for regulated roles requires manual compliance screening, credential verification, and multi-stage interview coordination', benefit:'AI talent platforms auto-screen for regulatory credentials, match candidates to role requirements including compliance qualifications, and optimize interview scheduling' },
+                'Healthcare': { state:'Clinical recruiting requires license verification, credentialing, and privileging across multiple facilities', benefit:'AI-powered recruiting verifies clinical licenses, matches credentials to facility requirements, and auto-coordinates credentialing across health systems' },
+                'Manufacturing': { state:'Recruiting skilled trades requires certification verification, shift-pattern matching, and multi-site coordination', benefit:'AI talent platforms match trade certifications to role requirements, optimize shift-pattern fit, and source from skilled-trades networks' },
+                'Retail': { state:'High-volume seasonal recruiting requires rapid screening, availability matching, and multi-location coordination', benefit:'AI handles high-volume screening with availability matching, location preference optimization, and automated scheduling for seasonal hiring surges' },
+                'Technology': { state:'Tech recruiting requires skills assessment, portfolio review, and competitive offer benchmarking', benefit:'AI-powered recruiting assesses technical skills from code portfolios, benchmarks compensation against market data, and identifies passive candidates from professional networks' },
+                'Government': { state:'Public sector recruiting requires merit-based scoring, security clearance tracking, and bilingual requirement matching', benefit:'AI automates merit-based candidate scoring, tracks clearance eligibility, and matches bilingual and accessibility requirements to role specifications' },
+                'Energy & Utilities': { state:'Recruiting for field and engineering roles requires safety certification verification and remote-location staffing', benefit:'AI matches safety certifications to role requirements, optimizes remote-location staffing, and verifies engineering credentials across jurisdictions' },
+                'Professional Services': { state:'Recruiting requires skills-to-engagement matching, utilization forecasting, and client-facing capability assessment', benefit:'AI matches consultant skills to engagement requirements, forecasts bench utilization, and assesses client-facing capabilities' },
+                'Education': { state:'Academic recruiting requires credential verification, research profile assessment, and committee-based hiring coordination', benefit:'AI verifies academic credentials, assesses research output and teaching evaluations, and coordinates faculty search committee workflows' },
+                'Telecommunications': { state:'Telecom recruiting requires network engineering certification verification and shift-based field technician staffing', benefit:'AI verifies network certifications, matches technician skills to field requirements, and optimizes shift-based staffing across service areas' },
+                'Real Estate': { state:'Recruiting agents and property managers requires license verification and market-area expertise matching', benefit:'AI verifies real estate licenses, matches market-area expertise, and assesses sales performance history for agent recruitment' },
+                'Non-profit / NGO': { state:'Non-profit recruiting balances mission alignment, grant-funded position constraints, and volunteer coordination', benefit:'AI screens for mission alignment, manages grant-funded position requirements, and coordinates volunteer-to-staff pipeline' },
+                'Logistics & Transportation': { state:'Recruiting drivers and warehouse staff requires CDL verification, route-area matching, and compliance screening', benefit:'AI verifies CDL credentials, matches drivers to route areas, and automates DOT compliance screening for rapid onboarding' },
+                'Media & Entertainment': { state:'Creative recruiting requires portfolio assessment, project-based availability matching, and guild/union compliance', benefit:'AI assesses creative portfolios, matches availability to production schedules, and verifies guild/union eligibility and compliance' }
+            },
+            'RESUME_SCREEN': {
+                'Financial Services': { state:'Compliance and risk teams manually screen for required certifications (CFA, CPA, Series licenses) and regulatory experience', benefit:'AI screening matches financial certifications, regulatory experience, and compliance qualifications to role requirements with consistent scoring' },
+                'Healthcare': { state:'HR manually verifies clinical credentials, board certifications, and specialty qualifications against position requirements', benefit:'AI screening matches clinical credentials, board certifications, and specialty qualifications with automated primary-source verification' },
+                'Manufacturing': { state:'HR manually checks trade certifications, safety training records, and equipment-specific experience', benefit:'AI screening validates trade certifications, safety credentials, and equipment experience against role-specific requirements' },
+                'Retail': { state:'Managers manually review high volumes of applications for seasonal and permanent positions with inconsistent criteria', benefit:'AI processes high-volume retail applications with consistent scoring for availability, experience level, and location fit' },
+                'Technology': { state:'Recruiters manually assess technical resumes for programming languages, frameworks, and system design experience', benefit:'AI parses technical resumes for skills, frameworks, and system design patterns — scoring against role requirements with portfolio and contribution analysis' },
+                'Government': { state:'HR screens for security clearance eligibility, veterans preference, and merit-based qualification scoring', benefit:'AI automates merit-based scoring, clearance eligibility pre-screening, and veterans preference calculation with full audit trail' },
+                'Energy & Utilities': { state:'HR manually verifies engineering licenses, safety certifications, and regulatory training across jurisdictions', benefit:'AI validates engineering licenses and safety certifications across jurisdictions with automated regulatory training verification' },
+                'Professional Services': { state:'Recruiters assess consulting experience, industry expertise, and client-facing skills against engagement requirements', benefit:'AI matches consulting experience and industry expertise to engagement pipelines with skills-gap analysis and bench optimization' },
+                'Education': { state:'Search committees manually review academic CVs for research output, teaching experience, and credential qualifications', benefit:'AI parses academic CVs for research metrics, teaching evaluations, and credential fit with committee-ready scoring summaries' },
+                'Telecommunications': { state:'HR screens for network engineering certifications, vendor-specific training, and field experience', benefit:'AI validates telecom certifications, vendor training records, and field experience with skills-to-role matching' },
+                'Real Estate': { state:'Brokerages manually verify agent licenses, sales history, and market-area knowledge', benefit:'AI verifies real estate licenses, analyzes sales performance data, and matches market-area expertise to brokerage needs' },
+                'Non-profit / NGO': { state:'HR screens for mission alignment, grant-relevant experience, and programmatic expertise', benefit:'AI assesses mission alignment from application narratives, matches grant-relevant experience, and scores programmatic expertise' },
+                'Logistics & Transportation': { state:'HR manually verifies CDL classes, endorsements, driving records, and DOT compliance', benefit:'AI automates CDL verification, driving record checks, and DOT compliance screening with real-time status tracking' },
+                'Media & Entertainment': { state:'Recruiters manually review creative portfolios, reel submissions, and project credits', benefit:'AI analyzes creative portfolios and production credits, matching style and experience level to project requirements' }
+            },
+            'BACKGROUND_CHECK': {
+                'Financial Services': { state:'Compliance teams manually coordinate FINRA, credit, and criminal checks with multi-week turnaround', benefit:'Automated verification runs FINRA registration, credit, and criminal checks in parallel with regulatory-compliant documentation' },
+                'Healthcare': { state:'Credentialing offices manually verify medical licenses, malpractice history, and facility privileges across systems', benefit:'Automated primary-source verification runs license, malpractice, and privilege checks across facilities with real-time credentialing status' },
+                'Manufacturing': { state:'HR manually coordinates safety certification verification, drug screening, and prior employment checks', benefit:'Automated verification runs safety certifications, drug screening coordination, and employment history checks in parallel' },
+                'Retail': { state:'HR coordinates criminal checks and employment verification for high-volume seasonal hiring with slow turnaround', benefit:'Automated batch verification handles high-volume criminal and employment checks with real-time status tracking for seasonal hiring' },
+                'Technology': { state:'HR coordinates employment verification, education checks, and security clearance processing', benefit:'Automated verification runs employment, education, and clearance checks in parallel with integrated status tracking and exception alerts' },
+                'Government': { state:'Security offices manually process multi-level clearance investigations with extensive documentation requirements', benefit:'Automated clearance processing coordinates investigation steps, tracks document submissions, and provides real-time status with compliance-ready audit trails' },
+                'Energy & Utilities': { state:'HR coordinates safety certifications, regulatory compliance checks, and site-access clearances across facilities', benefit:'Automated verification runs safety, regulatory, and site-access checks in parallel across multiple facility jurisdictions' },
+                'Professional Services': { state:'HR coordinates professional license verification, conflict-of-interest checks, and client-required clearances', benefit:'Automated verification handles professional licenses, conflict checks, and client-specific clearance requirements with engagement-aware tracking' },
+                'Education': { state:'HR manually processes criminal checks, credential verification, and child safety clearances for faculty and staff', benefit:'Automated verification runs criminal, credential, and child safety checks in parallel with institution-specific compliance tracking' },
+                'Telecommunications': { state:'HR coordinates technical certification verification and facility access clearances across network sites', benefit:'Automated verification handles telecom certifications and multi-site access clearances with real-time provisioning status' },
+                'Real Estate': { state:'Brokerages manually verify agent licenses, E&O insurance, and regulatory standing across jurisdictions', benefit:'Automated verification checks agent licenses, insurance status, and regulatory standing across state jurisdictions in real time' },
+                'Non-profit / NGO': { state:'HR coordinates volunteer and employee checks including criminal screening and reference verification', benefit:'Automated verification handles volunteer and employee criminal, reference, and credential checks with donor-trust-aware compliance' },
+                'Logistics & Transportation': { state:'HR manually coordinates CDL verification, DOT physicals, driving records, and drug screening for drivers', benefit:'Automated verification runs CDL, DOT physical, MVR, and drug screening in parallel with compliance-deadline tracking' },
+                'Media & Entertainment': { state:'HR coordinates work authorization, union standing, and content-safety clearances for production staff', benefit:'Automated verification handles work authorization, guild/union standing, and production-specific clearances with project-timeline awareness' }
             }
         };
 
@@ -4103,16 +4208,16 @@
             /* Department → relevant KB step IDs. Steps outside this set get confidence downgraded. */
             const DEPT_DOMAIN = {
                 'Finance & Accounting': new Set(['DATA_ENTRY','INVOICE_PROC','RECONCILIATION','FINANCIAL_CLOSE','JOURNAL_POST','REPORTING','APPROVAL','COMPLIANCE_GOV','DATA_VALIDATE','DOC_UNDERSTAND','FORM_PROC','REVIEW_AUDIT','RISK_SCORING','DATA_CLEANSE','MASTER_DATA']),
-                'Human Resources': new Set(['ONBOARDING','SCHEDULING','PERF_MGMT','WORKFORCE_PLAN','TRAINING','REPORTING','APPROVAL','DATA_ENTRY','DOC_UNDERSTAND','FORM_PROC','EMAIL_COMMS','COMPLIANCE_GOV','TEMPLATE_GEN','SENTIMENT','EMAIL_DRAFT']),
-                'IT & Engineering': new Set(['INCIDENT_MGMT','OUTAGE_MGMT','CODE_GEN','API_MGMT','LEGACY_MOD','TICKET_SUPPORT','STATUS_TRACK','DATA_TRANSFER','EQUIP_MONITOR','REPORTING','APPROVAL','DOC_UNDERSTAND','KNOWLEDGE_BASE','SEARCH_RETRIEVAL','PROJECT_MGMT']),
-                'Operations': new Set(['SCHEDULING','INVENTORY','ASSET_MGMT','MAINT_MGMT','EQUIP_MONITOR','QUALITY_INSPECT','SAFETY_ENV','FIELD_SERVICE','STATUS_TRACK','TASK_ASSIGN','REPORTING','DATA_ENTRY','APPROVAL','DOC_UNDERSTAND','WORK_EXECUTION']),
+                'Human Resources': new Set(['ONBOARDING','SCHEDULING','PERF_MGMT','WORKFORCE_PLAN','TRAINING','REPORTING','APPROVAL','DATA_ENTRY','DOC_UNDERSTAND','FORM_PROC','EMAIL_COMMS','COMPLIANCE_GOV','TEMPLATE_GEN','SENTIMENT','EMAIL_DRAFT','RECRUITING','RESUME_SCREEN','BACKGROUND_CHECK']),
+                'IT & Engineering': new Set(['INCIDENT_MGMT','OUTAGE_MGMT','CODE_GEN','API_MGMT','LEGACY_MOD','TICKET_SUPPORT','STATUS_TRACK','DATA_TRANSFER','EQUIP_MONITOR','REPORTING','APPROVAL','DOC_UNDERSTAND','KNOWLEDGE_BASE','SEARCH_RETRIEVAL','PROJECT_MGMT','LOG_ANALYSIS','CI_CD_DEPLOY','TEST_QA']),
+                'Operations': new Set(['SCHEDULING','INVENTORY','ASSET_MGMT','MAINT_MGMT','EQUIP_MONITOR','QUALITY_INSPECT','SAFETY_ENV','FIELD_SERVICE','STATUS_TRACK','TASK_ASSIGN','REPORTING','DATA_ENTRY','APPROVAL','DOC_UNDERSTAND','WORK_EXECUTION','TEST_QA']),
                 'Sales & Marketing': new Set(['LEAD_SCORING','CHURN_PREDICT','PERSONALIZE','RECOMMEND','CONTENT_GEN','EMAIL_DRAFT','EMAIL_COMMS','SENTIMENT','CONVO_ANALYSIS','REPORTING','CUST_FEEDBACK','CHATBOT','DATA_ENTRY','TEMPLATE_GEN','DEMAND_FORECAST']),
                 'Customer Service': new Set(['TICKET_SUPPORT','CHATBOT','SENTIMENT','CONVO_ANALYSIS','CUST_FEEDBACK','KNOWLEDGE_BASE','EMAIL_COMMS','EMAIL_DRAFT','PERSONALIZE','REPORTING','STATUS_TRACK','TEMPLATE_GEN','SEARCH_RETRIEVAL','ONBOARDING']),
                 'Supply Chain': new Set(['PROCUREMENT','INVENTORY','DEMAND_FORECAST','SCHEDULING','DATA_TRANSFER','APPROVAL','REPORTING','DOC_UNDERSTAND','INVOICE_PROC','RECONCILIATION','STATUS_TRACK','ASSET_MGMT','RISK_SCORING','QUALITY_INSPECT']),
                 'Legal': new Set(['CONTRACT_MGMT','COMPLIANCE_GOV','REVIEW_AUDIT','DOC_UNDERSTAND','DOC_SEARCH','SEARCH_RETRIEVAL','ENTITY_EXTRACT','SUMMARIZATION','TEMPLATE_GEN','APPROVAL','REPORTING','RISK_SCORING','EMAIL_COMMS']),
                 'Procurement': new Set(['PROCUREMENT','INVOICE_PROC','APPROVAL','CONTRACT_MGMT','DOC_UNDERSTAND','REPORTING','RECONCILIATION','DATA_ENTRY','RISK_SCORING','COMPLIANCE_GOV','FORM_PROC','EMAIL_COMMS','DEMAND_FORECAST']),
                 'Executive / C-Suite': new Set(['REPORTING','SUMMARIZATION','MEETING_MGMT','DECISION','PROJECT_MGMT','STATUS_TRACK','EMAIL_COMMS','DOC_UNDERSTAND','RISK_SCORING','DEMAND_FORECAST','WORKFORCE_PLAN','CONTENT_GEN']),
-                'Research & Development': new Set(['CODE_GEN','DOC_UNDERSTAND','SEARCH_RETRIEVAL','DOC_SEARCH','KNOWLEDGE_BASE','DATA_CLEANSE','DATA_VALIDATE','REPORTING','PROJECT_MGMT','STATUS_TRACK','CONTENT_GEN','REVIEW_AUDIT','SUMMARIZATION','ENTITY_EXTRACT']),
+                'Research & Development': new Set(['CODE_GEN','DOC_UNDERSTAND','SEARCH_RETRIEVAL','DOC_SEARCH','KNOWLEDGE_BASE','DATA_CLEANSE','DATA_VALIDATE','REPORTING','PROJECT_MGMT','STATUS_TRACK','CONTENT_GEN','REVIEW_AUDIT','SUMMARIZATION','ENTITY_EXTRACT','TEST_QA']),
                 'Compliance & Risk': new Set(['COMPLIANCE_GOV','RISK_SCORING','REVIEW_AUDIT','DOC_UNDERSTAND','REPORTING','DATA_VALIDATE','ENTITY_EXTRACT','SEARCH_RETRIEVAL','DOC_SEARCH','CONTRACT_MGMT','STATUS_TRACK','SUMMARIZATION','APPROVAL'])
             };
 
@@ -4125,16 +4230,19 @@
 
             /* Cross-domain language patterns — used to detect content from unrelated workflows */
             const DOMAIN_LANG = {
-                finance: /\b(journal entr|ledger|close cycle|accrual|reconcil|debit|credit|gl posting|sub-ledger|trial balance|amortiz)\b/i,
-                hr: /\b(onboard|talent acqui|recruit|payroll|benefit enrollment|employee lifecycle|performance review|termination)\b/i,
-                it: /\b(deploy|sprint|ci\/cd|code review|pull request|incident|outage|api gateway|kubernetes|devops)\b/i,
-                supply: /\b(warehouse|logistics|freight|shipment|carrier|bill of lading|pick list|3pl)\b/i,
-                legal: /\b(clause library|redline|litigation|deposition|precedent|statute|jurisdiction|estoppel)\b/i,
-                medical: /\b(patient|clinical|diagnosis|ehr|hipaa|treatment protocol|care plan|icd-10)\b/i
+                finance: /\b(journal entr|ledger|close cycle|accrual|reconcil|debit|credit|gl posting|sub-ledger|trial balance|amortiz|accounts payable|accounts receivable|general ledger)\b/i,
+                hr: /\b(onboard|talent acqui|recruit|payroll|benefit enrollment|employee lifecycle|performance review|termination|new hire|offer letter|HRIS)\b/i,
+                it: /\b(deploy|sprint|ci\/cd|code review|pull request|incident|outage|api gateway|kubernetes|devops|microservice|rollback)\b/i,
+                supply: /\b(warehouse|logistics|freight|shipment|carrier|bill of lading|pick list|3pl|purchase order|supplier|procurement cycle)\b/i,
+                legal: /\b(clause library|redline|litigation|deposition|precedent|statute|jurisdiction|estoppel|contract negotiat|legal hold)\b/i,
+                medical: /\b(patient|clinical|diagnosis|ehr|hipaa|treatment protocol|care plan|icd-10|medical record|referral)\b/i,
+                support: /\b(ticket queue|sla breach|first.call resolution|customer complaint|call center|contact center|case escalat)\b/i,
+                sales: /\b(lead nurtur|pipeline|quota|territory|commission|sales funnel|prospect|cold call|deal stage|win rate)\b/i
             };
             const DEPT_TO_LANG = {
                 'Finance & Accounting': 'finance', 'Human Resources': 'hr', 'IT & Engineering': 'it',
-                'Supply Chain': 'supply', 'Legal': 'legal'
+                'Supply Chain': 'supply', 'Legal': 'legal', 'Customer Service': 'support',
+                'Sales & Marketing': 'sales'
             };
 
             const deptDomain = DEPT_DOMAIN[department];
@@ -4182,10 +4290,21 @@
                     const coreTerms = kbEntry.keys.slice(0, 5);
                     const stateHit = coreTerms.some(t => step.currentState.toLowerCase().includes(t.split(' ')[0]));
                     const benefitHit = coreTerms.some(t => step.benefit.toLowerCase().includes(t.split(' ')[0]));
-                    /* If both state AND benefit miss all core terms, overlay may have drifted — fall back */
+                    /* If both state AND benefit miss all core terms, overlay may have drifted */
                     if (!stateHit && !benefitHit) {
                         step.currentState = kbEntry.state;
                         step.benefit = kbEntry.benefit;
+                    }
+                    /* Department alignment: if the user's department has keywords and the overlay
+                       content doesn't relate to any of them, prefer base KB for relevance */
+                    const deptCtx = DEPARTMENT_CONTEXT[department];
+                    if (deptCtx && deptCtx.keywords) {
+                        const deptKeyHit = deptCtx.keywords.some(k => step.currentState.toLowerCase().includes(k) || step.benefit.toLowerCase().includes(k));
+                        const kbKeyHit = coreTerms.some(t => step.currentState.toLowerCase().includes(t.split(' ')[0]));
+                        if (!deptKeyHit && !kbKeyHit) {
+                            step.currentState = kbEntry.state;
+                            step.benefit = kbEntry.benefit;
+                        }
                     }
                 }
 
@@ -4260,6 +4379,53 @@
             /* ═══ RULE 14: Roadmap filtered to process scope ═══ */
             /* Downstream generateRoadmap() only uses recs from validated steps above. */
 
+            /* ═══ RULE 15: Semantic alignment — Technology must match Step + Current State ═══ */
+            /* If the tech tier suggests advanced AI but the step is fundamentally manual
+               coordination, or vice versa, correct the assignment. */
+            for (const s of analyzedSteps) {
+                if (s.techTier === 'Agentic AI' && s.automationPotential < 0.75) {
+                    s.techTier = 'AI-Assisted';
+                }
+                if (s.techTier === 'Human Required' && s.automationPotential >= 0.70) {
+                    s.techTier = 'AI-Assisted';
+                }
+                /* Ensure tech tier language doesn't contradict the current state */
+                if (s.techTier === 'Agentic AI' && /\bmanual\b/i.test(s.currentState) && s.cat === 'human') {
+                    s.techTier = 'AI-Assisted';
+                }
+            }
+
+            /* ═══ RULE 16: Format integrity — prevent truncated or empty content ═══ */
+            for (const s of analyzedSteps) {
+                if (!s.currentState || s.currentState.length < 10) {
+                    s.currentState = s.primaryId !== 'UNMATCHED'
+                        ? (STEP_KB.find(e => e.id === s.primaryId) || {}).state || 'Current process relies on manual effort'
+                        : 'Current process relies on manual coordination and effort';
+                }
+                if (!s.benefit || s.benefit.length < 10) {
+                    s.benefit = s.primaryId !== 'UNMATCHED'
+                        ? (STEP_KB.find(e => e.id === s.primaryId) || {}).benefit || 'Automation reduces manual effort and improves consistency'
+                        : 'Standardize the process first, then automate the repetitive components';
+                }
+                if (!s.recs || !s.recs.q || !s.recs.m || !s.recs.s) {
+                    const kbEntry = s.primaryId !== 'UNMATCHED' ? STEP_KB.find(e => e.id === s.primaryId) : null;
+                    s.recs = kbEntry ? { ...kbEntry.recs } : {
+                        q: 'Map the process end-to-end and identify rules-based vs. judgment-based steps',
+                        m: 'Automate the rules-based steps and build dashboards for the judgment-based ones',
+                        s: 'Orchestrate the full workflow with AI handling routine decisions and humans handling exceptions'
+                    };
+                }
+                if (!s.techTier) {
+                    s.techTier = determineTechTier(s.cat || 'human', s.automationPotential || 0.45, s.complexity || 0.5);
+                }
+                if (!s.potentialLabel) {
+                    s.potentialLabel = s.automationPotential >= 0.70 ? 'High' : s.automationPotential >= 0.40 ? 'Medium' : 'Low';
+                }
+                if (!s.confidence) {
+                    s.confidence = 'Low';
+                }
+            }
+
             return analyzedSteps;
         }
 
@@ -4303,7 +4469,10 @@
                 'API_MGMT': 'API management', 'LEGACY_MOD': 'legacy modernization',
                 'DATA_TRANSFER': 'data transfer', 'MASTER_DATA': 'master data management',
                 'TEMPLATE_GEN': 'template generation', 'DECISION': 'decision-making',
-                'WORK_EXECUTION': 'work execution'
+                'WORK_EXECUTION': 'work execution',
+                'LOG_ANALYSIS': 'log analysis', 'CI_CD_DEPLOY': 'CI/CD deployment',
+                'TEST_QA': 'testing and QA', 'RECRUITING': 'recruiting',
+                'RESUME_SCREEN': 'resume screening', 'BACKGROUND_CHECK': 'background checks'
             };
 
             /* Department-specific high-value activities */
@@ -4338,7 +4507,7 @@
             /* Build "today" — describe the actual workflow steps, not a blended summary */
             let today = '';
             const typeNames = Object.keys(stepsByType);
-            const manualCount = steps.filter(s => s.cat === 'human' || s.automationPotential < 0.5).length;
+            const manualCount = steps.filter(s => s.cat === 'human' || s.automationPotential < 0.5 || /\bmanual\b/i.test(s.currentState)).length;
 
             if (typeNames.length > 0) {
                 /* List the specific step types found in this workflow */
@@ -4814,6 +4983,8 @@
                 + `<input type="hidden" name="automation_share" value="AI ${data.workload.ai}% | Human ${data.workload.human}% | System ${data.workload.system}%">`
                 + `<input type="hidden" name="high_potential_steps" value="${data.steps.filter(s => s.potentialLabel === 'High').length} high, ${data.steps.filter(s => s.potentialLabel === 'Medium').length} medium, ${data.steps.filter(s => s.potentialLabel === 'Low').length} low">`
                 + `<input type="hidden" name="step_details" value="${esc(data.steps.map((s, i) => (i + 1) + '. ' + s.stepName + ' → ' + s.potentialLabel + ' (' + s.techTier + ', ' + Math.round(s.timeSavings * 100) + '% savings)').join('\n'))}">`
+                + `<input type="hidden" name="current_state" value="${esc(data.steps.map((s, i) => (i + 1) + '. ' + s.stepName + ': ' + s.currentState).join('\n'))}">`
+                + `<input type="hidden" name="pain_points" value="${esc(data.painAnalysis.matched.length > 0 ? data.painAnalysis.matched.map(p => p.label).join('; ') : 'None reported')}">`
                 + `<input type="hidden" name="quick_wins" value="${esc(data.roadmap.quick.map(r => r.title).join('; ') || 'None')}">`
                 + `<input type="hidden" name="medium_term" value="${esc(data.roadmap.medium.map(r => r.title).join('; ') || 'None')}">`
                 + `<input type="hidden" name="strategic" value="${esc(data.roadmap.strategic.map(r => r.title).join('; ') || 'None')}">`
