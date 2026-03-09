@@ -552,6 +552,12 @@
             margin-top: 0.75rem; padding: 0.6rem 0.8rem;
             background: var(--warm); border-left: 2px solid var(--blue-xl);
         }
+        .diag-dept-example { background: var(--warm); border-radius: 0.75rem; padding: 1.25rem; margin-top: 1rem; border: 1px solid var(--rule); }
+        .diag-dept-example-title { font-family: var(--mono); font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-4); margin-bottom: 0.75rem; }
+        .diag-dept-example-steps { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+        .diag-dept-example-chip { display: inline-block; padding: 0.35rem 0.75rem; background: #fff; border: 1px solid var(--rule); border-radius: 2rem; font-size: 0.78rem; color: var(--ink-2); cursor: pointer; transition: all 0.15s; font-family: var(--sans); }
+        .diag-dept-example-chip:hover { border-color: var(--blue); color: var(--blue); background: rgba(26,91,186,0.04); }
+        .diag-dept-example-use { display: block; margin-top: 0.75rem; font-size: 0.72rem; color: var(--blue); cursor: pointer; border: none; background: none; padding: 0; font-family: var(--sans); text-decoration: underline; }
         .diag-wiz-header { margin-bottom: 1.5rem; }
         .diag-wiz-header h3 { font-family: var(--serif); font-size: 1.15rem; font-weight: 500; color: var(--ink); margin-bottom: 0.4rem; }
         .diag-wiz-header p { font-size: 0.85rem; color: var(--ink-3); line-height: 1.6; }
@@ -699,6 +705,20 @@
         .diag-roi-sep { margin: 0 0.4rem; color: var(--ink-5); }
         .diag-roi-opt { color: var(--blue); font-weight: 500; }
         .diag-roi-note { margin-top: 1rem; font-size: 0.78rem; color: var(--ink-4); line-height: 1.6; }
+        .diag-cta { background: linear-gradient(135deg, #0d2d6b 0%, #1a5bba 100%); border-radius: 1rem; padding: 2.5rem; margin-top: 2rem; text-align: center; color: #fff; }
+        .diag-cta-title { font-family: var(--serif); font-size: 1.5rem; font-weight: 400; margin-bottom: 0.5rem; }
+        .diag-cta-sub { font-size: 0.9rem; opacity: 0.85; margin-bottom: 1.5rem; line-height: 1.5; }
+        .diag-cta-form { display: flex; flex-direction: column; gap: 0.75rem; max-width: 400px; margin: 0 auto; }
+        .diag-cta-form input { padding: 0.75rem 1rem; border: 1px solid rgba(255,255,255,0.3); border-radius: 0.5rem; background: rgba(255,255,255,0.1); color: #fff; font-size: 0.9rem; font-family: var(--sans); }
+        .diag-cta-form input::placeholder { color: rgba(255,255,255,0.5); }
+        .diag-cta-form input:focus { outline: none; border-color: rgba(255,255,255,0.6); background: rgba(255,255,255,0.15); }
+        .diag-cta-row { display: flex; gap: 0.75rem; }
+        .diag-cta-row input { flex: 1; }
+        .diag-cta-submit { padding: 0.85rem 2rem; background: #fff; color: #0d2d6b; border: none; border-radius: 0.5rem; font-size: 0.95rem; font-weight: 600; font-family: var(--sans); cursor: pointer; transition: all 0.2s; }
+        .diag-cta-submit:hover { background: #E8E4DF; transform: translateY(-1px); }
+        .diag-cta-skip { display: inline-block; margin-top: 1rem; font-size: 0.8rem; color: rgba(255,255,255,0.6); cursor: pointer; border: none; background: none; text-decoration: underline; }
+        .diag-cta-skip:hover { color: rgba(255,255,255,0.9); }
+        .diag-cta-success { padding: 1rem; background: rgba(255,255,255,0.15); border-radius: 0.5rem; font-size: 0.95rem; }
 
         /* ── Reset button ── */
         .diag-reset { margin-top: 2rem; text-align: center; }
@@ -1766,6 +1786,7 @@
                                 <div class="diag-wiz-header"><h3>Describe the workflow you want to assess</h3><p>Walk us through the process step by step. The more specific you are, the more accurate your assessment will be.</p></div>
                                 <div class="diag-f"><label for="dP">Workflow description</label><textarea id="dP" placeholder="e.g., 1. Receive invoices via email&#10;2. Manually enter data into accounting system&#10;3. Match against purchase orders&#10;4. Route for manager approval&#10;5. Post to general ledger&#10;6. Generate monthly reconciliation report"></textarea></div>
                                 <p class="diag-wiz-tip">Tip: use numbered lists, bullet points, or commas to separate steps. Include details like frequency (daily, weekly), volume (hundreds, thousands), and tools used (Excel, email).</p>
+                                <div id="dDeptExample" class="diag-dept-example" style="display:none"></div>
                                 <div class="diag-wiz-nav"><button class="btn-wiz-back" onclick="wizBack()"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg> Back</button><button class="btn-wiz-next" onclick="wizNext()">Next <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></button></div>
                             </div>
                             <div class="diag-wizard-step" data-wstep="2">
@@ -1810,6 +1831,7 @@
                         <div id="dRoadmap" class="diag-roadmap" style="display:none"></div>
                         <div id="dRecs" class="diag-recs" style="display:none"></div>
                         <div id="dROI" class="diag-roi" style="display:none"></div>
+                        <div id="dCTA" class="diag-cta" style="display:none"></div>
                         <div class="diag-reset"><button class="btn-reset" onclick="resetD()">Run Another Assessment <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg></button></div>
                     </div>
                 </div>
@@ -2098,6 +2120,58 @@
             'Executive / C-Suite': { focus: 'strategic decision support, performance visibility, and governance oversight', aiBoost: 3, keywords: ['report','dashboard','kpi','strategy','decision','board','governance','performance','risk'], recs: { q:'Consolidate KPIs from existing systems into a single executive dashboard', m:'Build executive command center with AI-generated briefings and scenario modeling', s:'AI strategic advisor with real-time market intelligence, board-ready analytics, and predictive risk assessment' } },
             'Research & Development': { focus: 'innovation pipeline management, IP protection, and time-to-market acceleration', aiBoost: 3, keywords: ['research','prototype','test','patent','experiment','data','analysis','review','collaboration'], recs: { q:'Automate experiment tracking and standardize data collection across R&D projects', m:'Deploy AI-assisted data analysis pipelines with automated literature review and prior art search', s:'AI-powered innovation platform with hypothesis generation, automated experimentation, and IP landscape monitoring' } },
             'Compliance & Risk': { focus: 'regulatory adherence, risk assessment, and audit readiness', aiBoost: 3, keywords: ['audit','compliance','risk','control','regulation','policy','monitoring','report','assessment','sox'], recs: { q:'Digitize compliance checklists and create automated audit trail capture', m:'Deploy continuous compliance monitoring with AI-powered risk scoring and regulatory change detection', s:'Autonomous compliance platform with real-time control testing, predictive risk modeling, and automated regulatory filing' } }
+        };
+
+        /* ── Department workflow examples ── */
+        const DEPT_WORKFLOW_EXAMPLES = {
+            'Finance & Accounting': {
+                title: 'Example: Monthly Financial Close',
+                steps: ['Collect sub-ledger trial balances from all business units', 'Post recurring and adjusting journal entries', 'Reconcile intercompany accounts and bank statements', 'Review accruals and prepaid schedules', 'Run consolidation and generate management reports', 'Submit regulatory filings and supporting documentation']
+            },
+            'Human Resources': {
+                title: 'Example: Employee Onboarding',
+                steps: ['Generate offer letter and collect signed documents', 'Create employee record in HRIS and payroll', 'Provision IT accounts, equipment, and access badges', 'Schedule orientation and compliance training', 'Assign buddy/mentor and set 30-60-90 day goals', 'Complete benefits enrollment and tax forms']
+            },
+            'IT & Engineering': {
+                title: 'Example: Incident Response',
+                steps: ['Receive alert from monitoring system or user report', 'Triage severity and assign to on-call engineer', 'Investigate logs, traces, and system metrics', 'Implement fix or workaround and validate resolution', 'Update status page and notify affected stakeholders', 'Conduct post-incident review and update runbooks']
+            },
+            'Operations': {
+                title: 'Example: Order Fulfillment',
+                steps: ['Receive and validate incoming customer orders', 'Check inventory availability and allocate stock', 'Generate pick lists and route to warehouse', 'Pack items with quality inspection and shipping labels', 'Update tracking information and notify customer', 'Process returns and update inventory records']
+            },
+            'Sales & Marketing': {
+                title: 'Example: Lead-to-Opportunity Pipeline',
+                steps: ['Capture leads from web forms, events, and referrals', 'Score and qualify leads against ideal customer profile', 'Assign to sales rep and schedule discovery call', 'Create proposal with pricing and competitive positioning', 'Track follow-ups and update CRM opportunity stage', 'Generate pipeline reports and forecast revenue']
+            },
+            'Customer Service': {
+                title: 'Example: Support Ticket Resolution',
+                steps: ['Receive ticket via email, chat, or phone', 'Categorize issue type and check knowledge base', 'Investigate root cause using system logs and account history', 'Provide resolution or escalate to specialist team', 'Follow up with customer and confirm satisfaction', 'Update knowledge base with new solution patterns']
+            },
+            'Supply Chain': {
+                title: 'Example: Procurement-to-Pay',
+                steps: ['Forecast demand and generate purchase requisitions', 'Source suppliers and request competitive quotations', 'Create purchase order and route for approval', 'Receive goods and perform quality inspection', 'Three-way match invoice against PO and receipt', 'Process payment and update vendor performance records']
+            },
+            'Legal': {
+                title: 'Example: Contract Lifecycle',
+                steps: ['Draft contract from approved templates and clause library', 'Route for internal legal and business review', 'Negotiate terms with counterparty via redline exchange', 'Obtain authorized signatures and execute agreement', 'Store executed contract and set renewal alerts', 'Monitor obligations, milestones, and compliance terms']
+            },
+            'Procurement': {
+                title: 'Example: Strategic Sourcing',
+                steps: ['Analyze spend categories and identify sourcing opportunities', 'Develop RFP criteria and issue to qualified suppliers', 'Evaluate bids on cost, quality, risk, and capability', 'Negotiate terms and select preferred supplier', 'Execute contract and onboard supplier in ERP', 'Track supplier performance against SLAs and KPIs']
+            },
+            'Executive / C-Suite': {
+                title: 'Example: Board Reporting Cycle',
+                steps: ['Collect KPI data from department heads and finance', 'Analyze trends and prepare executive dashboards', 'Draft board presentation with strategic commentary', 'Review with executive team and incorporate feedback', 'Distribute pre-read materials to board members', 'Present findings and document action items from meeting']
+            },
+            'Research & Development': {
+                title: 'Example: Product Development Sprint',
+                steps: ['Review product backlog and prioritize features', 'Write technical specifications and design documents', 'Develop prototypes and run experiments', 'Conduct peer code review and quality testing', 'Document findings and update product roadmap', 'Prepare release notes and stakeholder communications']
+            },
+            'Compliance & Risk': {
+                title: 'Example: Regulatory Compliance Audit',
+                steps: ['Identify applicable regulatory requirements and updates', 'Map controls to compliance framework requirements', 'Collect evidence and test control effectiveness', 'Document findings, gaps, and remediation actions', 'Generate audit report for management and regulators', 'Track remediation progress and update risk register']
+            }
         };
 
         /* ── Context Overlays — industry-specific state/benefit text for key KB matches ── */
@@ -3632,35 +3706,219 @@
             return summary;
         }
 
+        /* ── Content Alignment Validator ── */
+        /* Enforces strict process-domain locking across all output rows.
+           14 numbered rules map to user requirements. */
+        function validateStepAlignment(analyzedSteps, industry, department) {
+            const seenBenefits = new Set();
+            const seenStates = new Set();
+            const seenRecs = { q: new Set(), m: new Set(), s: new Set() };
+
+            /* Department → relevant KB step IDs. Steps outside this set get confidence downgraded. */
+            const DEPT_DOMAIN = {
+                'Finance & Accounting': new Set(['DATA_ENTRY','INVOICE_PROC','RECONCILIATION','FINANCIAL_CLOSE','JOURNAL_POST','REPORTING','APPROVAL','COMPLIANCE_GOV','DATA_VALIDATE','DOC_UNDERSTAND','FORM_PROC','REVIEW_AUDIT','RISK_SCORING','DATA_CLEANSE','MASTER_DATA']),
+                'Human Resources': new Set(['ONBOARDING','SCHEDULING','PERF_MGMT','WORKFORCE_PLAN','TRAINING','REPORTING','APPROVAL','DATA_ENTRY','DOC_UNDERSTAND','FORM_PROC','EMAIL_COMMS','COMPLIANCE_GOV','TEMPLATE_GEN','SENTIMENT','EMAIL_DRAFT']),
+                'IT & Engineering': new Set(['INCIDENT_MGMT','OUTAGE_MGMT','CODE_GEN','API_MGMT','LEGACY_MOD','TICKET_SUPPORT','STATUS_TRACK','DATA_TRANSFER','EQUIP_MONITOR','REPORTING','APPROVAL','DOC_UNDERSTAND','KNOWLEDGE_BASE','SEARCH_RETRIEVAL','PROJECT_MGMT']),
+                'Operations': new Set(['SCHEDULING','INVENTORY','ASSET_MGMT','MAINT_MGMT','EQUIP_MONITOR','QUALITY_INSPECT','SAFETY_ENV','FIELD_SERVICE','STATUS_TRACK','TASK_ASSIGN','REPORTING','DATA_ENTRY','APPROVAL','DOC_UNDERSTAND','WORK_EXECUTION']),
+                'Sales & Marketing': new Set(['LEAD_SCORING','CHURN_PREDICT','PERSONALIZE','RECOMMEND','CONTENT_GEN','EMAIL_DRAFT','EMAIL_COMMS','SENTIMENT','CONVO_ANALYSIS','REPORTING','CUST_FEEDBACK','CHATBOT','DATA_ENTRY','TEMPLATE_GEN','DEMAND_FORECAST']),
+                'Customer Service': new Set(['TICKET_SUPPORT','CHATBOT','SENTIMENT','CONVO_ANALYSIS','CUST_FEEDBACK','KNOWLEDGE_BASE','EMAIL_COMMS','EMAIL_DRAFT','PERSONALIZE','REPORTING','STATUS_TRACK','TEMPLATE_GEN','SEARCH_RETRIEVAL','ONBOARDING']),
+                'Supply Chain': new Set(['PROCUREMENT','INVENTORY','DEMAND_FORECAST','SCHEDULING','DATA_TRANSFER','APPROVAL','REPORTING','DOC_UNDERSTAND','INVOICE_PROC','RECONCILIATION','STATUS_TRACK','ASSET_MGMT','RISK_SCORING','QUALITY_INSPECT']),
+                'Legal': new Set(['CONTRACT_MGMT','COMPLIANCE_GOV','REVIEW_AUDIT','DOC_UNDERSTAND','DOC_SEARCH','SEARCH_RETRIEVAL','ENTITY_EXTRACT','SUMMARIZATION','TEMPLATE_GEN','APPROVAL','REPORTING','RISK_SCORING','EMAIL_COMMS']),
+                'Procurement': new Set(['PROCUREMENT','INVOICE_PROC','APPROVAL','CONTRACT_MGMT','DOC_UNDERSTAND','REPORTING','RECONCILIATION','DATA_ENTRY','RISK_SCORING','COMPLIANCE_GOV','FORM_PROC','EMAIL_COMMS','DEMAND_FORECAST']),
+                'Executive / C-Suite': new Set(['REPORTING','SUMMARIZATION','MEETING_MGMT','DECISION','PROJECT_MGMT','STATUS_TRACK','EMAIL_COMMS','DOC_UNDERSTAND','RISK_SCORING','DEMAND_FORECAST','WORKFORCE_PLAN','CONTENT_GEN']),
+                'Research & Development': new Set(['CODE_GEN','DOC_UNDERSTAND','SEARCH_RETRIEVAL','DOC_SEARCH','KNOWLEDGE_BASE','DATA_CLEANSE','DATA_VALIDATE','REPORTING','PROJECT_MGMT','STATUS_TRACK','CONTENT_GEN','REVIEW_AUDIT','SUMMARIZATION','ENTITY_EXTRACT']),
+                'Compliance & Risk': new Set(['COMPLIANCE_GOV','RISK_SCORING','REVIEW_AUDIT','DOC_UNDERSTAND','REPORTING','DATA_VALIDATE','ENTITY_EXTRACT','SEARCH_RETRIEVAL','DOC_SEARCH','CONTRACT_MGMT','STATUS_TRACK','SUMMARIZATION','APPROVAL'])
+            };
+
+            /* Valid technology tiers per step category */
+            const VALID_TIERS = {
+                'ai': ['Agentic AI', 'AI-Assisted', 'RPA / Integration'],
+                'system': ['RPA / Integration', 'Workflow Automation', 'AI-Assisted'],
+                'human': ['Human Required', 'AI-Assisted', 'Workflow Automation']
+            };
+
+            /* Cross-domain language patterns — used to detect content from unrelated workflows */
+            const DOMAIN_LANG = {
+                finance: /\b(journal entr|ledger|close cycle|accrual|reconcil|debit|credit|gl posting|sub-ledger|trial balance|amortiz)\b/i,
+                hr: /\b(onboard|talent acqui|recruit|payroll|benefit enrollment|employee lifecycle|performance review|termination)\b/i,
+                it: /\b(deploy|sprint|ci\/cd|code review|pull request|incident|outage|api gateway|kubernetes|devops)\b/i,
+                supply: /\b(warehouse|logistics|freight|shipment|carrier|bill of lading|pick list|3pl)\b/i,
+                legal: /\b(clause library|redline|litigation|deposition|precedent|statute|jurisdiction|estoppel)\b/i,
+                medical: /\b(patient|clinical|diagnosis|ehr|hipaa|treatment protocol|care plan|icd-10)\b/i
+            };
+            const DEPT_TO_LANG = {
+                'Finance & Accounting': 'finance', 'Human Resources': 'hr', 'IT & Engineering': 'it',
+                'Supply Chain': 'supply', 'Legal': 'legal'
+            };
+
+            const deptDomain = DEPT_DOMAIN[department];
+            const deptLangKey = DEPT_TO_LANG[department];
+
+            for (const step of analyzedSteps) {
+                const kbEntry = step.primaryId !== 'UNMATCHED' ? STEP_KB.find(e => e.id === step.primaryId) : null;
+
+                /* ═══ RULE 1: Lock process ID — all content derives from classified step type ═══ */
+                if (kbEntry) {
+                    const overlay = CONTEXT_OVERLAYS[step.primaryId] && CONTEXT_OVERLAYS[step.primaryId][industry];
+                    step.currentState = overlay ? overlay.state : kbEntry.state;
+                    step.benefit = overlay ? overlay.benefit : kbEntry.benefit;
+                    step.recs = { ...kbEntry.recs };
+                    step.cat = kbEntry.cat;
+                }
+
+                /* ═══ RULE 2: Domain relevance — validate every row before output ═══ */
+                if (step.primaryId !== 'UNMATCHED' && !STEP_KB.find(e => e.id === step.primaryId)) {
+                    step.primaryId = 'UNMATCHED';
+                    step.confidence = 'Low';
+                }
+
+                /* ═══ RULE 3: Constrain automation patterns by industry + process ═══ */
+                /* Overlay provides industry-specific content; base KB is the only fallback.
+                   No cross-industry substitution is possible. */
+
+                /* ═══ RULE 4: Step-type classification required before generating output ═══ */
+                /* primaryId was assigned in analyzeStepV2 — output fields are re-derived above. */
+
+                /* ═══ RULE 5: Bind automation logic to classified step type only ═══ */
+                /* Recs already re-bound from kbEntry in Rule 1. */
+
+                /* ═══ RULE 6: Restrict technology labels by step category ═══ */
+                if (kbEntry) {
+                    const allowed = VALID_TIERS[kbEntry.cat] || VALID_TIERS['human'];
+                    if (!allowed.includes(step.techTier)) {
+                        step.techTier = determineTechTier(kbEntry.cat, step.automationPotential, step.complexity);
+                        if (!allowed.includes(step.techTier)) step.techTier = allowed[0];
+                    }
+                }
+
+                /* ═══ RULE 7: Semantic consistency — state and benefit must reference same task ═══ */
+                if (kbEntry) {
+                    const coreTerms = kbEntry.keys.slice(0, 5);
+                    const stateHit = coreTerms.some(t => step.currentState.toLowerCase().includes(t.split(' ')[0]));
+                    const benefitHit = coreTerms.some(t => step.benefit.toLowerCase().includes(t.split(' ')[0]));
+                    /* If both state AND benefit miss all core terms, overlay may have drifted — fall back */
+                    if (!stateHit && !benefitHit) {
+                        step.currentState = kbEntry.state;
+                        step.benefit = kbEntry.benefit;
+                    }
+                }
+
+                /* ═══ RULE 8: Block cross-domain pattern injection ═══ */
+                if (deptLangKey) {
+                    for (const [domKey, pattern] of Object.entries(DOMAIN_LANG)) {
+                        if (domKey === deptLangKey) continue;
+                        if (pattern.test(step.benefit) && kbEntry) {
+                            step.benefit = kbEntry.benefit;
+                        }
+                        if (pattern.test(step.currentState) && kbEntry) {
+                            step.currentState = kbEntry.state;
+                        }
+                    }
+                }
+
+                /* ═══ RULE 9: Prevent duplicate reuse of generic state/benefit across rows ═══ */
+                const baseBenefit = step.benefit.split(' — ')[0];
+                if (seenBenefits.has(baseBenefit)) {
+                    if (step.primaryId !== 'UNMATCHED') {
+                        const ctx = step.stepName.length > 40 ? step.stepName.substring(0, 40).trim() + '...' : step.stepName;
+                        step.benefit = baseBenefit + ' — as applied to ' + ctx.toLowerCase();
+                    }
+                }
+                seenBenefits.add(baseBenefit);
+
+                const baseState = step.currentState.split(' (')[0];
+                if (seenStates.has(baseState)) {
+                    if (step.primaryId !== 'UNMATCHED') {
+                        const ctx = step.stepName.length > 40 ? step.stepName.substring(0, 40).trim() + '...' : step.stepName;
+                        step.currentState = baseState + ' (for ' + ctx.toLowerCase() + ')';
+                    }
+                }
+                seenStates.add(baseState);
+
+                /* ═══ RULE 10: Prevent duplicate recs across rows ═══ */
+                if (step.recs) {
+                    for (const tier of ['q', 'm', 's']) {
+                        if (step.recs[tier] && seenRecs[tier].has(step.recs[tier])) {
+                            step.recs[tier] = step.recs[tier] + ' (for ' + step.stepName.toLowerCase() + ')';
+                        }
+                        if (step.recs[tier]) seenRecs[tier].add(step.recs[tier]);
+                    }
+                }
+
+                /* ═══ RULE 11: Effort savings must derive from step context ═══ */
+                if (kbEntry && kbEntry.ts) {
+                    step.timeSavings = kbEntry.ts;
+                } else if (step.primaryId === 'UNMATCHED') {
+                    step.timeSavings = 0.3;
+                }
+
+                /* ═══ RULE 12: Reject unrelated operational language ═══ */
+                if (deptDomain && step.primaryId !== 'UNMATCHED' && !deptDomain.has(step.primaryId)) {
+                    if (step.confidence === 'High') step.confidence = 'Medium';
+                }
+            }
+
+            /* ═══ RULE 13: Post-generation domain drift detection ═══ */
+            const totalMatched = analyzedSteps.filter(s => s.primaryId !== 'UNMATCHED').length;
+            if (totalMatched >= 3) {
+                const catCounts = { ai: 0, system: 0, human: 0 };
+                for (const s of analyzedSteps) catCounts[s.cat] = (catCounts[s.cat] || 0) + 1;
+                const dominantCat = Object.entries(catCounts).sort((a, b) => b[1] - a[1])[0][0];
+                for (const s of analyzedSteps) {
+                    if (s.cat !== dominantCat && s.confidence === 'High' && catCounts[s.cat] === 1) {
+                        s.confidence = 'Medium';
+                    }
+                }
+            }
+
+            /* ═══ RULE 14: Roadmap filtered to process scope ═══ */
+            /* Downstream generateRoadmap() only uses recs from validated steps above. */
+
+            return analyzedSteps;
+        }
+
         /* ── Before/After Narrative ── */
         function generateNarrative(steps, industry, department, roi, readiness) {
             const n = steps.length;
             const highSteps = steps.filter(s => s.potentialLabel === 'High');
             const medSteps = steps.filter(s => s.potentialLabel === 'Medium');
+            const lowSteps = steps.filter(s => s.potentialLabel === 'Low');
 
-            /* Identify top step types by category */
-            const catCounts = { ai: 0, system: 0, human: 0 };
-            const stepTypes = {};
-            for (const s of steps) {
-                catCounts[s.cat] = (catCounts[s.cat] || 0) + 1;
-                const id = s.primaryId;
-                if (id !== 'UNMATCHED') stepTypes[id] = (stepTypes[id] || 0) + 1;
-            }
-
-            /* Map IDs to readable labels */
+            /* Complete type labels for all 63 STEP_KB entries */
             const typeLabels = {
                 'DATA_ENTRY': 'manual data entry', 'INVOICE_PROC': 'invoice processing',
-                'RECONCILIATION': 'reconciliation', 'APPROVAL': 'approvals',
+                'DOC_UNDERSTAND': 'document processing', 'DOC_SCANNING': 'document scanning',
+                'FORM_PROC': 'form processing', 'DATA_VALIDATE': 'data validation',
+                'DATA_CLEANSE': 'data cleansing', 'ENTITY_EXTRACT': 'entity extraction',
+                'TEXT_CLASSIFY': 'text classification', 'TRANSLATION': 'translation',
+                'SUMMARIZATION': 'summarization', 'EMAIL_DRAFT': 'email drafting',
+                'SENTIMENT': 'sentiment analysis', 'CONVO_ANALYSIS': 'conversation analysis',
+                'CONTENT_GEN': 'content generation', 'CHATBOT': 'chatbot interactions',
+                'PERSONALIZE': 'personalization', 'RECOMMEND': 'recommendation engines',
+                'LEAD_SCORING': 'lead scoring', 'CHURN_PREDICT': 'churn prediction',
+                'DEMAND_FORECAST': 'demand forecasting', 'RISK_SCORING': 'risk scoring',
+                'RECONCILIATION': 'reconciliation', 'FINANCIAL_CLOSE': 'financial close',
+                'JOURNAL_POST': 'journal posting', 'APPROVAL': 'approval workflows',
                 'REPORTING': 'reporting', 'SCHEDULING': 'scheduling',
-                'COMPLIANCE': 'compliance monitoring', 'EMAIL_COMM': 'communications',
-                'QUALITY': 'quality checks', 'TICKET_MGMT': 'ticket management',
-                'ONBOARDING': 'onboarding', 'DOCUMENT': 'document processing'
+                'COMPLIANCE_GOV': 'compliance monitoring', 'EMAIL_COMMS': 'email communications',
+                'QUALITY_INSPECT': 'quality inspection', 'TICKET_SUPPORT': 'ticket management',
+                'ONBOARDING': 'onboarding', 'REVIEW_AUDIT': 'review and audit',
+                'CONTRACT_MGMT': 'contract management', 'PROCUREMENT': 'procurement',
+                'INVENTORY': 'inventory management', 'ASSET_MGMT': 'asset management',
+                'MAINT_MGMT': 'maintenance management', 'EQUIP_MONITOR': 'equipment monitoring',
+                'SAFETY_ENV': 'safety and environmental', 'INCIDENT_MGMT': 'incident management',
+                'OUTAGE_MGMT': 'outage management', 'FIELD_SERVICE': 'field service',
+                'PROJECT_MGMT': 'project management', 'TASK_ASSIGN': 'task assignment',
+                'STATUS_TRACK': 'status tracking', 'MEETING_MGMT': 'meeting management',
+                'WORKFORCE_PLAN': 'workforce planning', 'PERF_MGMT': 'performance management',
+                'TRAINING': 'training', 'CUST_FEEDBACK': 'customer feedback',
+                'KNOWLEDGE_BASE': 'knowledge management', 'DOC_SEARCH': 'document search',
+                'SEARCH_RETRIEVAL': 'search and retrieval', 'CODE_GEN': 'code generation',
+                'API_MGMT': 'API management', 'LEGACY_MOD': 'legacy modernization',
+                'DATA_TRANSFER': 'data transfer', 'MASTER_DATA': 'master data management',
+                'TEMPLATE_GEN': 'template generation', 'DECISION': 'decision-making',
+                'WORK_EXECUTION': 'work execution'
             };
-
-            const topTypes = Object.entries(stepTypes)
-                .sort((a, b) => b[1] - a[1])
-                .slice(0, 3)
-                .map(([id]) => typeLabels[id] || id.toLowerCase().replace(/_/g, ' '));
 
             /* Department-specific high-value activities */
             const highValueActivities = {
@@ -3679,27 +3937,52 @@
             };
             const highValue = highValueActivities[department] || 'higher-value strategic work';
 
-            /* Build "today" sentence */
+            /* Build per-step "today" descriptions — keep each step's context isolated */
+            const matchedSteps = steps.filter(s => s.primaryId !== 'UNMATCHED');
+            const unmatchedSteps = steps.filter(s => s.primaryId === 'UNMATCHED');
+
+            /* Group matched steps by their primaryId to detect true workflow themes */
+            const stepsByType = {};
+            for (const s of matchedSteps) {
+                const label = typeLabels[s.primaryId] || s.primaryId.toLowerCase().replace(/_/g, ' ');
+                if (!stepsByType[label]) stepsByType[label] = [];
+                stepsByType[label].push(s);
+            }
+
+            /* Build "today" — describe the actual workflow steps, not a blended summary */
+            let today = '';
+            const typeNames = Object.keys(stepsByType);
             const manualCount = steps.filter(s => s.cat === 'human' || s.automationPotential < 0.5).length;
-            const typeStr = topTypes.length > 0
-                ? topTypes.slice(0, -1).join(', ') + (topTypes.length > 1 ? ', and ' : '') + topTypes[topTypes.length - 1]
-                : 'manual processing tasks';
 
-            let today = `Today, your <strong>${department || 'operations'}</strong> team spends significant time on <strong>${typeStr}</strong>.`;
-            if (manualCount > 0) today += ` <strong>${manualCount} of ${n}</strong> steps rely heavily on manual effort`;
-            /* Append detected pain points info if available */
-            today += '.';
+            if (typeNames.length > 0) {
+                /* List the specific step types found in this workflow */
+                const typeStr = typeNames.length <= 3
+                    ? typeNames.slice(0, -1).join(', ') + (typeNames.length > 1 ? ', and ' : '') + typeNames[typeNames.length - 1]
+                    : typeNames.slice(0, 3).join(', ') + `, and ${typeNames.length - 3} other activit${typeNames.length - 3 === 1 ? 'y' : 'ies'}`;
+                today = `Today, your <strong>${department || 'operations'}</strong> workflow involves <strong>${typeStr}</strong>.`;
+            } else {
+                today = `Today, your <strong>${department || 'operations'}</strong> team handles a mix of manual processing tasks.`;
+            }
 
-            /* Build "future" sentence */
+            if (manualCount > 0) {
+                today += ` <strong>${manualCount} of ${n}</strong> step${manualCount !== 1 ? 's' : ''} rel${manualCount !== 1 ? 'y' : 'ies'} heavily on manual effort.`;
+            } else {
+                today += ` Most steps already have some level of system support.`;
+            }
+
+            /* Build "future" — reference specific steps by name, not generic types */
             let future = '';
             if (highSteps.length > 0) {
-                const topOpp = highSteps[0].stepName;
-                const topSavings = Math.round(highSteps[0].timeSavings * 100);
-                future = `With targeted automation, <strong>${esc(topOpp.toLowerCase())}</strong> alone could reduce processing time by <strong>${topSavings}%</strong>.`;
+                const topStep = highSteps[0];
+                const topLabel = typeLabels[topStep.primaryId] || topStep.stepName.toLowerCase();
+                const topSavings = Math.round(topStep.timeSavings * 100);
+                future = `Your highest-impact opportunity is in <strong>${esc(topStep.stepName.toLowerCase())}</strong> (${topLabel}), which could reduce processing time by <strong>${topSavings}%</strong>.`;
                 if (highSteps.length > 1) {
-                    future += ` Combined with <strong>${esc(highSteps[1].stepName.toLowerCase())}</strong>, your team could redirect meaningful hours to <strong>${highValue}</strong>.`;
+                    const secondStep = highSteps[1];
+                    const secondLabel = typeLabels[secondStep.primaryId] || secondStep.stepName.toLowerCase();
+                    future += ` Combined with improvements to <strong>${esc(secondStep.stepName.toLowerCase())}</strong> (${secondLabel}), your team could redirect meaningful capacity to <strong>${highValue}</strong>.`;
                 } else if (medSteps.length > 0) {
-                    future += ` Paired with improvements to <strong>${esc(medSteps[0].stepName.toLowerCase())}</strong>, your team could redirect capacity to <strong>${highValue}</strong>.`;
+                    future += ` Paired with medium-term improvements to <strong>${esc(medSteps[0].stepName.toLowerCase())}</strong>, your team could free up capacity for <strong>${highValue}</strong>.`;
                 }
             } else if (medSteps.length > 0) {
                 future = `With incremental automation of <strong>${esc(medSteps[0].stepName.toLowerCase())}</strong> and related steps, your team could free up capacity for <strong>${highValue}</strong>.`;
@@ -3843,6 +4126,41 @@
             if (wizardStep > 0) wizSetStep(wizardStep - 1);
         }
 
+        function updateDeptExamples() {
+            const dept = document.getElementById('dD').value;
+            const exEl = document.getElementById('dDeptExample');
+            if (!exEl) return;
+            const ex = DEPT_WORKFLOW_EXAMPLES[dept];
+            if (!ex) { exEl.style.display = 'none'; return; }
+            exEl.innerHTML = `<div class="diag-dept-example-title">${ex.title} — click steps to add, or use the full example</div>`
+                + `<div class="diag-dept-example-steps">${ex.steps.map((s, i) => `<button type="button" class="diag-dept-example-chip" onclick="addExampleStep(this)">${i + 1}. ${esc(s)}</button>`).join('')}</div>`
+                + `<button type="button" class="diag-dept-example-use" onclick="useFullExample('${dept}')">Use this full example to try the tool</button>`;
+            exEl.style.display = '';
+        }
+
+        function addExampleStep(chip) {
+            const ta = document.getElementById('dP');
+            const stepText = chip.textContent.replace(/^\d+\.\s*/, '');
+            const current = ta.value.trim();
+            if (current) {
+                const lines = current.split('\n');
+                const nextNum = lines.length + 1;
+                ta.value = current + '\n' + nextNum + '. ' + stepText;
+            } else {
+                ta.value = '1. ' + stepText;
+            }
+            chip.style.opacity = '0.4';
+            chip.style.pointerEvents = 'none';
+        }
+
+        function useFullExample(dept) {
+            const ex = DEPT_WORKFLOW_EXAMPLES[dept];
+            if (!ex) return;
+            document.getElementById('dP').value = ex.steps.map((s, i) => `${i + 1}. ${s}`).join('\n');
+        }
+
+        document.getElementById('dD').addEventListener('change', updateDeptExamples);
+
         /* ── Step review helpers ── */
         let lastParsedWorkflow = '';
         function parseAndShowSteps() {
@@ -3937,7 +4255,7 @@
                     }
                     if (rawSteps.length === 0) rawSteps.push(workflow.substring(0, 80));
                     const patternBoosts = detectProcessPatterns(workflow);
-                    const analyzed = rawSteps.map(s => analyzeStepV2(s, department, industry, patternBoosts));
+                    const analyzed = validateStepAlignment(rawSteps.map(s => analyzeStepV2(s, department, industry, patternBoosts)), industry, department);
 
                     /* Per-step savings + risk notes */
                     const totalWeight = analyzed.reduce((s, x) => s + x.effortWeight, 0) || 1;
@@ -4092,6 +4410,46 @@
                 roiEl.classList.remove('anim-in');
             } else { roiEl.style.display = 'none'; }
 
+            /* CTA — Lead capture */
+            const ctaEl = document.getElementById('dCTA');
+            ctaEl.innerHTML = `<div class="diag-cta-title">Want to explore these opportunities further?</div>`
+                + `<p class="diag-cta-sub">Our team can walk you through a deeper analysis of your workflow, discuss implementation priorities, and help you build a business case for automation.</p>`
+                + `<form class="diag-cta-form" id="dCTAForm">`
+                + `<div class="diag-cta-row"><input type="text" name="name" placeholder="Your name" required><input type="text" name="company" placeholder="Company"></div>`
+                + `<input type="email" name="email" placeholder="Work email" required>`
+                + `<input type="hidden" name="industry" value="${esc(data.industry || '')}">`
+                + `<input type="hidden" name="readiness_score" value="${data.readiness.overall}">`
+                + `<input type="hidden" name="automation_share" value="${data.workload.ai}%">`
+                + `<input type="hidden" name="high_potential_steps" value="${data.steps.filter(s => s.potentialLabel === 'High').length}">`
+                + `<input type="hidden" name="_subject" value="Diagnostic Lead: ${esc(data.industry || 'Unknown')} — Score ${data.readiness.overall}/100">`
+                + `<input type="hidden" name="_template" value="table">`
+                + `<input type="hidden" name="_captcha" value="false">`
+                + `<button type="submit" class="diag-cta-submit">Get in Touch</button>`
+                + `</form>`
+                + `<button class="diag-cta-skip" onclick="document.getElementById('dCTA').style.display='none'">No thanks, I have what I need</button>`;
+            ctaEl.style.display = '';
+            ctaEl.classList.remove('anim-in');
+
+            /* Wire CTA form submission */
+            document.getElementById('dCTAForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const form = e.target;
+                const btn = form.querySelector('.diag-cta-submit');
+                btn.disabled = true;
+                btn.textContent = 'Sending...';
+                const formData = new FormData(form);
+                fetch('https://formsubmit.co/ajax/connect@unlock-solutions.com', {
+                    method: 'POST',
+                    body: formData
+                }).then(r => r.json()).then(() => {
+                    ctaEl.innerHTML = `<div class="diag-cta-title">Thank you!</div><p class="diag-cta-success">We received your information and will be in touch within one business day to discuss your automation opportunities.</p>`;
+                }).catch(() => {
+                    btn.disabled = false;
+                    btn.textContent = 'Get in Touch';
+                    ctaEl.insertAdjacentHTML('beforeend', '<p style="color:#ffcccc;font-size:0.8rem;margin-top:0.5rem">Something went wrong. Please try again or email connect@unlock-solutions.com directly.</p>');
+                });
+            });
+
             /* ══ ORCHESTRATED REVEAL ══ */
             r.classList.add('show');
             at(30, () => { r.scrollIntoView({ behavior: 'smooth', block: 'start' }); r.classList.add('visible'); });
@@ -4149,6 +4507,9 @@
 
             const roiAt = recsBase + data.recs.length * 75 + 180;
             if (data.teamSize || data.hourlyCost) at(roiAt, () => { roiEl.classList.add('anim-in'); });
+
+            const ctaAt = roiAt + 400;
+            at(ctaAt, () => { ctaEl.classList.add('anim-in'); });
 
         }
 
