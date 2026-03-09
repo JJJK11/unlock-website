@@ -1936,18 +1936,18 @@
         /* ── Diagnostic — Client-Side Analysis Engine v2 ── */
         const STEP_KB = [
             /* Document Processing & Data Capture */
-            { id:'DATA_ENTRY', cat:'ai', potential:0.90, complexity:0.25, keys:['data entry','data input','manual entry','keying','typing','input data','enter data','data capture','transcribe','transcription','copy from','retype','key in'], stems:['enter','input','transcri','captur'], vn:[['enter','data'],['input','data'],['capture','data'],['type','information']], state:'Manual data entry from multiple sources', benefit:'AI extraction eliminates manual re-keying with near-perfect accuracy on structured documents — processing drops from minutes to seconds per record', recs:{q:'Implement form templates with auto-fill and validation rules',m:'Deploy intelligent document processing with AI extraction',s:'Agentic AI pipeline with continuous learning, exception routing, and cross-system posting'}, ts:0.85 },
+            { id:'DATA_ENTRY', cat:'ai', potential:0.90, complexity:0.25, keys:['data entry','data input','manual entry','keying','typing','input data','enter data','data capture','transcribe','transcription','copy from','retype','key in'], stems:['enter','input','transcri','captur'], vn:[['enter','data'],['input','data'],['capture','data'],['type','information']], state:'Manual data entry from multiple sources', benefit:'Multimodal AI extraction handles text, images, handwriting, and mixed-format documents with near-perfect accuracy — processing drops from minutes to seconds per record with minimal human review', recs:{q:'Implement form templates with auto-fill and validation rules',m:'Deploy intelligent document processing with AI extraction',s:'Agentic AI pipeline with continuous learning, exception routing, and cross-system posting'}, ts:0.85 },
             { id:'INVOICE_PROC', cat:'ai', potential:0.85, complexity:0.3, keys:['invoice','billing','payment','payable','receivable','collection','remittance','invoice processing','accounts payable','accounts receivable'], stems:['invoic','bill','pay','remit'], vn:[['process','invoice'],['pay','invoice'],['match','invoice']], state:'Manual invoice processing and matching', benefit:'AI processes invoices in seconds with auto-matching and GL posting — dramatically faster than manual processing', recs:{q:'Standardize invoice receipt to single channel with auto-acknowledgment',m:'Deploy AI-powered invoice capture with three-way matching',s:'Agentic procure-to-pay automation with autonomous exception handling and auto-posting'}, ts:0.88 },
-            { id:'DOC_UNDERSTAND', cat:'ai', potential:0.88, complexity:0.35, keys:['document parsing','contract analysis','pdf extraction','form reading','document classification','extract from document','read document','parse document','document review'], stems:['pars','extract','classif'], vn:[['extract','data'],['parse','document'],['read','document'],['classify','document']], state:'Manual document reading and data extraction', benefit:'Multimodal AI reads and extracts from structured and unstructured documents in seconds — dramatically reducing manual review time with high accuracy', recs:{q:'Categorize documents by type and standardize naming',m:'Deploy multimodal document AI for structured and unstructured extraction',s:'Agentic document pipeline with auto-classification, cross-referencing, and downstream action'}, ts:0.85 },
+            { id:'DOC_UNDERSTAND', cat:'ai', potential:0.88, complexity:0.35, keys:['document parsing','contract analysis','pdf extraction','form reading','document classification','extract from document','read document','parse document','document review'], stems:['pars','extract','classif'], vn:[['extract','data'],['parse','document'],['read','document'],['classify','document']], state:'Manual document reading and data extraction', benefit:'Multimodal document AI understands text, tables, images, and handwritten notes across any format — extracting, classifying, and cross-referencing content that previously required hours of manual review', recs:{q:'Categorize documents by type and standardize naming',m:'Deploy multimodal document AI for structured and unstructured extraction',s:'Agentic document pipeline with auto-classification, cross-referencing, and downstream action'}, ts:0.85 },
             { id:'DOC_SCANNING', cat:'ai', potential:0.85, complexity:0.25, keys:['scanning','digitization','paper to digital','image capture','ocr','scan document','digitize','paper-based','paper based','physical document'], stems:['scan','digit','captur'], vn:[['scan','document'],['digitize','record'],['capture','image']], state:'Paper-based document handling', benefit:'Paper documents scanned, indexed, and searchable in seconds — eliminates physical filing, retrieval delays, and lost-document risk', recs:{q:'Set up mobile scanning with cloud storage',m:'Deploy OCR with automated filing and indexing',s:'Paperless workflow with AI extraction and routing'}, ts:0.70 },
             { id:'FORM_PROC', cat:'ai', potential:0.78, complexity:0.3, keys:['form filling','application processing','intake form','registration form','fill out form','complete form','submit form','form submission'], stems:['form','registr','applicat'], vn:[['fill','form'],['process','application'],['submit','form']], state:'Manual form completion and processing', benefit:'Forms auto-fill from existing records, validate in real time, and flag errors before submission — cuts processing from minutes to seconds per form', recs:{q:'Create digital form templates with required fields',m:'Build auto-populated forms with system lookups',s:'Intelligent forms with AI pre-fill and adaptive fields'}, ts:0.65 },
 
             /* Generative AI & Content */
-            { id:'CONTENT_GEN', cat:'ai', potential:0.82, complexity:0.3, keys:['content creation','writing','drafting','copywriting','blog post','marketing copy','text generation','write content','create content','generate content','compose','author'], stems:['writ','draft','compos','author','generat'], vn:[['write','content'],['draft','email'],['create','copy'],['generate','text']], state:'Manual content creation and writing', benefit:'AI drafts, edits, and adapts content across formats and channels — writers focus on strategy and refinement instead of starting from blank pages', recs:{q:'Create content templates and style guides for AI alignment',m:'Deploy AI writing assistant with brand voice and compliance guardrails',s:'Agentic content pipeline with multi-format generation, brand voice training, and auto-publishing'}, ts:0.70 },
+            { id:'CONTENT_GEN', cat:'ai', potential:0.82, complexity:0.3, keys:['content creation','writing','drafting','copywriting','blog post','marketing copy','text generation','write content','create content','generate content','compose','author'], stems:['writ','draft','compos','author','generat'], vn:[['write','content'],['draft','email'],['create','copy'],['generate','text']], state:'Manual content creation and writing', benefit:'Multimodal generative AI drafts text, images, video, and audio content across formats and channels — creators focus on strategy and brand voice while AI handles production at scale', recs:{q:'Create content templates and style guides for AI alignment',m:'Deploy AI writing assistant with brand voice and compliance guardrails',s:'Agentic content pipeline with multi-format generation, brand voice training, and auto-publishing'}, ts:0.70 },
             { id:'SUMMARIZATION', cat:'ai', potential:0.80, complexity:0.3, keys:['summarize','summarization','brief','digest','condensing','abstract','synopsis','key takeaways','executive summary','tldr'], stems:['summar','digest','condens'], vn:[['summarize','report'],['create','summary'],['extract','takeaways']], state:'Manual reading and summarization', benefit:'A 50-page report summarized in under 10 seconds with key findings, risks, and action items extracted — replaces hours of manual reading', recs:{q:'Standardize summary templates and formats',m:'Deploy AI summarization for reports and documents',s:'Auto-generated executive briefs with key insight extraction'}, ts:0.70 },
             { id:'TRANSLATION', cat:'ai', potential:0.78, complexity:0.3, keys:['translate','translation','localization','multilingual','language conversion','interpret','foreign language','multi-language'], stems:['translat','localiz','interpret'], vn:[['translate','document'],['convert','language'],['localize','content']], state:'Manual translation or external translation services', benefit:'Full documents translated in seconds with industry-specific terminology preserved — replaces multi-day turnaround from translation services', recs:{q:'Identify and prioritize high-volume translation needs',m:'Deploy AI translation with glossary management',s:'Real-time multilingual content pipeline with quality assurance'}, ts:0.65 },
             { id:'TEMPLATE_GEN', cat:'ai', potential:0.72, complexity:0.25, keys:['template creation','boilerplate','standardized document','letter generation','mail merge','generate letter','form letter','document template','standard response'], stems:['templat','boilerplat','standardiz'], vn:[['generate','letter'],['create','template'],['merge','document']], state:'Manual document creation from templates', benefit:'Documents assembled from templates in seconds — fields auto-populated from CRM, ERP, or databases with conditional logic for variations', recs:{q:'Build reusable templates with placeholder fields',m:'Deploy mail merge with CRM/database integration',s:'AI document assembly with conditional logic and personalization'}, ts:0.60 },
-            { id:'CODE_GEN', cat:'ai', potential:0.78, complexity:0.4, keys:['code generation','scripting','automation script','macro','formula writing','write code','build script','programming','develop software'], stems:['script','programm','cod','develop'], vn:[['write','code'],['build','script'],['create','macro']], state:'Manual coding and script development', benefit:'AI pair-programs across the full stack — generates boilerplate, writes tests, and accelerates code reviews, letting developers focus on architecture and business logic', recs:{q:'Document common patterns and adopt AI coding assistant',m:'Deploy AI-powered development with auto-testing and code review',s:'Agentic development platform with autonomous task execution, testing, and deployment'}, ts:0.60 },
+            { id:'CODE_GEN', cat:'ai', potential:0.78, complexity:0.4, keys:['code generation','scripting','automation script','macro','formula writing','write code','build script','programming','develop software'], stems:['script','programm','cod','develop'], vn:[['write','code'],['build','script'],['create','macro']], state:'Manual coding and script development', benefit:'AI pair-programming and agentic coding tools handle boilerplate, test generation, and multi-file refactors autonomously — developers focus on architecture and business logic while AI agents execute implementation tasks', recs:{q:'Document common patterns and adopt AI coding assistant',m:'Deploy AI-powered development with auto-testing and code review',s:'Agentic development platform with autonomous task execution, testing, and deployment'}, ts:0.60 },
             { id:'EMAIL_DRAFT', cat:'ai', potential:0.82, complexity:0.2, keys:['draft email','write email','compose email','email response','reply to email','email template','canned response','standard reply'], stems:['email','respond','reply'], vn:[['draft','email'],['write','response'],['compose','reply']], state:'Manual email drafting and responses', benefit:'AI agents draft context-aware responses in seconds with brand voice, compliance review, and personalization', recs:{q:'Create email templates for common scenarios',m:'Deploy AI email agent with tone, brand, and compliance guardrails',s:'Agentic email automation with CRM context, sentiment awareness, and autonomous follow-up'}, ts:0.72 },
 
             /* NLP & Text Analysis */
@@ -1959,7 +1959,7 @@
 
             /* Predictive Analytics & Decision Support */
             { id:'DECISION', cat:'human', potential:0.42, complexity:0.55, keys:['decision','strategy','evaluate','assess','judgment','judgement','analysis','negotiate','strategic planning','business case'], stems:['decis','strateg','evaluat','negoti','judgment'], vn:[['make','decision'],['evaluate','option'],['assess','risk']], state:'Human decision-making and strategic analysis', benefit:'AI surfaces relevant data, runs what-if scenarios, and presents trade-offs — decisions backed by evidence instead of gut feel', recs:{q:'Standardize decision criteria and scoring rubrics',m:'Build data dashboards to inform key decisions',s:'AI-powered decision support with predictive scenario modeling'}, ts:0.25 },
-            { id:'LEAD_SCORING', cat:'ai', potential:0.82, complexity:0.4, keys:['lead scoring','lead qualification','prospect ranking','conversion prediction','pipeline scoring','qualify lead','rank prospect','score lead'], stems:['lead','prospect','scor','qualif'], vn:[['score','lead'],['qualify','prospect'],['rank','opportunity']], state:'Manual lead qualification and prioritization', benefit:'Every lead scored by buying signals, engagement history, and firmographic fit in real time — sales teams focus on the highest-potential prospects instead of working the list top to bottom', recs:{q:'Define ideal customer profile and scoring criteria',m:'Deploy ML lead scoring with CRM integration',s:'Predictive pipeline with propensity modeling and auto-routing'}, ts:0.65 },
+            { id:'LEAD_SCORING', cat:'ai', potential:0.82, complexity:0.4, keys:['lead scoring','lead qualification','prospect ranking','conversion prediction','pipeline scoring','qualify lead','rank prospect','score lead'], stems:['lead','prospect','scor','qualif'], vn:[['score','lead'],['qualify','prospect'],['rank','opportunity']], state:'Manual lead qualification and prioritization', benefit:'Predictive AI scores leads using buying signals, engagement history, intent data, and firmographic fit in real time — sales teams focus on highest-potential prospects with AI-surfaced timing and context', recs:{q:'Define ideal customer profile and scoring criteria',m:'Deploy ML lead scoring with CRM integration',s:'Predictive pipeline with propensity modeling and auto-routing'}, ts:0.65 },
             { id:'CHURN_PREDICT', cat:'ai', potential:0.78, complexity:0.45, keys:['churn prediction','customer retention','attrition','customer lifetime value','risk of leaving','prevent churn','retain customer','loyalty'], stems:['churn','attrit','retent','loyalt'], vn:[['predict','churn'],['prevent','attrition'],['retain','customer']], state:'Reactive customer retention efforts', benefit:'AI flags at-risk accounts weeks before they leave by tracking usage drops, support patterns, and engagement decay — teams intervene while there is still time', recs:{q:'Track key churn indicators and health scores',m:'Deploy churn prediction model with alert triggers',s:'AI retention platform with automated intervention workflows'}, ts:0.55 },
             { id:'DEMAND_FORECAST', cat:'ai', potential:0.80, complexity:0.45, keys:['demand forecasting','demand planning','sales forecast','volume prediction','trend analysis','projection','predict demand','forecast sales','predict volume'], stems:['forecast','predict','project','trend'], vn:[['forecast','demand'],['predict','volume'],['project','sales']], state:'Spreadsheet-based manual forecasting', benefit:'ML models analyze historical patterns, seasonality, and external signals to forecast demand — replaces spreadsheet guesswork with forecasts that adapt weekly', recs:{q:'Consolidate historical data and identify key drivers',m:'Deploy statistical forecasting with ML enhancement',s:'AI demand sensing with real-time market signal integration'}, ts:0.60 },
             { id:'RISK_SCORING', cat:'ai', potential:0.80, complexity:0.45, keys:['risk scoring','risk assessment','credit scoring','fraud detection','anomaly scoring','threat assessment','risk analysis','detect fraud','flag suspicious'], stems:['risk','fraud','anomal','threat','suspicious'], vn:[['assess','risk'],['detect','fraud'],['score','credit'],['flag','anomaly']], state:'Manual risk assessment and scoring', benefit:'Transactions, applications, and activities scored for risk in milliseconds — suspicious patterns flagged instantly instead of discovered during quarterly audits', recs:{q:'Define risk criteria and scoring thresholds',m:'Deploy automated risk scoring with rule engine',s:'AI risk platform with real-time detection and adaptive models'}, ts:0.65 },
@@ -1967,14 +1967,14 @@
 
             /* Customer Experience */
             { id:'CHATBOT', cat:'ai', potential:0.85, complexity:0.35, keys:['chatbot','virtual agent','self-service','faq bot','automated response','conversational ai','help bot','virtual assistant','chat support','auto-reply'], stems:['chatbot','selfserv','automat'], vn:[['deploy','chatbot'],['automate','response'],['build','self-service']], state:'All inquiries handled by human agents', benefit:'AI agents handle the majority of routine queries autonomously — first response time drops from minutes to seconds with seamless handoff for complex issues', recs:{q:'Create FAQ database and common response templates',m:'Deploy agentic AI for tier-1 and tier-2 support with autonomous resolution',s:'Multi-agent customer platform with sentiment analysis, handoff orchestration, and continuous learning'}, ts:0.65 },
-            { id:'TICKET_SUPPORT', cat:'ai', potential:0.80, complexity:0.3, keys:['ticket','incident','request','support','helpdesk','help desk','case','issue','troubleshoot','service request','support ticket'], stems:['ticket','incident','support','troubleshoot'], vn:[['create','ticket'],['resolve','incident'],['handle','request']], state:'Manual ticket routing and triage', benefit:'AI agents autonomously resolve most tier-1 tickets — resolution time drops from over an hour to minutes with automatic escalation for complex cases', recs:{q:'Standardize ticket categories and priority levels',m:'Deploy AI-powered triage with autonomous tier-1 resolution',s:'Multi-agent service platform with predictive escalation and automated remediation playbooks'}, ts:0.65 },
+            { id:'TICKET_SUPPORT', cat:'ai', potential:0.80, complexity:0.3, keys:['ticket','incident','request','support','helpdesk','help desk','case','issue','troubleshoot','service request','support ticket'], stems:['ticket','incident','support','troubleshoot'], vn:[['create','ticket'],['resolve','incident'],['handle','request']], state:'Manual ticket routing and triage', benefit:'AI agents autonomously handle tier-1 tickets end-to-end — from classification to resolution — with intelligent escalation for complex cases, cutting resolution time from hours to minutes', recs:{q:'Standardize ticket categories and priority levels',m:'Deploy AI-powered triage with autonomous tier-1 resolution',s:'Multi-agent service platform with predictive escalation and automated remediation playbooks'}, ts:0.65 },
             { id:'PERSONALIZE', cat:'ai', potential:0.74, complexity:0.45, keys:['personalization','personalize','tailored','custom experience','user profiling','behavioral targeting','customize','targeted content'], stems:['personaliz','tailor','customiz','target'], vn:[['personalize','experience'],['tailor','content'],['target','user']], state:'Generic undifferentiated customer experience', benefit:'Every touchpoint adapts to the individual — right message, right channel, right time — based on real behavior data, not static segments', recs:{q:'Define customer segments and basic personalization rules',m:'Deploy behavioral targeting with dynamic content',s:'AI-driven real-time personalization across all channels'}, ts:0.50 },
             { id:'CUST_FEEDBACK', cat:'ai', potential:0.72, complexity:0.3, keys:['survey','nps','customer feedback','voice of customer','satisfaction','csat','feedback collection','customer survey','feedback analysis'], stems:['survey','feedback','satisfact'], vn:[['collect','feedback'],['analyze','survey'],['measure','satisfaction']], state:'Ad-hoc manual feedback collection', benefit:'Surveys triggered automatically at key moments, responses analyzed for themes and sentiment, and negative feedback routed to the right team within minutes', recs:{q:'Implement automated post-interaction surveys',m:'Deploy feedback analytics with trend detection',s:'Closed-loop feedback system with AI-driven action triggers'}, ts:0.55 },
 
             /* Workflow Orchestration & RPA */
             { id:'APPROVAL', cat:'system', potential:0.65, complexity:0.3, keys:['approval','approve','sign-off','sign off','authorize','authorise','escalat','get approval','approval workflow','request approval'], stems:['approv','authoriz','escalat','signoff'], vn:[['get','approval'],['request','sign-off'],['escalate','request']], state:'Email-based approval chains with delays', benefit:'Requests route to the right approver instantly, SLA clocks track every step, and managers approve from their phone — bottlenecks that took days resolve in hours', recs:{q:'Enable mobile approvals and set auto-approval thresholds',m:'Deploy rule-based approval routing with auto-escalation',s:'Intelligent approval orchestration with risk-based auto-decisions'}, ts:0.55 },
             { id:'EMAIL_COMMS', cat:'system', potential:0.75, complexity:0.25, keys:['email','communication','notify','notification','alert','send','distribute','correspondence','send notification','email notification'], stems:['email','notif','alert','correspond'], vn:[['send','email'],['notify','team'],['distribute','report']], state:'Manual email and notification management', benefit:'Notifications fire automatically when events happen — order shipped, approval needed, threshold breached — no one has to remember to send an email', recs:{q:'Create notification templates for common events',m:'Deploy event-triggered email workflows',s:'Intelligent communication hub with channel optimization'}, ts:0.60 },
-            { id:'SCHEDULING', cat:'ai', potential:0.68, complexity:0.35, keys:['schedule','scheduling','roster','shift','calendar','planning','plan','resource allocation','book meeting','appointment'], stems:['schedul','roster','calendar','allocat'], vn:[['schedule','meeting'],['plan','resource'],['allocate','staff']], state:'Spreadsheet-based manual scheduling', benefit:'AI builds schedules in seconds factoring in availability, skills, workload, and preferences — handles conflicts and shift swaps that used to take hours of coordination', recs:{q:'Digitize scheduling with shared calendar tools',m:'Deploy scheduling optimization with constraint handling',s:'AI scheduling with demand forecasting and auto-optimization'}, ts:0.50 },
+            { id:'SCHEDULING', cat:'ai', potential:0.68, complexity:0.35, keys:['schedule','scheduling','roster','shift','calendar','planning','plan','resource allocation','book meeting','appointment'], stems:['schedul','roster','calendar','allocat'], vn:[['schedule','meeting'],['plan','resource'],['allocate','staff']], state:'Spreadsheet-based manual scheduling', benefit:'AI scheduling agents build and optimize schedules in seconds, factoring in availability, skills, workload, and preferences — dynamically rebalancing when conflicts arise without manual coordination', recs:{q:'Digitize scheduling with shared calendar tools',m:'Deploy scheduling optimization with constraint handling',s:'AI scheduling with demand forecasting and auto-optimization'}, ts:0.50 },
             { id:'ONBOARDING', cat:'system', potential:0.78, complexity:0.35, keys:['onboard','orientation','provision','setup','new hire','new employee','welcome','employee onboarding','user onboarding','account setup'], stems:['onboard','orient','provision','setup'], vn:[['onboard','employee'],['provision','account'],['setup','user']], state:'Manual onboarding with checklists', benefit:'New hires get accounts, equipment, and training assignments provisioned automatically on day one — eliminates the 2-3 week ramp-up of manual onboarding', recs:{q:'Create digital onboarding checklist with assignments',m:'Deploy automated provisioning and welcome workflows',s:'End-to-end onboarding automation with progress tracking'}, ts:0.60 },
             { id:'TASK_ASSIGN', cat:'system', potential:0.72, complexity:0.3, keys:['task assignment','work allocation','dispatching','routing work','workload balancing','queue management','assign task','delegate work','distribute work'], stems:['assign','dispatch','allocat','delegat'], vn:[['assign','task'],['distribute','work'],['balance','workload']], state:'Manual task assignment and work distribution', benefit:'Work items route to the right person based on skills, availability, and current workload — no more cherry-picking, uneven queues, or tasks falling through cracks', recs:{q:'Define assignment rules and capacity limits',m:'Deploy auto-routing with skills-based matching',s:'AI workload optimization with predictive capacity planning'}, ts:0.55 },
             { id:'STATUS_TRACK', cat:'system', potential:0.70, complexity:0.25, keys:['status tracking','progress monitoring','milestone tracking','status update','follow-up','tracking','track progress','monitor status','check status'], stems:['track','monitor','status','progress','followup'], vn:[['track','progress'],['monitor','status'],['update','milestone']], state:'Manual status checks via email and meetings', benefit:'Live dashboards update automatically as work progresses — no more status meetings, email chains asking for updates, or stale spreadsheets', recs:{q:'Create shared status board with defined stages',m:'Deploy automated progress tracking with alerts',s:'Predictive project monitoring with risk-based notifications'}, ts:0.50 },
@@ -1983,13 +1983,13 @@
             { id:'RECONCILIATION', cat:'ai', potential:0.90, complexity:0.3, keys:['reconciliation','reconcile','matching','cross-reference','compare','variance','discrepancy','three-way match','bank reconciliation'], stems:['reconcil','match','compar','varianc'], vn:[['reconcile','account'],['match','transaction'],['compare','record']], state:'Manual cross-referencing across systems', benefit:'AI agents handle the bulk of reconciliation work — automated matching dramatically reduces errors and accelerates the close cycle', recs:{q:'Standardize data formats across systems',m:'Deploy AI-powered continuous matching with exception flagging',s:'Agentic reconciliation with anomaly detection, auto-resolution, and audit trail generation'}, ts:0.85 },
             { id:'JOURNAL_POST', cat:'ai', potential:0.82, complexity:0.3, keys:['journal','posting','ledger','booking','accrual','journal entry','gl','general ledger','post entry','book entry'], stems:['journal','ledger','accru','booking','posting'], vn:[['post','journal'],['book','entry'],['create','accrual']], state:'Manual journal entry preparation and posting', benefit:'Recurring journals generated and posted automatically with built-in variance checks — catches anomalies before they hit the trial balance', recs:{q:'Standardize recurring journal templates',m:'Automate recurring journals with rule-based posting',s:'AI journal engine with anomaly detection and auto-correction'}, ts:0.70 },
             { id:'FINANCIAL_CLOSE', cat:'ai', potential:0.88, complexity:0.35, keys:['close','month end','month-end','period end','closing','year end','year-end','financial close','close process','close cycle'], stems:['close','period','closing'], vn:[['close','books'],['complete','close'],['finalize','period']], state:'Manual period-end close process', benefit:'AI agents orchestrate journal posting, reconciliation, and variance analysis autonomously — compressing close cycles from weeks to days', recs:{q:'Create close checklist with task dependencies',m:'Deploy AI-powered close management with auto-task sequencing and exception routing',s:'Agentic close orchestration with predictive completion, auto-reconciliation, and real-time audit trails'}, ts:0.75 },
-            { id:'REPORTING', cat:'ai', potential:0.85, complexity:0.25, keys:['report','reporting','dashboard','analytics','kpi','metric','visualization','visualise','generate report','build dashboard','create report'], stems:['report','dashboard','analyt','visual','metric'], vn:[['generate','report'],['build','dashboard'],['track','kpi']], state:'Manual report generation and distribution', benefit:'AI-generated dashboards with natural language insights; forecast cycles cut from 28 days to 8', recs:{q:'Define standard report templates and schedules',m:'Build automated reporting with AI-generated narrative insights',s:'Self-service BI platform with agentic data exploration and auto-generated executive briefs'}, ts:0.75 },
+            { id:'REPORTING', cat:'ai', potential:0.85, complexity:0.25, keys:['report','reporting','dashboard','analytics','kpi','metric','visualization','visualise','generate report','build dashboard','create report'], stems:['report','dashboard','analyt','visual','metric'], vn:[['generate','report'],['build','dashboard'],['track','kpi']], state:'Manual report generation and distribution', benefit:'AI generates dashboards with natural language narrative insights and anomaly explanations — forecast cycles compress dramatically as agents surface trends and draft executive summaries automatically', recs:{q:'Define standard report templates and schedules',m:'Build automated reporting with AI-generated narrative insights',s:'Self-service BI platform with agentic data exploration and auto-generated executive briefs'}, ts:0.75 },
 
             /* Data Quality & Governance */
             { id:'DATA_CLEANSE', cat:'ai', potential:0.78, complexity:0.35, keys:['data cleaning','data cleansing','deduplication','duplicate removal','data hygiene','scrubbing','normalization','clean data','remove duplicates'], stems:['clean','deduplic','scrub','normaliz','hygien'], vn:[['clean','data'],['remove','duplicate'],['normalize','record']], state:'Manual data cleaning and deduplication', benefit:'Duplicates merged, formats standardized, and missing fields flagged automatically — clean data without the monthly cleanup sprints', recs:{q:'Profile data quality and identify top issues',m:'Deploy automated cleansing and dedup pipelines',s:'Continuous data quality platform with ML-based correction'}, ts:0.65 },
             { id:'DATA_VALIDATE', cat:'ai', potential:0.80, complexity:0.3, keys:['data validation','data quality check','integrity check','completeness check','accuracy verification','validate data','check data','verify data'], stems:['validat','integrit','verif','accura'], vn:[['validate','data'],['check','accuracy'],['verify','completeness']], state:'Manual data verification and quality checks', benefit:'Data validated at the point of entry — invalid formats, out-of-range values, and missing fields caught before they propagate downstream', recs:{q:'Define validation rules for critical fields',m:'Deploy automated validation at data entry points',s:'AI data quality monitoring with predictive error detection'}, ts:0.68 },
             { id:'MASTER_DATA', cat:'system', potential:0.70, complexity:0.5, keys:['master data','mdm','golden record','single source of truth','data stewardship','reference data','data governance','standardize data'], stems:['master','steward','governan'], vn:[['manage','master data'],['establish','source of truth'],['govern','data']], state:'Fragmented data across multiple systems', benefit:'One golden record per customer, vendor, and product across all systems — no more conflicting data between departments causing rework', recs:{q:'Identify critical master data domains and owners',m:'Implement MDM with synchronization rules',s:'Enterprise data governance platform with AI stewardship'}, ts:0.45 },
-            { id:'COMPLIANCE_GOV', cat:'ai', potential:0.75, complexity:0.35, keys:['compliance','regulatory','audit trail','control','sox','gdpr','policy','governance','regulation','comply','audit finding'], stems:['complian','regulat','audit','governan','policy'], vn:[['ensure','compliance'],['monitor','regulation'],['maintain','audit trail']], state:'Manual compliance tracking and reporting', benefit:'AI continuously monitors regulatory changes, auto-maps controls to requirements, and maintains audit-ready documentation with complete traceability', recs:{q:'Create compliance checklists with mandatory sign-offs',m:'Deploy AI-powered continuous compliance monitoring with automated audit trails',s:'Agentic compliance platform with real-time regulatory change detection, risk scoring, and auto-reporting'}, ts:0.60 },
+            { id:'COMPLIANCE_GOV', cat:'ai', potential:0.75, complexity:0.35, keys:['compliance','regulatory','audit trail','control','sox','gdpr','policy','governance','regulation','comply','audit finding'], stems:['complian','regulat','audit','governan','policy'], vn:[['ensure','compliance'],['monitor','regulation'],['maintain','audit trail']], state:'Manual compliance tracking and reporting', benefit:'Continuous AI compliance monitoring agents track regulatory changes in real time, auto-map controls to evolving requirements (EU AI Act, NIST AI RMF), and maintain audit-ready documentation with complete traceability', recs:{q:'Create compliance checklists with mandatory sign-offs',m:'Deploy AI-powered continuous compliance monitoring with automated audit trails',s:'Agentic compliance platform with real-time regulatory change detection, risk scoring, and auto-reporting'}, ts:0.60 },
 
             /* Knowledge Management */
             { id:'KNOWLEDGE_BASE', cat:'system', potential:0.74, complexity:0.35, keys:['knowledge base','wiki','documentation','knowledge management','institutional knowledge','sop','standard operating procedure','document process'], stems:['knowledg','document','wiki'], vn:[['build','knowledge base'],['document','process'],['create','wiki']], state:'Tribal knowledge and undocumented processes', benefit:'Tribal knowledge captured in a searchable system — new hires find answers in seconds instead of asking around for days', recs:{q:'Document top 10 critical processes as SOPs',m:'Build searchable knowledge base with tagging',s:'AI knowledge platform with auto-capture and recommendations'}, ts:0.45 },
@@ -2013,7 +2013,7 @@
             /* Compliance & Risk */
             { id:'REVIEW_AUDIT', cat:'human', potential:0.60, complexity:0.35, keys:['review','audit','check','verify','validation','validate','quality','qa','inspect','peer review','manual review','double check'], stems:['review','audit','verif','validat','inspect'], vn:[['review','document'],['audit','process'],['verify','result']], state:'Manual review and verification', benefit:'AI pre-screens documents and flags anomalies before human review — reviewers focus on the exceptions that actually need judgment instead of reading everything', recs:{q:'Define review criteria and checklists',m:'Deploy AI pre-screening to flag exceptions before human review',s:'AI review platform with continuous learning and auto-approval for low-risk items'}, ts:0.45 },
             { id:'CONTRACT_MGMT', cat:'ai', potential:0.76, complexity:0.4, keys:['contract management','contract review','clause analysis','obligation tracking','renewal','sla monitoring','manage contract','review contract'], stems:['contract','clause','obligat','renew'], vn:[['review','contract'],['track','obligation'],['manage','renewal']], state:'Manual contract tracking and review', benefit:'AI reads contracts in seconds, extracts key clauses, flags risky language, and tracks obligations and renewal dates — replaces days of legal review per contract', recs:{q:'Create contract register with key dates and alerts',m:'Deploy CLM with AI clause review',s:'Intelligent contract platform with risk scoring and auto-negotiation support'}, ts:0.55 },
-            { id:'INCIDENT_MGMT', cat:'system', potential:0.72, complexity:0.4, keys:['incident response','breach','security incident','disaster recovery','business continuity','escalation protocol','crisis management','respond to incident'], stems:['incident','breach','disaster','crisis','escal'], vn:[['respond','incident'],['manage','crisis'],['escalate','breach']], state:'Ad-hoc incident response procedures', benefit:'Incidents detected by monitoring systems trigger automated playbooks — containment starts in seconds, not hours, with full audit trails and stakeholder notifications', recs:{q:'Document incident response playbooks',m:'Deploy automated detection with playbook execution',s:'AI-powered incident platform with predictive alerts and auto-remediation'}, ts:0.50 },
+            { id:'INCIDENT_MGMT', cat:'system', potential:0.72, complexity:0.4, keys:['incident response','breach','security incident','disaster recovery','business continuity','escalation protocol','crisis management','respond to incident'], stems:['incident','breach','disaster','crisis','escal'], vn:[['respond','incident'],['manage','crisis'],['escalate','breach']], state:'Ad-hoc incident response procedures', benefit:'AI-powered incident response detects anomalies, triggers automated playbooks, and executes auto-remediation — containment starts in seconds with root cause analysis and stakeholder notifications handled by agents', recs:{q:'Document incident response playbooks',m:'Deploy automated detection with playbook execution',s:'AI-powered incident platform with predictive alerts and auto-remediation'}, ts:0.50 },
 
             /* Operations, Monitoring & Field Services */
             { id:'EQUIP_MONITOR', cat:'ai', potential:0.82, complexity:0.4, keys:['monitor','sensors','grid sensors','monitoring','scada','telemetry','sensor data','condition monitoring','equipment monitoring','real-time monitoring','grid monitoring','performance monitoring','alarm management','fault detection','anomaly detection'], stems:['monitor','scada','telemetr','sensor','alarm','fault'], vn:[['monitor','equipment'],['monitor','sensor'],['detect','fault'],['analyze','sensor'],['track','performance']], state:'Manual monitoring of equipment and system performance via periodic checks or basic alarms', benefit:'AI continuously analyzes sensor feeds, detects anomalies before they become failures, and prioritizes alerts — operators focus on real issues instead of drowning in false alarms', recs:{q:'Consolidate monitoring feeds into a single dashboard with alert thresholds',m:'Deploy AI-powered condition monitoring with predictive fault detection and automated alert prioritization',s:'Digital twin platform with real-time anomaly detection, predictive maintenance scheduling, and autonomous response playbooks'}, ts:0.70 },
@@ -2074,37 +2074,37 @@
         };
 
         const INDUSTRY_BENCHMARKS = {
-            'Financial Services': { avg:52, top:74, areas:'reconciliation, compliance monitoring, agentic payment processing, and regulatory reporting', note:'92% of global banks have active AI deployments; Forrester projects one-third of B2B payment transactions will involve autonomous agents by end of 2026' },
-            'Healthcare': { avg:40, top:58, areas:'clinical documentation, claims processing, patient scheduling, and care coordination', note:'Fastest AI adoption growth rate of any industry; majority of health systems piloting AI in clinical documentation and revenue cycle, though mature deployments remain rare' },
-            'Manufacturing': { avg:48, top:68, areas:'predictive maintenance, quality control, supply chain optimization, and production scheduling', note:'77% of manufacturers now utilize AI (up 7% YoY); Gartner projects semiautonomous agents will orchestrate 10% of key production operations by 2030' },
-            'Retail': { avg:45, top:65, areas:'demand forecasting, inventory optimization, personalized marketing, and customer service AI', note:'80% of retail executives adopting AI automation; AI agents now deflecting 53% of customer queries in leading deployments' },
-            'Technology': { avg:65, top:84, areas:'CI/CD pipelines, agentic coding, incident management, and customer support', note:'84% of developers use AI coding tools; AI now writes 41% of all code; 90% of Fortune 100 companies adopted GitHub Copilot' },
-            'Government': { avg:30, top:46, areas:'document processing, citizen services, compliance reporting, and predictive analytics', note:'Adoption growing steadily driven by digital service mandates; NLP and document AI increasingly handling regulatory analysis and citizen intake processing' },
-            'Energy & Utilities': { avg:42, top:62, areas:'predictive maintenance, field workforce optimization, outage management, and grid analytics', note:'40%+ of utility companies using AI; executives report 10% improvement in service reliability and 11% boost in grid uptime' },
-            'Professional Services': { avg:46, top:66, areas:'document generation, contract analysis, client reporting, and knowledge management', note:'Legal AI adoption doubling year-over-year; 26% of legal orgs actively using generative AI (up from 14% in 2024); 16% already deploying agentic AI' },
-            'Education': { avg:33, top:50, areas:'enrollment processing, adaptive learning, student communications, and administrative automation', note:'86% of higher education students use AI as primary research tool; 63% of K-12 teachers have incorporated GenAI into instruction' },
-            'Telecommunications': { avg:58, top:78, areas:'autonomous network management, customer service AI, billing operations, and churn prevention', note:'Telecom among the fastest AI adopters; majority of providers deploying AI in network ops and customer service, with agentic chatbots increasingly handling routine interactions' },
-            'Real Estate': { avg:34, top:52, areas:'lease management, property marketing, price modeling, and tenant communications', note:'PropTech adoption accelerating in property management and investment analysis; AI-powered valuation models and lease abstraction gaining traction across commercial and residential markets' },
-            'Non-profit / NGO': { avg:26, top:40, areas:'donor management, grant reporting, program tracking, and fundraising automation', note:'92% of nonprofits have adopted AI, but only 7% report expanded capability; 47% have no AI governance policy' },
-            'Logistics & Transportation': { avg:50, top:70, areas:'route optimization, fleet management, shipment tracking, and demand planning', note:'49% of logistics leaders report significant AI impact; 44% using AI in transportation planning; autonomous systems transforming operations' },
-            'Media & Entertainment': { avg:46, top:66, areas:'content production, audience analytics, rights management, and ad optimization', note:'GenAI usage rose from 33% to 71% between 2022 and 2024; AI influences 69% of global ad revenue, projected to reach 94% by 2029' }
+            'Financial Services': { avg:52, top:74, areas:'reconciliation, compliance monitoring, agentic payment processing, and regulatory reporting', note:'Agentic AI is transforming compliance monitoring and fraud detection in real time; intelligent document processing now handles KYC, loan origination, and regulatory filings with minimal human review (2025-2026 industry data)' },
+            'Healthcare': { avg:40, top:58, areas:'clinical documentation, claims processing, patient scheduling, and care coordination', note:'Clinical AI assistants and ambient documentation are reaching production scale; AI-powered diagnostics and care coordination agents are accelerating from pilot to deployment across health systems (2025-2026 industry data)' },
+            'Manufacturing': { avg:48, top:68, areas:'predictive maintenance, quality control, supply chain optimization, and production scheduling', note:'AI agents now orchestrate predictive maintenance and quality inspection via computer vision; digital twins paired with AI enable real-time production optimization across the factory floor (2025-2026 industry data)' },
+            'Retail': { avg:45, top:65, areas:'demand forecasting, inventory optimization, personalized marketing, and customer service AI', note:'Hyper-personalization engines and conversational commerce agents are mainstream; AI-powered demand sensing now drives inventory and pricing decisions in real time (2025-2026 industry data)' },
+            'Technology': { avg:65, top:84, areas:'CI/CD pipelines, agentic coding, incident management, and customer support', note:'AI-native development is standard practice with copilots and agentic coding tools delivering significant productivity gains; autonomous DevOps agents handle CI/CD, testing, and incident response (2025-2026 industry data)' },
+            'Government': { avg:30, top:46, areas:'document processing, citizen services, compliance reporting, and predictive analytics', note:'Citizen-facing AI assistants and intelligent case management are expanding across agencies; AI governance frameworks (NIST AI RMF, Treasury Board directives) are shaping responsible deployment (2025-2026 industry data)' },
+            'Energy & Utilities': { avg:42, top:62, areas:'predictive maintenance, field workforce optimization, outage management, and grid analytics', note:'Grid optimization AI and predictive asset management agents are reducing outages and maintenance costs; carbon tracking AI supports regulatory compliance and sustainability reporting (2025-2026 industry data)' },
+            'Professional Services': { avg:46, top:66, areas:'document generation, contract analysis, client reporting, and knowledge management', note:'AI-augmented advisory and RAG-powered knowledge retrieval are transforming consulting and legal; automated deliverable generation and agentic research assistants are boosting utilization (2025-2026 industry data)' },
+            'Education': { avg:33, top:50, areas:'enrollment processing, adaptive learning, student communications, and administrative automation', note:'Adaptive learning AI and AI tutoring agents are personalizing instruction at scale; automated assessment and administrative AI are freeing educators to focus on teaching (2025-2026 industry data)' },
+            'Telecommunications': { avg:58, top:78, areas:'autonomous network management, customer service AI, billing operations, and churn prevention', note:'Network self-healing AI agents autonomously detect and resolve outages; conversational billing and churn prediction agents are standard in leading providers (2025-2026 industry data)' },
+            'Real Estate': { avg:34, top:52, areas:'lease management, property marketing, price modeling, and tenant communications', note:'AI property valuation models and intelligent lease management platforms are gaining adoption; PropTech automation is streamlining tenant communications and portfolio analytics (2025-2026 industry data)' },
+            'Non-profit / NGO': { avg:26, top:40, areas:'donor management, grant reporting, program tracking, and fundraising automation', note:'Donor intelligence AI and program impact analytics are emerging; grant writing assistance and fundraising automation help resource-constrained organizations scale their missions (2025-2026 industry data)' },
+            'Logistics & Transportation': { avg:50, top:70, areas:'route optimization, fleet management, shipment tracking, and demand planning', note:'Autonomous route optimization and predictive ETA agents are standard in leading fleets; AI freight matching and demand sensing are reducing empty miles and improving delivery accuracy (2025-2026 industry data)' },
+            'Media & Entertainment': { avg:46, top:66, areas:'content production, audience analytics, rights management, and ad optimization', note:'Multimodal generative AI tools are production-ready for content creation; AI audience analytics and automated rights management are reshaping production and distribution workflows (2025-2026 industry data)' }
         };
 
         const INDUSTRY_CONTEXT = {
-            'Financial Services': { focus: 'agentic compliance monitoring, autonomous payment processing, and AI-powered risk management', aiBoost: 6 },
-            'Healthcare': { focus: 'AI clinical documentation, autonomous claims processing, and intelligent care coordination', aiBoost: 4 },
-            'Manufacturing': { focus: 'predictive maintenance, AI quality control, and autonomous supply chain optimization', aiBoost: 5 },
-            'Retail': { focus: 'AI demand forecasting, autonomous inventory management, and personalized customer engagement', aiBoost: 5 },
-            'Technology': { focus: 'agentic coding and DevOps, AI-powered incident resolution, and autonomous testing', aiBoost: 7 },
-            'Government': { focus: 'AI document processing, automated compliance reporting, and intelligent citizen services', aiBoost: 3 },
-            'Energy & Utilities': { focus: 'AI predictive maintenance, autonomous grid management, and intelligent field operations', aiBoost: 4 },
-            'Professional Services': { focus: 'AI contract analysis, autonomous knowledge management, and agentic client delivery', aiBoost: 5 },
-            'Education': { focus: 'adaptive learning platforms, AI administrative automation, and intelligent student engagement', aiBoost: 3 },
-            'Telecommunications': { focus: 'autonomous network management, AI customer agents, and predictive churn prevention', aiBoost: 6 },
-            'Real Estate': { focus: 'AI property analytics, automated lease management, and intelligent tenant experience', aiBoost: 3 },
-            'Non-profit / NGO': { focus: 'AI donor engagement, automated grant reporting, and intelligent program measurement', aiBoost: 2 },
-            'Logistics & Transportation': { focus: 'autonomous route optimization, AI demand sensing, and real-time shipment intelligence', aiBoost: 5 },
-            'Media & Entertainment': { focus: 'AI content production, autonomous ad optimization, and intelligent rights management', aiBoost: 5 }
+            'Financial Services': { focus: 'agentic compliance agents, real-time AI fraud detection, and intelligent document processing for KYC and lending', aiBoost: 6 },
+            'Healthcare': { focus: 'clinical AI assistants, ambient documentation agents, and AI-powered diagnostic support', aiBoost: 4 },
+            'Manufacturing': { focus: 'AI-agent-driven predictive maintenance, digital twin optimization, and quality inspection via computer vision', aiBoost: 5 },
+            'Retail': { focus: 'hyper-personalization engines, conversational commerce agents, and AI demand sensing', aiBoost: 5 },
+            'Technology': { focus: 'AI-native development with copilots and agentic coding, autonomous DevOps agents, and AI observability', aiBoost: 7 },
+            'Government': { focus: 'citizen-facing AI assistants, intelligent case management, and AI governance under NIST AI RMF', aiBoost: 3 },
+            'Energy & Utilities': { focus: 'grid optimization AI agents, predictive asset management, and carbon tracking automation', aiBoost: 4 },
+            'Professional Services': { focus: 'AI-augmented advisory with RAG knowledge retrieval, agentic research, and automated deliverable generation', aiBoost: 5 },
+            'Education': { focus: 'adaptive learning AI, AI tutoring agents, and automated assessment with educator copilots', aiBoost: 3 },
+            'Telecommunications': { focus: 'network self-healing AI agents, conversational billing, and churn prediction with proactive retention', aiBoost: 6 },
+            'Real Estate': { focus: 'AI property valuation, intelligent lease management agents, and PropTech workflow automation', aiBoost: 3 },
+            'Non-profit / NGO': { focus: 'donor intelligence AI, program impact analytics, and AI-assisted grant writing', aiBoost: 2 },
+            'Logistics & Transportation': { focus: 'autonomous route optimization agents, predictive ETA, and AI freight matching', aiBoost: 5 },
+            'Media & Entertainment': { focus: 'multimodal generative content tools, AI audience analytics, and automated rights management', aiBoost: 5 }
         };
 
         const DEPARTMENT_CONTEXT = {
@@ -2171,6 +2171,388 @@
             'Compliance & Risk': {
                 title: 'Example: Regulatory Compliance Audit',
                 steps: ['Identify applicable regulatory requirements and updates', 'Map controls to compliance framework requirements', 'Collect evidence and test control effectiveness', 'Document findings, gaps, and remediation actions', 'Generate audit report for management and regulators', 'Track remediation progress and update risk register']
+            }
+        };
+
+        /* ── Industry × Department Insights — cross-reference lookup for contextual intelligence ── */
+        const INDUSTRY_DEPT_INSIGHTS = {
+            'Financial Services': {
+                'Finance & Accounting': {
+                    landscape: 'Agentic AI is automating multi-step financial close processes, with AI agents handling journal posting, reconciliation, and variance analysis autonomously.',
+                    keyTrend: 'Continuous close capabilities are replacing monthly batch processing, enabled by AI agents that monitor and reconcile in real time.',
+                    techNote: 'Deploy an AI-orchestrated close platform with autonomous reconciliation agents and exception-only human review.'
+                },
+                'IT & Engineering': {
+                    landscape: 'Financial institutions are deploying AI-driven platform engineering to manage regulatory-grade infrastructure with automated compliance drift detection.',
+                    keyTrend: 'FinOps platforms now use agentic AI to auto-remediate cloud cost anomalies and enforce infrastructure-as-code policies across hybrid environments.',
+                    techNote: 'Implement an AI-powered FinOps layer with automated guardrails for cloud spend, change management, and SOC 2 evidence collection.'
+                },
+                'Compliance & Risk': {
+                    landscape: 'RAG-powered regulatory intelligence platforms continuously parse rulemaking from SEC, OCC, and FINRA to flag obligations in near real time.',
+                    keyTrend: 'Agentic compliance systems now autonomously map new regulatory text to internal controls and generate gap assessments without human prompting.',
+                    techNote: 'Deploy a RAG-based regulatory change management system that ingests federal register updates and auto-maps to your control framework.'
+                },
+                'Operations': {
+                    landscape: 'Process mining combined with AI is revealing hidden inefficiencies in trade settlement, payments, and account servicing workflows.',
+                    keyTrend: 'Straight-through processing rates are climbing past 95% as AI agents handle exception resolution that previously required manual intervention.',
+                    techNote: 'Layer process mining on core banking workflows and deploy AI agents to handle the top 10 exception types autonomously.'
+                },
+                'Customer Service': {
+                    landscape: 'Multimodal AI assistants now handle complex banking inquiries including account analysis, dispute resolution, and product recommendations.',
+                    keyTrend: 'AI agents are graduating from scripted chatbots to autonomous advisors that execute transactions and resolve disputes end to end.',
+                    techNote: 'Deploy a multimodal AI assistant integrated with core banking APIs that can execute transactions within pre-approved guardrails.'
+                }
+            },
+            'Healthcare': {
+                'Operations': {
+                    landscape: 'AI-powered scheduling, bed management, and patient flow optimization are reducing wait times and improving throughput across health systems.',
+                    keyTrend: 'Digital twins of hospital operations now simulate capacity scenarios and recommend staffing adjustments before bottlenecks materialize.',
+                    techNote: 'Implement an AI-driven patient flow platform with predictive discharge planning and real-time bed management optimization.'
+                },
+                'IT & Engineering': {
+                    landscape: 'Healthcare IT teams are deploying AI copilots for EHR optimization, interoperability mapping, and clinical decision support integration.',
+                    keyTrend: 'FHIR-native AI middleware is automating data exchange between disparate clinical systems, reducing integration backlogs by months.',
+                    techNote: 'Deploy FHIR-based AI middleware that auto-maps clinical data schemas and generates interoperability adapters between EHR systems.'
+                },
+                'Compliance & Risk': {
+                    landscape: 'AI is transforming HIPAA compliance monitoring from periodic audits to continuous surveillance of access patterns and data handling.',
+                    keyTrend: 'Autonomous compliance agents now monitor EHR access logs, flag anomalous patterns, and generate investigation packets without analyst intervention.',
+                    techNote: 'Deploy an AI-powered continuous compliance platform that monitors PHI access patterns and auto-generates HIPAA investigation documentation.'
+                },
+                'Customer Service': {
+                    landscape: 'AI-powered patient engagement platforms handle appointment scheduling, prescription refills, and pre-visit intake with natural language understanding.',
+                    keyTrend: 'Multimodal AI assistants are managing entire patient intake workflows including insurance verification, consent collection, and clinical questionnaires.',
+                    techNote: 'Implement a HIPAA-compliant AI assistant that handles scheduling, intake, and triage routing with EHR-integrated patient context.'
+                },
+                'Human Resources': {
+                    landscape: 'Healthcare HR teams are using AI to manage credential verification, shift optimization, and burnout prediction across clinical staff.',
+                    keyTrend: 'Predictive workforce analytics now forecast turnover risk by unit and recommend retention interventions before resignation occurs.',
+                    techNote: 'Deploy an AI workforce planning tool that integrates licensure databases, shift scheduling, and engagement survey data for proactive retention.'
+                }
+            },
+            'Manufacturing': {
+                'Operations': {
+                    landscape: 'AI-driven predictive maintenance and digital twins are transforming factory floor operations from reactive to anticipatory management.',
+                    keyTrend: 'Autonomous quality inspection using computer vision now detects defects at line speed with accuracy exceeding manual inspection benchmarks.',
+                    techNote: 'Deploy edge AI with computer vision for inline quality inspection and predictive maintenance on critical production assets.'
+                },
+                'Supply Chain': {
+                    landscape: 'AI-powered demand sensing and supplier risk monitoring are replacing static MRP with dynamic, event-driven supply chain orchestration.',
+                    keyTrend: 'Multi-tier supply chain visibility platforms now use AI to predict disruptions and auto-trigger alternative sourcing before stockouts occur.',
+                    techNote: 'Implement an AI supply chain control tower that integrates tier-1 through tier-3 supplier data for predictive disruption management.'
+                },
+                'IT & Engineering': {
+                    landscape: 'Manufacturing IT teams are converging OT and IT networks with AI-mediated security and edge computing for real-time production intelligence.',
+                    keyTrend: 'Generative AI is accelerating CAD-to-production cycles by auto-generating toolpaths, simulating manufacturability, and optimizing designs for cost.',
+                    techNote: 'Deploy an AI-augmented PLM platform that connects CAD, simulation, and MES for automated design-for-manufacturability analysis.'
+                },
+                'Compliance & Risk': {
+                    landscape: 'AI compliance platforms are automating ISO, FDA, and environmental regulatory tracking with continuous control monitoring across production facilities.',
+                    keyTrend: 'Autonomous audit agents now continuously collect evidence from MES and quality systems, maintaining perpetual audit readiness.',
+                    techNote: 'Implement an AI-driven compliance platform that auto-maps production data to ISO 9001 and industry-specific regulatory requirements.'
+                },
+                'Research & Development': {
+                    landscape: 'AI is accelerating materials discovery, formulation optimization, and prototype testing through simulation-driven experimentation.',
+                    keyTrend: 'Generative design tools now explore thousands of material and geometry combinations, reducing physical prototyping cycles by 60% or more.',
+                    techNote: 'Deploy generative design and AI-driven simulation tools that optimize material selection and reduce physical prototype iterations.'
+                }
+            },
+            'Retail': {
+                'Sales & Marketing': {
+                    landscape: 'AI-powered personalization engines now generate individualized product recommendations, dynamic pricing, and targeted content at scale.',
+                    keyTrend: 'Agentic AI marketing platforms autonomously orchestrate multi-channel campaigns, adjusting creative, timing, and targeting in real time.',
+                    techNote: 'Deploy an AI personalization engine that unifies customer data across channels and delivers real-time individualized experiences.'
+                },
+                'Operations': {
+                    landscape: 'Computer vision and IoT sensors are enabling autonomous inventory tracking, shelf monitoring, and loss prevention across store networks.',
+                    keyTrend: 'AI-powered store operations platforms now auto-generate task lists, optimize labor scheduling, and predict replenishment needs by location.',
+                    techNote: 'Implement computer vision shelf monitoring with AI-driven replenishment triggers and automated labor scheduling optimization.'
+                },
+                'Supply Chain': {
+                    landscape: 'AI demand forecasting now integrates weather, social signals, and local events to predict SKU-level demand at individual store locations.',
+                    keyTrend: 'Autonomous inventory allocation systems are replacing rules-based distribution with AI that optimizes stock positioning across the entire network.',
+                    techNote: 'Deploy an AI demand sensing platform that combines POS, weather, and event data for store-level SKU forecasting and auto-allocation.'
+                },
+                'Customer Service': {
+                    landscape: 'AI assistants handle order tracking, returns, product questions, and loyalty program management across chat, voice, and social channels.',
+                    keyTrend: 'Conversational commerce agents now complete entire purchase journeys within messaging platforms, blending service and sales seamlessly.',
+                    techNote: 'Implement a multimodal AI assistant that handles order management, returns, and product discovery with integrated checkout capabilities.'
+                },
+                'IT & Engineering': {
+                    landscape: 'Retail tech teams are deploying composable commerce architectures with AI microservices for pricing, search, and recommendation.',
+                    keyTrend: 'AI-native commerce platforms are replacing monolithic systems, enabling rapid deployment of personalization and pricing algorithms.',
+                    techNote: 'Adopt a composable commerce architecture with AI-powered search, recommendation, and dynamic pricing microservices.'
+                }
+            },
+            'Technology': {
+                'IT & Engineering': {
+                    landscape: 'AI coding assistants and agentic development tools are reshaping software engineering workflows from planning through deployment.',
+                    keyTrend: 'Agentic AI is moving beyond code completion to autonomous bug triage, test generation, and multi-file refactoring across large codebases.',
+                    techNote: 'Deploy AI coding agents integrated into CI/CD pipelines for automated test generation, code review, and security vulnerability detection.'
+                },
+                'Sales & Marketing': {
+                    landscape: 'Product-led growth teams are using AI to automate trial-to-paid conversion, usage-based scoring, and account expansion signals.',
+                    keyTrend: 'AI agents now autonomously qualify, nurture, and route product-qualified leads based on real-time usage telemetry and intent signals.',
+                    techNote: 'Implement an AI-driven PLG platform that scores product usage signals, triggers personalized outreach, and routes expansion opportunities.'
+                },
+                'Research & Development': {
+                    landscape: 'AI is accelerating R&D through automated literature review, hypothesis generation, and experiment design in both software and hardware contexts.',
+                    keyTrend: 'AI research agents now autonomously survey academic papers, synthesize findings, and propose novel approaches with supporting evidence.',
+                    techNote: 'Deploy RAG-powered research assistants connected to arxiv, patent databases, and internal knowledge bases for automated literature synthesis.'
+                },
+                'Customer Service': {
+                    landscape: 'Technical support teams use AI to diagnose issues from log files, suggest fixes, and auto-resolve common tickets without escalation.',
+                    keyTrend: 'AI support agents now autonomously access customer environments, diagnose issues via log analysis, and implement approved remediation steps.',
+                    techNote: 'Deploy an AI support agent with secure access to diagnostic APIs that can auto-resolve L1/L2 tickets and generate root cause documentation.'
+                },
+                'Operations': {
+                    landscape: 'AI-powered observability platforms detect anomalies, correlate incidents, and auto-remediate infrastructure issues across distributed systems.',
+                    keyTrend: 'AIOps platforms now handle end-to-end incident management from detection through remediation with human oversight only for novel failure modes.',
+                    techNote: 'Implement an AIOps platform with automated runbook execution, intelligent incident correlation, and self-healing infrastructure capabilities.'
+                }
+            },
+            'Government': {
+                'Operations': {
+                    landscape: 'Government agencies are deploying AI to streamline citizen-facing processes including permit approvals, benefit adjudication, and case management.',
+                    keyTrend: 'Agentic AI caseworkers now handle routine benefit determinations end to end, reducing processing backlogs while maintaining audit compliance.',
+                    techNote: 'Deploy an AI case management platform with rules-engine integration that auto-adjudicates routine cases and escalates complex determinations.'
+                },
+                'IT & Engineering': {
+                    landscape: 'Government IT modernization programs are using AI to accelerate legacy system migration, API development, and cloud adoption.',
+                    keyTrend: 'AI-assisted legacy modernization tools now auto-generate documentation for undocumented COBOL systems and produce equivalent cloud-native code.',
+                    techNote: 'Implement AI-powered legacy code analysis and migration tools that auto-document mainframe systems and generate cloud-ready microservices.'
+                },
+                'Compliance & Risk': {
+                    landscape: 'AI is automating regulatory compliance monitoring, audit evidence collection, and risk assessment across government operations.',
+                    keyTrend: 'Continuous authority-to-operate platforms now use AI to maintain security compliance documentation and auto-detect control deviations in real time.',
+                    techNote: 'Deploy an AI-driven continuous ATO platform that auto-collects compliance evidence and maintains NIST 800-53 control documentation.'
+                },
+                'Legal': {
+                    landscape: 'Government legal teams are using AI for legislative analysis, FOIA processing, and regulatory impact assessment.',
+                    keyTrend: 'AI-powered FOIA processing systems now auto-redact sensitive information and categorize responsive documents, cutting response times significantly.',
+                    techNote: 'Implement an AI-powered document review platform with automated PII redaction and responsive document classification for FOIA compliance.'
+                },
+                'Customer Service': {
+                    landscape: 'Citizen service centers are deploying AI assistants that handle inquiries about benefits, permits, and public services in multiple languages.',
+                    keyTrend: 'Multilingual AI assistants now resolve routine citizen inquiries across channels while seamlessly escalating complex cases to human agents.',
+                    techNote: 'Deploy a multilingual AI citizen service assistant with secure identity verification and integration to benefits and permitting systems.'
+                }
+            },
+            'Energy & Utilities': {
+                'Operations': {
+                    landscape: 'AI-driven grid management, predictive maintenance, and demand response optimization are transforming energy operations.',
+                    keyTrend: 'Digital twins of grid infrastructure now enable real-time simulation of load balancing scenarios and predictive failure analysis across the distribution network.',
+                    techNote: 'Deploy an AI-powered grid digital twin with predictive maintenance, load forecasting, and automated demand response orchestration.'
+                },
+                'IT & Engineering': {
+                    landscape: 'Energy sector IT teams are integrating SCADA, IoT, and cloud platforms with AI for real-time operational intelligence and cybersecurity.',
+                    keyTrend: 'AI-powered OT security platforms now detect and respond to threats targeting industrial control systems with sub-second response times.',
+                    techNote: 'Implement AI-driven OT/IT convergence with automated threat detection for SCADA systems and secure edge computing for field assets.'
+                },
+                'Compliance & Risk': {
+                    landscape: 'AI is automating NERC CIP compliance, environmental reporting, and safety incident analysis across energy operations.',
+                    keyTrend: 'Autonomous compliance agents continuously monitor NERC CIP controls, auto-generate evidence packages, and flag deviations before audit cycles.',
+                    techNote: 'Deploy an AI compliance platform that auto-maps operational data to NERC CIP requirements and generates continuous audit-ready documentation.'
+                },
+                'Supply Chain': {
+                    landscape: 'AI is optimizing fuel procurement, equipment sourcing, and renewable energy certificate trading across energy supply chains.',
+                    keyTrend: 'AI-powered procurement platforms now optimize energy commodity purchasing by integrating weather forecasts, market signals, and demand predictions.',
+                    techNote: 'Implement an AI-driven energy trading and procurement platform that integrates real-time market data with demand forecasting models.'
+                },
+                'Customer Service': {
+                    landscape: 'Utility customer service centers use AI to handle billing inquiries, outage reporting, and energy efficiency recommendations.',
+                    keyTrend: 'AI assistants now proactively notify customers of usage anomalies, recommend rate plan changes, and manage outage communications autonomously.',
+                    techNote: 'Deploy an AI customer engagement platform with smart meter integration that provides proactive usage insights and automated outage updates.'
+                }
+            },
+            'Professional Services': {
+                'Operations': {
+                    landscape: 'AI is transforming engagement management, resource allocation, and knowledge reuse across consulting and professional services firms.',
+                    keyTrend: 'AI-powered resource matching platforms now auto-staff engagements by analyzing skill profiles, availability, and past project performance.',
+                    techNote: 'Deploy an AI resource management platform that matches consultant skills and availability to engagement requirements with utilization optimization.'
+                },
+                'Sales & Marketing': {
+                    landscape: 'AI is automating proposal generation, competitive intelligence, and relationship mapping for professional services business development.',
+                    keyTrend: 'Agentic AI now drafts tailored proposals by mining past deliverables, pricing data, and client context from CRM and knowledge management systems.',
+                    techNote: 'Implement a RAG-powered proposal generation system that draws from past engagements, pricing models, and firm methodology content.'
+                },
+                'Finance & Accounting': {
+                    landscape: 'AI is automating timesheet processing, project billing, and revenue recognition across complex engagement portfolios.',
+                    keyTrend: 'AI agents now auto-capture billable time from calendar events and tool usage, apply rate cards, and generate client invoices with minimal partner review.',
+                    techNote: 'Deploy AI-powered time capture that integrates with calendars, project tools, and email to auto-generate timesheets and client invoices.'
+                },
+                'IT & Engineering': {
+                    landscape: 'Professional services IT teams are deploying AI-powered knowledge management and secure client data handling platforms.',
+                    keyTrend: 'RAG-based knowledge platforms now surface relevant past deliverables, methodologies, and expert contacts for new engagements automatically.',
+                    techNote: 'Implement a RAG-powered knowledge management system with engagement-level access controls and automated deliverable indexing.'
+                },
+                'Legal': {
+                    landscape: 'AI is streamlining engagement letter review, conflict checking, and regulatory compliance across professional services operations.',
+                    keyTrend: 'AI-powered conflict checking systems now scan across entities, relationships, and historical engagements in seconds rather than hours.',
+                    techNote: 'Deploy an AI conflict checking platform that integrates CRM, matter management, and entity resolution for rapid independence verification.'
+                }
+            },
+            'Education': {
+                'Operations': {
+                    landscape: 'AI is transforming enrollment management, course scheduling, and campus operations across educational institutions.',
+                    keyTrend: 'Predictive enrollment models now forecast yield by segment and auto-optimize financial aid packaging to meet class composition targets.',
+                    techNote: 'Deploy an AI-driven enrollment management platform with predictive yield modeling and automated financial aid optimization.'
+                },
+                'IT & Engineering': {
+                    landscape: 'Education IT teams are deploying AI-powered learning platforms, campus security systems, and student information system integrations.',
+                    keyTrend: 'AI-powered LMS platforms now generate personalized learning paths, auto-grade assignments, and flag at-risk students for early intervention.',
+                    techNote: 'Implement an AI-augmented LMS with adaptive learning paths, automated assessment, and early alert integration with student success systems.'
+                },
+                'Human Resources': {
+                    landscape: 'AI is streamlining faculty recruitment, adjunct scheduling, and professional development tracking across academic institutions.',
+                    keyTrend: 'AI workforce planning tools now model enrollment-to-faculty ratios and recommend hiring or course consolidation based on projected demand.',
+                    techNote: 'Deploy an AI workforce planning tool that integrates enrollment projections with faculty workload models and accreditation staffing requirements.'
+                },
+                'Customer Service': {
+                    landscape: 'AI-powered student service platforms handle registration, financial aid inquiries, and academic advising across multiple channels.',
+                    keyTrend: 'AI advising assistants now provide 24/7 degree audit interpretation, course selection guidance, and career pathway recommendations to students.',
+                    techNote: 'Implement an AI student services assistant with degree audit integration that handles registration, financial aid, and advising inquiries.'
+                },
+                'Research & Development': {
+                    landscape: 'AI is accelerating grant proposal preparation, literature review, and research data management across academic research operations.',
+                    keyTrend: 'AI research assistants now auto-draft grant proposal sections by analyzing funder priorities, past submissions, and relevant literature.',
+                    techNote: 'Deploy a RAG-powered research assistant that integrates with institutional repositories, grant databases, and citation management tools.'
+                }
+            },
+            'Telecommunications': {
+                'IT & Engineering': {
+                    landscape: 'Telecom engineering teams use AI for network planning, capacity optimization, and automated fault diagnosis across hybrid infrastructure.',
+                    keyTrend: 'AI-driven network slicing and self-optimizing network algorithms are automating 5G capacity management and service quality assurance.',
+                    techNote: 'Deploy AI-powered network orchestration with automated capacity planning, self-optimizing network algorithms, and predictive fault management.'
+                },
+                'Customer Service': {
+                    landscape: 'Telecom customer service deploys AI for bill explanation, plan optimization, technical troubleshooting, and churn prevention.',
+                    keyTrend: 'AI agents now resolve network-related customer complaints by autonomously running diagnostics, applying fixes, and confirming resolution.',
+                    techNote: 'Implement an AI customer service agent with real-time network diagnostic capabilities and automated service restoration workflows.'
+                },
+                'Operations': {
+                    landscape: 'AI is automating service provisioning, network operations center monitoring, and field workforce dispatch across telecom operations.',
+                    keyTrend: 'Zero-touch provisioning powered by AI now handles end-to-end service activation including network configuration and customer notification.',
+                    techNote: 'Deploy an AI-powered zero-touch provisioning platform integrated with OSS/BSS for automated service activation and network configuration.'
+                },
+                'Sales & Marketing': {
+                    landscape: 'AI is powering next-best-offer engines, churn prediction models, and dynamic bundling across telecom commercial operations.',
+                    keyTrend: 'AI retention platforms now predict churn risk at the individual subscriber level and auto-trigger personalized save offers before cancellation.',
+                    techNote: 'Implement an AI-driven customer lifetime value platform with real-time churn prediction and automated retention offer orchestration.'
+                },
+                'Compliance & Risk': {
+                    landscape: 'AI automates FCC regulatory compliance, spectrum license management, and data privacy monitoring across telecom operations.',
+                    keyTrend: 'AI compliance platforms now continuously monitor network data handling practices against evolving privacy regulations across all operating jurisdictions.',
+                    techNote: 'Deploy an AI regulatory compliance platform that monitors data handling, tracks spectrum obligations, and auto-generates FCC filings.'
+                }
+            },
+            'Real Estate': {
+                'Operations': {
+                    landscape: 'AI is transforming property management, tenant experience, and building operations through smart building platforms and predictive maintenance.',
+                    keyTrend: 'AI-powered building management systems now optimize energy consumption, predict equipment failures, and automate tenant service requests.',
+                    techNote: 'Deploy an AI-driven smart building platform that integrates BMS, tenant apps, and maintenance systems for predictive operations management.'
+                },
+                'Finance & Accounting': {
+                    landscape: 'AI is automating rent collection, CAM reconciliation, property valuation, and investor reporting across real estate portfolios.',
+                    keyTrend: 'AI-powered valuation models now integrate market comps, lease data, and economic indicators for real-time portfolio mark-to-market analysis.',
+                    techNote: 'Implement an AI financial management platform that automates CAM reconciliation, rent escalations, and investor waterfall calculations.'
+                },
+                'Sales & Marketing': {
+                    landscape: 'AI is powering property matching, virtual staging, dynamic pricing, and lead qualification across residential and commercial real estate.',
+                    keyTrend: 'AI listing platforms now auto-generate property descriptions, virtual staging, and dynamic pricing recommendations based on real-time market data.',
+                    techNote: 'Deploy an AI-powered listing platform with automated property descriptions, virtual staging, and dynamic pricing optimization.'
+                },
+                'Legal': {
+                    landscape: 'AI is automating lease abstraction, title review, and transaction document preparation across real estate legal operations.',
+                    keyTrend: 'AI-powered lease abstraction tools now extract all material terms from commercial leases in minutes, replacing days of manual paralegal review.',
+                    techNote: 'Implement an AI lease abstraction platform that extracts key terms, flags non-standard clauses, and auto-populates deal management systems.'
+                },
+                'Customer Service': {
+                    landscape: 'AI assistants handle tenant inquiries, maintenance requests, and leasing questions across residential and commercial properties.',
+                    keyTrend: 'AI tenant experience platforms now manage the full service lifecycle from maintenance requests through vendor dispatch and satisfaction follow-up.',
+                    techNote: 'Deploy an AI tenant services assistant integrated with work order management that handles requests, dispatches vendors, and tracks resolution.'
+                }
+            },
+            'Non-profit / NGO': {
+                'Operations': {
+                    landscape: 'AI is helping nonprofits optimize program delivery, volunteer coordination, and impact measurement with limited operational budgets.',
+                    keyTrend: 'AI-powered impact measurement platforms now automatically collect outcome data, attribute results to programs, and generate funder reports.',
+                    techNote: 'Deploy an AI impact measurement platform that automates outcome tracking, program attribution, and donor-ready reporting.'
+                },
+                'Finance & Accounting': {
+                    landscape: 'AI is automating grant accounting, restricted fund tracking, and Form 990 preparation for nonprofit financial management.',
+                    keyTrend: 'AI agents now auto-allocate expenses across restricted and unrestricted funds, maintaining compliance with donor restrictions in real time.',
+                    techNote: 'Implement an AI-powered fund accounting platform that auto-allocates costs, tracks restrictions, and generates grant financial reports.'
+                },
+                'Human Resources': {
+                    landscape: 'AI assists nonprofits with volunteer management, staff scheduling, and compensation benchmarking against limited budgets.',
+                    keyTrend: 'AI-powered volunteer matching platforms now align volunteer skills and availability to program needs with automated scheduling and recognition.',
+                    techNote: 'Deploy an AI volunteer management platform that matches skills to needs, automates scheduling, and tracks engagement for retention.'
+                },
+                'Sales & Marketing': {
+                    landscape: 'AI is transforming nonprofit fundraising through donor propensity modeling, personalized appeal generation, and campaign optimization.',
+                    keyTrend: 'AI fundraising platforms now predict optimal ask amounts, timing, and channels for individual donors based on giving history and engagement signals.',
+                    techNote: 'Implement an AI-driven donor engagement platform with propensity scoring, personalized appeal generation, and multi-channel campaign optimization.'
+                },
+                'Executive / C-Suite': {
+                    landscape: 'AI is helping nonprofit leaders with strategic planning, board reporting, and resource allocation decisions across mission-driven organizations.',
+                    keyTrend: 'AI-powered dashboards now synthesize program outcomes, financial health, and stakeholder sentiment into real-time strategic intelligence for leadership.',
+                    techNote: 'Deploy an AI executive dashboard that integrates program data, financials, and donor analytics for real-time strategic decision support.'
+                }
+            },
+            'Logistics & Transportation': {
+                'Operations': {
+                    landscape: 'AI is optimizing route planning, fleet management, and warehouse operations through real-time demand prediction and autonomous scheduling.',
+                    keyTrend: 'AI-powered dynamic routing now adjusts delivery sequences in real time based on traffic, weather, and customer availability signals.',
+                    techNote: 'Deploy an AI-powered route optimization platform with real-time traffic integration, dynamic rescheduling, and driver mobile coordination.'
+                },
+                'Supply Chain': {
+                    landscape: 'AI is enabling end-to-end supply chain visibility with predictive ETA, automated carrier selection, and dynamic load optimization.',
+                    keyTrend: 'AI control towers now provide predictive ETAs with confidence intervals, auto-triggering customer notifications and contingency plans for delays.',
+                    techNote: 'Implement an AI supply chain control tower with predictive ETA modeling, automated carrier selection, and real-time exception management.'
+                },
+                'IT & Engineering': {
+                    landscape: 'Logistics IT teams are deploying AI for telematics analysis, warehouse automation integration, and transportation management system optimization.',
+                    keyTrend: 'AI-powered warehouse management systems now orchestrate autonomous mobile robots, pick optimization, and labor allocation in real time.',
+                    techNote: 'Deploy an AI-driven WMS that coordinates autonomous robots, optimizes pick paths, and integrates with TMS for seamless dock scheduling.'
+                },
+                'Customer Service': {
+                    landscape: 'AI assistants handle shipment tracking, delivery rescheduling, claims processing, and rate quotes across logistics customer service operations.',
+                    keyTrend: 'AI agents now proactively notify customers of delays, offer alternatives, and process claims with automated damage assessment from submitted photos.',
+                    techNote: 'Implement an AI customer service platform with real-time shipment visibility, proactive delay notification, and multimodal claims processing.'
+                },
+                'Compliance & Risk': {
+                    landscape: 'AI is automating DOT compliance, HOS monitoring, customs documentation, and cargo safety verification across transportation operations.',
+                    keyTrend: 'AI compliance platforms now continuously monitor driver hours-of-service, vehicle inspection data, and customs requirements across all operating jurisdictions.',
+                    techNote: 'Deploy an AI compliance monitoring platform that integrates ELD data, inspection records, and customs requirements for automated regulatory adherence.'
+                }
+            },
+            'Media & Entertainment': {
+                'Operations': {
+                    landscape: 'AI is transforming content production workflows, asset management, and distribution operations across media companies.',
+                    keyTrend: 'AI-powered production management platforms now auto-schedule shoots, optimize crew allocation, and track budget burn in real time.',
+                    techNote: 'Deploy an AI production operations platform with automated scheduling, resource optimization, and real-time budget tracking integration.'
+                },
+                'Sales & Marketing': {
+                    landscape: 'AI is powering audience segmentation, content recommendation, and programmatic ad optimization across media sales and marketing.',
+                    keyTrend: 'AI-driven audience intelligence platforms now predict content performance before release and optimize distribution strategy across platforms.',
+                    techNote: 'Implement an AI audience analytics platform that predicts content performance, optimizes release timing, and personalizes marketing across channels.'
+                },
+                'IT & Engineering': {
+                    landscape: 'Media tech teams are deploying AI for content encoding, CDN optimization, and automated quality control across streaming and broadcast operations.',
+                    keyTrend: 'AI-powered content pipelines now automate encoding, quality assurance, metadata tagging, and multi-platform distribution from a single ingest.',
+                    techNote: 'Deploy an AI-driven media processing pipeline with automated encoding, QC, metadata enrichment, and multi-platform distribution orchestration.'
+                },
+                'Research & Development': {
+                    landscape: 'AI is accelerating content creation through generative tools for visual effects, music composition, and interactive narrative development.',
+                    keyTrend: 'Generative AI tools now produce production-quality visual effects, background music, and localization assets that previously required specialized teams.',
+                    techNote: 'Integrate generative AI tools for VFX previsualization, automated localization, and AI-assisted sound design into production workflows.'
+                },
+                'Legal': {
+                    landscape: 'AI is automating rights clearance, royalty calculation, and content licensing across complex media intellectual property portfolios.',
+                    keyTrend: 'AI-powered rights management platforms now auto-detect content usage across platforms and calculate royalty obligations in real time.',
+                    techNote: 'Deploy an AI rights management platform with automated content fingerprinting, cross-platform usage detection, and royalty calculation.'
+                }
             }
         };
 
@@ -3703,6 +4085,10 @@
                 const painLabels = painAnalysis.matched.slice(0, 3).map(p => p.label.toLowerCase()).join(', ');
                 summary += ` Detected pain patterns: ${painLabels}.`;
             }
+            const deptInsight = INDUSTRY_DEPT_INSIGHTS[industry] && INDUSTRY_DEPT_INSIGHTS[industry][department];
+            if (deptInsight) {
+                summary += ` ${deptInsight.keyTrend}`;
+            }
             return summary;
         }
 
@@ -4354,6 +4740,11 @@
                 benchEl.innerHTML = `<div class="diag-bench-title">Industry Context</div>`
                     + `<p>Organizations in ${data.industry} typically automate <strong>${data.benchmark.avg}%</strong> of similar workflows, with top-quartile performers reaching <strong>${data.benchmark.top}%</strong>. Your assessed automation share of <strong>${autoShare}%</strong> positions you <strong>${pos}</strong> the industry average.</p>`
                     + `<p style="margin-top:0.5rem;font-size:0.82rem;color:var(--ink-3)">Common automation areas: ${data.benchmark.areas}. ${data.benchmark.note}. Based on cross-industry automation maturity research from McKinsey, Gartner, Forrester, and Deloitte, 2025\u20132026.</p>`;
+                const department = document.getElementById('dD').value;
+                const insightData = INDUSTRY_DEPT_INSIGHTS[data.industry] && INDUSTRY_DEPT_INSIGHTS[data.industry][department];
+                if (insightData) {
+                    benchEl.innerHTML += `<div style="margin-top:1rem;padding:1rem;background:rgba(26,91,186,0.04);border-radius:0.5rem;border-left:3px solid var(--blue)"><div style="font-family:var(--mono);font-size:0.65rem;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;color:var(--blue);margin-bottom:0.4rem">${data.industry} × ${department}</div><p style="margin:0 0 0.4rem;font-size:0.85rem;color:var(--ink)">${insightData.landscape}</p><p style="margin:0;font-size:0.82rem;color:var(--ink-2)"><strong>Key trend:</strong> ${insightData.keyTrend}</p><p style="margin:0.3rem 0 0;font-size:0.82rem;color:var(--ink-2)"><strong>Recommended:</strong> ${insightData.techNote}</p></div>`;
+                }
                 benchEl.style.display = '';
                 benchEl.classList.remove('anim-in');
             } else { benchEl.style.display = 'none'; }
@@ -4418,10 +4809,18 @@
                 + `<div class="diag-cta-row"><input type="text" name="name" placeholder="Your name" required><input type="text" name="company" placeholder="Company"></div>`
                 + `<input type="email" name="email" placeholder="Work email" required>`
                 + `<input type="hidden" name="industry" value="${esc(data.industry || '')}">`
-                + `<input type="hidden" name="readiness_score" value="${data.readiness.overall}">`
-                + `<input type="hidden" name="automation_share" value="${data.workload.ai}%">`
-                + `<input type="hidden" name="high_potential_steps" value="${data.steps.filter(s => s.potentialLabel === 'High').length}">`
-                + `<input type="hidden" name="_subject" value="Diagnostic Lead: ${esc(data.industry || 'Unknown')} — Score ${data.readiness.overall}/100">`
+                + `<input type="hidden" name="department" value="${esc(document.getElementById('dD').value || '')}">`
+                + `<input type="hidden" name="readiness_score" value="${data.readiness.overall}/100 (${data.readiness.label})">`
+                + `<input type="hidden" name="automation_share" value="AI ${data.workload.ai}% | Human ${data.workload.human}% | System ${data.workload.system}%">`
+                + `<input type="hidden" name="high_potential_steps" value="${data.steps.filter(s => s.potentialLabel === 'High').length} high, ${data.steps.filter(s => s.potentialLabel === 'Medium').length} medium, ${data.steps.filter(s => s.potentialLabel === 'Low').length} low">`
+                + `<input type="hidden" name="step_details" value="${esc(data.steps.map((s, i) => (i + 1) + '. ' + s.stepName + ' → ' + s.potentialLabel + ' (' + s.techTier + ', ' + Math.round(s.timeSavings * 100) + '% savings)').join('\n'))}">`
+                + `<input type="hidden" name="quick_wins" value="${esc(data.roadmap.quick.map(r => r.title).join('; ') || 'None')}">`
+                + `<input type="hidden" name="medium_term" value="${esc(data.roadmap.medium.map(r => r.title).join('; ') || 'None')}">`
+                + `<input type="hidden" name="strategic" value="${esc(data.roadmap.strategic.map(r => r.title).join('; ') || 'None')}">`
+                + `<input type="hidden" name="recommendations" value="${esc(data.recs.join('; ') || 'None')}">`
+                + ((data.teamSize || data.hourlyCost) ? `<input type="hidden" name="roi_estimate" value="Hours saved: ${data.roi.hoursPerMonth.conservative}-${data.roi.hoursPerMonth.optimistic}/mo | Annual savings: CAD $${data.roi.annualSavings.conservative.toLocaleString()}-$${data.roi.annualSavings.optimistic.toLocaleString()} (team of ${data.roi.teamSize} at $${data.roi.hourlyCost}/hr)">` : '')
+                + `<input type="hidden" name="executive_summary" value="${esc(data.summary)}">`
+                + `<input type="hidden" name="_subject" value="Diagnostic Lead: ${esc(data.industry || 'Unknown')} / ${esc(document.getElementById('dD').value || 'Unknown')} — Score ${data.readiness.overall}/100">`
                 + `<input type="hidden" name="_template" value="table">`
                 + `<input type="hidden" name="_captcha" value="false">`
                 + `<button type="submit" class="diag-cta-submit">Get in Touch</button>`
