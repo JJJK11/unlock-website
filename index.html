@@ -4224,7 +4224,11 @@
                 'candidate','resume','letter','template','code','test','alert','log','error','meeting',
                 'presentation','proposal','compliance','audit','inventory','asset','equipment',
                 'shipment','requisition','purchase order','journal','reconciliation','approval',
-                'expense','credit','pipeline','lead','forecast','risk','incident','deployment'];
+                'expense','credit','pipeline','lead','forecast','risk','incident','deployment',
+                'statement','policy','workflow','task','project','ticket','survey','feedback',
+                'license','permit','certificate','signature','timesheet','payroll','benefit',
+                'claim','quote','estimate','specification','requirement','backup','patch',
+                'release','build','configuration','credentials','access','permission'];
             const foundNouns = nouns.filter(n => lower.includes(n));
 
             /* Build a concise activity phrase from the user's step */
@@ -4241,20 +4245,64 @@
                     verbIng = foundVerb + 'ing';
                 }
             }
-            if (foundVerb && foundNouns.length > 0) {
-                activity = verbIng + ' ' + foundNouns.slice(0, 2).join(' and ');
+            /* Pick the primary noun: prefer multi-word, then last noun (direct object in English),
+               use KB keys only as tiebreaker. Exclude nouns that share a root with the verb. */
+            let primaryNoun = null;
+            /* Filter out nouns that are the same word as the verb (avoid "scheduling schedules") */
+            const eligibleNouns = foundVerb
+                ? foundNouns.filter(n => n !== foundVerb && !foundVerb.startsWith(n) && !n.startsWith(foundVerb))
+                : foundNouns;
+            if (eligibleNouns.length > 0) {
+                /* 1. Multi-word nouns always win ("purchase order" > "order") */
+                const multiWord = eligibleNouns.filter(n => n.includes(' '));
+                if (multiWord.length > 0) {
+                    primaryNoun = multiWord[0];
+                } else {
+                    /* 2. Pick the LAST noun (direct object in English word order).
+                          If multiple nouns tie for last position, prefer the KB-relevant one. */
+                    primaryNoun = eligibleNouns.reduce((a, b) => {
+                        const posA = lower.lastIndexOf(a);
+                        const posB = lower.lastIndexOf(b);
+                        if (posB > posA) return b;
+                        if (posA > posB) return a;
+                        /* Tie: prefer KB-relevant noun */
+                        const aInKb = kbEntry && kbEntry.keys.some(k => k.includes(a));
+                        const bInKb = kbEntry && kbEntry.keys.some(k => k.includes(b));
+                        return bInKb && !aInKb ? b : a;
+                    });
+                }
+            }
+
+            /* Nouns that should NOT be pluralized (uncountable, abstract, or already plural-form) */
+            const noPluralNouns = new Set(['data','compliance','equipment','feedback','inventory',
+                'payroll','access','software','evidence','personnel','documentation','correspondence',
+                'information','training','maintenance','research']);
+
+            if (foundVerb && primaryNoun) {
+                const nounDisplay = noPluralNouns.has(primaryNoun) ? primaryNoun
+                    : primaryNoun.endsWith('s') ? primaryNoun
+                    : primaryNoun + 's';
+                activity = verbIng + ' ' + nounDisplay;
             } else if (foundVerb) {
-                /* Verb only — use the step name truncated */
-                activity = verbIng + ' this step';
-            } else if (foundNouns.length > 0) {
-                activity = foundNouns[0] + ' processing';
+                /* Verb only — extract a short descriptor from step name */
+                const shortDesc = step.stepName.replace(/^(the|a|an)\s+/i, '').substring(0, 30).trim();
+                activity = verbIng + ' (' + shortDesc + ')';
+            } else if (primaryNoun) {
+                activity = primaryNoun + ' processing';
             }
 
             /* The key differentiator is the VERB — two steps with the same noun ("invoice")
                but different verbs ("receive" vs "match" vs "route") MUST produce different text.
                Check if the KB text already contains the specific verb+noun combination. */
-            const verbNounCombo = (foundVerb && foundNouns.length > 0)
-                ? foundVerb + '.*' + foundNouns[0] : null;
+            const verbNounCombo = (foundVerb && primaryNoun)
+                ? foundVerb + '.*' + primaryNoun : null;
+
+            /* Helper: lowercase first char UNLESS it starts an acronym (e.g. "AI", "GL", "ERP") */
+            function lowerFirst(s) {
+                if (!s) return s;
+                if (s.length >= 2 && s[0] === s[0].toUpperCase() && s[1] === s[1].toUpperCase()) return s;
+                return s.charAt(0).toLowerCase() + s.slice(1);
+            }
 
             /* Contextualize current state — prefix with what the user actually does */
             if (activity && step.currentState) {
@@ -4262,8 +4310,7 @@
                 /* Only skip contextualization if the FULL verb+noun combo is already present */
                 const comboPresent = verbNounCombo && new RegExp(verbNounCombo, 'i').test(stLower);
                 if (!comboPresent) {
-                    const base = step.currentState.charAt(0).toLowerCase() + step.currentState.slice(1);
-                    step.currentState = `For the ${activity} step: ${base}`;
+                    step.currentState = `For ${activity}: ${lowerFirst(step.currentState)}`;
                 }
             }
 
@@ -4272,8 +4319,7 @@
                 const bnLower = step.benefit.toLowerCase();
                 const comboPresent = verbNounCombo && new RegExp(verbNounCombo, 'i').test(bnLower);
                 if (!comboPresent) {
-                    const base = step.benefit.charAt(0).toLowerCase() + step.benefit.slice(1);
-                    step.benefit = `By automating the ${activity} step: ${base}`;
+                    step.benefit = `By automating ${activity}: ${lowerFirst(step.benefit)}`;
                 }
             }
 
@@ -4343,11 +4389,7 @@
                     step.cat = kbEntry.cat;
                 }
 
-                /* ═══ RULE 1b: Step-instance contextualization ═══ */
-                /* Tailor generic KB text to reference the user's specific step description */
-                if (kbEntry) {
-                    contextualizeStepContent(step, kbEntry, industry);
-                }
+                /* ═══ RULE 1b: Moved after Rule 8 — see below ═══ */
 
                 /* ═══ RULE 2: Domain relevance — validate every row before output ═══ */
                 if (step.primaryId !== 'UNMATCHED' && !STEP_KB.find(e => e.id === step.primaryId)) {
@@ -4408,6 +4450,12 @@
                             step.currentState = kbEntry.state;
                         }
                     }
+                }
+
+                /* ═══ RULE 1b: Step-instance contextualization ═══ */
+                /* Runs AFTER Rules 7-8 so resets don't undo contextualization */
+                if (kbEntry) {
+                    contextualizeStepContent(step, kbEntry, industry);
                 }
 
                 /* ═══ RULE 9: Prevent duplicate reuse of generic state/benefit across rows ═══ */
