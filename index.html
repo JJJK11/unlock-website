@@ -2016,7 +2016,7 @@
             { id:'INCIDENT_MGMT', cat:'system', potential:0.72, complexity:0.4, keys:['incident response','breach','security incident','disaster recovery','business continuity','escalation protocol','crisis management','respond to incident','triage severity','on-call','assign engineer','on-call engineer','severity assessment','triage'], stems:['incident','breach','disaster','crisis','escal','triag'], vn:[['respond','incident'],['manage','crisis'],['escalate','breach'],['triage','severity'],['assign','engineer']], state:'Ad-hoc incident response procedures', benefit:'AI-powered incident response detects anomalies, triggers automated playbooks, and executes auto-remediation — containment starts in seconds with root cause analysis and stakeholder notifications handled by agents', recs:{q:'Document your incident response playbooks digitally and set up automated notification chains that trigger on incident detection',m:'Build an incident response agent that detects anomalies, executes playbook steps, notifies stakeholders, and tracks resolution in real time',s:'Predictive incident platform where agents detect threats before impact, auto-execute containment playbooks, and perform root cause analysis autonomously'}, ts:0.50 },
 
             /* Operations, Monitoring & Field Services */
-            { id:'EQUIP_MONITOR', cat:'ai', potential:0.82, complexity:0.4, keys:['monitor','sensors','grid sensors','monitoring','scada','telemetry','sensor data','condition monitoring','equipment monitoring','real-time monitoring','grid monitoring','performance monitoring','alarm management','fault detection','anomaly detection'], stems:['monitor','scada','telemetr','sensor','alarm','fault'], vn:[['monitor','equipment'],['monitor','sensor'],['detect','fault'],['analyze','sensor'],['track','performance']], state:'Manual monitoring of equipment and system performance via periodic checks or basic alarms', benefit:'AI continuously analyzes sensor feeds, detects anomalies before they become failures, and prioritizes alerts — operators focus on real issues instead of drowning in false alarms', recs:{q:'Consolidate sensor and monitoring feeds into one dashboard with configurable alert thresholds that suppress known noise patterns',m:'Build a condition monitoring agent that analyzes sensor data continuously, detects anomaly patterns before failure, and prioritizes alerts by business impact',s:'Digital twin platform where agents simulate equipment behavior, predict failures days in advance, and trigger maintenance actions autonomously'}, ts:0.70 },
+            { id:'EQUIP_MONITOR', cat:'ai', potential:0.82, complexity:0.4, keys:['monitor system','monitor equipment','monitor performance','sensors','grid sensors','monitoring system','scada','telemetry','sensor data','condition monitoring','equipment monitoring','real-time monitoring','grid monitoring','performance monitoring','alarm management','fault detection','anomaly detection','system performance','uptime'], stems:['scada','telemetr','sensor','alarm','fault'], vn:[['monitor','equipment'],['monitor','sensor'],['monitor','system'],['monitor','performance'],['detect','fault'],['analyze','sensor'],['track','performance'],['monitor','uptime']], state:'Manual monitoring of equipment and system performance via periodic checks or basic alarms', benefit:'AI continuously analyzes sensor feeds, detects anomalies before they become failures, and prioritizes alerts — operators focus on real issues instead of drowning in false alarms', recs:{q:'Consolidate sensor and monitoring feeds into one dashboard with configurable alert thresholds that suppress known noise patterns',m:'Build a condition monitoring agent that analyzes sensor data continuously, detects anomaly patterns before failure, and prioritizes alerts by business impact',s:'Digital twin platform where agents simulate equipment behavior, predict failures days in advance, and trigger maintenance actions autonomously'}, ts:0.70 },
             { id:'OUTAGE_MGMT', cat:'system', potential:0.75, complexity:0.45, keys:['restoration','coordinate restoration','restoration sequencing','outage','outage management','power outage','service disruption','fault isolation','trouble dispatch','crew dispatch','storm response','emergency response','service restoration'], stems:['outage','restor','disrupt','dispatch'], vn:[['manage','outage'],['restore','service'],['dispatch','crew'],['isolate','fault'],['coordinate','restoration']], state:'Reactive outage response with manual crew coordination and customer notification', benefit:'Outages detected in seconds via smart grid sensors, crews auto-dispatched to the right location with optimal routing, and customers notified automatically with real-time ETAs', recs:{q:'Digitize outage reporting with automated customer notifications and crew dispatch checklists accessible on mobile devices',m:'Build an outage management agent that detects disruptions, auto-dispatches nearest qualified crews, optimizes routing, and sends customer ETAs',s:'Resilience platform where agents predict outage risk from weather and load data, pre-position crews, and execute restoration sequences autonomously'}, ts:0.60 },
             { id:'MAINT_MGMT', cat:'system', potential:0.78, complexity:0.35, keys:['maintenance planning','preventive maintenance','predictive maintenance','work order','maintenance schedule','asset maintenance','equipment maintenance','maintenance workflow','corrective maintenance','pm schedule','maintenance program','facility work order'], stems:['mainten','workorder'], vn:[['schedule','maintenance'],['create','work order'],['plan','maintenance'],['maintain','equipment']], state:'Calendar-based or reactive maintenance with manual work order tracking', benefit:'Maintenance shifts from calendar-based to condition-based — AI predicts failures before they happen, auto-generates work orders, and optimizes technician schedules to significantly reduce unplanned downtime', recs:{q:'Digitize work orders on mobile devices and build an asset register with maintenance history — replace clipboard-based tracking this week',m:'Set up a maintenance management system with preventive schedules, mobile work orders, and automatic parts availability checks before dispatch',s:'Predictive maintenance platform where agents analyze sensor data to predict failures, auto-generate work orders, and optimize technician schedules continuously'}, ts:0.65 },
             { id:'WORK_EXECUTION', cat:'human', potential:0.50, complexity:0.45, keys:['repair','repair execution','fix equipment','hands-on','physical work','installation','install equipment','replace component','rebuild','overhaul','corrective repair','troubleshoot equipment','wire','wiring','assembly','disassembly','commissioning','decommission'], stems:['repair','install','rebuild','overhaul','troubleshoot','commission','assembl','wire'], vn:[['repair','equipment'],['fix','issue'],['install','component'],['replace','part'],['troubleshoot','fault'],['execute','repair']], state:'Technicians rely on experience, paper procedures, and phone calls to senior staff when stuck', benefit:'AR-guided step-by-step procedures overlaid on equipment, digital safety checklists auto-enforced before work begins, parts confirmed available before dispatch, and remote expert video assistance when needed — faster repairs with fewer return visits', recs:{q:'Convert paper repair procedures to mobile digital checklists with photo capture and safety sign-off requirements built in',m:'Set up a mobile work execution platform with digital procedures, parts lookup, and remote video assistance for complex repairs',s:'AI-assisted repair platform where agents recommend repair sequences from fault codes and history, guide technicians step-by-step, and verify completion'}, ts:0.35 },
@@ -4775,18 +4775,18 @@
 
         /* ── Department → relevant KB IDs (single source of truth) ── */
         const DEPT_DOMAIN_IDS = {
-            'Finance & Accounting': ['DATA_ENTRY','INVOICE_PROC','RECONCILIATION','FINANCIAL_CLOSE','JOURNAL_POST','REPORTING','APPROVAL','COMPLIANCE_GOV','DATA_VALIDATE','DOC_UNDERSTAND','FORM_PROC','REVIEW_AUDIT','RISK_SCORING','DATA_CLEANSE','MASTER_DATA','STATUS_TRACK','CONTRACT_MGMT'],
-            'Human Resources': ['ONBOARDING','SCHEDULING','PERF_MGMT','WORKFORCE_PLAN','TRAINING','REPORTING','APPROVAL','DATA_ENTRY','DOC_UNDERSTAND','FORM_PROC','EMAIL_COMMS','COMPLIANCE_GOV','TEMPLATE_GEN','SENTIMENT','EMAIL_DRAFT','RECRUITING','RESUME_SCREEN','BACKGROUND_CHECK','CUST_FEEDBACK','ASSET_MGMT'],
-            'IT & Engineering': ['INCIDENT_MGMT','OUTAGE_MGMT','CODE_GEN','API_MGMT','LEGACY_MOD','TICKET_SUPPORT','STATUS_TRACK','DATA_TRANSFER','EQUIP_MONITOR','REPORTING','APPROVAL','DOC_UNDERSTAND','KNOWLEDGE_BASE','SEARCH_RETRIEVAL','PROJECT_MGMT','LOG_ANALYSIS','CI_CD_DEPLOY','TEST_QA'],
-            'Operations': ['SCHEDULING','INVENTORY','ASSET_MGMT','MAINT_MGMT','EQUIP_MONITOR','QUALITY_INSPECT','SAFETY_ENV','FIELD_SERVICE','STATUS_TRACK','TASK_ASSIGN','REPORTING','DATA_ENTRY','APPROVAL','DOC_UNDERSTAND','WORK_EXECUTION','TEST_QA','CONTRACT_MGMT'],
-            'Sales & Marketing': ['LEAD_SCORING','CHURN_PREDICT','PERSONALIZE','RECOMMEND','CONTENT_GEN','EMAIL_DRAFT','EMAIL_COMMS','SENTIMENT','CONVO_ANALYSIS','REPORTING','CUST_FEEDBACK','CHATBOT','DATA_ENTRY','TEMPLATE_GEN','DEMAND_FORECAST','STATUS_TRACK'],
-            'Customer Service': ['TICKET_SUPPORT','CHATBOT','SENTIMENT','CONVO_ANALYSIS','CUST_FEEDBACK','KNOWLEDGE_BASE','EMAIL_COMMS','EMAIL_DRAFT','PERSONALIZE','REPORTING','STATUS_TRACK','TEMPLATE_GEN','SEARCH_RETRIEVAL','ONBOARDING','TEXT_CLASSIFY','QUALITY_INSPECT','INVOICE_PROC'],
-            'Supply Chain': ['PROCUREMENT','INVENTORY','DEMAND_FORECAST','SCHEDULING','DATA_TRANSFER','APPROVAL','REPORTING','DOC_UNDERSTAND','INVOICE_PROC','RECONCILIATION','STATUS_TRACK','ASSET_MGMT','RISK_SCORING','QUALITY_INSPECT','EMAIL_COMMS'],
-            'Legal': ['CONTRACT_MGMT','COMPLIANCE_GOV','REVIEW_AUDIT','DOC_UNDERSTAND','DOC_SEARCH','SEARCH_RETRIEVAL','ENTITY_EXTRACT','SUMMARIZATION','TEMPLATE_GEN','APPROVAL','REPORTING','RISK_SCORING','EMAIL_COMMS','CONTENT_GEN'],
-            'Procurement': ['PROCUREMENT','INVOICE_PROC','APPROVAL','CONTRACT_MGMT','DOC_UNDERSTAND','REPORTING','RECONCILIATION','DATA_ENTRY','RISK_SCORING','COMPLIANCE_GOV','FORM_PROC','EMAIL_COMMS','DEMAND_FORECAST','DECISION','REVIEW_AUDIT','STATUS_TRACK'],
-            'Executive / C-Suite': ['REPORTING','SUMMARIZATION','MEETING_MGMT','DECISION','PROJECT_MGMT','STATUS_TRACK','EMAIL_COMMS','DOC_UNDERSTAND','RISK_SCORING','DEMAND_FORECAST','WORKFORCE_PLAN','CONTENT_GEN','RECOMMEND','CONTRACT_MGMT','REVIEW_AUDIT'],
-            'Research & Development': ['CODE_GEN','DOC_UNDERSTAND','SEARCH_RETRIEVAL','DOC_SEARCH','KNOWLEDGE_BASE','DATA_CLEANSE','DATA_VALIDATE','REPORTING','PROJECT_MGMT','STATUS_TRACK','CONTENT_GEN','REVIEW_AUDIT','SUMMARIZATION','ENTITY_EXTRACT','TEST_QA','RESUME_SCREEN','TASK_ASSIGN','TEMPLATE_GEN','DATA_ENTRY'],
-            'Compliance & Risk': ['COMPLIANCE_GOV','RISK_SCORING','REVIEW_AUDIT','DOC_UNDERSTAND','REPORTING','DATA_VALIDATE','ENTITY_EXTRACT','SEARCH_RETRIEVAL','DOC_SEARCH','CONTRACT_MGMT','STATUS_TRACK','SUMMARIZATION','APPROVAL','SCHEDULING','KNOWLEDGE_BASE']
+            'Finance & Accounting': ['DATA_ENTRY','INVOICE_PROC','RECONCILIATION','FINANCIAL_CLOSE','JOURNAL_POST','REPORTING','APPROVAL','COMPLIANCE_GOV','DATA_VALIDATE','DOC_UNDERSTAND','FORM_PROC','REVIEW_AUDIT','RISK_SCORING','DATA_CLEANSE','MASTER_DATA','STATUS_TRACK','CONTRACT_MGMT','DEMAND_FORECAST'],
+            'Human Resources': ['ONBOARDING','SCHEDULING','PERF_MGMT','WORKFORCE_PLAN','TRAINING','REPORTING','APPROVAL','DATA_ENTRY','DOC_UNDERSTAND','FORM_PROC','EMAIL_COMMS','COMPLIANCE_GOV','TEMPLATE_GEN','SENTIMENT','EMAIL_DRAFT','RECRUITING','RESUME_SCREEN','BACKGROUND_CHECK','CUST_FEEDBACK','ASSET_MGMT','STATUS_TRACK'],
+            'IT & Engineering': ['INCIDENT_MGMT','OUTAGE_MGMT','CODE_GEN','API_MGMT','LEGACY_MOD','TICKET_SUPPORT','STATUS_TRACK','DATA_TRANSFER','EQUIP_MONITOR','REPORTING','APPROVAL','DOC_UNDERSTAND','KNOWLEDGE_BASE','SEARCH_RETRIEVAL','PROJECT_MGMT','LOG_ANALYSIS','CI_CD_DEPLOY','TEST_QA','ONBOARDING','DECISION','REVIEW_AUDIT'],
+            'Operations': ['SCHEDULING','INVENTORY','ASSET_MGMT','MAINT_MGMT','EQUIP_MONITOR','QUALITY_INSPECT','SAFETY_ENV','FIELD_SERVICE','STATUS_TRACK','TASK_ASSIGN','REPORTING','DATA_ENTRY','APPROVAL','DOC_UNDERSTAND','WORK_EXECUTION','TEST_QA','CONTRACT_MGMT','TICKET_SUPPORT','FORM_PROC'],
+            'Sales & Marketing': ['LEAD_SCORING','CHURN_PREDICT','PERSONALIZE','RECOMMEND','CONTENT_GEN','EMAIL_DRAFT','EMAIL_COMMS','SENTIMENT','CONVO_ANALYSIS','REPORTING','CUST_FEEDBACK','CHATBOT','DATA_ENTRY','TEMPLATE_GEN','DEMAND_FORECAST','STATUS_TRACK','SCHEDULING','APPROVAL','SEARCH_RETRIEVAL','FORM_PROC','REVIEW_AUDIT'],
+            'Customer Service': ['TICKET_SUPPORT','CHATBOT','SENTIMENT','CONVO_ANALYSIS','CUST_FEEDBACK','KNOWLEDGE_BASE','EMAIL_COMMS','EMAIL_DRAFT','PERSONALIZE','REPORTING','STATUS_TRACK','TEMPLATE_GEN','SEARCH_RETRIEVAL','ONBOARDING','TEXT_CLASSIFY','QUALITY_INSPECT','INVOICE_PROC','DATA_ENTRY','SCHEDULING','DATA_VALIDATE','INVENTORY','LOG_ANALYSIS','FORM_PROC'],
+            'Supply Chain': ['PROCUREMENT','INVENTORY','DEMAND_FORECAST','SCHEDULING','DATA_TRANSFER','APPROVAL','REPORTING','DOC_UNDERSTAND','INVOICE_PROC','RECONCILIATION','STATUS_TRACK','ASSET_MGMT','RISK_SCORING','QUALITY_INSPECT','EMAIL_COMMS','DATA_ENTRY','DATA_VALIDATE'],
+            'Legal': ['CONTRACT_MGMT','COMPLIANCE_GOV','REVIEW_AUDIT','DOC_UNDERSTAND','DOC_SEARCH','SEARCH_RETRIEVAL','ENTITY_EXTRACT','SUMMARIZATION','TEMPLATE_GEN','APPROVAL','REPORTING','RISK_SCORING','EMAIL_COMMS','CONTENT_GEN','STATUS_TRACK'],
+            'Procurement': ['PROCUREMENT','INVOICE_PROC','APPROVAL','CONTRACT_MGMT','DOC_UNDERSTAND','REPORTING','RECONCILIATION','DATA_ENTRY','RISK_SCORING','COMPLIANCE_GOV','FORM_PROC','EMAIL_COMMS','DEMAND_FORECAST','DECISION','REVIEW_AUDIT','STATUS_TRACK','BACKGROUND_CHECK','SCHEDULING','DATA_VALIDATE','TEXT_CLASSIFY'],
+            'Executive / C-Suite': ['REPORTING','SUMMARIZATION','MEETING_MGMT','DECISION','PROJECT_MGMT','STATUS_TRACK','EMAIL_COMMS','DOC_UNDERSTAND','RISK_SCORING','DEMAND_FORECAST','WORKFORCE_PLAN','CONTENT_GEN','RECOMMEND','CONTRACT_MGMT','REVIEW_AUDIT','DATA_ENTRY','TASK_ASSIGN'],
+            'Research & Development': ['CODE_GEN','DOC_UNDERSTAND','SEARCH_RETRIEVAL','DOC_SEARCH','KNOWLEDGE_BASE','DATA_CLEANSE','DATA_VALIDATE','REPORTING','PROJECT_MGMT','STATUS_TRACK','CONTENT_GEN','REVIEW_AUDIT','SUMMARIZATION','ENTITY_EXTRACT','TEST_QA','RESUME_SCREEN','TASK_ASSIGN','TEMPLATE_GEN','DATA_ENTRY','COMPLIANCE_GOV','TRAINING','EQUIP_MONITOR'],
+            'Compliance & Risk': ['COMPLIANCE_GOV','RISK_SCORING','REVIEW_AUDIT','DOC_UNDERSTAND','REPORTING','DATA_VALIDATE','ENTITY_EXTRACT','SEARCH_RETRIEVAL','DOC_SEARCH','CONTRACT_MGMT','STATUS_TRACK','SUMMARIZATION','APPROVAL','SCHEDULING','KNOWLEDGE_BASE','SAFETY_ENV','EMAIL_COMMS','PROCUREMENT','TASK_ASSIGN']
         };
 
         /* ── Workflow Archetypes (48 types across 12 departments) ── */
@@ -5650,23 +5650,37 @@
             const deptCtx = DEPARTMENT_CONTEXT[department];
             const deptKeys = deptCtx ? deptCtx.keywords : [];
 
-            /* Score against all KB entries with domain bias */
-            let results = [];
+            /* Score against KB entries with domain-gated filtering.
+               Phase 1: Score in-domain entries only (from DEPT_DOMAIN_IDS).
+               Phase 2: If no adequate in-domain match (score < 3.0), try all entries
+               with heavy penalty so out-of-domain matches are a last resort. */
+            const deptDomainIds = DEPT_DOMAIN_IDS[department] || [];
+            const deptDomainSet = new Set(deptDomainIds);
+            let inDomainResults = [];
+            let outDomainResults = [];
             for (const entry of STEP_KB) {
                 let { score, matched } = scoreStepAgainstEntry(words, lower, stemmedWords, entry, deptKeys, patternBoosts);
                 if (score >= 1.5) {
-                    /* Domain bias: boost in-domain entries, penalize out-of-domain */
-                    if (domainProfile) {
-                        if (domainProfile.domainIds.has(entry.id)) {
-                            score *= 1.15;  /* 15% boost for domain-relevant entries */
-                        } else {
-                            score *= 0.80;  /* 20% penalty for out-of-domain entries */
-                        }
+                    const inDomain = deptDomainSet.has(entry.id);
+                    if (inDomain) {
+                        score *= 1.15;  /* 15% boost for domain-relevant */
+                        inDomainResults.push({ entry, score, matched });
+                    } else {
+                        score *= 0.60;  /* 40% penalty for out-of-domain */
+                        outDomainResults.push({ entry, score, matched });
                     }
-                    results.push({ entry, score, matched });
                 }
             }
-            results.sort((a, b) => b.score - a.score);
+            inDomainResults.sort((a, b) => b.score - a.score);
+            outDomainResults.sort((a, b) => b.score - a.score);
+            /* Use in-domain results if best score >= 3.0; otherwise merge with out-of-domain */
+            let results;
+            if (inDomainResults.length > 0 && inDomainResults[0].score >= 3.0) {
+                results = inDomainResults;
+            } else {
+                results = inDomainResults.concat(outDomainResults);
+                results.sort((a, b) => b.score - a.score);
+            }
             const topMatches = results.slice(0, 3);
 
             /* Base potential from best match or default */
@@ -5698,11 +5712,13 @@
             }
 
             /* Context overlay — scope-enforced priority chain:
-               state:   workflow(state) > step_type > dept > industry > base KB
-               benefit: workflow(benefit) > dept > industry > step_type > base KB
-               recs:    workflow > step_type > base KB
-               Workflow overlays are the most scoped (kbId × dept × workflowType)
-               so they take highest priority when they carry state/benefit fields. */
+               Shared entries (3+ depts): state uses dept overlay first (dept-specific).
+               Non-shared entries: state uses step_type first (verb-specific, already domain-scoped).
+               Workflow overlay always wins when it carries state/benefit.
+               state (shared):     workflow > dept > step_type > industry > base
+               state (non-shared): workflow > step_type > dept > industry > base
+               benefit:            workflow > dept > industry > step_type > base
+               recs:               workflow > step_type > base */
             let stepType = detectStepType(stepText);
             let stepTypeApplied = false;
             let deptOvApplied = false;
@@ -5720,16 +5736,20 @@
                     && WORKFLOW_OVERLAYS[primaryId][department]
                     && WORKFLOW_OVERLAYS[primaryId][department][workflowType])
                     ? WORKFLOW_OVERLAYS[primaryId][department][workflowType] : null;
+                /* Is this KB entry shared across 3+ departments? */
+                let sharedEntry = false;
+                { let dc = 0; for (const ids of Object.values(DEPT_DOMAIN_IDS)) { if (ids.includes(primaryId)) dc++; } sharedEntry = dc >= 3; }
                 if (deptOv) overlayIds.push('dept:' + primaryId + '×' + department);
                 if (indOv) overlayIds.push('ind:' + primaryId + '×' + industry);
                 if (stOv) overlayIds.push('st:' + primaryId + '×' + stepType);
                 if (wfOvRaw) overlayIds.push('wf:' + primaryId + '×' + department + '×' + workflowType);
-                /* state: workflow(state) > step_type > dept > industry > base */
+                /* state: workflow always wins; then dept for shared, step_type for non-shared */
                 if (wfOvRaw && wfOvRaw.state) { state = wfOvRaw.state; stepTypeApplied = true; stateSource = 'workflow'; }
+                else if (sharedEntry && deptOv) { state = deptOv.state; stateSource = 'dept'; }
                 else if (stOv) { state = stOv.state; stepTypeApplied = true; stateSource = 'step_type'; }
                 else if (deptOv) { state = deptOv.state; stateSource = 'dept'; }
                 else if (indOv) { state = indOv.state; stateSource = 'industry'; }
-                /* benefit: workflow(benefit) > dept > industry > step_type > base */
+                /* benefit: workflow > dept > industry > step_type > base */
                 if (wfOvRaw && wfOvRaw.benefit) { benefit = wfOvRaw.benefit; workflowOvApplied = true; benefitSource = 'workflow'; }
                 else if (deptOv) { benefit = deptOv.benefit; deptOvApplied = true; benefitSource = 'dept'; }
                 else if (indOv) { benefit = indOv.benefit; indOvApplied = true; benefitSource = 'industry'; }
@@ -6274,9 +6294,8 @@
                 const kbEntry = step.primaryId !== 'UNMATCHED' ? STEP_KB.find(e => e.id === step.primaryId) : null;
 
                 /* ═══ RULE 1: Lock process ID — scope-enforced overlay chain ═══ */
-                /* state:   workflow(state) > step_type > dept > industry > base KB
-                   benefit: workflow(benefit) > dept > industry > step_type > base KB
-                   recs:    workflow > step_type > base KB */
+                /* Shared entries (3+ depts): dept overlay wins for state.
+                   Non-shared entries: step_type wins for state (already domain-scoped). */
                 if (kbEntry) {
                     const deptOv = DEPT_OVERLAYS[step.primaryId] && DEPT_OVERLAYS[step.primaryId][department];
                     const indOv = CONTEXT_OVERLAYS[step.primaryId] && CONTEXT_OVERLAYS[step.primaryId][industry];
@@ -6285,8 +6304,11 @@
                         && WORKFLOW_OVERLAYS[step.primaryId][department]
                         && WORKFLOW_OVERLAYS[step.primaryId][department][workflowType])
                         ? WORKFLOW_OVERLAYS[step.primaryId][department][workflowType] : null;
-                    /* state: workflow(state) > step_type > dept > industry > base */
+                    let sharedEntry = false;
+                    { let dc = 0; for (const ids of Object.values(DEPT_DOMAIN_IDS)) { if (ids.includes(step.primaryId)) dc++; } sharedEntry = dc >= 3; }
+                    /* state: workflow > [shared? dept : step_type] > [shared? step_type : dept] > industry > base */
                     if (wfOv && wfOv.state) { step.currentState = wfOv.state; step.stepTypeApplied = true; step.workflowOvApplied = true; if (step._trace) step._trace.stateSource = 'workflow'; }
+                    else if (sharedEntry && deptOv) { step.currentState = deptOv.state; if (step._trace) step._trace.stateSource = 'dept'; }
                     else if (stOv) { step.currentState = stOv.state; step.stepTypeApplied = true; if (step._trace) step._trace.stateSource = 'step_type'; }
                     else if (deptOv) { step.currentState = deptOv.state; if (step._trace) step._trace.stateSource = 'dept'; }
                     else if (indOv) { step.currentState = indOv.state; if (step._trace) step._trace.stateSource = 'industry'; }
