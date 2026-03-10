@@ -5216,16 +5216,26 @@
                 primaryId = 'UNMATCHED';
             }
 
-            /* Context overlay — step_type > department > industry > base KB */
+            /* Context overlay — each dimension has a dedicated role:
+               state:   step_type > dept > industry > base KB
+               benefit: dept > industry > step_type > base KB
+               recs:    workflow_type > base KB */
             let stepType = detectStepType(stepText);
             let stepTypeApplied = false;
+            let deptOvApplied = false;
+            let indOvApplied = false;
             if (primaryId !== 'UNMATCHED') {
                 const deptOv = DEPT_OVERLAYS[primaryId] && DEPT_OVERLAYS[primaryId][department];
                 const indOv = CONTEXT_OVERLAYS[primaryId] && CONTEXT_OVERLAYS[primaryId][industry];
                 const stOv = STEP_TYPE_OVERLAYS[primaryId] && STEP_TYPE_OVERLAYS[primaryId][stepType];
-                if (stOv) { state = stOv.state; benefit = stOv.benefit; stepTypeApplied = true; }
-                else if (deptOv) { state = deptOv.state; benefit = deptOv.benefit; }
-                else if (indOv) { state = indOv.state; benefit = indOv.benefit; }
+                /* state: step_type > dept > industry > base */
+                if (stOv) { state = stOv.state; stepTypeApplied = true; }
+                else if (deptOv) { state = deptOv.state; }
+                else if (indOv) { state = indOv.state; }
+                /* benefit: dept > industry > step_type > base */
+                if (deptOv) { benefit = deptOv.benefit; deptOvApplied = true; }
+                else if (indOv) { benefit = indOv.benefit; indOvApplied = true; }
+                else if (stOv) { benefit = stOv.benefit; }
                 /* Workflow-type recs override */
                 if (workflowType && WORKFLOW_OVERLAYS[primaryId]
                     && WORKFLOW_OVERLAYS[primaryId][department]
@@ -5291,6 +5301,8 @@
                 primaryId,
                 stepType,
                 stepTypeApplied,
+                deptOvApplied,
+                indOvApplied,
                 complexity,
                 techTier,
                 matchScore: topScore,
@@ -5634,18 +5646,21 @@
                 : activity;
 
             /* Contextualize current state — prefix with what the user actually does */
-            /* Step-type overlay provides action-specific text; skip generic verb-prefix */
+            /* Step-type overlay provides action-specific state; skip state prefix when applied.
+               Benefit may come from dept/industry overlay (not action-specific), so contextualize independently. */
             if (!step.stepTypeApplied) {
                 if (activity && step.currentState) {
                     const stLower = step.currentState.toLowerCase();
-                    /* Only skip contextualization if the FULL verb+noun combo is already present */
                     const comboPresent = verbNounCombo && new RegExp(verbNounCombo, 'i').test(stLower);
                     if (!comboPresent) {
                         step.currentState = `For ${activity}: ${lowerFirst(step.currentState)}`;
                     }
                 }
+            }
 
-                /* Contextualize benefit — connect the automation outcome to the user's specific action */
+            /* Benefit contextualization — skip only when benefit came from step_type overlay
+               (which is action-specific). Dept and industry benefits need the activity prefix. */
+            if (!step.stepTypeApplied || step.deptOvApplied || step.indOvApplied) {
                 if (activity && step.benefit) {
                     const bnLower = step.benefit.toLowerCase();
                     const comboPresent = verbNounCombo && new RegExp(verbNounCombo, 'i').test(bnLower);
@@ -5745,16 +5760,24 @@
             for (const step of analyzedSteps) {
                 const kbEntry = step.primaryId !== 'UNMATCHED' ? STEP_KB.find(e => e.id === step.primaryId) : null;
 
-                /* ═══ RULE 1: Lock process ID — all content derives from classified step type ═══ */
-                /* Priority chain: step_type overlay > department overlay > industry overlay > base KB */
+                /* ═══ RULE 1: Lock process ID — each dimension has a dedicated role ═══ */
+                /* state:   step_type > dept > industry > base KB
+                   benefit: dept > industry > step_type > base KB
+                   recs:    workflow_type > base KB */
                 if (kbEntry) {
                     const deptOv = DEPT_OVERLAYS[step.primaryId] && DEPT_OVERLAYS[step.primaryId][department];
                     const indOv = CONTEXT_OVERLAYS[step.primaryId] && CONTEXT_OVERLAYS[step.primaryId][industry];
                     const stOv = STEP_TYPE_OVERLAYS[step.primaryId] && STEP_TYPE_OVERLAYS[step.primaryId][step.stepType];
-                    if (stOv) { step.currentState = stOv.state; step.benefit = stOv.benefit; step.stepTypeApplied = true; }
-                    else if (deptOv) { step.currentState = deptOv.state; step.benefit = deptOv.benefit; }
-                    else if (indOv) { step.currentState = indOv.state; step.benefit = indOv.benefit; }
-                    else { step.currentState = kbEntry.state; step.benefit = kbEntry.benefit; }
+                    /* state: step_type > dept > industry > base */
+                    if (stOv) { step.currentState = stOv.state; step.stepTypeApplied = true; }
+                    else if (deptOv) { step.currentState = deptOv.state; }
+                    else if (indOv) { step.currentState = indOv.state; }
+                    else { step.currentState = kbEntry.state; }
+                    /* benefit: dept > industry > step_type > base */
+                    if (deptOv) { step.benefit = deptOv.benefit; step.deptOvApplied = true; }
+                    else if (indOv) { step.benefit = indOv.benefit; step.indOvApplied = true; }
+                    else if (stOv) { step.benefit = stOv.benefit; }
+                    else { step.benefit = kbEntry.benefit; }
                     step.recs = { ...kbEntry.recs };
                     /* Workflow-type recs override */
                     if (workflowType && WORKFLOW_OVERLAYS[step.primaryId]
@@ -5792,38 +5815,39 @@
                     }
                 }
 
-                /* ═══ RULE 7: Semantic consistency — state and benefit must reference same task ═══ */
-                /* With DEPT_OVERLAYS, department alignment is structural (not keyword-based).
-                   Keep core-term check as safety net only when using industry overlay fallback. */
+                /* ═══ RULE 7: Semantic consistency — per-field safety net ═══ */
+                /* Each field may come from a different overlay. Apply core-term check
+                   only to fields sourced from the industry overlay (weakest specificity). */
                 if (kbEntry) {
-                    const hasDeptOv = DEPT_OVERLAYS[step.primaryId] && DEPT_OVERLAYS[step.primaryId][department];
-                    if (!hasDeptOv && !step.stepTypeApplied) {
-                        /* Industry overlay in use — verify it references the right KB domain */
+                    const stateFromIndustry = !step.stepTypeApplied && !(DEPT_OVERLAYS[step.primaryId] && DEPT_OVERLAYS[step.primaryId][department]) && (CONTEXT_OVERLAYS[step.primaryId] && CONTEXT_OVERLAYS[step.primaryId][industry]);
+                    const benefitFromIndustry = !step.deptOvApplied && step.indOvApplied;
+                    if (stateFromIndustry || benefitFromIndustry) {
                         const coreTerms = kbEntry.keys.slice(0, 5);
                         const genericWords = new Set(['new','set','run','get','put','use','add','all','any','old','top','key','big']);
                         const termWords = coreTerms.map(t => t.split(' ')[0]).filter(w => w.length > 2 && !genericWords.has(w));
-                        const stateHit = termWords.some(t => step.currentState.toLowerCase().includes(t));
-                        const benefitHit = termWords.some(t => step.benefit.toLowerCase().includes(t));
-                        if (!stateHit && !benefitHit) {
-                            step.currentState = kbEntry.state;
-                            step.benefit = kbEntry.benefit;
+                        if (stateFromIndustry) {
+                            const stateHit = termWords.some(t => step.currentState.toLowerCase().includes(t));
+                            if (!stateHit) { step.currentState = kbEntry.state; }
+                        }
+                        if (benefitFromIndustry) {
+                            const benefitHit = termWords.some(t => step.benefit.toLowerCase().includes(t));
+                            if (!benefitHit) { step.benefit = kbEntry.benefit; step.indOvApplied = false; }
                         }
                     }
                 }
 
                 /* ═══ RULE 8: Block cross-domain pattern injection ═══ */
-                /* Only apply to BASE KB text — dept overlays and industry overlays are
-                   hand-curated and legitimately contain cross-domain vocabulary */
-                const hasDeptOvR8 = kbEntry && DEPT_OVERLAYS[step.primaryId] && DEPT_OVERLAYS[step.primaryId][department];
-                const hasIndOvR8 = kbEntry && CONTEXT_OVERLAYS[step.primaryId] && CONTEXT_OVERLAYS[step.primaryId][industry];
-                const hasStepTypeOvR8 = kbEntry && step.stepTypeApplied;
-                if (deptLangKey && !hasDeptOvR8 && !hasIndOvR8 && !hasStepTypeOvR8) {
+                /* Only apply to fields sourced from BASE KB text — overlay text is
+                   hand-curated. With split sourcing, check each field independently. */
+                if (deptLangKey && kbEntry) {
+                    const stateFromOverlay = step.stepTypeApplied || (DEPT_OVERLAYS[step.primaryId] && DEPT_OVERLAYS[step.primaryId][department]) || (CONTEXT_OVERLAYS[step.primaryId] && CONTEXT_OVERLAYS[step.primaryId][industry]);
+                    const benefitFromOverlay = step.deptOvApplied || step.indOvApplied || step.stepTypeApplied;
                     for (const [domKey, pattern] of Object.entries(DOMAIN_LANG)) {
                         if (domKey === deptLangKey) continue;
-                        if (pattern.test(step.benefit) && kbEntry) {
+                        if (!benefitFromOverlay && pattern.test(step.benefit)) {
                             step.benefit = kbEntry.benefit;
                         }
-                        if (pattern.test(step.currentState) && kbEntry) {
+                        if (!stateFromOverlay && pattern.test(step.currentState)) {
                             step.currentState = kbEntry.state;
                         }
                     }
