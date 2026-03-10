@@ -4248,6 +4248,152 @@
             }
         };
 
+        /* ── Step-type overlays: refine KB state/benefit by action type ── */
+        const STEP_TYPE_OVERLAYS = {
+
+            /* ── Tier 1: high-frequency KB entries (6-8 step types) ── */
+
+            'INVENTORY': {
+                'RECEIVE': { state:'Warehouse staff manually log inbound inventory shipments, count items against packing slips, and enter received quantities into tracking systems', benefit:'Sensors and barcode scans auto-capture inventory receipts at the dock — quantities validated against POs instantly with discrepancies flagged before putaway' },
+                'VALIDATE': { state:'Inventory counts verified manually by comparing physical stock against system records, often uncovering discrepancies days after they occur', benefit:'Automated inventory validation runs continuous cycle counts against system records — variances surface immediately with root-cause tagging' },
+                'LOOKUP': { state:'Staff search multiple inventory systems and spreadsheets to locate specific stock quantities, bin locations, or lot numbers', benefit:'A single inventory query returns real-time stock levels, bin locations, lot history, and incoming supply across all warehouses instantly' },
+                'GENERATE': { state:'Inventory reports, pick lists, and reorder requests created manually by pulling data from warehouse systems into spreadsheets', benefit:'AI generates pick lists, reorder recommendations, and inventory health reports automatically — optimized by demand patterns and lead times' },
+                'UPDATE': { state:'Inventory records updated manually after each transaction, creating lag between physical stock movements and system quantities', benefit:'Inventory records update in real time as goods move — every pick, put, transfer, and adjustment reflected instantly across all systems' },
+                'MONITOR': { state:'Inventory levels checked reactively through periodic reports, with stockouts or overstock discovered only during scheduled reviews', benefit:'Continuous inventory monitoring alerts teams to approaching reorder points, expiring lots, and abnormal consumption patterns before problems occur' },
+                'ANALYZE': { state:'Inventory analysis performed manually through spreadsheet pivots, comparing turnover and carrying costs across limited historical windows', benefit:'AI analyzes inventory turnover, carrying costs, demand seasonality, and supplier lead-time variability — recommending optimal stock levels by SKU' },
+                'ROUTE': { state:'Transfer orders and replenishment requests routed manually between warehouse locations via email or paper-based systems', benefit:'Inventory replenishment and transfer orders route automatically based on stock levels, demand signals, and fulfillment priorities across locations' }
+            },
+            'INVOICE_PROC': {
+                'RECEIVE': { state:'Invoices arrive through multiple channels — email, mail, portal — and staff manually log each one into the AP system for processing', benefit:'All invoices captured automatically regardless of channel — email, EDI, portal, or paper — with data extracted and queued for matching in seconds' },
+                'VALIDATE': { state:'AP clerks manually verify invoice details against purchase orders and receiving records, checking line items, quantities, and pricing one by one', benefit:'AI validates every invoice line against PO terms, receipt quantities, and contract pricing — flagging only genuine exceptions for human review' },
+                'GENERATE': { state:'Payment batches, remittance advices, and AP aging reports assembled manually from invoice processing data', benefit:'Payment batches, remittance advices, and aging reports generate automatically from processed invoice data — ready for review without manual assembly' },
+                'ROUTE': { state:'Invoices with exceptions or missing approvals forwarded manually to the right department via email, often sitting in inboxes for days', benefit:'Exception invoices route automatically to the right approver based on amount, category, and vendor — with escalation if SLA thresholds are breached' },
+                'UPDATE': { state:'Invoice status updates entered manually into the AP system after each processing step, creating gaps in payment visibility', benefit:'Invoice status updates automatically at every stage — received, matched, approved, scheduled, paid — giving vendors and buyers real-time payment visibility' },
+                'EXECUTE': { state:'Invoice processing requires manual steps for data entry, matching, coding, and posting — each invoice touching multiple hands before payment', benefit:'Straight-through invoice processing handles data capture, matching, GL coding, and posting without manual intervention for clean invoices' }
+            },
+            'TICKET_SUPPORT': {
+                'RECEIVE': { state:'Support tickets arrive through email, phone, chat, and portal, with agents manually logging and categorizing each incoming request', benefit:'Tickets from all channels auto-captured with AI-extracted category, priority, and affected system — no manual intake logging required' },
+                'VALIDATE': { state:'Agents manually verify ticket details, check for duplicates, and confirm the reported issue is reproducible before beginning resolution', benefit:'AI validates ticket completeness, detects duplicates, and confirms issue categorization — agents start with verified, enriched ticket data' },
+                'ROUTE': { state:'Tickets assigned manually by dispatchers who scan the queue and route based on memory of team availability and expertise', benefit:'AI routes tickets to the best-qualified available agent based on skill match, workload, priority, and historical resolution patterns' },
+                'EXECUTE': { state:'Agents manually research each ticket, consult knowledge bases, and perform resolution steps — handling one ticket at a time through the queue', benefit:'AI agents resolve routine tickets end-to-end — executing known fixes, running diagnostics, and updating records — escalating only novel issues to humans' },
+                'COMMUNICATE': { state:'Agents manually send status updates to ticket requestors, often forgetting follow-ups or providing inconsistent information across channels', benefit:'Automated notifications keep requestors informed at every stage — acknowledgment, progress updates, and resolution summaries sent without agent effort' },
+                'ANALYZE': { state:'Support managers manually review ticket data to identify trending issues, agent performance patterns, and service level compliance', benefit:'AI analyzes ticket trends, resolution patterns, and SLA performance in real time — surfacing systemic issues and improvement opportunities automatically' }
+            },
+            'DATA_ENTRY': {
+                'RECEIVE': { state:'Source documents for data entry arrive through mixed channels — paper, email, fax — and staff manually sort and queue them for processing', benefit:'Incoming documents auto-ingested from all channels, classified by type, and queued for extraction — eliminating manual sorting and intake delays' },
+                'VALIDATE': { state:'Entered data checked manually against source documents, with reviewers comparing fields one by one to catch keying errors', benefit:'AI validates entered data against source documents and business rules in real time — catching errors at the point of entry before they propagate' },
+                'UPDATE': { state:'Data corrections and updates require manually locating the original record, verifying the change, and re-keying across multiple systems', benefit:'Data updates propagate automatically across all connected systems — one correction reflected everywhere with full change audit trail' },
+                'EXECUTE': { state:'Staff manually key data from source documents into target systems, processing records one at a time with high error rates from repetitive work', benefit:'AI extracts and enters data from source documents automatically — processing hundreds of records per minute with accuracy exceeding manual keying' },
+                'GENERATE': { state:'Data entry results compiled manually into summary reports and confirmation records for downstream consumers', benefit:'AI generates entry confirmation records, summary reports, and exception logs automatically as data flows through the capture pipeline' }
+            },
+            'REPORTING': {
+                'GENERATE': { state:'Analysts manually build reports by pulling data from multiple systems, formatting tables, and writing narrative summaries each period', benefit:'AI generates complete reports with visualizations, narrative insights, and anomaly explanations — ready for review without manual assembly or formatting' },
+                'ANALYZE': { state:'Report analysis limited to what analysts can manually compute — basic comparisons and trend lines drawn from spreadsheet data', benefit:'AI performs deep report analysis including statistical trends, anomaly detection, forecasting, and cross-metric correlations beyond manual capability' },
+                'COMMUNICATE': { state:'Finished reports distributed manually via email to stakeholder lists, with no tracking of who has reviewed the findings', benefit:'Reports auto-distribute to relevant stakeholders with read tracking, comment threads, and alerts when action items require attention' },
+                'VALIDATE': { state:'Report data manually spot-checked against source systems, with errors sometimes discovered only after distribution to leadership', benefit:'Automated report validation cross-checks every figure against source systems before distribution — data quality issues caught before stakeholders see them' },
+                'LOOKUP': { state:'Staff search through historical reports and archived data to find prior-period comparisons or baseline metrics for context', benefit:'AI retrieves relevant historical comparisons, benchmarks, and prior-period data automatically — enriching every report with contextual baselines' }
+            },
+            'APPROVAL': {
+                'ROUTE': { state:'Approval requests forwarded manually through email chains, with staff tracking down the right approver and following up on delays', benefit:'Requests route automatically to the correct approver based on type, amount, and delegation rules — with escalation when SLA timers expire' },
+                'VALIDATE': { state:'Approvers manually verify that submitted requests meet policy requirements, checking thresholds, budget availability, and supporting documentation', benefit:'AI pre-validates approval requests against policy rules, budget limits, and completeness requirements — approvers see only verified, decision-ready items' },
+                'COMMUNICATE': { state:'Requestors manually follow up on pending approvals via email, often unsure who currently holds the request or why it stalled', benefit:'Automatic notifications at every approval stage — submission confirmation, pending reminders, decision alerts, and escalation notices — keep all parties informed' },
+                'EXECUTE': { state:'Once approved, downstream actions like purchase orders, account changes, or access grants triggered manually by separate teams', benefit:'Approved requests automatically trigger downstream execution — PO generation, account provisioning, access grants — without manual handoff between teams' },
+                'GENERATE': { state:'Approval documentation, audit logs, and summary reports compiled manually from email threads and system records', benefit:'Complete approval audit trails generated automatically — decision history, timestamps, delegation records, and policy references available instantly' }
+            },
+            'STATUS_TRACK': {
+                'LOOKUP': { state:'Staff search through emails, spreadsheets, and multiple systems to determine the current status of tasks, orders, or requests', benefit:'One query returns real-time status across all tracked items — no searching through emails, spreadsheets, or multiple systems required' },
+                'UPDATE': { state:'Status updates entered manually into tracking spreadsheets or systems, often lagging behind actual progress by hours or days', benefit:'Status updates flow automatically as work progresses through systems — records reflect actual state without manual entry or update lag' },
+                'MONITOR': { state:'Managers check status reactively through periodic review meetings or by asking team members directly about task progress', benefit:'Continuous status monitoring highlights stalled items, approaching deadlines, and off-track work — managers see problems before they escalate' },
+                'COMMUNICATE': { state:'Status reports compiled manually and distributed through email or meetings, consuming significant coordination time each cycle', benefit:'Stakeholders receive automated status updates when milestones complete, items go off-track, or attention is needed — no manual reporting required' },
+                'GENERATE': { state:'Status summary reports built manually by aggregating data from multiple tracking tools and formatting for different audiences', benefit:'AI generates tailored status reports for each audience level — executive summaries, team dashboards, and detailed logs — from live tracking data' }
+            },
+            'PROCUREMENT': {
+                'GENERATE': { state:'Purchase requisitions, RFQs, and procurement documents created manually using templates and filled with vendor and item details', benefit:'AI generates purchase requisitions, RFQs, and procurement documents from requirements — pre-populated with catalog data, preferred vendors, and contract terms' },
+                'VALIDATE': { state:'Procurement requests checked manually against budgets, preferred vendor lists, and contract terms before processing can proceed', benefit:'AI validates procurement requests against budgets, contracts, and compliance rules instantly — non-conforming requests flagged before they advance' },
+                'ROUTE': { state:'Procurement requests forwarded manually between requestors, buyers, and approvers through email with inconsistent handoff procedures', benefit:'Procurement requests flow automatically through sourcing, approval, and ordering stages — routed by category, value, and vendor assignment rules' },
+                'ANALYZE': { state:'Procurement spend analysis performed manually by exporting data and building spreadsheet comparisons across vendors and categories', benefit:'AI analyzes procurement spend across vendors, categories, and contracts — identifying consolidation opportunities, price trends, and savings potential' },
+                'EXECUTE': { state:'Buyers manually process purchase orders, coordinate with vendors, and track order fulfillment through emails and phone calls', benefit:'Purchase orders process automatically from approved requisitions — vendor confirmations tracked, receipts matched, and payment triggered without manual intervention' },
+                'RECEIVE': { state:'Incoming procurement deliveries checked manually against POs, with receiving staff comparing items and quantities from paper documents', benefit:'Procurement receipts scanned and matched against POs at the dock — quantity variances, substitutions, and damaged items flagged before acceptance' }
+            },
+            'CONTRACT_MGMT': {
+                'GENERATE': { state:'Contracts drafted manually using word processing templates, with staff copying terms and tailoring clauses for each agreement', benefit:'AI drafts contracts from approved clause libraries and deal parameters — generating compliant agreements in minutes instead of days of manual drafting' },
+                'VALIDATE': { state:'Contract terms reviewed manually by legal staff who read through each clause checking for non-standard language and compliance issues', benefit:'AI scans contract terms against approved playbooks, flags deviations, and verifies compliance with regulatory and corporate policy requirements' },
+                'ANALYZE': { state:'Contract portfolio analysis performed manually by extracting key terms from individual agreements into comparison spreadsheets', benefit:'AI analyzes the full contract portfolio — extracting obligations, financial terms, and risk factors — enabling portfolio-wide insights and optimization' },
+                'ROUTE': { state:'Contracts circulated manually for review and signature via email, with staff tracking which party has the document and chasing responses', benefit:'Contracts route automatically through review, negotiation, and signature workflows — with status visibility and escalation for stalled approvals' },
+                'UPDATE': { state:'Contract amendments, renewals, and status changes updated manually across tracking systems, often falling out of sync', benefit:'Contract records update automatically when amendments execute, milestones trigger, or renewals approach — all systems reflect current contract state' },
+                'EXECUTE': { state:'Contract obligations tracked manually through calendar reminders and spreadsheets, with missed deadlines discovered reactively', benefit:'Automated contract execution tracks every obligation, milestone, and deliverable — triggering actions and alerts so deadlines are never missed' }
+            },
+            'RECONCILIATION': {
+                'VALIDATE': { state:'Reconciliation clerks manually compare line items between two or more data sources, verifying amounts, dates, and reference numbers match', benefit:'AI validates every transaction across sources simultaneously — matching amounts, dates, and references with tolerance rules applied automatically' },
+                'LOOKUP': { state:'Staff manually search transaction histories and supporting documents to investigate reconciliation discrepancies and find root causes', benefit:'AI retrieves related transactions, historical patterns, and supporting documents instantly when investigating reconciliation discrepancies' },
+                'ANALYZE': { state:'Reconciliation variance analysis performed manually, with staff categorizing discrepancies and estimating their impact one by one', benefit:'AI categorizes reconciliation variances by type, root cause, and materiality — prioritizing investigation effort on items with the greatest impact' },
+                'UPDATE': { state:'Reconciliation results and adjusting entries posted manually to ledgers and tracking systems after each period-end review', benefit:'Reconciliation adjustments post automatically when matched within tolerance — exception items update in real time as investigators resolve them' },
+                'EXECUTE': { state:'The reconciliation process requires staff to manually pull extracts, align formats, and systematically compare records across multiple systems', benefit:'Automated reconciliation ingests data from all sources, normalizes formats, and executes matching rules — completing in minutes what took days manually' }
+            },
+            'REVIEW_AUDIT': {
+                'VALIDATE': { state:'Auditors manually verify compliance evidence, testing controls by sampling transactions and comparing documentation against policy requirements', benefit:'AI validates audit evidence by testing the full population against control requirements — not just samples — flagging every non-conformance automatically' },
+                'ANALYZE': { state:'Audit findings analyzed manually by reviewing evidence, identifying patterns, and assessing the significance of each observation', benefit:'AI analyzes audit findings across the full evidence set — identifying systemic patterns, root causes, and risk concentrations that manual sampling would miss' },
+                'GENERATE': { state:'Audit reports, findings summaries, and corrective action plans drafted manually by compiling observations into formal documents', benefit:'AI generates draft audit reports with findings, evidence references, risk ratings, and recommended corrective actions — ready for reviewer sign-off' },
+                'COMMUNICATE': { state:'Audit results shared manually through formal reports and meetings, with follow-up on corrective actions tracked through emails and spreadsheets', benefit:'Automated audit communications distribute findings to responsible parties, track corrective action progress, and escalate overdue remediations' }
+            },
+            'COMPLIANCE_GOV': {
+                'MONITOR': { state:'Compliance staff manually track regulatory changes by reviewing government publications, industry bulletins, and legal updates periodically', benefit:'AI monitors regulatory sources continuously — alerting compliance teams to relevant changes, mapping impacts to existing controls, and flagging gaps in real time' },
+                'VALIDATE': { state:'Compliance verification performed manually through periodic assessments, with staff checking controls against regulatory requirements one by one', benefit:'Automated compliance validation tests controls continuously against current requirements — identifying gaps instantly instead of at the next periodic review' },
+                'GENERATE': { state:'Compliance reports, attestations, and regulatory filings assembled manually from evidence gathered across departments and systems', benefit:'AI generates compliance reports, attestation packages, and regulatory filings automatically from live control data — audit-ready documentation always current' },
+                'ANALYZE': { state:'Compliance risk analysis performed manually by mapping regulations to controls and assessing coverage through spreadsheet-based gap analysis', benefit:'AI analyzes the full regulatory landscape against the control framework — identifying coverage gaps, conflicting requirements, and emerging risk areas' },
+                'COMMUNICATE': { state:'Compliance updates and policy changes communicated manually through email announcements, training sessions, and document distribution', benefit:'Automated compliance communications push relevant updates to affected roles, confirm acknowledgment, and track training completion across the organization' }
+            },
+
+            /* ── Tier 2: moderate-frequency KB entries (3-5 step types) ── */
+
+            'SCHEDULING': {
+                'GENERATE': { state:'Schedules built manually in spreadsheets by coordinators who juggle availability, skills, and constraints through trial and error', benefit:'AI generates optimized schedules in seconds — balancing availability, skills, workload caps, and business priorities without manual trial-and-error' },
+                'UPDATE': { state:'Schedule changes handled manually through phone calls and emails, with coordinators rebuilding affected portions of the schedule each time', benefit:'Schedule changes propagate automatically — swaps, cancellations, and conflicts resolved dynamically with affected parties notified instantly' },
+                'COMMUNICATE': { state:'Schedule assignments communicated manually via email or posted printouts, with staff sometimes unaware of last-minute changes', benefit:'Automated scheduling notifications push assignments, changes, and reminders to every affected person through their preferred channel in real time' },
+                'VALIDATE': { state:'Schedulers manually check for conflicts, overtime violations, and qualification gaps by reviewing the completed schedule against rules', benefit:'AI validates every schedule against labor rules, certification requirements, and conflict policies before publishing — violations caught at creation, not after' }
+            },
+            'ONBOARDING': {
+                'EXECUTE': { state:'Onboarding tasks processed manually by multiple departments — IT creates accounts, HR files paperwork, facilities assigns workspace — with frequent delays', benefit:'Automated onboarding orchestration provisions accounts, assigns equipment, enrolls benefits, and schedules training across all departments simultaneously on day one' },
+                'VALIDATE': { state:'HR manually verifies new hire documentation, eligibility, background checks, and policy acknowledgments before completing the onboarding process', benefit:'AI validates onboarding completeness — checking documents, verifying eligibility, confirming background checks, and tracking acknowledgments against the full checklist' },
+                'COMMUNICATE': { state:'New hires receive onboarding information through scattered emails and documents, often missing key steps or contacts during their first weeks', benefit:'Automated onboarding communications deliver the right information at the right time — welcome packages, setup instructions, and introductions sequenced for each role' },
+                'GENERATE': { state:'Onboarding packages, offer letters, and welcome materials assembled manually by customizing templates for each new hire', benefit:'AI generates personalized onboarding packages — offer letters, role-specific training plans, and welcome materials — tailored to each hire automatically' }
+            },
+            'QUALITY_INSPECT': {
+                'VALIDATE': { state:'Inspectors manually check products against quality specifications using visual assessment, measurements, and checklists at sampling intervals', benefit:'Automated quality validation tests every unit against specifications — not just samples — catching defects that manual inspection intervals would miss' },
+                'ANALYZE': { state:'Quality data analyzed manually through spreadsheet charts and Pareto analysis, with trends identified only after enough defects have accumulated', benefit:'AI analyzes quality data in real time — detecting drift, predicting failures, and identifying root causes before defect rates breach control limits' },
+                'GENERATE': { state:'Quality inspection reports, certificates of conformance, and deviation records created manually from inspection notes and measurements', benefit:'AI generates inspection reports, conformance certificates, and deviation records automatically from sensor and measurement data — complete and audit-ready' },
+                'COMMUNICATE': { state:'Quality issues communicated manually through email and verbal alerts, with production sometimes continuing before the right people are informed', benefit:'Automated quality alerts notify production, engineering, and management instantly when inspection results breach thresholds — stopping defective output fast' }
+            },
+            'FORM_PROC': {
+                'RECEIVE': { state:'Forms arrive through multiple channels — paper, email, web — and staff manually log, sort, and queue each submission for processing', benefit:'Forms from all channels auto-ingested, classified, and queued — paper forms digitized, email attachments extracted, and web submissions captured without manual sorting' },
+                'VALIDATE': { state:'Staff manually check submitted forms for completeness, valid entries, and required signatures before advancing them for processing', benefit:'AI validates form completeness, data accuracy, and signature presence at submission — rejecting incomplete forms instantly with specific correction guidance' },
+                'GENERATE': { state:'Output documents, confirmations, and follow-up forms produced manually after processing each submitted form', benefit:'AI generates confirmation notices, follow-up forms, and output documents automatically as each form processes through the workflow' },
+                'EXECUTE': { state:'Form processing requires manual data extraction, system entry, and routing through multiple handling steps before completion', benefit:'Automated form processing extracts data, populates target systems, and executes downstream actions without manual handling for standard submissions' }
+            },
+            'EMAIL_COMMS': {
+                'GENERATE': { state:'Staff manually compose routine emails — status updates, confirmations, follow-ups — spending significant time on repetitive communication tasks', benefit:'AI drafts routine emails from templates and context — status updates, confirmations, and follow-ups generated automatically with appropriate tone and detail' },
+                'ROUTE': { state:'Incoming emails manually triaged and forwarded to the appropriate team member, with messages sometimes sitting in shared inboxes unactioned', benefit:'AI classifies and routes incoming emails to the right person based on content, urgency, and expertise — eliminating shared-inbox bottlenecks and delayed responses' },
+                'COMMUNICATE': { state:'Notification emails sent manually when events occur, with staff responsible for remembering who needs to know about what and when', benefit:'Event-driven email notifications fire automatically when triggers occur — ensuring the right people are informed immediately without anyone needing to remember' }
+            },
+            'DATA_VALIDATE': {
+                'VALIDATE': { state:'Data quality checks performed manually through spot-sampling and visual review, catching only a fraction of errors before they enter downstream systems', benefit:'AI validates every data record at the point of entry against business rules, format standards, and cross-field logic — catching errors before they propagate downstream' },
+                'ANALYZE': { state:'Data quality analysis limited to manual reviews of error logs and periodic audits that reveal problems long after they were introduced', benefit:'AI analyzes data quality patterns continuously — identifying error sources, drift trends, and systemic issues so root causes are fixed, not just symptoms' },
+                'COMMUNICATE': { state:'Data quality issues reported manually through emails and tickets, with upstream data providers often unaware their submissions contain errors', benefit:'Automated data quality alerts notify data owners immediately when validation failures occur — with specific error details and correction guidance for fast resolution' }
+            },
+            'DOC_UNDERSTAND': {
+                'RECEIVE': { state:'Documents arrive in varied formats — scanned PDFs, images, emails, faxes — and staff manually sort, classify, and queue them for review', benefit:'AI ingests documents from any channel and format — classifying, de-duplicating, and queuing them for extraction without manual sorting or intake effort' },
+                'ANALYZE': { state:'Staff manually read and interpret document content, cross-referencing information across multiple pages and related documents to extract meaning', benefit:'AI analyzes document content in full context — cross-referencing related documents, extracting relationships, and surfacing insights that manual reading would miss' },
+                'GENERATE': { state:'Extracted document data manually compiled into structured summaries, comparison tables, and downstream input files', benefit:'AI generates structured outputs from documents automatically — summaries, comparison matrices, and data feeds ready for downstream systems without manual compilation' },
+                'VALIDATE': { state:'Extracted document data verified manually by comparing AI or OCR output against the original source, checking for misreads and missing fields', benefit:'AI validates extracted document data against source content and business rules — flagging low-confidence extractions for human review while passing clean data through' }
+            },
+            'ASSET_MGMT': {
+                'LOOKUP': { state:'Staff search spreadsheets, closets, and multiple systems to find asset location, assignment, and condition information for specific items', benefit:'One asset query returns real-time location, assignment, condition, warranty status, and full lifecycle history across the entire asset inventory' },
+                'UPDATE': { state:'Asset records updated manually when items move, change hands, or undergo maintenance — updates often lag behind actual changes by days or weeks', benefit:'Asset records update automatically as items are scanned, moved, or serviced — every change reflected in real time with full audit trail across all systems' },
+                'MONITOR': { state:'Asset condition monitored reactively through scheduled inspections and user-reported issues, with problems discovered after they affect operations', benefit:'Continuous asset monitoring tracks condition, utilization, and performance metrics — predicting failures and triggering maintenance before assets go down' },
+                'VALIDATE': { state:'Asset inventories verified manually through periodic physical counts, comparing serial numbers and locations against records one item at a time', benefit:'Automated asset validation cross-checks physical presence against records continuously — discrepancies flagged immediately rather than at the next audit cycle' }
+            }
+        };
+
         /* ── Department → relevant KB IDs (single source of truth) ── */
         const DEPT_DOMAIN_IDS = {
             'Finance & Accounting': ['DATA_ENTRY','INVOICE_PROC','RECONCILIATION','FINANCIAL_CLOSE','JOURNAL_POST','REPORTING','APPROVAL','COMPLIANCE_GOV','DATA_VALIDATE','DOC_UNDERSTAND','FORM_PROC','REVIEW_AUDIT','RISK_SCORING','DATA_CLEANSE','MASTER_DATA','STATUS_TRACK','CONTRACT_MGMT'],
@@ -4906,6 +5052,81 @@
             }
         };
 
+        /* ── Step-type detection (action classification) ── */
+        function detectStepType(stepText) {
+            const lower = stepText.toLowerCase();
+            const words = lower.split(/[\s,;:.!?()]+/).filter(w => w.length > 1);
+
+            /* Noun-context disambiguation */
+            const hasAccuracyNoun = /\b(accuracy|correctness|compliance|error|quality|defect|eligibility|standard)\b/.test(lower);
+            const hasAvailabilityNoun = /\b(availability|status|level|balance|history|detail|record|information)\b/.test(lower);
+
+            /* Multi-word phrases first (highest specificity) */
+            const PHRASE_MAP = {
+                'RECEIVE':     ['receive from','pick up','take in','accept delivery','collect from'],
+                'VALIDATE':    ['cross-check','cross check','check against','check compliance','verify accuracy','validate against','reconcile against'],
+                'LOOKUP':      ['look up','check availability','check status','pull up','search for','look for'],
+                'GENERATE':    ['generate report','build dashboard','create report','prepare report','pick list','compile report'],
+                'ROUTE':       ['hand off','send to','forward to','route to','assign to','distribute to','escalate to','transfer to'],
+                'COMMUNICATE': ['report to','notify customer','inform stakeholder','send notification','email to','send email','follow up']
+            };
+            for (const [type, phrases] of Object.entries(PHRASE_MAP)) {
+                for (const p of phrases) {
+                    if (lower.includes(p)) return type;
+                }
+            }
+
+            /* Single-verb matching with noun context */
+            const VERB_MAP = {
+                'RECEIVE':     ['receive','accept','intake','ingest','collect','gather'],
+                'VALIDATE':    ['validate','verify','confirm','ensure','authenticate','certify','reconcile','inspect','audit'],
+                'LOOKUP':      ['search','find','query','retrieve','reference','browse'],
+                'GENERATE':    ['generate','create','produce','build','prepare','compile','assemble','draft','compose','calculate','compute','formulate'],
+                'UPDATE':      ['update','modify','change','adjust','edit','correct','amend','revise','maintain','refresh','sync','post'],
+                'ROUTE':       ['route','forward','distribute','assign','escalate','transfer','dispatch','redirect','relay','send'],
+                'MONITOR':     ['monitor','watch','track','observe','oversee','surveil','patrol','scan'],
+                'ANALYZE':     ['analyze','evaluate','assess','compare','measure','score','benchmark','examine','study','investigate'],
+                'COMMUNICATE': ['notify','inform','announce','communicate','email','call','brief','present','share','report'],
+                'EXECUTE':     ['process','perform','execute','run','complete','fulfill','handle','conduct','implement','manage']
+            };
+
+            /* Disambiguate 'check' based on noun context */
+            if (words.includes('check') || words.includes('checking')) {
+                return hasAccuracyNoun ? 'VALIDATE' : 'LOOKUP';
+            }
+            /* Disambiguate 'review' */
+            if (words.includes('review') || words.includes('reviewing')) {
+                return 'ANALYZE';
+            }
+
+            for (const [type, verbs] of Object.entries(VERB_MAP)) {
+                for (const v of verbs) {
+                    if (words.includes(v)) return type;
+                }
+            }
+
+            /* Stem fallback */
+            const stemPrefixes = {
+                'RECEIVE': ['receiv','accept','intak','ingest','collect','gather'],
+                'VALIDATE': ['validat','verif','confirm','ensur','certif','reconcil','inspect','audit'],
+                'LOOKUP': ['search','retriev','brows','quer'],
+                'GENERATE': ['generat','creat','produc','prepar','compil','assembl','draft','compos','calculat','comput','formulat'],
+                'UPDATE': ['updat','modif','chang','adjust','amend','revis','refresh'],
+                'ROUTE': ['rout','forward','distribut','assign','escalat','transfer','dispatch'],
+                'MONITOR': ['monitor','watch','track','observ','overse','surveil'],
+                'ANALYZE': ['analyz','evaluat','assess','compar','measur','scor','benchmark','examin','investigat'],
+                'COMMUNICATE': ['notif','inform','announc','communicat'],
+                'EXECUTE': ['process','perform','execut','fulfil','handl','conduct','implement','manag']
+            };
+            for (const [type, prefixes] of Object.entries(stemPrefixes)) {
+                for (const prefix of prefixes) {
+                    if (words.some(w => w.startsWith(prefix))) return type;
+                }
+            }
+
+            return 'EXECUTE';
+        }
+
         /* ── Domain detection: score KB entries against full workflow ── */
         function detectWorkflowDomain(rawSteps, department, industry, patternBoosts) {
             const combined = rawSteps.join(' ').toLowerCase();
@@ -4995,11 +5216,15 @@
                 primaryId = 'UNMATCHED';
             }
 
-            /* Context overlay — department > industry > base KB */
+            /* Context overlay — step_type > department > industry > base KB */
+            let stepType = detectStepType(stepText);
+            let stepTypeApplied = false;
             if (primaryId !== 'UNMATCHED') {
                 const deptOv = DEPT_OVERLAYS[primaryId] && DEPT_OVERLAYS[primaryId][department];
                 const indOv = CONTEXT_OVERLAYS[primaryId] && CONTEXT_OVERLAYS[primaryId][industry];
-                if (deptOv) { state = deptOv.state; benefit = deptOv.benefit; }
+                const stOv = STEP_TYPE_OVERLAYS[primaryId] && STEP_TYPE_OVERLAYS[primaryId][stepType];
+                if (stOv) { state = stOv.state; benefit = stOv.benefit; stepTypeApplied = true; }
+                else if (deptOv) { state = deptOv.state; benefit = deptOv.benefit; }
                 else if (indOv) { state = indOv.state; benefit = indOv.benefit; }
                 /* Workflow-type recs override */
                 if (workflowType && WORKFLOW_OVERLAYS[primaryId]
@@ -5064,6 +5289,8 @@
                 effortWeight,
                 signals: { boosters, reducers },
                 primaryId,
+                stepType,
+                stepTypeApplied,
                 complexity,
                 techTier,
                 matchScore: topScore,
@@ -5407,21 +5634,24 @@
                 : activity;
 
             /* Contextualize current state — prefix with what the user actually does */
-            if (activity && step.currentState) {
-                const stLower = step.currentState.toLowerCase();
-                /* Only skip contextualization if the FULL verb+noun combo is already present */
-                const comboPresent = verbNounCombo && new RegExp(verbNounCombo, 'i').test(stLower);
-                if (!comboPresent) {
-                    step.currentState = `For ${activity}: ${lowerFirst(step.currentState)}`;
+            /* Step-type overlay provides action-specific text; skip generic verb-prefix */
+            if (!step.stepTypeApplied) {
+                if (activity && step.currentState) {
+                    const stLower = step.currentState.toLowerCase();
+                    /* Only skip contextualization if the FULL verb+noun combo is already present */
+                    const comboPresent = verbNounCombo && new RegExp(verbNounCombo, 'i').test(stLower);
+                    if (!comboPresent) {
+                        step.currentState = `For ${activity}: ${lowerFirst(step.currentState)}`;
+                    }
                 }
-            }
 
-            /* Contextualize benefit — connect the automation outcome to the user's specific action */
-            if (activity && step.benefit) {
-                const bnLower = step.benefit.toLowerCase();
-                const comboPresent = verbNounCombo && new RegExp(verbNounCombo, 'i').test(bnLower);
-                if (!comboPresent) {
-                    step.benefit = `Automation of ${activity} enables: ${lowerFirst(step.benefit)}`;
+                /* Contextualize benefit — connect the automation outcome to the user's specific action */
+                if (activity && step.benefit) {
+                    const bnLower = step.benefit.toLowerCase();
+                    const comboPresent = verbNounCombo && new RegExp(verbNounCombo, 'i').test(bnLower);
+                    if (!comboPresent) {
+                        step.benefit = `Automation of ${activity} enables: ${lowerFirst(step.benefit)}`;
+                    }
                 }
             }
 
@@ -5516,11 +5746,13 @@
                 const kbEntry = step.primaryId !== 'UNMATCHED' ? STEP_KB.find(e => e.id === step.primaryId) : null;
 
                 /* ═══ RULE 1: Lock process ID — all content derives from classified step type ═══ */
-                /* Priority chain: department overlay > industry overlay > base KB */
+                /* Priority chain: step_type overlay > department overlay > industry overlay > base KB */
                 if (kbEntry) {
                     const deptOv = DEPT_OVERLAYS[step.primaryId] && DEPT_OVERLAYS[step.primaryId][department];
                     const indOv = CONTEXT_OVERLAYS[step.primaryId] && CONTEXT_OVERLAYS[step.primaryId][industry];
-                    if (deptOv) { step.currentState = deptOv.state; step.benefit = deptOv.benefit; }
+                    const stOv = STEP_TYPE_OVERLAYS[step.primaryId] && STEP_TYPE_OVERLAYS[step.primaryId][step.stepType];
+                    if (stOv) { step.currentState = stOv.state; step.benefit = stOv.benefit; step.stepTypeApplied = true; }
+                    else if (deptOv) { step.currentState = deptOv.state; step.benefit = deptOv.benefit; }
                     else if (indOv) { step.currentState = indOv.state; step.benefit = indOv.benefit; }
                     else { step.currentState = kbEntry.state; step.benefit = kbEntry.benefit; }
                     step.recs = { ...kbEntry.recs };
@@ -5565,7 +5797,7 @@
                    Keep core-term check as safety net only when using industry overlay fallback. */
                 if (kbEntry) {
                     const hasDeptOv = DEPT_OVERLAYS[step.primaryId] && DEPT_OVERLAYS[step.primaryId][department];
-                    if (!hasDeptOv) {
+                    if (!hasDeptOv && !step.stepTypeApplied) {
                         /* Industry overlay in use — verify it references the right KB domain */
                         const coreTerms = kbEntry.keys.slice(0, 5);
                         const genericWords = new Set(['new','set','run','get','put','use','add','all','any','old','top','key','big']);
@@ -5584,7 +5816,8 @@
                    hand-curated and legitimately contain cross-domain vocabulary */
                 const hasDeptOvR8 = kbEntry && DEPT_OVERLAYS[step.primaryId] && DEPT_OVERLAYS[step.primaryId][department];
                 const hasIndOvR8 = kbEntry && CONTEXT_OVERLAYS[step.primaryId] && CONTEXT_OVERLAYS[step.primaryId][industry];
-                if (deptLangKey && !hasDeptOvR8 && !hasIndOvR8) {
+                const hasStepTypeOvR8 = kbEntry && step.stepTypeApplied;
+                if (deptLangKey && !hasDeptOvR8 && !hasIndOvR8 && !hasStepTypeOvR8) {
                     for (const [domKey, pattern] of Object.entries(DOMAIN_LANG)) {
                         if (domKey === deptLangKey) continue;
                         if (pattern.test(step.benefit) && kbEntry) {
