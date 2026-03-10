@@ -4264,10 +4264,649 @@
             'Compliance & Risk': ['COMPLIANCE_GOV','RISK_SCORING','REVIEW_AUDIT','DOC_UNDERSTAND','REPORTING','DATA_VALIDATE','ENTITY_EXTRACT','SEARCH_RETRIEVAL','DOC_SEARCH','CONTRACT_MGMT','STATUS_TRACK','SUMMARIZATION','APPROVAL']
         };
 
-        /* ── Workflow Domain Detection ── */
-        /* Analyzes ALL steps together to identify the workflow's dominant KB domain.
-           Returns a domainProfile: { domainIds: Set, scores: Map<id, score> }
-           that biases per-step analysis toward coherent domain-locked output. */
+        /* ── Workflow Archetypes (48 types across 12 departments) ── */
+        const WORKFLOW_ARCHETYPES = {
+            'Finance & Accounting': {
+                ap_processing:      { label:'Accounts Payable Processing', sig:['INVOICE_PROC','RECONCILIATION','APPROVAL','DATA_ENTRY'] },
+                ar_collections:     { label:'Accounts Receivable & Collections', sig:['INVOICE_PROC','STATUS_TRACK','EMAIL_COMMS','REPORTING'] },
+                financial_close:    { label:'Financial Close', sig:['FINANCIAL_CLOSE','JOURNAL_POST','RECONCILIATION','REPORTING'] },
+                budgeting:          { label:'Budgeting & Forecasting', sig:['REPORTING','DEMAND_FORECAST','DATA_VALIDATE','REVIEW_AUDIT'] },
+                finance_compliance: { label:'Financial Compliance & Audit', sig:['COMPLIANCE_GOV','REVIEW_AUDIT','RISK_SCORING','REPORTING'] }
+            },
+            'Human Resources': {
+                recruitment:       { label:'Recruitment & Hiring', sig:['RECRUITING','RESUME_SCREEN','SCHEDULING','BACKGROUND_CHECK'] },
+                hr_onboarding:     { label:'Employee Onboarding', sig:['ONBOARDING','DATA_ENTRY','FORM_PROC','TRAINING'] },
+                perf_development:  { label:'Performance & Development', sig:['PERF_MGMT','TRAINING','SENTIMENT','REPORTING'] },
+                payroll_benefits:  { label:'Payroll & Benefits', sig:['DATA_ENTRY','DATA_VALIDATE','FORM_PROC','COMPLIANCE_GOV'] }
+            },
+            'IT & Engineering': {
+                incident_response: { label:'Incident Response', sig:['INCIDENT_MGMT','LOG_ANALYSIS','OUTAGE_MGMT','STATUS_TRACK'] },
+                change_deploy:     { label:'Change & Deployment', sig:['CI_CD_DEPLOY','TEST_QA','APPROVAL','CODE_GEN'] },
+                provisioning:      { label:'User Provisioning & Access', sig:['TICKET_SUPPORT','DATA_TRANSFER','APPROVAL','STATUS_TRACK'] },
+                platform_ops:      { label:'Platform Operations', sig:['EQUIP_MONITOR','LOG_ANALYSIS','KNOWLEDGE_BASE','STATUS_TRACK'] }
+            },
+            'Operations': {
+                production:   { label:'Production & Fulfillment', sig:['SCHEDULING','INVENTORY','WORK_EXECUTION','QUALITY_INSPECT'] },
+                maintenance:  { label:'Maintenance & Reliability', sig:['MAINT_MGMT','EQUIP_MONITOR','FIELD_SERVICE','ASSET_MGMT'] },
+                quality:      { label:'Quality & Inspection', sig:['QUALITY_INSPECT','TEST_QA','REVIEW_AUDIT','COMPLIANCE_GOV'] },
+                logistics:    { label:'Logistics & Distribution', sig:['INVENTORY','SCHEDULING','STATUS_TRACK','FIELD_SERVICE'] }
+            },
+            'Sales & Marketing': {
+                lead_gen:       { label:'Lead Generation', sig:['LEAD_SCORING','CHATBOT','CONTENT_GEN','EMAIL_DRAFT'] },
+                pipeline_mgmt:  { label:'Pipeline Management', sig:['STATUS_TRACK','DEMAND_FORECAST','REPORTING','LEAD_SCORING'] },
+                campaigns:      { label:'Campaign Execution', sig:['CONTENT_GEN','EMAIL_COMMS','PERSONALIZE','CUST_FEEDBACK'] },
+                sales_forecast: { label:'Sales Forecasting', sig:['DEMAND_FORECAST','REPORTING','CONVO_ANALYSIS','CHURN_PREDICT'] }
+            },
+            'Customer Service': {
+                ticket_resolution: { label:'Ticket Resolution', sig:['TICKET_SUPPORT','TEXT_CLASSIFY','KNOWLEDGE_BASE','EMAIL_COMMS'] },
+                cust_onboarding:   { label:'Customer Onboarding', sig:['ONBOARDING','STATUS_TRACK','PERSONALIZE','EMAIL_COMMS'] },
+                feedback_voc:      { label:'Feedback & Voice of Customer', sig:['CUST_FEEDBACK','SENTIMENT','CONVO_ANALYSIS','REPORTING'] }
+            },
+            'Supply Chain': {
+                procure_to_pay:  { label:'Procure-to-Pay', sig:['PROCUREMENT','INVOICE_PROC','APPROVAL','RECONCILIATION'] },
+                demand_inventory:{ label:'Demand & Inventory', sig:['DEMAND_FORECAST','INVENTORY','SCHEDULING','DATA_TRANSFER'] },
+                supplier_mgmt:   { label:'Supplier Management', sig:['RISK_SCORING','QUALITY_INSPECT','REPORTING','STATUS_TRACK'] }
+            },
+            'Legal': {
+                contract_lifecycle: { label:'Contract Lifecycle', sig:['CONTRACT_MGMT','DOC_UNDERSTAND','REVIEW_AUDIT','TEMPLATE_GEN'] },
+                legal_compliance:   { label:'Regulatory Compliance', sig:['COMPLIANCE_GOV','SEARCH_RETRIEVAL','DOC_SEARCH','RISK_SCORING'] },
+                litigation:         { label:'Dispute & Litigation', sig:['DOC_SEARCH','ENTITY_EXTRACT','SUMMARIZATION','REVIEW_AUDIT'] }
+            },
+            'Procurement': {
+                strategic_sourcing: { label:'Strategic Sourcing', sig:['PROCUREMENT','DECISION','RISK_SCORING','CONTRACT_MGMT'] },
+                req_to_po:          { label:'Requisition-to-PO', sig:['PROCUREMENT','APPROVAL','FORM_PROC','DATA_ENTRY'] },
+                vendor_mgmt:        { label:'Vendor Management', sig:['RISK_SCORING','REVIEW_AUDIT','REPORTING','COMPLIANCE_GOV'] }
+            },
+            'Executive / C-Suite': {
+                board_reporting:     { label:'Board Reporting', sig:['REPORTING','SUMMARIZATION','MEETING_MGMT','CONTENT_GEN'] },
+                strategic_planning:  { label:'Strategic Planning', sig:['DECISION','DEMAND_FORECAST','PROJECT_MGMT','RISK_SCORING'] },
+                portfolio_oversight: { label:'Portfolio Oversight', sig:['PROJECT_MGMT','STATUS_TRACK','REPORTING','WORKFORCE_PLAN'] }
+            },
+            'Research & Development': {
+                experiment:   { label:'Experiment Lifecycle', sig:['TEST_QA','DATA_VALIDATE','REPORTING','REVIEW_AUDIT'] },
+                literature_ip:{ label:'Literature & IP Research', sig:['DOC_SEARCH','SEARCH_RETRIEVAL','SUMMARIZATION','ENTITY_EXTRACT'] },
+                product_dev:  { label:'Product Development', sig:['CODE_GEN','PROJECT_MGMT','STATUS_TRACK','CONTENT_GEN'] }
+            },
+            'Compliance & Risk': {
+                audit_cycle:    { label:'Audit Cycle', sig:['REVIEW_AUDIT','COMPLIANCE_GOV','STATUS_TRACK','REPORTING'] },
+                risk_assessment:{ label:'Risk Assessment', sig:['RISK_SCORING','DATA_VALIDATE','DOC_UNDERSTAND','REPORTING'] },
+                reg_monitoring: { label:'Regulatory Monitoring', sig:['COMPLIANCE_GOV','SEARCH_RETRIEVAL','DOC_SEARCH','SUMMARIZATION'] }
+            }
+        };
+
+        /* Detect workflow type from domain profile */
+        function detectWorkflowType(domainProfile, department) {
+            const archetypes = WORKFLOW_ARCHETYPES[department];
+            if (!archetypes || !domainProfile) return null;
+            let bestType = null, bestScore = 0;
+            for (const [typeKey, arch] of Object.entries(archetypes)) {
+                let score = 0;
+                for (const sigId of arch.sig) {
+                    const kbScore = domainProfile.scores.get(sigId) || 0;
+                    if (kbScore > 0) score += kbScore;
+                    if (domainProfile.domainIds.has(sigId)) score += 2;
+                }
+                score /= arch.sig.length;
+                if (score > bestScore) { bestScore = score; bestType = typeKey; }
+            }
+            return bestScore >= 1.5 ? bestType : null;
+        }
+
+        /* ── Workflow-type recs overlays (KB × department × workflow_type) ── */
+        const WORKFLOW_OVERLAYS = {
+            'INVOICE_PROC': {
+                'Finance & Accounting': {
+                    ap_processing: { q:'Route invoices to a single inbox with auto-acknowledgment and PO reference parsing', m:'Deploy AI three-way matching with auto-post for clean invoices and exception dashboard', s:'Agentic procure-to-pay pipeline that ingests, matches, codes, posts, and schedules payment autonomously' },
+                    ar_collections: { q:'Automate invoice delivery with read-receipt tracking and payment reminder sequences', m:'Deploy AI collections prioritization with automated dunning and payment prediction', s:'Autonomous AR agent that generates invoices, sends reminders, applies cash, and escalates delinquencies' },
+                    financial_close: { q:'Pre-reconcile outstanding invoices against POs before close cutoff', m:'Deploy automated accrual estimation for uninvoiced receipts with close task sequencing', s:'Agentic close orchestration that auto-accrues uninvoiced items and resolves variances' }
+                },
+                'Supply Chain': {
+                    procure_to_pay: { q:'Standardize invoice submission format requirements for all suppliers', m:'Deploy AI invoice capture with automatic PO matching and receipt validation', s:'End-to-end procure-to-pay automation from goods receipt to payment execution' }
+                },
+                'Procurement': {
+                    req_to_po: { q:'Mandate PO numbers on all supplier invoices for automatic matching', m:'Deploy AI invoice processing with automatic PO line-item matching', s:'Touchless invoice processing with autonomous exception handling and payment scheduling' },
+                    strategic_sourcing: { q:'Consolidate invoice channels by supplier tier for faster processing', m:'Deploy spend analytics with AI-powered invoice categorization and variance detection', s:'Intelligent spend management with autonomous invoice routing and contract compliance checking' }
+                }
+            },
+            'RECONCILIATION': {
+                'Finance & Accounting': {
+                    ap_processing: { q:'Standardize vendor statement formats and create weekly reconciliation checklist', m:'Deploy AI matching of vendor statements against AP sub-ledger with variance flagging', s:'Continuous vendor account reconciliation agent that identifies and resolves discrepancies' },
+                    financial_close: { q:'Automate bank feed import and implement standard matching rules', m:'Deploy AI continuous reconciliation across all GL accounts with exception-only review', s:'Agentic multi-account reconciliation that matches, investigates, and resolves before close' }
+                },
+                'Supply Chain': {
+                    procure_to_pay: { q:'Implement standard reconciliation template for freight and material receipts', m:'Deploy automated receipt-to-PO matching with carrier rate validation', s:'AI reconciliation agent that validates receipts, freight charges, and supplier credits continuously' }
+                }
+            },
+            'DATA_ENTRY': {
+                'Finance & Accounting': {
+                    ap_processing: { q:'Create standardized data entry templates for common invoice types', m:'Deploy intelligent document processing with AI extraction from invoices and receipts', s:'Zero-touch invoice data capture with AI validation and automatic GL coding' },
+                    financial_close: { q:'Pre-populate recurring journal entry templates with prior-period data', m:'Deploy automated data collection from sub-systems for close entries', s:'AI-driven close data aggregation with automated journal preparation and validation' }
+                },
+                'Human Resources': {
+                    hr_onboarding: { q:'Create pre-filled new-hire data entry forms from offer letter information', m:'Deploy employee self-service portal with AI-assisted profile completion', s:'Zero-touch employee data setup that auto-provisions from offer acceptance through all HR systems' },
+                    payroll_benefits: { q:'Implement payroll data validation rules at point of entry', m:'Deploy automated payroll data collection with time system integration', s:'AI payroll processing that auto-captures hours, validates rules, and flags exceptions' }
+                },
+                'Sales & Marketing': {
+                    pipeline_mgmt: { q:'Auto-log meeting notes and email interactions to CRM records', m:'Deploy AI activity capture that updates CRM from email, calendar, and calls', s:'Autonomous CRM agent that maintains deal records, logs interactions, and updates forecasts' }
+                },
+                'Procurement': {
+                    req_to_po: { q:'Implement catalog-based ordering to eliminate manual item entry', m:'Deploy AI-assisted requisition with auto-fill from purchase history', s:'Autonomous requisitioning that predicts needs, selects vendors, and generates POs' }
+                }
+            },
+            'APPROVAL': {
+                'Finance & Accounting': {
+                    ap_processing: { q:'Set auto-approval thresholds by vendor tier and PO amount for low-risk invoices', m:'Deploy spend-category routing with delegated authority and mobile approval', s:'AI spend governance that approves within policy, flags anomalies, and adapts thresholds' },
+                    financial_close: { q:'Pre-approve recurring accrual entries with manager sign-off on exceptions only', m:'Deploy close-task approval orchestration with parallel routing and SLA escalation', s:'Autonomous close orchestration that sequences, approves, and posts with exception-only review' }
+                },
+                'IT & Engineering': {
+                    change_deploy: { q:'Implement standard vs expedited change classifications with auto-approval for standard', m:'Deploy risk-based change approval with automated impact analysis and CAB routing', s:'AI change advisory that auto-approves safe changes and routes risky ones with blast-radius analysis' },
+                    provisioning: { q:'Define role-based access templates for auto-approval of standard provisioning', m:'Deploy identity governance with automated access certification and risk scoring', s:'Zero-trust access agent that provisions, certifies, and revokes access based on role and behavior' }
+                },
+                'Supply Chain': {
+                    procure_to_pay: { q:'Set auto-approval thresholds by commodity category and contract status', m:'Deploy budget-aware approval routing with mobile approval for field buyers', s:'AI procurement governance with autonomous approval within policy and spend optimization' }
+                },
+                'Procurement': {
+                    req_to_po: { q:'Implement tiered approval thresholds to auto-approve routine purchases', m:'Deploy budget-integrated approval workflow with real-time spend visibility', s:'Autonomous purchasing agent that validates budget, approves within authority, and routes exceptions' },
+                    strategic_sourcing: { q:'Create evaluation scorecards with weighted criteria for vendor selection approvals', m:'Deploy collaborative evaluation platform with automated scoring and consensus tracking', s:'AI-powered sourcing decisions with automated evaluation, risk scoring, and award recommendation' }
+                },
+                'Compliance & Risk': {
+                    audit_cycle: { q:'Standardize finding severity classifications with clear approval authority levels', m:'Deploy risk-weighted approval routing for audit remediation plans', s:'AI audit governance that auto-classifies findings, routes by risk level, and tracks remediation SLAs' }
+                }
+            },
+            'REPORTING': {
+                'Finance & Accounting': {
+                    ap_processing: { q:'Create standard AP aging and vendor payment reports with scheduled distribution', m:'Deploy real-time AP dashboards with payment forecasting and cash flow impact', s:'AI-powered AP intelligence with predictive analytics, anomaly detection, and narrative insights' },
+                    financial_close: { q:'Standardize close status report templates with progress tracking', m:'Deploy automated close dashboard with task completion tracking and variance reporting', s:'AI close intelligence that predicts bottlenecks, generates variance narratives, and certifies readiness' },
+                    finance_compliance: { q:'Create standard compliance report templates with evidence attachment workflows', m:'Deploy automated compliance reporting with real-time control monitoring', s:'AI compliance intelligence with continuous monitoring, auto-generated attestations, and regulatory filing' }
+                },
+                'Human Resources': {
+                    recruitment: { q:'Create standard recruiting pipeline reports with time-to-fill tracking', m:'Deploy recruiting analytics dashboard with source effectiveness and funnel metrics', s:'AI recruiting intelligence with predictive hiring timelines and quality-of-hire scoring' },
+                    perf_development: { q:'Standardize performance review completion and rating distribution reports', m:'Deploy HR analytics with skill gap visualization and development ROI tracking', s:'AI workforce intelligence with predictive performance modeling and development recommendations' }
+                },
+                'Operations': {
+                    production: { q:'Create standard production output and efficiency reports with shift breakdowns', m:'Deploy real-time OEE dashboards with root-cause analysis for downtime', s:'AI production intelligence with predictive throughput and bottleneck forecasting' },
+                    quality: { q:'Standardize quality metrics reporting with defect trend analysis', m:'Deploy SPC dashboards with automated out-of-spec alerting', s:'AI quality intelligence with predictive defect modeling and process optimization recommendations' }
+                },
+                'Sales & Marketing': {
+                    pipeline_mgmt: { q:'Standardize pipeline reports with stage conversion rates and velocity metrics', m:'Deploy real-time pipeline dashboards with AI-generated forecast confidence scores', s:'AI sales intelligence with deal risk prediction, competitive signals, and coaching recommendations' },
+                    campaigns: { q:'Create standard campaign performance reports with channel attribution', m:'Deploy marketing analytics with multi-touch attribution and ROI optimization', s:'AI marketing intelligence with predictive campaign optimization and budget allocation' }
+                },
+                'Customer Service': {
+                    ticket_resolution: { q:'Create standard ticket volume and resolution time reports by category', m:'Deploy real-time CS dashboards with SLA tracking and agent performance analytics', s:'AI service intelligence with predictive volume forecasting and automated resource optimization' },
+                    feedback_voc: { q:'Create standard CSAT and NPS trend reports with verbatim analysis', m:'Deploy voice-of-customer analytics with theme extraction and sentiment trending', s:'AI customer intelligence with predictive satisfaction modeling and automated improvement recommendations' }
+                },
+                'Supply Chain': {
+                    supplier_mgmt: { q:'Create standard supplier scorecard reports with delivery and quality metrics', m:'Deploy supplier performance dashboards with trend analysis and risk indicators', s:'AI supplier intelligence with predictive risk scoring and automated performance improvement plans' }
+                },
+                'Procurement': {
+                    vendor_mgmt: { q:'Create standard spend reports by category, vendor, and contract compliance', m:'Deploy procurement analytics with savings tracking and maverick spend detection', s:'AI procurement intelligence with spend optimization and contract utilization recommendations' }
+                },
+                'Executive / C-Suite': {
+                    board_reporting: { q:'Standardize board report templates with consistent KPI definitions', m:'Deploy executive dashboards with AI-generated narrative summaries and trend analysis', s:'AI board intelligence with automated report generation, risk highlighting, and strategic insight synthesis' },
+                    portfolio_oversight: { q:'Create standard portfolio status reports with resource utilization tracking', m:'Deploy portfolio dashboards with project health scoring and resource optimization', s:'AI portfolio intelligence with predictive delivery forecasting and strategic alignment scoring' }
+                },
+                'Compliance & Risk': {
+                    audit_cycle: { q:'Standardize audit finding reports with remediation status tracking', m:'Deploy audit management dashboards with finding trend analysis and SLA monitoring', s:'AI audit intelligence with predictive risk assessment and automated finding classification' },
+                    risk_assessment: { q:'Create standard risk heat maps with control effectiveness scoring', m:'Deploy enterprise risk dashboards with real-time risk indicator monitoring', s:'AI risk intelligence with predictive modeling, scenario analysis, and automated risk response recommendations' }
+                },
+                'Research & Development': {
+                    experiment: { q:'Create standard experiment result reports with statistical analysis templates', m:'Deploy research dashboards with experiment tracking and result visualization', s:'AI research intelligence with automated result interpretation and next-experiment recommendation' }
+                }
+            },
+            'STATUS_TRACK': {
+                'Sales & Marketing': {
+                    pipeline_mgmt: { q:'Implement deal stage definitions with required fields at each stage', m:'Deploy CRM pipeline tracking with automated next-action recommendations', s:'AI pipeline agent that monitors deal health, suggests actions, and auto-updates stages from activities' }
+                },
+                'Customer Service': {
+                    ticket_resolution: { q:'Implement ticket status categories with SLA timers per category', m:'Deploy automated case tracking with SLA alerts and escalation triggers', s:'AI case agent that monitors resolution progress, predicts breaches, and auto-escalates' }
+                },
+                'Procurement': {
+                    req_to_po: { q:'Implement PO status stages with automated notifications at each stage', m:'Deploy order tracking with supplier integration and delivery prediction', s:'AI procurement agent that monitors orders, predicts delays, and triggers contingency actions' }
+                },
+                'Compliance & Risk': {
+                    audit_cycle: { q:'Implement remediation tracking with owner assignments and due dates', m:'Deploy audit finding tracker with automated escalation and evidence collection', s:'AI remediation agent that monitors progress, predicts completion, and auto-escalates overdue items' }
+                }
+            },
+            'SCHEDULING': {
+                'Human Resources': {
+                    recruitment: { q:'Create interview scheduling templates with panel availability windows', m:'Deploy AI scheduling that coordinates across candidate, recruiter, and panel calendars', s:'Autonomous interview orchestration that schedules, reschedules, and optimizes panel composition' }
+                },
+                'Operations': {
+                    production: { q:'Standardize shift scheduling templates with skills and certification tracking', m:'Deploy AI scheduling with capacity optimization and constraint-based planning', s:'Autonomous production scheduling that optimizes against demand, capacity, materials, and labor' },
+                    logistics: { q:'Create standard delivery scheduling with route optimization templates', m:'Deploy AI route planning with real-time traffic and constraint optimization', s:'Autonomous logistics orchestration with dynamic rerouting and multi-modal optimization' }
+                },
+                'Supply Chain': {
+                    demand_inventory: { q:'Align replenishment schedules with demand forecast cadence', m:'Deploy automated replenishment scheduling with lead-time optimization', s:'AI supply planning that auto-adjusts schedules based on demand signals and supply constraints' }
+                }
+            },
+            'TICKET_SUPPORT': {
+                'IT & Engineering': {
+                    incident_response: { q:'Create incident severity templates with predefined response procedures', m:'Deploy AI incident triage with automated severity classification and team paging', s:'Autonomous incident response that detects, classifies, pages, and initiates remediation playbooks' },
+                    provisioning: { q:'Create standard request forms for common provisioning tasks', m:'Deploy self-service provisioning portal with automated fulfillment workflows', s:'AI service agent that fulfills access requests, validates compliance, and provisions across all systems' }
+                },
+                'Customer Service': {
+                    ticket_resolution: { q:'Standardize ticket categories and create response templates per category', m:'Deploy AI-powered ticket triage with autonomous resolution for common issues', s:'Multi-agent service platform handling tickets end-to-end with predictive escalation' }
+                }
+            },
+            'COMPLIANCE_GOV': {
+                'Finance & Accounting': {
+                    finance_compliance: { q:'Map regulatory requirements to control owners with review schedules', m:'Deploy automated compliance monitoring with control testing and evidence collection', s:'AI compliance agent that monitors regulations, tests controls, and generates audit-ready documentation' }
+                },
+                'Procurement': {
+                    vendor_mgmt: { q:'Create vendor compliance checklists with certification tracking', m:'Deploy automated vendor compliance monitoring with risk-based review scheduling', s:'AI vendor compliance agent that monitors certifications, flags expirations, and triggers reviews' }
+                },
+                'Compliance & Risk': {
+                    reg_monitoring: { q:'Subscribe to regulatory update feeds relevant to business operations', m:'Deploy AI regulatory monitoring with automated change impact analysis', s:'Autonomous regulatory intelligence that monitors, analyzes, and recommends control updates' },
+                    audit_cycle: { q:'Map audit standards to control framework with evidence requirements', m:'Deploy automated control testing with continuous monitoring and exception alerting', s:'AI compliance assurance that continuously tests controls and generates audit-ready evidence' }
+                }
+            },
+            'RISK_SCORING': {
+                'Finance & Accounting': {
+                    finance_compliance: { q:'Define risk criteria and scoring thresholds for financial transactions', m:'Deploy automated transaction risk scoring with anomaly detection', s:'AI risk monitoring with real-time fraud detection and adaptive risk models' }
+                },
+                'Supply Chain': {
+                    supplier_mgmt: { q:'Create supplier risk assessment questionnaire with scoring criteria', m:'Deploy automated supplier risk monitoring with financial health tracking', s:'AI supplier risk platform with predictive risk scoring and automated mitigation triggers' }
+                },
+                'Procurement': {
+                    strategic_sourcing: { q:'Define vendor evaluation criteria with risk weighting factors', m:'Deploy automated vendor risk scoring with compliance and financial monitoring', s:'AI sourcing risk platform with predictive analytics and automated risk mitigation workflows' }
+                },
+                'Compliance & Risk': {
+                    risk_assessment: { q:'Standardize risk assessment methodology with consistent scoring rubrics', m:'Deploy enterprise risk scoring with real-time data integration and heat maps', s:'AI risk platform with predictive modeling, scenario analysis, and automated risk response' }
+                }
+            },
+            'CONTRACT_MGMT': {
+                'Legal': {
+                    contract_lifecycle: { q:'Create contract register with key dates, parties, and obligation tracking', m:'Deploy CLM platform with AI clause review and obligation extraction', s:'Intelligent contract platform with risk scoring, auto-negotiation support, and lifecycle automation' }
+                },
+                'Procurement': {
+                    strategic_sourcing: { q:'Standardize contract templates by category with pre-approved clauses', m:'Deploy CLM with AI-powered term comparison and benchmark pricing', s:'AI contract intelligence with automated negotiation support and compliance monitoring' },
+                    vendor_mgmt: { q:'Create vendor contract tracker with renewal dates and performance obligations', m:'Deploy contract analytics with obligation tracking and performance-to-terms monitoring', s:'AI vendor contract agent that monitors compliance, flags breaches, and recommends renegotiation' }
+                }
+            },
+            'DEMAND_FORECAST': {
+                'Sales & Marketing': {
+                    sales_forecast: { q:'Consolidate historical deal data and define key forecast drivers', m:'Deploy ML forecasting with pipeline analysis and win-probability scoring', s:'AI forecasting platform with real-time pipeline sensing and market signal integration' },
+                    pipeline_mgmt: { q:'Implement stage-based probability weighting for pipeline forecasting', m:'Deploy AI forecast models with rep-level accuracy tracking and bias correction', s:'Predictive pipeline intelligence with deal-level risk scoring and automated forecast adjustment' }
+                },
+                'Supply Chain': {
+                    demand_inventory: { q:'Consolidate historical demand data with seasonality tagging', m:'Deploy ML demand forecasting with external signal integration', s:'AI demand sensing with real-time market data, weather, and event-driven forecast adjustment' }
+                },
+                'Executive / C-Suite': {
+                    strategic_planning: { q:'Align departmental forecasts into unified organizational projection', m:'Deploy integrated business planning with scenario modeling capability', s:'AI strategic forecasting with cross-functional signal synthesis and automated scenario generation' }
+                }
+            },
+            'DOC_UNDERSTAND': {
+                'Legal': {
+                    contract_lifecycle: { q:'Categorize contracts by type and create standard review checklists', m:'Deploy AI contract review with clause extraction and risk flagging', s:'Autonomous contract analyst that reads, extracts, compares, and recommends terms' },
+                    litigation: { q:'Create document review protocols with relevance coding categories', m:'Deploy AI-assisted document review with relevance ranking and privilege detection', s:'Autonomous litigation document agent that reviews, codes, and builds case narratives' }
+                },
+                'Compliance & Risk': {
+                    reg_monitoring: { q:'Create regulatory document classification taxonomy for incoming guidance', m:'Deploy AI regulatory document analysis with requirement extraction', s:'Autonomous regulatory analyst that reads new guidance and maps impacts to controls' }
+                }
+            },
+            'SEARCH_RETRIEVAL': {
+                'Legal': {
+                    legal_compliance: { q:'Tag legal documents with jurisdiction, topic, and matter references', m:'Deploy semantic legal search across all internal and external repositories', s:'AI legal research agent that finds precedents, synthesizes analysis, and drafts memoranda' },
+                    litigation: { q:'Organize case files with consistent naming and metadata tagging', m:'Deploy AI-powered case research with cross-reference and timeline analysis', s:'Autonomous litigation research that finds relevant precedents and builds case chronologies' }
+                },
+                'Research & Development': {
+                    literature_ip: { q:'Consolidate research databases and implement consistent metadata tagging', m:'Deploy AI research search with citation network analysis and trend detection', s:'Autonomous research assistant that finds papers, synthesizes findings, and identifies gaps' }
+                }
+            },
+            'LEAD_SCORING': {
+                'Sales & Marketing': {
+                    lead_gen: { q:'Define ideal customer profile and basic lead scoring criteria', m:'Deploy ML lead scoring with behavioral signals and intent data integration', s:'Predictive pipeline with propensity modeling, auto-routing, and personalized nurture sequencing' },
+                    pipeline_mgmt: { q:'Implement lead-to-opportunity conversion criteria and handoff process', m:'Deploy AI lead qualification with automated routing and prioritization', s:'AI pipeline agent that scores, qualifies, routes, and nurtures leads through to opportunity creation' }
+                }
+            },
+            'EMAIL_COMMS': {
+                'Sales & Marketing': {
+                    campaigns: { q:'Create email templates with A/B test variants for each campaign type', m:'Deploy AI email orchestration with send-time optimization and dynamic content', s:'Autonomous campaign agent that creates, tests, sends, and optimizes emails continuously' },
+                    lead_gen: { q:'Build drip email sequences for each buyer persona and stage', m:'Deploy AI-personalized outreach with engagement-based sequence branching', s:'Autonomous outreach agent that crafts, sends, and adapts sequences based on engagement signals' }
+                },
+                'Customer Service': {
+                    ticket_resolution: { q:'Create response templates for top ticket categories with personalization fields', m:'Deploy AI-drafted responses with customer context and resolution suggestions', s:'Autonomous response agent that drafts, personalizes, and sends contextual customer communications' }
+                }
+            },
+            'RECRUITING': {
+                'Human Resources': {
+                    recruitment: { q:'Standardize job posting templates and distribution channels', m:'Deploy AI-powered job distribution with candidate matching and source analytics', s:'Autonomous recruiting agent that posts, sources, screens, and schedules across all channels' }
+                }
+            },
+            'RESUME_SCREEN': {
+                'Human Resources': {
+                    recruitment: { q:'Define must-have vs nice-to-have criteria for each role family', m:'Deploy AI resume screening with skills matching and bias-reduction safeguards', s:'Autonomous talent matching that screens, ranks, and shortlists candidates with full context analysis' }
+                }
+            },
+            'ONBOARDING': {
+                'Human Resources': {
+                    hr_onboarding: { q:'Create day-1 / week-1 / month-1 onboarding checklists by role', m:'Deploy automated onboarding workflows with system provisioning and training assignment', s:'Agentic onboarding that provisions, trains, checks in, and adapts the experience based on new-hire progress' },
+                    recruitment: { q:'Automate offer-to-start handoff with document collection workflow', m:'Deploy pre-boarding portal with digital document signing and system setup', s:'Seamless recruit-to-onboard pipeline that transitions candidates to employees without manual handoff' }
+                },
+                'Customer Service': {
+                    cust_onboarding: { q:'Create customer onboarding checklists by product tier or plan type', m:'Deploy guided onboarding with milestone tracking and automated help triggers', s:'AI onboarding agent that personalizes setup, monitors adoption, and intervenes when customers stall' }
+                }
+            },
+            'TEMPLATE_GEN': {
+                'Human Resources': {
+                    recruitment: { q:'Build offer letter templates with conditional clauses by role and level', m:'Deploy AI document generation pulling data from ATS and HRIS', s:'Autonomous HR document agent that generates, routes for approval, and delivers personalized documents' }
+                },
+                'Sales & Marketing': {
+                    lead_gen: { q:'Create proposal and pitch deck templates by industry vertical', m:'Deploy AI proposal generation with CRM data integration and competitive positioning', s:'Autonomous proposal agent that builds, personalizes, and optimizes sales documents from deal context' }
+                },
+                'Legal': {
+                    contract_lifecycle: { q:'Build clause libraries with pre-approved alternatives by risk level', m:'Deploy AI contract drafting with clause selection based on deal parameters', s:'Autonomous contract drafting agent that assembles, customizes, and pre-approves standard agreements' }
+                }
+            },
+            'KNOWLEDGE_BASE': {
+                'IT & Engineering': {
+                    incident_response: { q:'Document resolution steps for recurring incident types as runbooks', m:'Deploy AI knowledge management that auto-generates articles from resolved incidents', s:'Self-updating knowledge base that learns from every incident and surfaces solutions proactively' },
+                    platform_ops: { q:'Create standard operating procedures for routine platform tasks', m:'Deploy searchable operations wiki with AI-powered solution recommendation', s:'Autonomous operations knowledge agent that maintains, searches, and applies solutions to new issues' }
+                },
+                'Customer Service': {
+                    ticket_resolution: { q:'Audit and update FAQ content based on top ticket categories', m:'Deploy AI knowledge management with auto-generated articles from resolutions', s:'Self-improving knowledge base that learns from every interaction and surfaces answers before agents search' }
+                }
+            },
+            'EQUIP_MONITOR': {
+                'IT & Engineering': {
+                    platform_ops: { q:'Consolidate monitoring alerts into a single pane with severity classification', m:'Deploy AIOps with cross-system correlation and predictive alerting', s:'Autonomous infrastructure monitoring with auto-remediation and capacity prediction' },
+                    incident_response: { q:'Define monitoring thresholds aligned with service-level objectives', m:'Deploy anomaly detection with automatic incident creation and team notification', s:'AI observability that detects anomalies, correlates root causes, and initiates remediation autonomously' }
+                },
+                'Operations': {
+                    maintenance: { q:'Install basic condition-monitoring sensors on critical equipment', m:'Deploy predictive maintenance analytics with vibration and temperature trending', s:'AI equipment health platform with failure prediction and automated work order generation' }
+                }
+            },
+            'PROCUREMENT': {
+                'Supply Chain': {
+                    procure_to_pay: { q:'Digitize purchase requisition forms with approval routing', m:'Deploy e-procurement with catalog ordering and automated PO generation', s:'Autonomous procurement agent that sources, evaluates, orders, and tracks from need to receipt' }
+                },
+                'Procurement': {
+                    req_to_po: { q:'Implement catalog-based ordering for repetitive purchases', m:'Deploy e-procurement with automated requisition-to-PO conversion', s:'Touchless purchasing for standard items with AI-optimized vendor and quantity selection' },
+                    strategic_sourcing: { q:'Create structured RFP templates with evaluation criteria by category', m:'Deploy e-sourcing platform with automated bid comparison and scoring', s:'AI strategic sourcing with market intelligence, supplier discovery, and automated award optimization' }
+                }
+            },
+            'SENTIMENT': {
+                'Customer Service': {
+                    feedback_voc: { q:'Implement post-interaction sentiment tags in the ticketing system', m:'Deploy AI sentiment analysis across all customer channels in real time', s:'Autonomous customer sentiment agent that detects frustration, triggers interventions, and measures impact' }
+                },
+                'Sales & Marketing': {
+                    campaigns: { q:'Track campaign sentiment through social listening and review monitoring', m:'Deploy AI sentiment analytics across social, email, and review channels', s:'Autonomous brand sentiment agent that monitors, analyzes, and recommends messaging adjustments' }
+                }
+            },
+            'CUST_FEEDBACK': {
+                'Customer Service': {
+                    feedback_voc: { q:'Implement automated post-interaction surveys with follow-up triggers', m:'Deploy AI feedback analysis with theme extraction and trend visualization', s:'Autonomous VoC agent that collects, analyzes, themes, and routes actionable insights to product teams' }
+                },
+                'Sales & Marketing': {
+                    campaigns: { q:'Build feedback collection into campaign workflows with response tracking', m:'Deploy AI-powered feedback analysis with campaign impact correlation', s:'Autonomous customer insight agent that correlates feedback to campaigns and recommends optimizations' }
+                }
+            },
+            'REVIEW_AUDIT': {
+                'Compliance & Risk': {
+                    audit_cycle: { q:'Create standard audit workpaper templates with evidence requirements', m:'Deploy automated audit evidence collection with continuous control testing', s:'AI audit agent that plans, tests, documents, and reports audit findings autonomously' },
+                    risk_assessment: { q:'Standardize control testing procedures with effectiveness scoring', m:'Deploy automated control assessment with exception-based review workflow', s:'AI control assessment agent that tests, scores, and recommends improvements continuously' }
+                },
+                'Legal': {
+                    litigation: { q:'Create document review protocols with privilege and relevance coding', m:'Deploy AI-assisted document review with predictive coding and priority ranking', s:'Autonomous document review agent that codes, privileges, and builds review sets efficiently' }
+                }
+            },
+            'SUMMARIZATION': {
+                'Executive / C-Suite': {
+                    board_reporting: { q:'Create executive summary templates with consistent section structure', m:'Deploy AI summarization of department reports into board-ready briefs', s:'Autonomous board prep agent that aggregates, summarizes, and highlights decision points across departments' }
+                },
+                'Research & Development': {
+                    literature_ip: { q:'Create literature review templates with standard synthesis sections', m:'Deploy AI paper summarization with key finding extraction and comparison', s:'Autonomous research synthesizer that reads, summarizes, and identifies connections across papers' }
+                },
+                'Compliance & Risk': {
+                    reg_monitoring: { q:'Create regulatory update summary templates with impact classification', m:'Deploy AI regulatory summarization with automated impact assessment', s:'Autonomous regulatory digest that summarizes changes, assesses impact, and recommends actions' }
+                }
+            },
+            'MEETING_MGMT': {
+                'Executive / C-Suite': {
+                    board_reporting: { q:'Standardize board meeting agenda templates with pre-read distribution', m:'Deploy AI meeting management with automated minutes and action tracking', s:'Autonomous board secretary agent that prepares agendas, captures minutes, and tracks all action items' }
+                }
+            },
+            'DECISION': {
+                'Executive / C-Suite': {
+                    strategic_planning: { q:'Create decision frameworks with criteria weighting for recurring decision types', m:'Deploy decision support dashboards with scenario modeling and what-if analysis', s:'AI strategic advisor that aggregates data, models scenarios, and presents evidence-backed recommendations' }
+                },
+                'Procurement': {
+                    strategic_sourcing: { q:'Implement weighted evaluation matrices for vendor selection decisions', m:'Deploy AI-powered vendor evaluation with automated scoring and comparison', s:'Autonomous sourcing decision agent that evaluates, scores, and recommends optimal vendor awards' }
+                }
+            },
+            'PROJECT_MGMT': {
+                'Executive / C-Suite': {
+                    portfolio_oversight: { q:'Standardize project status reporting with health indicators and milestones', m:'Deploy portfolio management dashboard with resource and timeline optimization', s:'AI portfolio agent that monitors health, predicts risks, and recommends resource reallocation' }
+                },
+                'Research & Development': {
+                    product_dev: { q:'Implement milestone-based project tracking with deliverable checklists', m:'Deploy integrated project management with code commit and sprint analytics', s:'AI development agent that tracks progress from commits, predicts delivery dates, and optimizes sprints' }
+                }
+            },
+            'CODE_GEN': {
+                'IT & Engineering': {
+                    change_deploy: { q:'Implement code review checklists and pair programming for critical changes', m:'Deploy AI-assisted code generation with automated test creation', s:'Autonomous development agent that writes, tests, and reviews code from specifications' }
+                },
+                'Research & Development': {
+                    product_dev: { q:'Create reusable code templates and libraries for common experimental patterns', m:'Deploy AI code generation with experiment-specific framework support', s:'Autonomous research coding agent that generates, tests, and documents experimental code from hypotheses' }
+                }
+            },
+            'CI_CD_DEPLOY': {
+                'IT & Engineering': {
+                    change_deploy: { q:'Standardize deployment checklists and implement basic CI pipeline', m:'Deploy full CI/CD with automated testing gates and environment promotion', s:'Autonomous deployment orchestration with canary releases, auto-rollback, and self-healing infrastructure' }
+                }
+            },
+            'TEST_QA': {
+                'IT & Engineering': {
+                    change_deploy: { q:'Implement automated regression test suite for critical paths', m:'Deploy AI-generated tests from code changes with coverage tracking', s:'Autonomous QA agent that generates, maintains, and executes tests across every code change' }
+                },
+                'Operations': {
+                    quality: { q:'Digitize quality inspection checklists with pass/fail criteria', m:'Deploy automated statistical quality control with real-time SPC charts', s:'AI quality agent with computer vision inspection and autonomous process adjustment' }
+                },
+                'Research & Development': {
+                    experiment: { q:'Create standardized test protocols with data collection templates', m:'Deploy automated experiment execution with real-time data capture', s:'AI experiment agent that designs tests, executes protocols, and analyzes results autonomously' }
+                }
+            },
+            'LOG_ANALYSIS': {
+                'IT & Engineering': {
+                    incident_response: { q:'Centralize logs into a unified platform with structured formatting', m:'Deploy AI log analysis with anomaly detection and root cause correlation', s:'Autonomous diagnostics agent that detects anomalies, traces root causes, and initiates fixes' },
+                    platform_ops: { q:'Implement log retention policies and alert rules for critical patterns', m:'Deploy AI observability with cross-system log correlation and trend analysis', s:'AI operations agent that monitors logs, predicts issues, and auto-remediates known patterns' }
+                }
+            },
+            'INVENTORY': {
+                'Operations': {
+                    production: { q:'Implement cycle counting schedule and min/max reorder points', m:'Deploy real-time inventory tracking with automated replenishment triggers', s:'AI inventory optimization with demand-driven replenishment and multi-location balancing' },
+                    logistics: { q:'Standardize warehouse locations with barcode/QR tracking', m:'Deploy WMS with pick-path optimization and automated stock movement', s:'Autonomous warehouse agent with robotic picking, dynamic slotting, and predictive replenishment' }
+                },
+                'Supply Chain': {
+                    demand_inventory: { q:'Align safety stock levels with demand variability by SKU category', m:'Deploy AI inventory optimization with demand-driven replenishment', s:'Autonomous inventory agent that balances stock across locations based on real-time demand signals' }
+                }
+            },
+            'MAINT_MGMT': {
+                'Operations': {
+                    maintenance: { q:'Digitize work orders and build an asset register with maintenance history', m:'Deploy CMMS with preventive scheduling and mobile work order management', s:'AI predictive maintenance that schedules repairs before failures using sensor and performance data' }
+                }
+            },
+            'QUALITY_INSPECT': {
+                'Operations': {
+                    quality: { q:'Standardize inspection checklists and create defect categorization taxonomy', m:'Deploy automated inspection with statistical process control and trend tracking', s:'AI vision-based inspection with real-time defect detection and process parameter adjustment' },
+                    production: { q:'Implement in-line quality checkpoints at critical process stages', m:'Deploy automated quality gates with real-time SPC and auto-hold', s:'AI quality agent with computer vision, predictive quality scoring, and autonomous process adjustment' }
+                },
+                'Supply Chain': {
+                    supplier_mgmt: { q:'Create incoming inspection criteria by material category and supplier tier', m:'Deploy automated receiving inspection with digital quality records and scoring', s:'AI quality agent that inspects incoming materials, updates supplier scores, and triggers corrective actions' }
+                }
+            },
+            'ENTITY_EXTRACT': {
+                'Legal': {
+                    contract_lifecycle: { q:'Create extraction templates for key contract fields by agreement type', m:'Deploy AI entity extraction for parties, dates, amounts, and obligations', s:'Autonomous contract parser that extracts, structures, and populates contract databases from any format' },
+                    litigation: { q:'Define key entities to track across case documents', m:'Deploy AI entity extraction with relationship mapping and timeline generation', s:'Autonomous case analyst that extracts entities, builds timelines, and identifies document connections' }
+                },
+                'Research & Development': {
+                    literature_ip: { q:'Define key entities to extract from research papers by domain', m:'Deploy AI extraction of compounds, methods, and measurements from literature', s:'Autonomous research data agent that builds structured databases from unstructured research papers' }
+                }
+            },
+            'CONTENT_GEN': {
+                'Sales & Marketing': {
+                    campaigns: { q:'Create content briefs and brand voice guidelines for each channel', m:'Deploy AI content generation with brand voice training and channel optimization', s:'Autonomous content agent that plans, creates, tests, and optimizes content across all channels' },
+                    lead_gen: { q:'Build content templates for each stage of the buyer journey', m:'Deploy AI content personalization by persona, industry, and buying stage', s:'Autonomous content engine that generates personalized assets for every prospect and touchpoint' }
+                },
+                'Research & Development': {
+                    product_dev: { q:'Create standard technical documentation templates by deliverable type', m:'Deploy AI-assisted technical writing with automated formatting and cross-referencing', s:'Autonomous documentation agent that generates, maintains, and updates technical content from code and data' }
+                }
+            },
+            'PERSONALIZE': {
+                'Sales & Marketing': {
+                    campaigns: { q:'Define customer segments with tailored messaging variants', m:'Deploy AI personalization with behavioral triggers and dynamic content', s:'Autonomous personalization engine with real-time behavior-driven content assembly' }
+                },
+                'Customer Service': {
+                    cust_onboarding: { q:'Create onboarding paths by customer tier and product configuration', m:'Deploy AI-personalized onboarding with adaptive content and pacing', s:'Autonomous onboarding agent that personalizes every touchpoint based on customer behavior and goals' }
+                }
+            },
+            'CONVO_ANALYSIS': {
+                'Sales & Marketing': {
+                    sales_forecast: { q:'Record and tag key sales calls with outcome and competitor mentions', m:'Deploy AI conversation analytics with winning pattern detection and deal signals', s:'Autonomous call intelligence that analyzes every conversation for deal risk and coaching opportunities' }
+                },
+                'Customer Service': {
+                    feedback_voc: { q:'Tag customer interactions with topic, sentiment, and resolution outcome', m:'Deploy AI conversation analytics across all channels with theme extraction', s:'Autonomous interaction intelligence that analyzes every conversation and surfaces systemic improvement opportunities' }
+                }
+            },
+            'CHATBOT': {
+                'Sales & Marketing': {
+                    lead_gen: { q:'Deploy basic FAQ chatbot on website with lead capture form integration', m:'Deploy AI chatbot with product recommendation and demo booking capability', s:'Autonomous sales agent that qualifies, nurtures, and converts website visitors 24/7' }
+                },
+                'Customer Service': {
+                    ticket_resolution: { q:'Deploy FAQ chatbot for top 10 customer questions with agent handoff', m:'Deploy AI chatbot with account lookup, troubleshooting, and resolution capability', s:'Autonomous service agent that resolves issues end-to-end across chat, voice, and messaging' }
+                }
+            },
+            'CHURN_PREDICT': {
+                'Sales & Marketing': {
+                    sales_forecast: { q:'Track key churn indicators and create customer health scoring rubric', m:'Deploy ML churn prediction with automated at-risk alerts and retention triggers', s:'AI retention platform with predictive churn scoring and automated intervention workflows' }
+                }
+            },
+            'DATA_VALIDATE': {
+                'Research & Development': {
+                    experiment: { q:'Define validation rules and acceptable ranges for each measurement type', m:'Deploy automated data validation with statistical anomaly detection', s:'AI data quality agent that validates, flags, and corrects experimental data in real time' }
+                },
+                'Compliance & Risk': {
+                    risk_assessment: { q:'Define data quality rules for regulatory reporting fields', m:'Deploy automated data validation with cross-system reconciliation', s:'AI data quality agent that validates regulatory data continuously and flags issues before filing' }
+                }
+            },
+            'DOC_SEARCH': {
+                'Legal': {
+                    legal_compliance: { q:'Organize regulatory documents with jurisdiction and topic metadata', m:'Deploy AI-powered regulatory search with relevance ranking and citation linking', s:'Autonomous regulatory research agent that monitors, searches, and synthesizes guidance' },
+                    litigation: { q:'Implement consistent document naming and coding for case files', m:'Deploy AI document search with predictive coding and privilege detection', s:'Autonomous case discovery agent that finds, codes, and organizes relevant documents' }
+                },
+                'Research & Development': {
+                    literature_ip: { q:'Index internal research reports with standard metadata and keywords', m:'Deploy AI research search with patent landscape analysis and citation mapping', s:'Autonomous IP research agent that searches patents, maps landscapes, and identifies white space' }
+                },
+                'Compliance & Risk': {
+                    reg_monitoring: { q:'Create regulatory library with tagged guidance by topic and jurisdiction', m:'Deploy AI regulatory search with change tracking and impact analysis', s:'Autonomous regulatory tracker that monitors feeds, identifies changes, and maps impacts to controls' }
+                }
+            },
+            'WORKFORCE_PLAN': {
+                'Executive / C-Suite': {
+                    portfolio_oversight: { q:'Align resource plans with portfolio priorities and skill requirements', m:'Deploy workforce analytics with capacity modeling and skill gap identification', s:'AI workforce planning with predictive attrition, skill forecasting, and strategic talent deployment' }
+                }
+            },
+            'PERF_MGMT': {
+                'Human Resources': {
+                    perf_development: { q:'Standardize review templates and define performance rating criteria', m:'Deploy continuous feedback platform with goal tracking and 360 reviews', s:'AI performance intelligence with predictive modeling, development recommendations, and retention risk scoring' }
+                }
+            },
+            'TRAINING': {
+                'Human Resources': {
+                    hr_onboarding: { q:'Create role-based training checklists with completion tracking', m:'Deploy learning management with automated training assignment and certification tracking', s:'AI-powered adaptive learning that personalizes training paths based on role, skills, and progress' },
+                    perf_development: { q:'Map training programs to competency frameworks and development plans', m:'Deploy AI-recommended learning paths based on skill gaps and career goals', s:'Autonomous development agent that identifies gaps, recommends training, and tracks skill acquisition' }
+                }
+            },
+            'FORM_PROC': {
+                'Human Resources': {
+                    hr_onboarding: { q:'Digitize new-hire paperwork with e-signature and auto-routing', m:'Deploy smart forms with HRIS auto-fill and conditional field logic', s:'Zero-touch onboarding forms that auto-complete, validate, and file from accepted offer data' },
+                    payroll_benefits: { q:'Create digital benefits enrollment forms with plan comparison tools', m:'Deploy self-service benefits portal with AI-powered plan recommendation', s:'Autonomous benefits agent that recommends plans, processes elections, and handles life events' }
+                },
+                'Procurement': {
+                    req_to_po: { q:'Create digital requisition forms with catalog integration and auto-fill', m:'Deploy smart procurement forms with budget validation and vendor suggestion', s:'Autonomous requisitioning that auto-fills from history, validates budget, and routes for approval' }
+                }
+            },
+            'FIELD_SERVICE': {
+                'Operations': {
+                    maintenance: { q:'Create mobile work order system with parts lookup and photo documentation', m:'Deploy AI-powered dispatch with skills-based routing and schedule optimization', s:'Autonomous field service agent that dispatches, guides, and verifies repairs with AR instructions' },
+                    logistics: { q:'Equip field teams with mobile tracking and proof-of-delivery tools', m:'Deploy route optimization with real-time customer notification and ETA updates', s:'AI logistics agent with dynamic routing, predictive ETAs, and autonomous exception handling' }
+                }
+            },
+            'ASSET_MGMT': {
+                'Operations': {
+                    maintenance: { q:'Build digital asset register with location, condition, and maintenance history', m:'Deploy asset lifecycle management with depreciation tracking and replacement planning', s:'AI asset intelligence with predictive lifecycle optimization and automated capital planning' }
+                },
+                'Supply Chain': {
+                    demand_inventory: { q:'Implement asset tagging with GPS/IoT tracking for fleet and containers', m:'Deploy asset utilization analytics with maintenance scheduling integration', s:'AI asset optimization with predictive utilization forecasting and automated lifecycle management' }
+                }
+            },
+            'WORK_EXECUTION': {
+                'Operations': {
+                    production: { q:'Digitize work instructions with step-by-step checklists and quality gates', m:'Deploy digital work execution with real-time data capture and progress tracking', s:'AI-guided work execution with adaptive instructions, quality prediction, and autonomous process control' }
+                }
+            },
+            'TASK_ASSIGN': {
+                'Operations': {
+                    production: { q:'Create skills matrix and implement assignment rules by task complexity', m:'Deploy AI task assignment with workload balancing and skills matching', s:'Autonomous workforce orchestration with real-time rebalancing and performance optimization' }
+                }
+            },
+            'SAFETY_ENV': {
+                'Operations': {
+                    production: { q:'Digitize safety observation reporting with photo capture and geolocation', m:'Deploy AI safety monitoring with near-miss pattern detection and trend alerting', s:'AI safety agent with real-time hazard detection, predictive incident modeling, and automated compliance' }
+                }
+            },
+            'DATA_TRANSFER': {
+                'IT & Engineering': {
+                    provisioning: { q:'Document integration points and create standard data mapping templates', m:'Deploy automated data pipelines with transformation rules and error handling', s:'AI integration agent that maps, transforms, and synchronizes data across systems autonomously' }
+                },
+                'Supply Chain': {
+                    demand_inventory: { q:'Standardize EDI formats and implement automated data exchange with key partners', m:'Deploy integration platform with automated order, ASN, and invoice exchange', s:'Autonomous supply chain data mesh with real-time partner integration and exception handling' }
+                }
+            },
+            'DATA_CLEANSE': {
+                'Research & Development': {
+                    experiment: { q:'Define data cleaning protocols with outlier detection criteria', m:'Deploy automated data cleansing pipeline with anomaly flagging and normalization', s:'AI data preparation agent that cleans, normalizes, and validates experimental data continuously' }
+                }
+            },
+            'MASTER_DATA': {
+                'Finance & Accounting': {
+                    ap_processing: { q:'Audit vendor master for duplicates and standardize naming conventions', m:'Deploy vendor master management with duplicate detection and auto-merge', s:'AI master data governance that continuously cleanses, deduplicates, and enriches vendor records' }
+                }
+            },
+            'TEXT_CLASSIFY': {
+                'Customer Service': {
+                    ticket_resolution: { q:'Define ticket taxonomy with clear category definitions and routing rules', m:'Deploy AI ticket classification with multi-label categorization and priority scoring', s:'Autonomous triage agent that classifies, prioritizes, and routes tickets with continuous learning' }
+                }
+            },
+            'RECOMMEND': {
+                'Sales & Marketing': {
+                    campaigns: { q:'Build recommendation rules based on purchase history and browsing behavior', m:'Deploy AI recommendation engine with collaborative filtering and real-time personalization', s:'Autonomous recommendation platform with real-time behavior sensing and cross-channel optimization' }
+                }
+            },
+            'OUTAGE_MGMT': {
+                'IT & Engineering': {
+                    incident_response: { q:'Create outage communication templates with severity-based notification lists', m:'Deploy automated status page with real-time updates and stakeholder notification', s:'Autonomous outage management that detects, communicates, coordinates, and resolves service disruptions' }
+                }
+            },
+            'LEGACY_MOD': {
+                'IT & Engineering': {
+                    platform_ops: { q:'Document legacy system interfaces and create modernization assessment criteria', m:'Deploy API wrapping for legacy systems with automated testing of critical paths', s:'AI-assisted modernization that analyzes legacy code, generates modern equivalents, and validates behavior' }
+                }
+            },
+            'API_MGMT': {
+                'IT & Engineering': {
+                    platform_ops: { q:'Implement API documentation standards and version control procedures', m:'Deploy API gateway with automated documentation generation and usage monitoring', s:'AI API governance that manages lifecycle, detects breaking changes, and auto-generates client SDKs' }
+                }
+            },
+            'INCIDENT_MGMT': {
+                'IT & Engineering': {
+                    incident_response: { q:'Document incident response playbooks for top incident categories', m:'Deploy automated incident detection with playbook execution and war-room coordination', s:'Autonomous incident commander that detects, triages, remediates, and generates postmortems' }
+                }
+            }
+        };
+
+        /* ── Domain detection: score KB entries against full workflow ── */
         function detectWorkflowDomain(rawSteps, department, industry, patternBoosts) {
             const combined = rawSteps.join(' ').toLowerCase();
             const words = combined.split(/[\s,;:.!?()]+/).filter(w => w.length > 1);
@@ -4302,7 +4941,7 @@
         }
 
         /* ── Analyze a single step (v2) ── */
-        function analyzeStepV2(stepText, department, industry, patternBoosts, domainProfile) {
+        function analyzeStepV2(stepText, department, industry, patternBoosts, domainProfile, workflowType) {
             const lower = stepText.toLowerCase();
             const words = lower.split(/[\s,;:.!?()]+/).filter(w => w.length > 1);
             const stemmedWords = words.map(simpleStem);
@@ -4362,6 +5001,12 @@
                 const indOv = CONTEXT_OVERLAYS[primaryId] && CONTEXT_OVERLAYS[primaryId][industry];
                 if (deptOv) { state = deptOv.state; benefit = deptOv.benefit; }
                 else if (indOv) { state = indOv.state; benefit = indOv.benefit; }
+                /* Workflow-type recs override */
+                if (workflowType && WORKFLOW_OVERLAYS[primaryId]
+                    && WORKFLOW_OVERLAYS[primaryId][department]
+                    && WORKFLOW_OVERLAYS[primaryId][department][workflowType]) {
+                    recs = { ...WORKFLOW_OVERLAYS[primaryId][department][workflowType] };
+                }
             }
 
             /* Signal word boosts (capped at +0.25 total) */
@@ -4787,7 +5432,7 @@
         /* Enforces strict process-domain locking across all output rows.
            16 numbered rules map to user requirements.
            domainProfile (from detectWorkflowDomain) enables cross-step coherence. */
-        function validateStepAlignment(analyzedSteps, industry, department, domainProfile) {
+        function validateStepAlignment(analyzedSteps, industry, department, domainProfile, workflowType) {
             /* ═══ RULE 0: Workflow-level domain coherence ═══ */
             /* Detect the workflow's dominant domain from the majority of matched steps.
                If a step matched out-of-domain, check if a domain-relevant entry scored
@@ -4879,6 +5524,12 @@
                     else if (indOv) { step.currentState = indOv.state; step.benefit = indOv.benefit; }
                     else { step.currentState = kbEntry.state; step.benefit = kbEntry.benefit; }
                     step.recs = { ...kbEntry.recs };
+                    /* Workflow-type recs override */
+                    if (workflowType && WORKFLOW_OVERLAYS[step.primaryId]
+                        && WORKFLOW_OVERLAYS[step.primaryId][department]
+                        && WORKFLOW_OVERLAYS[step.primaryId][department][workflowType]) {
+                        step.recs = { ...WORKFLOW_OVERLAYS[step.primaryId][department][workflowType] };
+                    }
                     step.cat = kbEntry.cat;
                 }
 
@@ -5449,9 +6100,11 @@
                     const patternBoosts = detectProcessPatterns(workflow);
                     /* Two-pass domain-locked analysis:
                        Pass 1: detect workflow domain from all steps combined
-                       Pass 2: analyze each step with domain bias, then enforce coherence */
+                       Pass 2: detect workflow type from domain profile
+                       Pass 3: analyze each step with domain bias + workflow type, then enforce coherence */
                     const domainProfile = detectWorkflowDomain(rawSteps, department, industry, patternBoosts);
-                    const analyzed = validateStepAlignment(rawSteps.map(s => analyzeStepV2(s, department, industry, patternBoosts, domainProfile)), industry, department, domainProfile);
+                    const workflowType = detectWorkflowType(domainProfile, department);
+                    const analyzed = validateStepAlignment(rawSteps.map(s => analyzeStepV2(s, department, industry, patternBoosts, domainProfile, workflowType)), industry, department, domainProfile, workflowType);
 
                     /* Per-step savings + risk notes */
                     const totalWeight = analyzed.reduce((s, x) => s + x.effortWeight, 0) || 1;
