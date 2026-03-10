@@ -3935,12 +3935,14 @@
                 'Human Resources': { state:'HR staff manually enter employee information, job changes, and benefits elections into HRIS systems', benefit:'Employee self-service and AI extraction handle routine HR data entry — job changes, personal updates, and benefits elections processed automatically' },
                 'Operations': { state:'Operators manually log production counts, downtime events, and quality readings into tracking systems', benefit:'IoT sensors and mobile devices capture production data automatically — eliminating manual logging and data lag' },
                 'Sales & Marketing': { state:'Sales reps manually update CRM records with contact details, meeting notes, and deal stage changes', benefit:'AI auto-captures meeting notes, updates CRM fields, and logs activities — reps sell instead of doing data entry' },
-                'Procurement': { state:'Buyers manually enter vendor information, catalog items, and contract terms into procurement systems', benefit:'AI extracts vendor and catalog data from documents and emails — procurement records maintained without manual keying' }
+                'Procurement': { state:'Buyers manually enter vendor information, catalog items, and contract terms into procurement systems', benefit:'AI extracts vendor and catalog data from documents and emails — procurement records maintained without manual keying' },
+                'Research & Development': { state:'Researchers manually transcribe experiment measurements, observations, and instrument readings into databases and electronic lab notebooks', benefit:'AI captures experiment data from instruments and lab notes automatically — structuring readings, observations, and metadata without manual transcription' },
             },
             'INVOICE_PROC': {
                 'Finance & Accounting': { state:'AP staff manually match supplier invoices against purchase orders and goods receipts for three-way verification', benefit:'AI-powered three-way matching catches price and quantity variances instantly — auto-posts clean invoices and routes exceptions for review' },
                 'Supply Chain': { state:'Supplier invoices manually matched against POs and receiving documents before payment processing', benefit:'AI-powered three-way matching validates invoices against POs and receipts — auto-posts clean invoices, routes exceptions' },
-                'Procurement': { state:'AP staff manually match supplier invoices to POs and receipts before processing payment', benefit:'AI-powered invoice processing auto-matches against POs, validates pricing, and routes exceptions — clean invoices pay without manual handling' }
+                'Procurement': { state:'AP staff manually match supplier invoices to POs and receipts before processing payment', benefit:'AI-powered invoice processing auto-matches against POs, validates pricing, and routes exceptions — clean invoices pay without manual handling' },
+                'Customer Service': { state:'Billing disputes and invoice inquiries handled manually by agents searching across billing systems and order records', benefit:'AI retrieves invoice details, identifies billing discrepancies, and resolves routine disputes automatically — agents handle only complex escalations' },
             },
             'DOC_UNDERSTAND': {
                 'Finance & Accounting': { state:'Staff manually read and extract data from financial documents like contracts, invoices, and bank statements', benefit:'AI extracts structured data from financial documents of any format — contracts, statements, invoices — with near-perfect accuracy' },
@@ -3993,7 +3995,8 @@
                 'Finance & Accounting': { state:'Finance staff manually track regulatory requirements and prepare compliance documentation for auditors', benefit:'AI monitors regulatory changes, maps controls to requirements, and auto-generates compliance reports with evidence collection' },
                 'Human Resources': { state:'HR tracks employment law requirements, required trainings, and reporting obligations manually', benefit:'AI monitors regulatory changes affecting employment, tracks compliance training completion, and generates required filings' },
                 'Procurement': { state:'Procurement compliance relies on manual policy checks, approved vendor lists, and periodic audits', benefit:'AI enforces procurement policies automatically — validates against approved vendors, spending limits, and regulatory requirements' },
-                'Compliance & Risk': { state:'Compliance officers manually track regulatory changes, maintain control documentation, and prepare for audits', benefit:'AI monitors regulatory feeds, auto-maps changes to controls, generates gap analyses, and maintains audit-ready documentation' }
+                'Compliance & Risk': { state:'Compliance officers manually track regulatory changes, maintain control documentation, and prepare for audits', benefit:'AI monitors regulatory feeds, auto-maps changes to controls, generates gap analyses, and maintains audit-ready documentation' },
+                'Legal': { state:'Regulatory requirements tracked manually across jurisdictions with attorneys monitoring legislative updates through email alerts and news feeds', benefit:'AI monitors regulatory changes across all relevant jurisdictions — mapping new requirements to existing policies and flagging compliance gaps automatically' },
             },
             'STATUS_TRACK': {
                 'Finance & Accounting': { state:'Period-end close tasks and audit action items tracked through email follow-ups and spreadsheets', benefit:'Live close dashboards show task completion, bottlenecks, and SLA status — no more chasing people for status updates' },
@@ -4010,7 +4013,8 @@
             'SCHEDULING': {
                 'Human Resources': { state:'Recruiters coordinate interview schedules through email back-and-forth with candidates, hiring managers, and panels', benefit:'AI coordinates interview slots with all calendars, handles rescheduling automatically, and eliminates the scheduling back-and-forth that delays hiring' },
                 'Operations': { state:'Production schedules and shift rosters managed through spreadsheets with manual capacity calculations', benefit:'AI optimizes schedules against capacity, materials, labor, and demand — rebalances in real time when constraints change' },
-                'Supply Chain': { state:'Shipment and delivery schedules coordinated through email with manual carrier selection and load planning', benefit:'AI optimizes delivery routes, carrier selection, and load planning — reducing shipping costs and improving on-time delivery' }
+                'Supply Chain': { state:'Shipment and delivery schedules coordinated through email with manual carrier selection and load planning', benefit:'AI optimizes delivery routes, carrier selection, and load planning — reducing shipping costs and improving on-time delivery' },
+                'Compliance & Risk': { state:'Audit schedules and compliance review timelines managed manually through spreadsheets with calendar reminders for recurring assessments', benefit:'AI optimizes audit scheduling based on risk ratings, resource availability, and regulatory deadlines — ensuring complete coverage with no scheduling conflicts' },
             },
             'DATA_VALIDATE': {
                 'Finance & Accounting': { state:'Staff manually review financial data for errors, missing entries, and policy violations before period close', benefit:'AI validation catches data quality issues, missing entries, and policy violations in real time — errors found before they compound' },
@@ -4027,7 +4031,8 @@
                 'Legal': { state:'Legal reviews conducted manually by reading through documents, precedents, and regulatory guidance', benefit:'AI-assisted legal review surfaces relevant precedents, flags risk areas, and compares documents against policy standards' },
                 'Procurement': { state:'Procurement audits conducted manually by reviewing PO history, vendor files, and policy compliance', benefit:'AI continuously monitors procurement transactions for policy compliance, split orders, and maverick spending' },
                 'Research & Development': { state:'Peer review of research conducted through manual reading and commenting on papers and experiment designs', benefit:'AI assists peer review by checking methodology, statistical validity, and consistency with prior work — faster, more thorough reviews' },
-                'Compliance & Risk': { state:'Audit reviews conducted by manually sampling transactions, testing controls, and documenting findings', benefit:'AI continuous auditing monitors all transactions against controls — flags exceptions in real time instead of quarterly sampling' }
+                'Compliance & Risk': { state:'Audit reviews conducted by manually sampling transactions, testing controls, and documenting findings', benefit:'AI continuous auditing monitors all transactions against controls — flags exceptions in real time instead of quarterly sampling' },
+                'Executive / C-Suite': { state:'Governance audits and board reviews prepared manually by collecting evidence from department heads and consolidating into presentations', benefit:'AI continuously monitors governance controls and generates audit-ready executive summaries — board oversight backed by real-time compliance evidence' },
             },
             'RISK_SCORING': {
                 'Finance & Accounting': { state:'Financial risk assessment relies on periodic manual review of exposure reports and ratio analysis', benefit:'AI scores transactions and counterparties for risk in real time — flags anomalies, fraud indicators, and policy breaches instantly' },
@@ -4041,7 +4046,9 @@
                 'Finance & Accounting': { state:'Lease agreements, vendor contracts, and financial covenants tracked manually with calendar reminders for renewals', benefit:'AI extracts key terms, tracks obligations and renewal dates, and alerts to covenant breaches or approaching deadlines' },
                 'Legal': { state:'Attorneys manually review contracts, track obligations, and monitor renewal dates across spreadsheets and email', benefit:'AI reads contracts in seconds, extracts key clauses, flags risky language, and tracks obligations with automated deadline alerts' },
                 'Procurement': { state:'Vendor contracts managed through email, shared drives, and manual tracking of terms and renewals', benefit:'AI-powered CLM extracts terms, tracks obligations, alerts to renewals, and benchmarks pricing against market rates' },
-                'Compliance & Risk': { state:'Regulatory obligations embedded in contracts tracked manually across vendor agreements and service levels', benefit:'AI extracts compliance obligations from contracts, monitors fulfillment, and alerts to breaches or approaching deadlines' }
+                'Compliance & Risk': { state:'Regulatory obligations embedded in contracts tracked manually across vendor agreements and service levels', benefit:'AI extracts compliance obligations from contracts, monitors fulfillment, and alerts to breaches or approaching deadlines' },
+                'Executive / C-Suite': { state:'High-value strategic contracts reviewed manually with legal and finance teams tracking obligations across spreadsheets', benefit:'AI surfaces key contract risks, financial exposure, and renewal timelines across the enterprise — enabling proactive executive oversight of critical agreements' },
+                'Operations': { state:'Service contracts and vendor agreements managed through email and shared drives with manual renewal tracking and SLA monitoring', benefit:'AI extracts SLA terms and renewal dates from operations contracts — automated alerts ensure service continuity and vendor accountability' },
             },
             'DATA_CLEANSE': {
                 'Finance & Accounting': { state:'Chart of accounts, vendor master, and customer master records require periodic manual cleanup and deduplication', benefit:'AI identifies duplicate records, inconsistent naming, and stale entries across financial master data — maintains data quality continuously' },
@@ -4070,13 +4077,15 @@
                 'Customer Service': { state:'Support agents manually compose email responses to customer inquiries and follow-ups', benefit:'AI drafts contextual email responses using customer history and resolution patterns — agents review and send in seconds' },
                 'Legal': { state:'Legal correspondence managed through manual email drafting with careful review for privilege and compliance', benefit:'AI drafts legal communications using approved language, checks for privilege issues, and maintains correspondence logs' },
                 'Procurement': { state:'Buyer-supplier communications managed through individual email threads with manual follow-ups', benefit:'AI drafts procurement communications, tracks response deadlines, and maintains organized supplier correspondence' },
-                'Executive / C-Suite': { state:'Executive communications crafted manually for board updates, stakeholder announcements, and investor relations', benefit:'AI drafts executive communications using organizational data and approved messaging — professional stakeholder updates in minutes' }
+                'Executive / C-Suite': { state:'Executive communications crafted manually for board updates, stakeholder announcements, and investor relations', benefit:'AI drafts executive communications using organizational data and approved messaging — professional stakeholder updates in minutes' },
+                'Supply Chain': { state:'Supplier communications managed through individual email threads with manual follow-ups on delivery schedules and order confirmations', benefit:'AI drafts and sends supplier communications automatically — order confirmations, delivery inquiries, and performance updates with consistent follow-up tracking' },
             },
             'TEMPLATE_GEN': {
                 'Human Resources': { state:'HR manually customizes offer letters, employment contracts, and policy documents for each situation', benefit:'AI generates personalized HR documents from templates — offer letters, contracts, policy acknowledgments — pulling data from HRIS automatically' },
                 'Sales & Marketing': { state:'Sales teams manually customize proposals, quotes, and presentation decks for each opportunity', benefit:'AI generates tailored proposals and quotes from CRM data — professional documents in minutes instead of hours' },
                 'Customer Service': { state:'Agents use manually maintained response templates that require customization for each situation', benefit:'AI generates contextual response templates personalized to the customer issue, history, and communication preferences' },
-                'Legal': { state:'Legal drafts contracts, NDAs, and agreements by customizing templates manually for each engagement', benefit:'AI generates tailored legal documents from templates — pulling in party details, terms, and clauses based on deal parameters' }
+                'Legal': { state:'Legal drafts contracts, NDAs, and agreements by customizing templates manually for each engagement', benefit:'AI generates tailored legal documents from templates — pulling in party details, terms, and clauses based on deal parameters' },
+                'Research & Development': { state:'Research protocols, experiment templates, and grant proposal outlines created manually from prior documents with inconsistent formatting', benefit:'AI generates standardized research templates from institutional libraries — protocols, proposal outlines, and report formats pre-populated with project data' },
             },
             'SENTIMENT': {
                 'Human Resources': { state:'HR relies on annual surveys and exit interviews to gauge employee satisfaction and engagement', benefit:'AI analyzes employee feedback, survey responses, and communication patterns to surface engagement trends and flight risks in real time' },
@@ -4092,7 +4101,8 @@
                 'Human Resources': { state:'Recruiters manually post jobs, screen applications, and coordinate with hiring managers through email', benefit:'AI-powered recruiting automates job distribution, screens applications against criteria, and surfaces best-fit candidates for review' }
             },
             'RESUME_SCREEN': {
-                'Human Resources': { state:'Recruiters manually read through stacks of resumes to identify qualified candidates', benefit:'AI screens resumes against job requirements, ranks candidates by fit, and highlights relevant experience — hours of screening done in minutes' }
+                'Human Resources': { state:'Recruiters manually read through stacks of resumes to identify qualified candidates', benefit:'AI screens resumes against job requirements, ranks candidates by fit, and highlights relevant experience — hours of screening done in minutes' },
+                'Research & Development': { state:'Research candidate applications and CVs reviewed manually by principal investigators screening for specialized skills and publication records', benefit:'AI screens research candidates against role-specific criteria including publication history, skills match, and project relevance — shortlisting top talent faster' },
             },
             'BACKGROUND_CHECK': {
                 'Human Resources': { state:'HR staff manually initiate and track background checks through vendor portals for each new hire', benefit:'Automated background check workflows trigger on offer acceptance, track progress, and flag issues — no manual vendor portal management' }
@@ -4128,7 +4138,8 @@
             'KNOWLEDGE_BASE': {
                 'IT & Engineering': { state:'IT knowledge bases maintained manually by staff documenting solutions and procedures', benefit:'AI auto-generates knowledge articles from resolved tickets, keeps solutions current, and surfaces relevant answers for new issues' },
                 'Customer Service': { state:'Support knowledge base maintained manually by agents documenting solutions and procedures', benefit:'AI auto-generates knowledge articles from resolved tickets, surfaces relevant answers for agents, and keeps content current' },
-                'Research & Development': { state:'R&D knowledge captured informally in lab notebooks, shared drives, and individual researcher files', benefit:'Structured knowledge base captures experimental results, methodologies, and lessons learned — institutional knowledge preserved and searchable' }
+                'Research & Development': { state:'R&D knowledge captured informally in lab notebooks, shared drives, and individual researcher files', benefit:'Structured knowledge base captures experimental results, methodologies, and lessons learned — institutional knowledge preserved and searchable' },
+                'Compliance & Risk': { state:'Compliance policies, regulatory guidance, and audit precedents stored across scattered drives with no centralized searchable repository', benefit:'AI-powered compliance knowledge base surfaces relevant regulations, prior audit findings, and policy interpretations — instant answers for compliance questions' },
             },
             'SEARCH_RETRIEVAL': {
                 'IT & Engineering': { state:'IT staff search across wikis, ticket history, and documentation to find solutions and procedures', benefit:'AI-powered search finds relevant solutions across all IT repositories using natural language — answers in seconds instead of minutes' },
@@ -4159,14 +4170,16 @@
             },
             'ASSET_MGMT': {
                 'Operations': { state:'Equipment and facility assets tracked through spreadsheets with manual lifecycle and depreciation management', benefit:'Digital asset registry with automated lifecycle tracking, depreciation calculations, and replacement planning' },
-                'Supply Chain': { state:'Fleet vehicles, containers, and warehouse equipment tracked through spreadsheets and manual logs', benefit:'Digital asset tracking with GPS/IoT monitoring, automated maintenance scheduling, and utilization analytics' }
+                'Supply Chain': { state:'Fleet vehicles, containers, and warehouse equipment tracked through spreadsheets and manual logs', benefit:'Digital asset tracking with GPS/IoT monitoring, automated maintenance scheduling, and utilization analytics' },
+                'Human Resources': { state:'Employee laptops, ID badges, and assigned equipment tracked manually through spreadsheets and email-based checkout logs', benefit:'AI-powered asset registry tracks employee equipment assignments, automates checkout and return workflows, and flags unreturned assets at offboarding' },
             },
             'MAINT_MGMT': {
                 'Operations': { state:'Maintenance work orders created manually with calendar-based preventive schedules and reactive repairs', benefit:'Predictive maintenance uses sensor data to schedule repairs before failures — work orders auto-generated and optimized' }
             },
             'QUALITY_INSPECT': {
                 'Operations': { state:'Quality inspections performed manually with paper checklists and sample-based testing protocols', benefit:'Computer vision and AI detect defects automatically at production speed — 100% inspection without added headcount' },
-                'Supply Chain': { state:'Incoming material inspections performed manually with sample-based testing and paper quality records', benefit:'Automated quality inspection at receiving with digital records, trend analysis, and supplier quality scoring' }
+                'Supply Chain': { state:'Incoming material inspections performed manually with sample-based testing and paper quality records', benefit:'Automated quality inspection at receiving with digital records, trend analysis, and supplier quality scoring' },
+                'Customer Service': { state:'Service quality monitored manually through random call sampling, supervisor listening sessions, and periodic scorecard reviews', benefit:'AI evaluates every customer interaction against quality standards — scoring tone, accuracy, and compliance in real time across all channels' },
             },
             'SAFETY_ENV': {
                 'Operations': { state:'Safety compliance managed through manual incident reporting, paper checklists, and periodic inspections', benefit:'AI monitors safety metrics in real time, predicts hazard patterns, and ensures compliance with automated reporting' }
@@ -4175,7 +4188,8 @@
                 'Operations': { state:'Field service dispatched manually with phone-based scheduling and paper work orders', benefit:'AI optimizes field routes, auto-dispatches based on skills and proximity, and provides technicians with AR-guided instructions' }
             },
             'TASK_ASSIGN': {
-                'Operations': { state:'Work tasks assigned manually by supervisors based on experience and availability', benefit:'AI assigns tasks based on skills, certification, workload, and priority — optimizing team productivity automatically' }
+                'Operations': { state:'Work tasks assigned manually by supervisors based on experience and availability', benefit:'AI assigns tasks based on skills, certification, workload, and priority — optimizing team productivity automatically' },
+                'Research & Development': { state:'Lab tasks and experiment responsibilities assigned manually by research leads based on team availability and informal skill knowledge', benefit:'AI assigns lab tasks based on researcher expertise, equipment certification, current workload, and project priority — optimizing research throughput' },
             },
             'WORK_EXECUTION': {
                 'Operations': { state:'Workers follow paper-based work instructions with manual quality checkpoints and handoff procedures', benefit:'Digital work instructions guide operators step by step with automated quality gates and real-time progress tracking' }
@@ -4191,12 +4205,14 @@
                 'Customer Service': { state:'Customer interactions follow standard scripts regardless of customer history or value tier', benefit:'AI personalizes every interaction based on customer history, preferences, and value — high-value customers get tailored treatment' }
             },
             'RECOMMEND': {
-                'Sales & Marketing': { state:'Product recommendations rely on manual curation, basic rules, and generic best-seller lists', benefit:'AI recommendation engine suggests relevant products based on browsing history, purchase patterns, and similar customer behavior' }
+                'Sales & Marketing': { state:'Product recommendations rely on manual curation, basic rules, and generic best-seller lists', benefit:'AI recommendation engine suggests relevant products based on browsing history, purchase patterns, and similar customer behavior' },
+                'Executive / C-Suite': { state:'Strategic recommendations compiled manually from consultant reports, market research, and internal analysis across multiple departments', benefit:'AI synthesizes internal performance data with market intelligence to generate evidence-based strategic recommendations — accelerating executive decision cycles' },
             },
             'CONTENT_GEN': {
                 'Sales & Marketing': { state:'Marketing team manually creates blog posts, social content, ad copy, and email content', benefit:'AI generates on-brand marketing content at scale — blog posts, ad copy, social content — with consistent voice and messaging' },
                 'Executive / C-Suite': { state:'Executive thought leadership and communications require manual drafting with multiple review cycles', benefit:'AI generates executive content — speeches, blog posts, reports — aligned with organizational voice and strategic messaging' },
-                'Research & Development': { state:'Researchers manually write papers, grant proposals, and technical reports alongside their research work', benefit:'AI drafts research papers, grant proposals, and technical reports from experimental data — researchers focus on science, not writing' }
+                'Research & Development': { state:'Researchers manually write papers, grant proposals, and technical reports alongside their research work', benefit:'AI drafts research papers, grant proposals, and technical reports from experimental data — researchers focus on science, not writing' },
+                'Legal': { state:'Legal memoranda, client alerts, and policy guidance documents drafted manually by attorneys from scratch for each matter', benefit:'AI drafts legal publications and internal memos from approved templates and precedent libraries — attorneys review and refine instead of starting from blank pages' },
             },
             'CONVO_ANALYSIS': {
                 'Sales & Marketing': { state:'Sales managers manually review call recordings and meeting notes to coach reps and identify trends', benefit:'AI analyzes sales conversations for winning patterns, competitor mentions, and coaching opportunities — insight from every interaction' },
@@ -4204,7 +4220,8 @@
             },
             'CUST_FEEDBACK': {
                 'Sales & Marketing': { state:'Customer feedback collected through manual survey distribution with periodic analysis of results', benefit:'AI collects, categorizes, and analyzes customer feedback in real time — surfacing trends, feature requests, and satisfaction drivers' },
-                'Customer Service': { state:'Customer feedback collected through post-interaction surveys with quarterly manual analysis', benefit:'AI collects and analyzes feedback in real time — surfaces recurring issues, feature requests, and satisfaction drivers automatically' }
+                'Customer Service': { state:'Customer feedback collected through post-interaction surveys with quarterly manual analysis', benefit:'AI collects and analyzes feedback in real time — surfaces recurring issues, feature requests, and satisfaction drivers automatically' },
+                'Human Resources': { state:'Employee survey responses and exit interview feedback collected manually with quarterly analysis in spreadsheets', benefit:'AI aggregates employee feedback from surveys, exit interviews, and pulse checks — surfacing engagement trends and retention risks in real time' },
             },
             'CHATBOT': {
                 'Sales & Marketing': { state:'Website visitors get static FAQ pages or wait for sales rep availability during business hours', benefit:'AI chatbots qualify visitors 24/7, answer product questions, book demos, and hand off warm leads to sales reps' },
@@ -4391,6 +4408,367 @@
                 'UPDATE': { state:'Asset records updated manually when items move, change hands, or undergo maintenance — updates often lag behind actual changes by days or weeks', benefit:'Asset records update automatically as items are scanned, moved, or serviced — every change reflected in real time with full audit trail across all systems' },
                 'MONITOR': { state:'Asset condition monitored reactively through scheduled inspections and user-reported issues, with problems discovered after they affect operations', benefit:'Continuous asset monitoring tracks condition, utilization, and performance metrics — predicting failures and triggering maintenance before assets go down' },
                 'VALIDATE': { state:'Asset inventories verified manually through periodic physical counts, comparing serial numbers and locations against records one item at a time', benefit:'Automated asset validation cross-checks physical presence against records continuously — discrepancies flagged immediately rather than at the next audit cycle' }
+            },
+
+            /* ── Financial ── */
+
+            'JOURNAL_POST': {
+                'RECEIVE': { state:'Journal entry requests arrive via email, spreadsheets, and interoffice memos — staff manually collect and organize them before keying into the GL', benefit:'Journal entry requests captured automatically from all sources — parsed, classified by account, and queued for posting without manual intake steps' },
+                'VALIDATE': { state:'Accountants manually verify journal entries against supporting documentation, checking debits equal credits and accounts are correct before posting', benefit:'AI validates every journal entry against chart of accounts, supporting docs, and balancing rules — flagging anomalies before they reach the ledger' },
+                'GENERATE': { state:'Recurring and adjusting journal entries created manually each period by accountants pulling data from sub-ledgers and spreadsheets', benefit:'AI generates recurring, accrual, and adjusting entries automatically from sub-ledger data and historical patterns — ready for reviewer approval' },
+                'EXECUTE': { state:'Journal entries posted manually one batch at a time, with accountants navigating multiple screens and approval queues to complete each posting cycle', benefit:'Validated journal entries post straight through to the general ledger — batch processing handles thousands of entries per cycle without manual intervention' },
+                'ANALYZE': { state:'Journal entry analysis limited to post-hoc reviews of trial balances and variance reports, often weeks after entries were posted', benefit:'AI analyzes journal entry patterns in real time — detecting unusual amounts, duplicate entries, and posting anomalies before the books close' }
+            },
+            'FINANCIAL_CLOSE': {
+                'RECEIVE': { state:'Close tasks and reconciliation items collected manually from multiple departments, with status tracked in spreadsheets and email threads', benefit:'All close tasks, reconciliation items, and deliverables auto-collected from sub-ledgers and departments into a unified close management workspace' },
+                'VALIDATE': { state:'Close checklist items verified manually — staff confirm each reconciliation is complete, variances are explained, and approvals are obtained', benefit:'AI validates close tasks automatically — confirming reconciliations tie out, variances are within thresholds, and all required approvals are captured' },
+                'GENERATE': { state:'Close reports, flux analyses, and management summaries assembled manually from spreadsheets and GL extracts at the end of each period', benefit:'AI generates close reports, flux analyses, and management summaries automatically from ledger data — reducing days of manual report assembly to minutes' },
+                'UPDATE': { state:'Close status tracked manually in shared spreadsheets, with task owners updating completion status through email and meetings', benefit:'Close task status updates automatically as each step completes — dashboards reflect real-time progress and blockers without manual status chasing' },
+                'EXECUTE': { state:'Period-end close requires dozens of manual steps across sub-ledgers, intercompany eliminations, and consolidation entries executed sequentially', benefit:'Close procedures execute automatically in sequence — sub-ledger rolls, intercompany eliminations, and consolidation entries processed hands-free on schedule' },
+                'ANALYZE': { state:'Close performance analyzed retrospectively by reviewing how long each task took and where bottlenecks occurred after the close is finished', benefit:'AI analyzes close cycle performance in real time — predicting delays, identifying bottlenecks, and recommending task resequencing to accelerate completion' }
+            },
+            'DATA_CLEANSE': {
+                'RECEIVE': { state:'Dirty data arrives from migrations, integrations, and manual entry — staff manually identify records needing cleansing across scattered sources', benefit:'AI ingests data from all sources and automatically identifies records requiring cleansing based on quality rules, completeness checks, and format standards' },
+                'VALIDATE': { state:'Data quality checked manually by reviewing samples, running ad-hoc queries, and comparing records against known-good reference sources', benefit:'Automated data validation applies hundreds of quality rules simultaneously — catching duplicates, format errors, and referential integrity issues at scale' },
+                'GENERATE': { state:'Data cleansing scripts and correction files built manually by analysts who write custom queries for each data quality issue discovered', benefit:'AI generates cleansing transformations automatically — standardizing formats, merging duplicates, and filling gaps based on learned data patterns' },
+                'UPDATE': { state:'Cleansed data pushed back to source systems manually, often requiring re-entry or custom file loads that risk introducing new errors', benefit:'Cleansed records flow back to source systems automatically through validated update pipelines — with rollback capability if downstream issues arise' },
+                'ANALYZE': { state:'Data quality trends tracked manually through periodic audits that capture a snapshot but miss the ongoing drift between review cycles', benefit:'AI analyzes data quality continuously — tracking error rates, identifying degradation trends, and pinpointing upstream sources that introduce the most issues' }
+            },
+            'MASTER_DATA': {
+                'RECEIVE': { state:'Master data change requests arrive via forms, emails, and tickets — staff manually log each request and determine which records need updating', benefit:'Master data requests captured automatically from any channel — AI classifies the change type, identifies affected records, and queues for governance review' },
+                'VALIDATE': { state:'Master data changes verified manually against naming conventions, hierarchy rules, and existing records to prevent duplicates and inconsistencies', benefit:'AI validates every master data change against governance rules, naming standards, and existing records — blocking duplicates and non-conforming entries automatically' },
+                'UPDATE': { state:'Master data updates applied manually across multiple systems, with staff re-keying the same change in ERP, CRM, and downstream applications', benefit:'Approved master data changes propagate automatically to all subscribing systems — one update reflected everywhere with full synchronization logging' },
+                'EXECUTE': { state:'Master data governance workflows executed manually through email approvals and spreadsheet tracking, with no enforced sequencing or SLA monitoring', benefit:'Master data governance workflows execute automatically — routing changes through required approvals, enforcing sequencing, and escalating when SLAs are at risk' },
+                'ANALYZE': { state:'Master data quality assessed through periodic audits that sample records and report findings weeks after issues were introduced', benefit:'AI monitors master data health continuously — tracking completeness, consistency, and usage patterns to surface governance gaps before they cause downstream errors' }
+            },
+
+            /* ── AI / ML Generation ── */
+
+            'CONTENT_GEN': {
+                'GENERATE': { state:'Writers and marketers manually draft content from scratch for each campaign, channel, and audience segment — a time-intensive creative process', benefit:'AI generates draft content tailored to audience, channel, and brand voice — giving writers a strong starting point instead of a blank page' },
+                'VALIDATE': { state:'Content reviewed manually for brand compliance, factual accuracy, and tone consistency — multiple rounds of edits before anything is approved', benefit:'AI validates generated content against brand guidelines, fact databases, and tone rules — flagging issues before human reviewers see the draft' },
+                'ANALYZE': { state:'Content performance analyzed manually by pulling metrics from analytics platforms and comparing engagement across pieces in spreadsheets', benefit:'AI analyzes content performance across channels in real time — identifying what resonates by audience segment and recommending optimization strategies' },
+                'COMMUNICATE': { state:'Finished content distributed manually to each channel — social platforms, email systems, CMS — with staff adapting formats and scheduling posts individually', benefit:'AI distributes content across channels automatically — adapting format and timing per platform while maintaining consistent messaging and tracking engagement' }
+            },
+            'SUMMARIZATION': {
+                'GENERATE': { state:'Staff manually read lengthy documents, reports, and transcripts to produce summaries — spending hours distilling key points from each source', benefit:'AI generates concise, accurate summaries from any document or transcript in seconds — capturing key points, decisions, and action items automatically' },
+                'VALIDATE': { state:'Summaries checked manually against source material to ensure nothing critical was missed or misrepresented — a tedious re-reading exercise', benefit:'AI validates summaries against source documents automatically — flagging omissions, inaccuracies, and unsupported statements before distribution' },
+                'ANALYZE': { state:'Trends across multiple summarized documents identified manually by reading all summaries and mentally connecting themes across sources', benefit:'AI analyzes patterns across hundreds of summarized documents — surfacing recurring themes, emerging risks, and cross-document insights humans would miss' },
+                'COMMUNICATE': { state:'Summaries formatted and distributed manually to stakeholders via email, with different audiences receiving the same one-size-fits-all version', benefit:'AI tailors summary depth and focus to each audience automatically — executives get highlights, teams get action items, archives get full detail' }
+            },
+            'TRANSLATION': {
+                'GENERATE': { state:'Professional translators manually translate documents, interfaces, and communications — a slow process with backlogs during peak multilingual demand', benefit:'AI generates high-quality translations instantly across dozens of language pairs — maintaining terminology consistency and domain-specific accuracy' },
+                'VALIDATE': { state:'Translated content reviewed manually by bilingual staff to check accuracy, cultural appropriateness, and consistent use of approved terminology', benefit:'AI validates translations against terminology glossaries, style guides, and cultural context rules — flagging questionable passages for human review' },
+                'ANALYZE': { state:'Translation quality and consistency tracked manually by sampling completed translations and comparing them against approved reference materials', benefit:'AI analyzes translation quality metrics across all output — tracking terminology consistency, error patterns, and linguist performance over time' },
+                'COMMUNICATE': { state:'Translated materials distributed manually to regional teams and localized channels, with staff managing version control across multiple languages', benefit:'Translated content flows automatically to regional channels and systems — with version control ensuring every locale stays synchronized with source updates' }
+            },
+            'TEMPLATE_GEN': {
+                'GENERATE': { state:'Staff manually create document templates from scratch or adapt old ones — copying formatting, adjusting fields, and testing layout for each new need', benefit:'AI generates document templates tailored to purpose, audience, and brand standards — complete with dynamic fields, conditional sections, and proper formatting' },
+                'VALIDATE': { state:'Templates reviewed manually for formatting consistency, correct field mappings, and compliance with document standards before being published for use', benefit:'AI validates templates against formatting standards, required field lists, and compliance rules — ensuring every template is production-ready before release' },
+                'ANALYZE': { state:'Template usage and effectiveness tracked manually by surveying users and reviewing completed documents to see which templates work well', benefit:'AI analyzes template usage patterns, completion rates, and user feedback — recommending improvements and retiring underperforming templates automatically' }
+            },
+            'CODE_GEN': {
+                'GENERATE': { state:'Developers write code manually for routine functions, boilerplate, API integrations, and data transformations — time spent on repetitive patterns', benefit:'AI generates production-quality code for common patterns — APIs, CRUD operations, data transformations, and tests — letting developers focus on novel logic' },
+                'VALIDATE': { state:'Generated code reviewed manually through code reviews, testing, and static analysis — developers inspect every function for correctness and security', benefit:'AI validates generated code automatically against security rules, coding standards, and test suites — catching vulnerabilities and anti-patterns before review' },
+                'ANALYZE': { state:'Code quality and technical debt tracked manually through periodic reviews and static analysis scans that developers run on their own schedule', benefit:'AI analyzes code quality continuously — tracking complexity, duplication, dependency risks, and technical debt trends across the entire codebase' },
+                'COMMUNICATE': { state:'Code documentation written manually after development — often incomplete, outdated, or skipped entirely due to time pressure', benefit:'AI generates documentation alongside code automatically — inline comments, API docs, and architecture notes that stay synchronized with the actual implementation' }
+            },
+            'EMAIL_DRAFT': {
+                'GENERATE': { state:'Staff manually compose emails from scratch for each communication — spending significant time on routine correspondence, follow-ups, and status updates', benefit:'AI drafts contextual emails based on intent, prior conversation history, and recipient relationship — ready for quick review and send' },
+                'VALIDATE': { state:'Draft emails reviewed manually for tone, accuracy, and completeness — staff re-read each message and check attachments before sending', benefit:'AI validates email drafts for tone appropriateness, factual accuracy, completeness, and attachment references — catching errors before they reach recipients' },
+                'ANALYZE': { state:'Email effectiveness tracked manually by monitoring reply rates and outcomes — no systematic way to learn which phrasing and approaches work best', benefit:'AI analyzes email engagement patterns — identifying which subject lines, tones, and structures drive the best response rates for each communication type' },
+                'COMMUNICATE': { state:'Bulk and personalized emails assembled manually, with staff merging data, customizing messages, and scheduling sends across different recipient groups', benefit:'AI personalizes and schedules emails automatically — adapting content, tone, and timing to each recipient based on relationship context and engagement history' }
+            },
+
+            /* ── Analytics / ML ── */
+
+            'SENTIMENT': {
+                'RECEIVE': { state:'Customer feedback collected manually from surveys, reviews, social media, and support channels — staff copy-paste text into analysis spreadsheets', benefit:'AI ingests feedback from all channels automatically — surveys, reviews, social media, and support logs — unified into a single sentiment stream' },
+                'GENERATE': { state:'Sentiment reports compiled manually by analysts who read feedback samples and subjectively categorize them as positive, negative, or neutral', benefit:'AI generates granular sentiment scores and trend reports automatically — breaking down sentiment by topic, product feature, and customer segment' },
+                'ANALYZE': { state:'Sentiment trends analyzed manually by comparing periodic report snapshots — underlying drivers and shifts often identified weeks after they begin', benefit:'AI analyzes sentiment drivers in real time — correlating shifts with product changes, campaigns, and events to explain why sentiment moved' },
+                'MONITOR': { state:'Sentiment monitored through periodic manual reviews of aggregated survey scores, with sudden shifts going unnoticed between review cycles', benefit:'Continuous sentiment monitoring alerts teams to sudden shifts, emerging complaints, and viral negative feedback within minutes of occurrence' }
+            },
+            'ENTITY_EXTRACT': {
+                'RECEIVE': { state:'Documents and messages containing entities arrive from multiple sources — staff manually read through each to identify and tag names, dates, and references', benefit:'AI ingests documents from all sources and automatically identifies entity-rich content for extraction — no manual pre-screening required' },
+                'VALIDATE': { state:'Extracted entities verified manually by staff who compare AI output against source text, checking for missed entities and incorrect classifications', benefit:'AI validates extracted entities against reference databases and context — confirming accuracy and resolving ambiguities before entities flow downstream' },
+                'GENERATE': { state:'Entity extraction results formatted manually into structured outputs — staff build relationship maps and entity lists by hand from raw extraction data', benefit:'AI generates structured entity databases, relationship graphs, and cross-reference tables automatically from extraction results' },
+                'ANALYZE': { state:'Entity patterns and relationships analyzed manually by reviewing extraction outputs and mentally connecting entities across documents', benefit:'AI analyzes entity co-occurrence, relationship patterns, and frequency trends across document collections — revealing hidden connections and networks' }
+            },
+            'TEXT_CLASSIFY': {
+                'RECEIVE': { state:'Incoming text items — emails, tickets, documents — sit in generic queues until staff manually read and categorize each one for proper routing', benefit:'AI classifies incoming text items instantly upon arrival — assigning categories, priority, and routing labels without manual reading or sorting' },
+                'VALIDATE': { state:'Classification accuracy checked manually by sampling classified items and comparing AI labels against human judgment on a periodic basis', benefit:'AI validates classification confidence in real time — routing low-confidence items for human review while high-confidence items flow through automatically' },
+                'GENERATE': { state:'Classification reports and category distribution analyses assembled manually from query results and exported classification logs', benefit:'AI generates classification performance reports, category distribution dashboards, and misclassification analyses automatically on schedule' },
+                'ANALYZE': { state:'Classification trends and model drift tracked manually through periodic accuracy reviews that lag behind actual performance changes', benefit:'AI monitors classification accuracy continuously — detecting category drift, emerging topics, and model degradation before they impact downstream processes' }
+            },
+            'CONVO_ANALYSIS': {
+                'RECEIVE': { state:'Conversation recordings and transcripts collected manually from call systems, chat platforms, and meeting tools — often incomplete or inconsistently formatted', benefit:'AI captures conversations from all channels automatically — transcribing, normalizing, and indexing them for analysis without manual collection effort' },
+                'VALIDATE': { state:'Conversation transcripts reviewed manually for accuracy — staff listen to recordings and correct transcription errors before analysis can begin', benefit:'AI validates transcription accuracy automatically — cross-referencing speaker identification, correcting domain terms, and flagging uncertain passages' },
+                'GENERATE': { state:'Conversation insights compiled manually by analysts who listen to call samples and document themes, issues, and coaching opportunities in reports', benefit:'AI generates conversation insight reports automatically — topic summaries, sentiment trends, compliance flags, and coaching opportunities from every interaction' },
+                'ANALYZE': { state:'Conversation patterns analyzed manually through limited sampling — only a fraction of calls reviewed, missing systemic trends across the full volume', benefit:'AI analyzes every conversation at scale — identifying topic trends, resolution patterns, escalation drivers, and agent performance across the entire volume' },
+                'MONITOR': { state:'Conversation quality monitored through random sampling by QA staff, with feedback delivered days or weeks after the interactions occurred', benefit:'Real-time conversation monitoring flags compliance risks, escalation signals, and quality issues during live interactions — enabling immediate intervention' }
+            },
+            'LEAD_SCORING': {
+                'RECEIVE': { state:'Lead data collected manually from web forms, trade shows, and marketing campaigns — sales reps enter contact details into CRM one lead at a time', benefit:'AI captures leads from all sources automatically — enriching contact data, deduplicating against existing records, and scoring upon arrival' },
+                'VALIDATE': { state:'Lead quality assessed manually by sales reps who review each lead based on gut feeling and basic firmographic criteria', benefit:'AI validates lead data completeness and quality automatically — verifying contact information, firmographics, and intent signals before scoring' },
+                'GENERATE': { state:'Lead scores assigned manually or through simple rule-based formulas that miss behavioral signals and contextual buying indicators', benefit:'AI generates dynamic lead scores using behavioral signals, engagement patterns, firmographic fit, and buying intent — updating as new signals arrive' },
+                'ANALYZE': { state:'Lead conversion patterns analyzed manually through periodic pipeline reviews, with limited ability to identify which scoring factors predict closed deals', benefit:'AI analyzes conversion patterns across the full pipeline — identifying which lead attributes and behaviors most reliably predict revenue outcomes' },
+                'MONITOR': { state:'Lead score accuracy monitored through quarterly reviews comparing scores against outcomes — model drift goes undetected between review cycles', benefit:'Continuous lead score monitoring tracks prediction accuracy in real time — recalibrating models automatically when conversion patterns shift' }
+            },
+            'CHURN_PREDICT': {
+                'RECEIVE': { state:'Customer health data gathered manually from CRM, support tickets, and usage logs — analysts compile risk indicators in spreadsheets for periodic review', benefit:'AI ingests customer signals from all systems continuously — usage patterns, support history, billing changes, and engagement metrics unified for analysis' },
+                'VALIDATE': { state:'Churn risk assessments validated manually by account managers who review flagged customers and compare predictions against their relationship knowledge', benefit:'AI validates churn predictions against multiple signal sources — cross-checking usage trends, support patterns, and contract data for prediction confidence' },
+                'GENERATE': { state:'Churn risk reports assembled manually by analysts who query multiple systems and compile customer health scores in periodic spreadsheet reviews', benefit:'AI generates churn risk scores and intervention recommendations automatically — prioritized lists with specific retention actions for each at-risk customer' },
+                'ANALYZE': { state:'Churn drivers analyzed manually through post-loss reviews and exit surveys — root causes identified only after customers have already left', benefit:'AI analyzes churn drivers proactively — identifying the behavioral patterns, service gaps, and timeline signals that precede cancellation decisions' },
+                'MONITOR': { state:'Customer health monitored through periodic business reviews and reactive check-ins triggered when renewal dates approach', benefit:'Continuous churn monitoring tracks customer health signals in real time — alerting retention teams at the earliest signs of disengagement' }
+            },
+            'DEMAND_FORECAST': {
+                'RECEIVE': { state:'Demand data collected manually from sales reports, POS systems, and market research — analysts gather inputs from multiple teams before building forecasts', benefit:'AI ingests demand signals from all sources automatically — POS data, pipeline forecasts, market indicators, and external factors unified for prediction' },
+                'VALIDATE': { state:'Forecast assumptions verified manually by comparing against historical patterns and checking for data gaps in the input sources', benefit:'AI validates forecast inputs and assumptions automatically — flagging data quality issues, outliers, and missing signals before models run' },
+                'GENERATE': { state:'Demand forecasts built manually using spreadsheet models and simple trending — analysts spend days producing forecasts that are outdated by the time they publish', benefit:'AI generates demand forecasts using multi-variable models — incorporating seasonality, promotions, economic indicators, and real-time market signals' },
+                'ANALYZE': { state:'Forecast accuracy reviewed manually at period end by comparing predictions against actuals — root causes of misses investigated retroactively', benefit:'AI analyzes forecast accuracy continuously — decomposing errors by driver, identifying systematic biases, and recommending model improvements in real time' },
+                'MONITOR': { state:'Demand signals monitored through periodic sales reporting cycles, with sudden shifts in demand going undetected until the next reporting period', benefit:'Continuous demand monitoring tracks leading indicators in real time — alerting supply chain teams to demand shifts as they develop, not after the fact' }
+            },
+            'RISK_SCORING': {
+                'RECEIVE': { state:'Risk data collected manually from financial statements, news sources, and internal records — analysts compile risk factors for each assessment one at a time', benefit:'AI ingests risk signals from internal and external sources automatically — financial data, news feeds, regulatory filings, and operational metrics unified for scoring' },
+                'VALIDATE': { state:'Risk scores verified manually by reviewing underlying data quality and checking that scoring criteria were applied consistently across all assessments', benefit:'AI validates risk scoring inputs and methodology automatically — ensuring data freshness, model consistency, and proper factor weighting across all assessments' },
+                'GENERATE': { state:'Risk scores calculated manually using weighted checklists and spreadsheet models that oversimplify complex risk interactions and correlations', benefit:'AI generates dynamic risk scores using multi-factor models — capturing complex interactions, tail risks, and correlation effects that spreadsheet models miss' },
+                'ANALYZE': { state:'Risk trends analyzed manually through periodic reviews of historical scores, with limited ability to detect emerging risks before they materialize', benefit:'AI analyzes risk patterns across portfolios and time horizons — detecting emerging risk clusters, concentration effects, and leading indicators of deterioration' },
+                'MONITOR': { state:'Risk levels monitored through scheduled reviews and threshold alerts based on static rules that miss nuanced changes in risk profiles', benefit:'Continuous risk monitoring tracks score changes and driving factors in real time — alerting risk managers to subtle shifts before thresholds are breached' }
+            },
+            'RECOMMEND': {
+                'RECEIVE': { state:'Customer preference data collected manually from purchase history, surveys, and browsing logs — analysts compile profiles in spreadsheets for segmentation', benefit:'AI captures customer signals from all touchpoints automatically — purchases, browsing, engagement, and feedback unified into real-time preference profiles' },
+                'VALIDATE': { state:'Recommendation quality checked manually by reviewing sample outputs and comparing suggestions against known customer preferences and purchase history', benefit:'AI validates recommendations against purchase history, inventory availability, and business rules — ensuring every suggestion is relevant and fulfillable' },
+                'GENERATE': { state:'Product and content recommendations created manually using simple rule-based logic or static segments that miss individual preferences and context', benefit:'AI generates personalized recommendations using collaborative filtering, behavioral patterns, and contextual signals — adapting in real time as preferences shift' },
+                'ANALYZE': { state:'Recommendation performance analyzed manually by tracking click-through and conversion rates in periodic reports with limited attribution insight', benefit:'AI analyzes recommendation impact across the full customer journey — measuring lift, attribution, and long-term value by algorithm, segment, and placement' },
+                'MONITOR': { state:'Recommendation relevance monitored through periodic A/B tests and manual quality reviews that sample a small fraction of generated suggestions', benefit:'Continuous recommendation monitoring tracks relevance, diversity, and conversion metrics in real time — detecting model staleness and bias automatically' }
+            },
+
+            /* ── IT ── */
+
+            'INCIDENT_MGMT': {
+                'RECEIVE': { state:'IT incidents reported through multiple channels — phone, email, portal, chat — with support staff manually logging and categorizing each incoming alert', benefit:'AI captures incidents from all channels and monitoring tools automatically — classifying severity, identifying affected services, and enriching with context' },
+                'VALIDATE': { state:'Incident details verified manually by L1 staff who reproduce issues, check for duplicates, and confirm impact scope before escalating', benefit:'AI validates incident details automatically — confirming affected systems, checking for known errors, and assessing blast radius before triage begins' },
+                'MONITOR': { state:'Incident status tracked manually through ticket updates, with stakeholders checking dashboards or sending emails to get current resolution progress', benefit:'Real-time incident monitoring tracks resolution progress, SLA countdown, and resource engagement — pushing updates to stakeholders automatically' },
+                'ANALYZE': { state:'Incident trends analyzed manually through periodic reviews of ticket data, with root cause analysis performed ad hoc on major incidents only', benefit:'AI analyzes incident patterns continuously — correlating events across systems, identifying recurring root causes, and predicting future incidents from early signals' },
+                'EXECUTE': { state:'Incident resolution steps performed manually by engineers who follow runbooks, execute diagnostic commands, and apply fixes one step at a time', benefit:'AI executes standard remediation runbooks automatically — running diagnostics, applying known fixes, and verifying resolution for routine incident types' },
+                'COMMUNICATE': { state:'Incident communications sent manually by incident managers who draft status updates, notify stakeholders, and coordinate bridge calls during outages', benefit:'Automated incident communications push real-time status updates to stakeholders, post to status pages, and coordinate response teams without manual drafting' }
+            },
+            'EQUIP_MONITOR': {
+                'RECEIVE': { state:'Equipment telemetry collected through periodic manual readings, inspections, and sensor checks — data entered into maintenance systems hours or days later', benefit:'IoT sensors and edge devices stream equipment telemetry continuously — vibration, temperature, pressure, and performance data captured in real time automatically' },
+                'VALIDATE': { state:'Equipment readings verified manually by maintenance staff who compare sensor values against acceptable ranges and flag obvious anomalies', benefit:'AI validates equipment telemetry automatically — filtering noise, detecting sensor drift, and confirming readings against operational context and physics models' },
+                'MONITOR': { state:'Equipment health monitored through scheduled rounds and periodic dashboard checks, with problems discovered only during inspections or after failure', benefit:'Continuous equipment monitoring detects anomalies in real time — predicting failures days or weeks in advance through pattern recognition across sensor streams' },
+                'ANALYZE': { state:'Equipment performance analyzed manually through maintenance reports and failure logs, with limited ability to correlate patterns across the equipment fleet', benefit:'AI analyzes equipment performance across the entire fleet — identifying degradation patterns, optimal maintenance intervals, and root causes of recurring failures' },
+                'COMMUNICATE': { state:'Equipment alerts and maintenance needs communicated manually through work orders, emails, and shift handoff notes that sometimes get lost or delayed', benefit:'Automated alerts notify maintenance teams instantly when equipment needs attention — with predicted failure timeline, recommended action, and parts requirements' }
+            },
+            'OUTAGE_MGMT': {
+                'RECEIVE': { state:'Outage reports arrive from monitoring alerts, user calls, and automated pings — staff manually correlate signals to determine if a real outage is occurring', benefit:'AI correlates signals from all monitoring sources automatically — confirming outages, identifying scope, and initiating response protocols within seconds of detection' },
+                'VALIDATE': { state:'Outage scope assessed manually by engineers who ping systems, check dashboards, and call downstream teams to understand the full impact radius', benefit:'AI validates outage scope automatically — mapping affected services, user impact, and downstream dependencies through real-time topology analysis' },
+                'MONITOR': { state:'Outage recovery monitored manually by engineers refreshing dashboards and running test transactions to confirm services are back to normal', benefit:'Automated outage monitoring tracks recovery progress across all affected services — confirming full restoration and detecting partial recovery gaps automatically' },
+                'ANALYZE': { state:'Outage root causes analyzed manually through post-incident reviews conducted days after resolution, often missing contributing factors', benefit:'AI analyzes outage root causes in near real time — correlating infrastructure changes, load patterns, and dependency failures to identify contributing factors' },
+                'EXECUTE': { state:'Outage response steps executed manually by on-call engineers who follow playbooks, coordinate failovers, and restart services one by one', benefit:'AI executes outage response playbooks automatically — initiating failovers, restarting services, and rerouting traffic based on the diagnosed failure mode' },
+                'COMMUNICATE': { state:'Outage status communicated manually through email blasts, status page updates, and conference bridges — stakeholders often get conflicting or delayed information', benefit:'Automated outage communications update status pages, notify affected users, and brief leadership in real time — consistent messaging across all channels' }
+            },
+            'LOG_ANALYSIS': {
+                'RECEIVE': { state:'Log files collected manually from servers, applications, and network devices — engineers pull logs from each source individually when investigating issues', benefit:'AI aggregates logs from all sources automatically — normalizing formats, correlating timestamps, and indexing entries for instant searchability across the entire stack' },
+                'VALIDATE': { state:'Log entries reviewed manually by engineers who scan for errors, warnings, and anomalies — a time-consuming process that misses patterns across large volumes', benefit:'AI validates log entries against baseline patterns automatically — flagging anomalies, new error types, and frequency changes without manual scanning' },
+                'MONITOR': { state:'Log monitoring limited to static threshold alerts — engineers set up basic rules that generate excessive false positives or miss subtle degradation signals', benefit:'AI monitors log streams with adaptive baselines — detecting subtle anomalies, correlating events across services, and reducing false positives through context awareness' },
+                'ANALYZE': { state:'Log analysis performed manually by engineers who grep through files, build queries, and mentally correlate events across systems to diagnose root causes', benefit:'AI analyzes logs across the full stack simultaneously — identifying causal chains, correlating error sequences, and surfacing root causes in minutes instead of hours' },
+                'EXECUTE': { state:'Log-based remediation executed manually after engineers identify the root cause — running commands, restarting services, and adjusting configurations by hand', benefit:'AI triggers automated remediation based on log patterns — executing predefined responses to known error signatures and escalating novel patterns to engineers' }
+            },
+            'CI_CD_DEPLOY': {
+                'RECEIVE': { state:'Deployment requests submitted manually through tickets or chat — release managers gather build artifacts, change records, and approvals before scheduling', benefit:'AI captures deployment requests automatically — pulling build artifacts, linking change records, and verifying approval chains to assemble deployment packages instantly' },
+                'VALIDATE': { state:'Pre-deployment checks performed manually — engineers verify environment readiness, dependency versions, and configuration consistency before each release', benefit:'AI validates deployment readiness automatically — checking environment health, dependency compatibility, configuration drift, and rollback capability before any release proceeds' },
+                'EXECUTE': { state:'Deployments executed manually by engineers who run scripts, monitor progress, and handle rollbacks when issues arise during release windows', benefit:'AI orchestrates deployments end-to-end — executing canary releases, monitoring health metrics, and triggering automatic rollback if error rates exceed thresholds' },
+                'MONITOR': { state:'Post-deployment health monitored manually by engineers watching dashboards and checking error rates during a bake period after each release', benefit:'AI monitors post-deployment health automatically — tracking error rates, latency, and user impact metrics with automatic rollback triggers if anomalies appear' },
+                'ANALYZE': { state:'Deployment performance analyzed retrospectively through release retrospectives and manual review of pipeline metrics and failure logs', benefit:'AI analyzes deployment pipeline performance continuously — identifying bottlenecks, flaky tests, and configuration drift trends across release cycles' }
+            },
+            'TEST_QA': {
+                'RECEIVE': { state:'Test requirements gathered manually from user stories, specifications, and developer conversations — QA staff compile test plans one feature at a time', benefit:'AI extracts test requirements from user stories and specifications automatically — generating test plan outlines with coverage mapping against acceptance criteria' },
+                'VALIDATE': { state:'Test coverage assessed manually by reviewing test cases against requirements matrices — gaps discovered late in the cycle when changes are expensive', benefit:'AI validates test coverage automatically — mapping test cases to requirements, identifying untested paths, and flagging coverage gaps before testing begins' },
+                'EXECUTE': { state:'Test suites executed manually by QA staff who run test cases, record results, and log defects — regression testing consumes days of repetitive effort', benefit:'AI-driven test execution runs regression suites automatically — generating test data, executing scenarios, and logging defects with full reproduction steps' },
+                'ANALYZE': { state:'Test results analyzed manually by QA leads who review failure logs, identify patterns, and determine which failures are genuine defects versus environment issues', benefit:'AI analyzes test results intelligently — classifying failures by root cause, identifying flaky tests, and correlating defect patterns across builds and environments' },
+                'COMMUNICATE': { state:'Test status reported manually through spreadsheets and status meetings — stakeholders get periodic summaries that lag behind actual testing progress', benefit:'Automated test dashboards show real-time quality metrics, risk assessments, and release readiness — stakeholders see current status without waiting for manual reports' }
+            },
+            'API_MGMT': {
+                'RECEIVE': { state:'API requests and onboarding handled manually — developers submit access requests through forms and wait for administrators to provision credentials and permissions', benefit:'AI automates API onboarding — processing access requests, provisioning credentials, and configuring rate limits based on use case and developer tier automatically' },
+                'VALIDATE': { state:'API request payloads validated through static schema checks that miss semantic errors, business rule violations, and cross-field dependency issues', benefit:'AI validates API requests beyond schema compliance — checking business rules, cross-field dependencies, and historical patterns to catch semantic errors' },
+                'MONITOR': { state:'API health monitored through basic uptime checks and threshold alerts on error rates — subtle degradation and abuse patterns go undetected', benefit:'AI monitors API health with adaptive baselines — detecting latency degradation, abuse patterns, and unusual consumption spikes before they affect consumers' },
+                'ANALYZE': { state:'API usage patterns analyzed manually through periodic log reviews and dashboard checks — limited insight into consumer behavior and optimization opportunities', benefit:'AI analyzes API usage patterns continuously — identifying underused endpoints, consumer migration opportunities, and performance optimization targets across the portfolio' },
+                'EXECUTE': { state:'API lifecycle management tasks performed manually — versioning, deprecation notices, and consumer migration handled through emails and manual configuration changes', benefit:'AI orchestrates API lifecycle events automatically — managing version transitions, notifying affected consumers, and executing migration plans on schedule' }
+            },
+            'LEGACY_MOD': {
+                'RECEIVE': { state:'Legacy modernization requests gathered manually from business stakeholders — IT staff assess each system through interviews and manual code archaeology', benefit:'AI inventories legacy systems automatically — scanning codebases, mapping dependencies, and cataloging interfaces to build comprehensive modernization candidates' },
+                'VALIDATE': { state:'Legacy system dependencies verified manually by tracing data flows, reviewing documentation, and interviewing long-tenured staff who remember how things connect', benefit:'AI validates legacy dependencies automatically — tracing data flows, mapping integration points, and identifying hidden coupling that manual analysis misses' },
+                'ANALYZE': { state:'Legacy code quality assessed manually through code reviews and static analysis — understanding business logic buried in decades-old code takes months', benefit:'AI analyzes legacy codebases comprehensively — extracting business rules, identifying dead code, and mapping logic flows that would take teams months to document manually' },
+                'EXECUTE': { state:'Legacy migration executed manually through line-by-line code translation, manual testing, and parallel runs that stretch modernization projects across years', benefit:'AI accelerates legacy migration — translating code patterns, generating modern equivalents, and validating behavioral parity through automated comparison testing' },
+                'MONITOR': { state:'Modernization progress tracked manually through project status meetings and spreadsheets — risks and blockers surfaced only during periodic reviews', benefit:'AI monitors modernization progress continuously — tracking migration completeness, parity gaps, and risk indicators across all workstreams in real time' }
+            },
+            'DATA_TRANSFER': {
+                'RECEIVE': { state:'Data transfer requests submitted manually through tickets — staff gather source and target specifications, map fields, and schedule transfer windows by hand', benefit:'AI captures data transfer requests and automatically maps source-to-target schemas, identifies transformation needs, and proposes optimal transfer schedules' },
+                'VALIDATE': { state:'Data transfer integrity verified manually by comparing row counts, checksums, and sample records between source and target systems after each transfer', benefit:'AI validates data transfer integrity automatically — comparing schemas, row counts, checksums, and sample data in real time during and after every transfer' },
+                'EXECUTE': { state:'Data transfers executed manually through scripts and ETL tools that require engineers to monitor progress and handle errors during each transfer window', benefit:'AI orchestrates data transfers end-to-end — managing extraction, transformation, loading, and error handling automatically with checkpoint-based recovery' },
+                'MONITOR': { state:'Data transfer status monitored manually by checking job logs and dashboards — failures and performance degradation discovered after transfer windows close', benefit:'Real-time transfer monitoring tracks throughput, error rates, and latency during execution — alerting engineers to issues while corrective action is still possible' },
+                'ANALYZE': { state:'Data transfer patterns analyzed manually through periodic reviews of job logs and performance metrics — optimization opportunities identified reactively', benefit:'AI analyzes transfer patterns across all pipelines — identifying optimization opportunities, predicting capacity needs, and recommending schedule adjustments' }
+            },
+
+            /* ── HR ── */
+
+            'PERF_MGMT': {
+                'RECEIVE': { state:'Performance review inputs collected manually from managers, peers, and self-assessments — HR staff chase submissions through email reminders for weeks', benefit:'AI collects performance inputs from all sources automatically — nudging reviewers, tracking submissions, and assembling review packages without HR chasing' },
+                'VALIDATE': { state:'Performance ratings verified manually for consistency, bias, and calibration — HR reviews each manager submission and flags outliers one by one', benefit:'AI validates performance ratings for consistency and bias automatically — flagging calibration outliers, language bias, and rating inflation patterns' },
+                'GENERATE': { state:'Performance summaries and development plans written manually by managers who struggle to synthesize feedback into actionable growth recommendations', benefit:'AI generates performance summaries and development plan drafts from multi-source feedback — giving managers a structured starting point for coaching conversations' },
+                'ANALYZE': { state:'Performance trends analyzed manually through spreadsheet reviews of historical ratings, with limited ability to identify systemic patterns across the organization', benefit:'AI analyzes performance trends across the organization — identifying skill gaps, high-potential clusters, and calibration issues that manual reviews miss' },
+                'COMMUNICATE': { state:'Performance feedback delivered manually in scheduled meetings, with managers often delaying difficult conversations and employees receiving infrequent input', benefit:'AI facilitates continuous feedback delivery — prompting timely check-ins, preparing talking points, and tracking follow-up actions to keep development conversations on track' }
+            },
+            'WORKFORCE_PLAN': {
+                'RECEIVE': { state:'Workforce planning data gathered manually from HR systems, finance reports, and departmental headcount requests — planners compile inputs over weeks', benefit:'AI aggregates workforce data from all sources automatically — headcount, skills, attrition, pipeline, and budget figures unified for planning in real time' },
+                'VALIDATE': { state:'Workforce assumptions verified manually by checking historical trends and confirming departmental forecasts against budget constraints one department at a time', benefit:'AI validates workforce planning assumptions against historical patterns, market benchmarks, and budget constraints — flagging unrealistic projections automatically' },
+                'GENERATE': { state:'Workforce plans built manually in spreadsheets using simple trend extrapolation that misses skill mix, retirement waves, and market competition dynamics', benefit:'AI generates workforce scenarios using multi-variable models — projecting headcount needs, skill gaps, and attrition risk under different growth and market conditions' },
+                'ANALYZE': { state:'Workforce gaps analyzed manually through periodic headcount reviews that compare current staff against org charts without considering skill depth or flight risk', benefit:'AI analyzes workforce composition deeply — mapping skill adjacencies, succession readiness, diversity metrics, and flight risk to reveal hidden planning gaps' },
+                'EXECUTE': { state:'Workforce plan actions executed manually — requisitions opened, transfers initiated, and training programs launched through disconnected processes and approvals', benefit:'Workforce plan actions trigger automatically — opening requisitions, initiating transfers, and enrolling targeted training when plan milestones are reached' }
+            },
+            'RECRUITING': {
+                'RECEIVE': { state:'Job applications arrive through multiple portals, referrals, and agency submissions — recruiters manually collect and deduplicate candidate records', benefit:'AI captures applications from all channels automatically — deduplicating candidates, parsing resumes, and enriching profiles with public data upon arrival' },
+                'VALIDATE': { state:'Candidate qualifications verified manually by recruiters who review resumes against job requirements and check for minimum criteria one application at a time', benefit:'AI validates candidate qualifications against job requirements automatically — confirming credentials, experience fit, and must-have criteria before recruiter review' },
+                'GENERATE': { state:'Job postings and interview questions written manually by hiring managers and recruiters — a slow process that often produces generic, non-differentiating content', benefit:'AI generates targeted job postings and structured interview questions tailored to role requirements, team culture, and competitive differentiators' },
+                'ANALYZE': { state:'Recruiting funnel performance analyzed manually through periodic pipeline reviews and spreadsheet tracking of time-to-fill and source effectiveness', benefit:'AI analyzes recruiting funnels in real time — identifying bottleneck stages, high-yield sources, and candidate drop-off patterns to optimize the hiring process' },
+                'COMMUNICATE': { state:'Candidate communications sent manually at each stage — scheduling emails, status updates, and rejection notices handled one candidate at a time', benefit:'AI automates candidate communications — sending personalized updates, scheduling interviews, and maintaining engagement throughout the pipeline without recruiter effort' },
+                'EXECUTE': { state:'Recruiting workflows executed manually — interview scheduling, feedback collection, and offer generation require coordinators to manage each step by hand', benefit:'AI orchestrates recruiting workflows end-to-end — scheduling interviews, collecting feedback, generating offers, and advancing candidates through stages automatically' }
+            },
+            'RESUME_SCREEN': {
+                'RECEIVE': { state:'Resumes arrive in varied formats — PDF, Word, email text, LinkedIn profiles — and recruiters manually open, read, and sort each one into candidate pools', benefit:'AI ingests resumes from all formats and sources automatically — extracting structured data and normalizing profiles for consistent comparison across candidates' },
+                'VALIDATE': { state:'Resume claims verified manually by recruiters who cross-check employment dates, credentials, and stated skills against job requirements', benefit:'AI validates resume data automatically — cross-checking employment timelines, credential claims, and skill assertions against job requirements and reference databases' },
+                'GENERATE': { state:'Candidate shortlists compiled manually by recruiters who read through stacks of resumes and rank candidates based on subjective initial impressions', benefit:'AI generates ranked shortlists based on skills match, experience relevance, and cultural fit indicators — reducing screening time from hours to minutes' },
+                'ANALYZE': { state:'Resume screening effectiveness tracked manually by comparing hire outcomes against initial screening decisions — feedback loops take months to close', benefit:'AI analyzes screening effectiveness continuously — tracking which resume signals predict successful hires and refining ranking criteria based on outcome data' }
+            },
+            'BACKGROUND_CHECK': {
+                'RECEIVE': { state:'Background check requests submitted manually — HR staff gather candidate consent forms, identification documents, and check specifications for each new hire', benefit:'AI initiates background checks automatically upon offer acceptance — collecting consent, assembling required documents, and submitting to verification providers' },
+                'VALIDATE': { state:'Background check results reviewed manually by HR staff who compare findings against company policy and role requirements to make clearance decisions', benefit:'AI validates background check results against policy rules automatically — clearing candidates who pass all criteria and flagging only exceptions for HR review' },
+                'EXECUTE': { state:'Background check workflows managed manually — HR tracks each check through multiple vendors, follows up on delays, and compiles final clearance packages', benefit:'AI orchestrates background check workflows end-to-end — managing vendor submissions, tracking progress, escalating delays, and assembling clearance packages automatically' },
+                'ANALYZE': { state:'Background check processing times and findings analyzed manually through periodic reviews of completed checks and vendor performance spreadsheets', benefit:'AI analyzes background check patterns — tracking processing times by vendor, common finding types, and clearance rate trends to optimize the verification process' },
+                'COMMUNICATE': { state:'Background check status communicated manually to hiring managers and candidates through email updates sent individually as each check completes', benefit:'Automated status updates keep candidates and hiring managers informed throughout the verification process — with expected completion dates and next steps' }
+            },
+
+            /* ── Operations ── */
+
+            'MAINT_MGMT': {
+                'RECEIVE': { state:'Maintenance requests submitted through phone calls, emails, and paper forms — staff manually log each request and prioritize against the existing backlog', benefit:'AI captures maintenance requests from all channels — classifying urgency, linking to asset records, and scheduling against crew availability automatically' },
+                'VALIDATE': { state:'Maintenance needs verified manually through physical inspections — technicians travel to sites to confirm reported issues before work can be planned', benefit:'AI validates maintenance needs remotely using sensor data and diagnostic patterns — confirming issues and scoping work before technicians are dispatched' },
+                'MONITOR': { state:'Maintenance schedule adherence tracked manually through spreadsheets and periodic reviews — overdue tasks discovered only during weekly planning meetings', benefit:'AI monitors maintenance schedules in real time — tracking completion rates, flagging overdue tasks, and rebalancing workloads when delays cascade' },
+                'GENERATE': { state:'Maintenance work orders and schedules created manually by planners who juggle asset priorities, crew skills, and parts availability in spreadsheets', benefit:'AI generates optimized maintenance schedules — balancing asset criticality, crew skills, parts availability, and production impact for maximum asset uptime' },
+                'EXECUTE': { state:'Maintenance tasks executed through paper-based work orders with completion details recorded manually after the fact — often incomplete or delayed', benefit:'Digital work execution guides technicians step-by-step — capturing completion data, photos, and measurements in real time with automatic record updates' },
+                'COMMUNICATE': { state:'Maintenance status communicated manually through shift handoffs, emails, and phone calls — requestors often have no visibility into when their issue will be addressed', benefit:'Automated maintenance communications keep requestors and stakeholders informed — with real-time status, estimated completion times, and technician assignment details' }
+            },
+            'WORK_EXECUTION': {
+                'RECEIVE': { state:'Work orders received manually from dispatchers, supervisors, and planning systems — field crews gather printed instructions and reference materials before starting', benefit:'AI delivers work orders digitally with full context — procedures, safety notes, parts lists, and asset history available on mobile devices at the point of work' },
+                'VALIDATE': { state:'Work readiness confirmed manually by supervisors who verify permits, parts availability, and crew qualifications before authorizing each job to proceed', benefit:'AI validates work readiness automatically — confirming permits, parts, qualified crew, and safety requirements are in place before releasing any work order' },
+                'MONITOR': { state:'Work progress tracked manually through radio calls, supervisor rounds, and end-of-shift reports — delays and issues surface hours after they occur', benefit:'Real-time work monitoring tracks task progress, time on station, and completion milestones — surfacing delays and blockers as they happen for immediate response' },
+                'EXECUTE': { state:'Work tasks performed using paper procedures and tribal knowledge — quality depends on individual crew experience and supervisor availability', benefit:'AI-guided work execution provides step-by-step digital procedures — ensuring consistency, capturing completion evidence, and surfacing relevant knowledge at each step' },
+                'COMMUNICATE': { state:'Work completion and issues communicated verbally through shift handoffs and supervisor meetings — information lost between shifts and crews', benefit:'Automated work communications capture completion status, issues, and handoff notes digitally — ensuring nothing is lost between shifts, crews, or supervisors' }
+            },
+            'FIELD_SERVICE': {
+                'RECEIVE': { state:'Service calls received through phone and email — dispatchers manually log details, check technician availability, and schedule appointments through back-and-forth calls', benefit:'AI captures service requests from all channels — scheduling appointments based on technician location, skills, and parts availability without manual coordination' },
+                'VALIDATE': { state:'Service needs assessed manually by dispatchers who ask diagnostic questions over the phone and guess at the likely issue and required parts', benefit:'AI validates service needs remotely — running pre-visit diagnostics, identifying likely root causes, and confirming required parts are on the truck' },
+                'MONITOR': { state:'Field technician progress tracked manually through phone check-ins and GPS — dispatchers have limited visibility into job status and next availability', benefit:'Real-time field service monitoring tracks technician location, job progress, and next availability — enabling dynamic scheduling and customer ETA updates' },
+                'EXECUTE': { state:'Field service performed using printed work orders and technician experience — first-time fix rates limited by incomplete diagnostics and missing parts', benefit:'AI-guided field service provides technicians with diagnostic steps, repair procedures, and augmented reality guidance — improving first-time fix rates significantly' },
+                'GENERATE': { state:'Field service reports written manually by technicians after each visit — often completed at the end of the day from memory with missing details', benefit:'AI generates service reports automatically from technician inputs during the visit — capturing findings, actions, parts used, and recommendations in real time' },
+                'COMMUNICATE': { state:'Service appointment updates communicated manually to customers through phone calls — rescheduling and ETAs handled through repeated back-and-forth exchanges', benefit:'Automated customer communications provide real-time appointment updates, technician ETAs, and service summaries — eliminating phone tag and uncertainty' }
+            },
+            'SAFETY_ENV': {
+                'RECEIVE': { state:'Safety incidents and environmental observations reported manually through paper forms and email — reports often delayed and missing critical details', benefit:'AI captures safety reports from mobile devices at the point of occurrence — auto-populating location, weather, and asset data for complete incident documentation' },
+                'VALIDATE': { state:'Safety compliance verified manually through periodic audits and inspections — non-conformances discovered only during scheduled review cycles', benefit:'AI validates safety compliance continuously — monitoring permit status, training currency, and regulatory requirements with real-time gap identification' },
+                'MONITOR': { state:'Safety metrics tracked manually through lagging indicators — incident rates reviewed monthly, with near-misses often unreported and leading indicators ignored', benefit:'Continuous safety monitoring tracks leading and lagging indicators — near-miss trends, behavioral observations, and environmental conditions alerting teams to rising risk' },
+                'GENERATE': { state:'Safety reports and regulatory filings compiled manually from incident logs, inspection records, and training databases — a labor-intensive periodic exercise', benefit:'AI generates safety reports and regulatory filings automatically — compiling incident data, compliance status, and trend analyses on schedule with zero manual assembly' },
+                'EXECUTE': { state:'Safety corrective actions tracked manually through spreadsheets and email — follow-up depends on individual managers remembering to close out assigned actions', benefit:'Safety corrective actions execute through automated workflows — assigning owners, tracking deadlines, escalating overdue items, and verifying closure evidence' },
+                'COMMUNICATE': { state:'Safety alerts and bulletins distributed manually through email and posted notices — critical safety information sometimes reaches workers after exposure has occurred', benefit:'AI pushes targeted safety alerts to affected workers instantly — location-specific, role-specific, and hazard-specific notifications delivered before exposure occurs' }
+            },
+
+            /* ── Knowledge / Document / Customer ── */
+
+            'DOC_SCANNING': {
+                'RECEIVE': { state:'Paper documents and images collected manually from mailrooms, scanners, and fax machines — staff sort, batch, and queue items for digitization one stack at a time', benefit:'AI ingests documents from all physical and digital sources automatically — sorting, batching, and queuing for extraction without manual handling or pre-sorting' },
+                'LOOKUP': { state:'Scanned documents searched manually by browsing folder structures or flipping through physical files — finding a specific document can take hours', benefit:'Full-text search across all scanned documents returns results instantly — with AI-powered visual search for handwritten content, stamps, and signatures' },
+                'GENERATE': { state:'Scanned document data extracted manually by staff who read each page and type key information into structured systems and spreadsheets', benefit:'AI extracts structured data from scanned documents automatically — reading text, tables, handwriting, and forms with high accuracy across any layout' },
+                'VALIDATE': { state:'Scanned document quality checked manually — staff review each scan for readability, completeness, and correct orientation before processing', benefit:'AI validates scan quality automatically — detecting unreadable pages, missing sections, and orientation issues, then re-queuing problem scans for correction' },
+                'ANALYZE': { state:'Scanned document volumes and processing metrics tracked manually through periodic counts and processing time estimates in spreadsheets', benefit:'AI analyzes scanning pipeline performance — tracking volumes, extraction accuracy, processing times, and bottlenecks to optimize the digitization workflow' }
+            },
+            'KNOWLEDGE_BASE': {
+                'RECEIVE': { state:'Knowledge articles submitted manually by subject matter experts — content sits in review queues for weeks before being published and made searchable', benefit:'AI streamlines knowledge submission — auto-formatting articles, suggesting categories, and fast-tracking publishing so new knowledge is available within hours' },
+                'LOOKUP': { state:'Employees search knowledge bases using keyword queries that return hundreds of results — finding the right answer requires reading through multiple articles', benefit:'AI-powered semantic search returns precise answers to natural language questions — pulling the most relevant knowledge from across all repositories instantly' },
+                'GENERATE': { state:'Knowledge articles written manually from scratch by experts who struggle to find time to document their knowledge alongside daily responsibilities', benefit:'AI generates knowledge article drafts from support tickets, resolved incidents, and expert conversations — turning tribal knowledge into documented assets automatically' },
+                'UPDATE': { state:'Knowledge articles updated manually when processes change — outdated content persists for months because no one is assigned to review and refresh it', benefit:'AI identifies stale knowledge articles automatically — flagging outdated content, suggesting updates based on recent changes, and tracking review currency across the base' },
+                'ANALYZE': { state:'Knowledge base effectiveness assessed manually through usage reports and periodic surveys — no insight into which articles actually resolve user questions', benefit:'AI analyzes knowledge effectiveness deeply — tracking resolution rates, search-to-success paths, and content gaps that indicate missing or inadequate articles' }
+            },
+            'DOC_SEARCH': {
+                'RECEIVE': { state:'Documents from across the organization stored in scattered repositories — SharePoint, file shares, email, and local drives — with no unified index or catalog', benefit:'AI indexes documents across all repositories continuously — building a unified searchable catalog regardless of where files are stored or in what format' },
+                'LOOKUP': { state:'Staff search for documents across multiple systems using different search tools — often resorting to asking colleagues who might know where a file lives', benefit:'One search query finds documents across all repositories instantly — with AI ranking by relevance, recency, and the searcher context and role' },
+                'GENERATE': { state:'Document summaries and cross-reference guides compiled manually by staff who read through collections and create navigation aids for their teams', benefit:'AI generates document summaries, cross-reference maps, and collection overviews automatically — making large document sets navigable without manual curation' },
+                'UPDATE': { state:'Document indexes and catalogs maintained manually — new documents go unindexed and moved or deleted files leave broken links and stale references', benefit:'Document indexes update continuously as files are created, moved, or modified — no stale links, no unindexed documents, no manual catalog maintenance required' },
+                'ANALYZE': { state:'Document usage and findability analyzed manually through periodic audits that sample a small fraction of the document collection', benefit:'AI analyzes document usage patterns across the organization — identifying heavily used content, orphaned files, and search terms that return no useful results' }
+            },
+            'TRAINING': {
+                'RECEIVE': { state:'Training needs identified manually through annual reviews and compliance calendars — skill gaps discovered reactively when performance issues arise', benefit:'AI identifies training needs proactively — analyzing skill gaps, compliance deadlines, role changes, and performance signals to recommend targeted learning paths' },
+                'LOOKUP': { state:'Employees search course catalogs manually to find relevant training — scrolling through lists of offerings with limited ability to match courses to actual skill gaps', benefit:'AI recommends training content based on individual skill profiles, role requirements, and career goals — showing the most relevant learning opportunities first' },
+                'GENERATE': { state:'Training content developed manually by instructional designers over weeks or months — a slow process that cannot keep pace with rapidly changing knowledge needs', benefit:'AI generates training content from documentation, procedures, and expert knowledge — producing quizzes, scenarios, and microlearning modules in hours instead of months' },
+                'UPDATE': { state:'Training records updated manually after course completion — certificates filed, compliance trackers refreshed, and manager notifications sent through disconnected processes', benefit:'Training records update automatically upon completion — certifications logged, compliance trackers refreshed, and manager dashboards updated in real time' },
+                'ANALYZE': { state:'Training effectiveness measured manually through post-course surveys and periodic skill assessments — limited connection between training and on-the-job performance', benefit:'AI analyzes training effectiveness by correlating completion data with performance metrics and skill assessments — identifying which programs actually improve outcomes' }
+            },
+            'CHATBOT': {
+                'RECEIVE': { state:'Customer inquiries arrive through live agents across phone, chat, and email — each conversation handled manually from greeting through resolution', benefit:'AI chatbot handles customer inquiries instantly across all channels — resolving routine questions automatically and routing complex issues to human agents with full context' },
+                'GENERATE': { state:'Agent responses crafted manually for each customer interaction, with staff typing answers from memory or searching knowledge bases mid-conversation', benefit:'AI generates contextual responses drawing from knowledge bases, customer history, and conversation context — delivering accurate answers in seconds' },
+                'COMMUNICATE': { state:'Follow-up communications sent manually by agents who remember to check back with customers after unresolved issues — many follow-ups fall through the cracks', benefit:'AI manages follow-up communications automatically — checking resolution status, sending updates, and re-engaging customers until their issue is fully resolved' },
+                'ANALYZE': { state:'Chatbot and agent performance analyzed manually through sampled conversation reviews and periodic quality assessments covering a tiny fraction of interactions', benefit:'AI analyzes every conversation for quality, resolution effectiveness, and customer satisfaction — surfacing improvement opportunities across the entire interaction volume' },
+                'EXECUTE': { state:'Routine customer requests executed manually by agents — password resets, order status checks, and account updates handled one at a time through multiple systems', benefit:'AI executes routine customer requests end-to-end — processing account changes, order lookups, and standard transactions without agent involvement' }
+            },
+            'PERSONALIZE': {
+                'RECEIVE': { state:'Customer preference data scattered across CRM, web analytics, purchase history, and support logs — no unified view of individual customer behavior and needs', benefit:'AI unifies customer signals from all touchpoints in real time — building dynamic preference profiles that evolve with every interaction and transaction' },
+                'GENERATE': { state:'Personalized content and offers created manually by marketing teams using broad segments — one-size-fits-most rather than truly individual experiences', benefit:'AI generates individually personalized content, offers, and experiences in real time — adapting messaging, timing, and channel to each customer unique profile' },
+                'ANALYZE': { state:'Personalization effectiveness measured manually through A/B test results and segment-level performance metrics that miss individual-level impact', benefit:'AI analyzes personalization impact at the individual level — measuring lift, engagement, and lifetime value changes attributable to specific personalization strategies' },
+                'EXECUTE': { state:'Personalized experiences delivered manually through campaign tools that require marketers to build, test, and launch each variant separately', benefit:'AI delivers personalized experiences automatically across all channels — adapting content, layout, and offers in real time without manual campaign configuration' }
+            },
+            'CUST_FEEDBACK': {
+                'RECEIVE': { state:'Customer feedback collected through separate survey tools, review sites, and support channels — staff manually compile responses into a single view for analysis', benefit:'AI aggregates feedback from all channels automatically — surveys, reviews, social media, support interactions, and NPS scores unified into one feedback stream' },
+                'GENERATE': { state:'Feedback summary reports compiled manually by analysts who read through responses, categorize themes, and write up findings for leadership review', benefit:'AI generates feedback insight reports automatically — categorizing themes, quantifying sentiment, and highlighting actionable opportunities with supporting evidence' },
+                'ANALYZE': { state:'Feedback trends analyzed manually through periodic reviews of aggregated survey scores and sampled comment analysis — nuanced signals lost in averaging', benefit:'AI analyzes feedback at granular and aggregate levels simultaneously — detecting emerging themes, segment-specific issues, and correlation with business outcomes' },
+                'COMMUNICATE': { state:'Feedback insights shared manually through periodic presentations and email summaries — frontline teams rarely see customer feedback relevant to their area', benefit:'AI distributes feedback insights to relevant teams automatically — frontline staff see their area feedback in real time, leadership sees cross-cutting trends' },
+                'EXECUTE': { state:'Feedback-driven improvements tracked manually through action item lists and project trackers — closing the loop from feedback to change takes months', benefit:'AI triggers improvement workflows from feedback patterns — creating tickets, assigning owners, and tracking resolution so the feedback-to-action loop closes faster' }
+            },
+            'TASK_ASSIGN': {
+                'RECEIVE': { state:'Task requests arrive through email, chat, meetings, and project tools — managers manually collect, prioritize, and distribute work across team members', benefit:'AI captures tasks from all sources automatically — extracting action items from meetings, emails, and chats and queuing them for intelligent assignment' },
+                'GENERATE': { state:'Task assignments determined manually by managers who balance workloads, skills, and availability from memory and spreadsheet-based capacity tracking', benefit:'AI generates optimal task assignments based on skills, availability, workload balance, and deadline urgency — maximizing throughput and minimizing bottlenecks' },
+                'EXECUTE': { state:'Task delegation executed manually through emails and tool assignments — managers follow up individually to confirm acceptance and track progress', benefit:'AI delegates tasks automatically through integrated tools — confirming acceptance, setting deadlines, and tracking progress without manual follow-up from managers' },
+                'ANALYZE': { state:'Task completion patterns analyzed manually through periodic reviews of project timelines and team velocity metrics in disconnected tracking tools', benefit:'AI analyzes task patterns continuously — identifying bottlenecks, estimating completion times, and recommending workload adjustments based on team velocity data' },
+                'COMMUNICATE': { state:'Task status updates gathered manually from team members through standup meetings, email check-ins, and status report requests', benefit:'AI collects task status automatically from work tools — generating progress reports, flagging blockers, and sending deadline reminders without manual status chasing' }
+            },
+            'PROJECT_MGMT': {
+                'RECEIVE': { state:'Project change requests and updates collected manually from stakeholders through meetings, emails, and status reports — PMs spend hours aggregating information', benefit:'AI captures project updates from all sources automatically — extracting status, risks, and decisions from meetings, emails, and tool activity without manual reporting' },
+                'GENERATE': { state:'Project plans, status reports, and resource forecasts built manually by PMs who spend more time reporting on work than managing it', benefit:'AI generates project plans, status reports, and resource forecasts automatically — freeing PMs to focus on stakeholder management and risk mitigation' },
+                'ANALYZE': { state:'Project health assessed manually through milestone tracking and earned value calculations that lag behind actual progress by reporting cycles', benefit:'AI analyzes project health in real time — predicting schedule risks, budget overruns, and resource conflicts before they become problems' },
+                'COMMUNICATE': { state:'Project communications crafted manually for each audience — executive summaries, team updates, and stakeholder briefs written separately by the PM', benefit:'AI generates audience-tailored project communications automatically — executives get dashboards, teams get action items, stakeholders get relevant milestones' },
+                'EXECUTE': { state:'Project workflow steps managed manually — PMs track dependencies, chase approvals, and coordinate handoffs between teams through email and meetings', benefit:'AI orchestrates project workflows automatically — managing dependencies, routing approvals, and coordinating handoffs so work flows without PM intervention on routine steps' }
+            },
+            'MEETING_MGMT': {
+                'RECEIVE': { state:'Meeting requests coordinated manually through calendar invites and email threads — organizers spend significant time finding slots that work for all participants', benefit:'AI schedules meetings automatically — finding optimal times based on participant availability, priorities, and meeting frequency patterns without email back-and-forth' },
+                'GENERATE': { state:'Meeting agendas, minutes, and action items written manually — organizers draft agendas before and type up notes after each meeting from memory or recordings', benefit:'AI generates agendas from prior meeting context and pending items, then produces minutes and action items automatically from meeting transcripts' },
+                'ANALYZE': { state:'Meeting effectiveness assessed informally — no systematic tracking of whether meetings achieve their purpose, run on time, or produce actionable outcomes', benefit:'AI analyzes meeting effectiveness — tracking action item completion rates, time usage patterns, and participant engagement to recommend meeting optimization' },
+                'COMMUNICATE': { state:'Meeting outcomes distributed manually through email summaries sent hours or days after the meeting — attendees and absentees get the same generic recap', benefit:'AI distributes meeting outcomes immediately — personalized summaries with relevant action items sent to each participant and stakeholder within minutes of adjournment' },
+                'EXECUTE': { state:'Meeting action items tracked manually through task lists and email follow-ups — items frequently fall through the cracks between meetings', benefit:'AI converts meeting action items into tracked tasks automatically — assigning owners, setting deadlines, and following up on progress before the next meeting' }
+            },
+
+            /* ── Analytics: Decision & Search/Retrieval ── */
+
+            'DECISION': {
+                'RECEIVE': { state:'Decision inputs gathered manually from reports, dashboards, and stakeholder opinions — decision makers spend hours collecting information before they can evaluate options', benefit:'AI aggregates decision-relevant data from all sources automatically — presenting a unified brief with key metrics, risks, and stakeholder perspectives' },
+                'VALIDATE': { state:'Decision criteria and supporting data verified manually — staff cross-check figures, confirm assumptions, and validate inputs from multiple sources before presenting options', benefit:'AI validates decision inputs automatically — confirming data freshness, checking assumptions against historical patterns, and flagging conflicting information' },
+                'GENERATE': { state:'Decision recommendations built manually through spreadsheet analysis and subjective judgment — limited ability to model scenarios or quantify trade-offs', benefit:'AI generates decision options with quantified trade-offs, scenario models, and risk assessments — giving decision makers structured analysis instead of gut feeling' },
+                'ANALYZE': { state:'Decision outcomes tracked manually and reviewed retroactively in lessons-learned sessions — limited systematic learning from past decisions', benefit:'AI analyzes decision outcomes systematically — tracking which factors predicted success, building institutional learning, and improving future decision quality' }
+            },
+            'SEARCH_RETRIEVAL': {
+                'RECEIVE': { state:'Information requests arrive through email, chat, and verbal requests — staff manually search across systems to find and compile the requested data or documents', benefit:'AI processes information requests instantly — searching across all systems simultaneously and assembling comprehensive responses from multiple sources' },
+                'LOOKUP': { state:'Staff search multiple systems separately using different interfaces and query syntax — piecing together answers from fragmented search results across platforms', benefit:'One natural language query searches across all enterprise systems simultaneously — returning ranked, contextual results with source attribution and freshness indicators' },
+                'GENERATE': { state:'Search results compiled manually into summaries, reports, and answer packages — staff spend time reformatting and synthesizing information for the requestor', benefit:'AI generates synthesized answers from search results — producing formatted summaries, comparison tables, and source-attributed responses ready for the requestor' },
+                'ANALYZE': { state:'Search effectiveness measured informally — no systematic tracking of whether searches return useful results or how long it takes to find needed information', benefit:'AI analyzes search patterns across the organization — identifying knowledge gaps, frequently unanswered queries, and content that needs to be created or improved' },
+                'VALIDATE': { state:'Search results assessed manually for accuracy and relevance — staff must read through results to determine which sources are authoritative and current', benefit:'AI validates search results for accuracy and currency — ranking by source authority, checking for contradictions, and flagging outdated information automatically' }
             }
         };
 
@@ -4563,7 +4941,9 @@
                 'Finance & Accounting': {
                     ap_processing: { q:'Create standard AP aging and vendor payment reports with scheduled distribution', m:'Deploy real-time AP dashboards with payment forecasting and cash flow impact', s:'AI-powered AP intelligence with predictive analytics, anomaly detection, and narrative insights' },
                     financial_close: { q:'Standardize close status report templates with progress tracking', m:'Deploy automated close dashboard with task completion tracking and variance reporting', s:'AI close intelligence that predicts bottlenecks, generates variance narratives, and certifies readiness' },
-                    finance_compliance: { q:'Create standard compliance report templates with evidence attachment workflows', m:'Deploy automated compliance reporting with real-time control monitoring', s:'AI compliance intelligence with continuous monitoring, auto-generated attestations, and regulatory filing' }
+                    finance_compliance: { q:'Create standard compliance report templates with evidence attachment workflows', m:'Deploy automated compliance reporting with real-time control monitoring', s:'AI compliance intelligence with continuous monitoring, auto-generated attestations, and regulatory filing' },
+                    ar_collections: { q:'Create AR aging reports with overdue trend analysis and collector performance tracking', m:'Deploy real-time collections dashboards with cash forecast impact and risk segmentation', s:'AI collections intelligence with predictive recovery scoring, portfolio analytics, and automated narrative insights' },
+                    budgeting: { q:'Standardize budget variance reports with monthly actual-to-plan comparisons', m:'Deploy automated budget dashboards with rolling forecasts and department drill-down', s:'AI budget intelligence with predictive variance analysis, spend trend detection, and automated narrative generation' }
                 },
                 'Human Resources': {
                     recruitment: { q:'Create standard recruiting pipeline reports with time-to-fill tracking', m:'Deploy recruiting analytics dashboard with source effectiveness and funnel metrics', s:'AI recruiting intelligence with predictive hiring timelines and quality-of-hire scoring' },
@@ -4575,7 +4955,8 @@
                 },
                 'Sales & Marketing': {
                     pipeline_mgmt: { q:'Standardize pipeline reports with stage conversion rates and velocity metrics', m:'Deploy real-time pipeline dashboards with AI-generated forecast confidence scores', s:'AI sales intelligence with deal risk prediction, competitive signals, and coaching recommendations' },
-                    campaigns: { q:'Create standard campaign performance reports with channel attribution', m:'Deploy marketing analytics with multi-touch attribution and ROI optimization', s:'AI marketing intelligence with predictive campaign optimization and budget allocation' }
+                    campaigns: { q:'Create standard campaign performance reports with channel attribution', m:'Deploy marketing analytics with multi-touch attribution and ROI optimization', s:'AI marketing intelligence with predictive campaign optimization and budget allocation' },
+                    sales_forecast: { q:'Create weekly forecast accuracy reports comparing predictions against closed revenue', m:'Deploy automated forecast dashboards with pipeline coverage ratios and trend analysis', s:'AI forecast intelligence with prediction accuracy tracking, bias correction, and automated narrative insights' }
                 },
                 'Customer Service': {
                     ticket_resolution: { q:'Create standard ticket volume and resolution time reports by category', m:'Deploy real-time CS dashboards with SLA tracking and agent performance analytics', s:'AI service intelligence with predictive volume forecasting and automated resource optimization' },
@@ -4600,14 +4981,35 @@
                 }
             },
             'STATUS_TRACK': {
+                'Finance & Accounting': {
+                    ar_collections: { q:'Implement aging bucket dashboards with color-coded overdue invoice status tracking', m:'Deploy automated AR tracking with payment prediction scoring and escalation triggers', s:'AI collections agent that monitors every receivable, predicts payment dates, and auto-escalates delinquencies' }
+                },
+                'IT & Engineering': {
+                    incident_response: { q:'Implement incident status boards with severity timers and responder assignment tracking', m:'Deploy automated incident tracking with SLA countdown and stakeholder notification', s:'AI incident tracker that monitors resolution progress, predicts SLA breaches, and auto-escalates stalled incidents' },
+                    provisioning: { q:'Create request status dashboards with fulfillment stage tracking and SLA visibility', m:'Deploy automated provisioning tracker with dependency management and completion alerts', s:'AI provisioning agent that tracks every request, predicts fulfillment delays, and auto-escalates bottlenecks' },
+                    platform_ops: { q:'Implement platform health dashboards with deployment status and change tracking', m:'Deploy automated ops tracking with deployment pipeline visibility and rollback alerts', s:'AI ops agent that monitors platform state, tracks every change, and predicts stability risks in real time' }
+                },
                 'Sales & Marketing': {
                     pipeline_mgmt: { q:'Implement deal stage definitions with required fields at each stage', m:'Deploy CRM pipeline tracking with automated next-action recommendations', s:'AI pipeline agent that monitors deal health, suggests actions, and auto-updates stages from activities' }
                 },
                 'Customer Service': {
-                    ticket_resolution: { q:'Implement ticket status categories with SLA timers per category', m:'Deploy automated case tracking with SLA alerts and escalation triggers', s:'AI case agent that monitors resolution progress, predicts breaches, and auto-escalates' }
+                    ticket_resolution: { q:'Implement ticket status categories with SLA timers per category', m:'Deploy automated case tracking with SLA alerts and escalation triggers', s:'AI case agent that monitors resolution progress, predicts breaches, and auto-escalates' },
+                    cust_onboarding: { q:'Create onboarding milestone checklists with progress visibility for customers and CSMs', m:'Deploy automated onboarding tracking with milestone alerts and stall detection', s:'AI onboarding agent that monitors customer progress, predicts stalls, and triggers proactive interventions' }
+                },
+                'Operations': {
+                    logistics: { q:'Implement shipment tracking dashboards with carrier status feeds and delivery milestones', m:'Deploy automated logistics tracking with ETA prediction and exception alerting', s:'AI logistics agent that monitors every shipment, predicts delays, and triggers proactive rerouting' }
                 },
                 'Procurement': {
                     req_to_po: { q:'Implement PO status stages with automated notifications at each stage', m:'Deploy order tracking with supplier integration and delivery prediction', s:'AI procurement agent that monitors orders, predicts delays, and triggers contingency actions' }
+                },
+                'Supply Chain': {
+                    supplier_mgmt: { q:'Implement supplier order tracking with milestone notifications and delivery confirmations', m:'Deploy automated supplier performance tracking with lead-time monitoring and alerts', s:'AI supplier tracking agent that monitors every order, predicts delivery risks, and triggers contingency actions' }
+                },
+                'Executive / C-Suite': {
+                    portfolio_oversight: { q:'Create portfolio status boards with project milestone tracking and risk indicators', m:'Deploy automated portfolio tracking with health scoring and resource utilization alerts', s:'AI portfolio agent that monitors all initiatives, predicts delivery risks, and recommends priority adjustments' }
+                },
+                'Research & Development': {
+                    product_dev: { q:'Implement feature tracking boards with sprint progress and milestone visibility', m:'Deploy automated development tracking with velocity analytics and delivery prediction', s:'AI product development tracker that monitors progress, predicts release dates, and flags scope risks' }
                 },
                 'Compliance & Risk': {
                     audit_cycle: { q:'Implement remediation tracking with owner assignments and due dates', m:'Deploy audit finding tracker with automated escalation and evidence collection', s:'AI remediation agent that monitors progress, predicts completion, and auto-escalates overdue items' }
@@ -4638,6 +5040,15 @@
                 'Finance & Accounting': {
                     finance_compliance: { q:'Map regulatory requirements to control owners with review schedules', m:'Deploy automated compliance monitoring with control testing and evidence collection', s:'AI compliance agent that monitors regulations, tests controls, and generates audit-ready documentation' }
                 },
+                'Operations': {
+                    quality: { q:'Map quality standards to process controls with owner assignments and review schedules', m:'Deploy automated quality compliance monitoring with certification tracking and gap analysis', s:'AI quality compliance agent that monitors standards changes, validates process conformance, and maintains certifications' }
+                },
+                'Human Resources': {
+                    payroll_benefits: { q:'Create payroll compliance checklists for tax withholding and benefits regulations', m:'Deploy automated payroll compliance monitoring with regulatory update tracking', s:'AI payroll compliance agent that monitors tax law changes, validates withholdings, and ensures filing accuracy' }
+                },
+                'Legal': {
+                    legal_compliance: { q:'Create regulatory obligation registers with owner assignments and review deadlines', m:'Deploy automated compliance tracking with regulatory change monitoring and gap analysis', s:'AI legal compliance agent that monitors regulatory changes, assesses impact, and updates obligation registers' }
+                },
                 'Procurement': {
                     vendor_mgmt: { q:'Create vendor compliance checklists with certification tracking', m:'Deploy automated vendor compliance monitoring with risk-based review scheduling', s:'AI vendor compliance agent that monitors certifications, flags expirations, and triggers reviews' }
                 },
@@ -4650,11 +5061,18 @@
                 'Finance & Accounting': {
                     finance_compliance: { q:'Define risk criteria and scoring thresholds for financial transactions', m:'Deploy automated transaction risk scoring with anomaly detection', s:'AI risk monitoring with real-time fraud detection and adaptive risk models' }
                 },
+                'Legal': {
+                    legal_compliance: { q:'Create regulatory risk scoring rubrics with likelihood and impact criteria', m:'Deploy automated legal risk scoring with jurisdiction and regulatory change tracking', s:'AI legal risk platform that scores regulatory exposure, predicts enforcement trends, and prioritizes remediation' }
+                },
+                'Executive / C-Suite': {
+                    strategic_planning: { q:'Define strategic risk categories with scoring criteria for initiative evaluation', m:'Deploy enterprise risk dashboards with scenario-based impact modeling for strategic decisions', s:'AI strategic risk agent that scores initiatives, models downside scenarios, and recommends risk mitigation actions' }
+                },
                 'Supply Chain': {
                     supplier_mgmt: { q:'Create supplier risk assessment questionnaire with scoring criteria', m:'Deploy automated supplier risk monitoring with financial health tracking', s:'AI supplier risk platform with predictive risk scoring and automated mitigation triggers' }
                 },
                 'Procurement': {
-                    strategic_sourcing: { q:'Define vendor evaluation criteria with risk weighting factors', m:'Deploy automated vendor risk scoring with compliance and financial monitoring', s:'AI sourcing risk platform with predictive analytics and automated risk mitigation workflows' }
+                    strategic_sourcing: { q:'Define vendor evaluation criteria with risk weighting factors', m:'Deploy automated vendor risk scoring with compliance and financial monitoring', s:'AI sourcing risk platform with predictive analytics and automated risk mitigation workflows' },
+                    vendor_mgmt: { q:'Create vendor risk assessment questionnaires with weighted scoring by category', m:'Deploy automated vendor risk scoring with financial health and compliance monitoring', s:'AI vendor risk platform that scores third-party risk continuously and triggers mitigation workflows' }
                 },
                 'Compliance & Risk': {
                     risk_assessment: { q:'Standardize risk assessment methodology with consistent scoring rubrics', m:'Deploy enterprise risk scoring with real-time data integration and heat maps', s:'AI risk platform with predictive modeling, scenario analysis, and automated risk response' }
@@ -4670,6 +5088,9 @@
                 }
             },
             'DEMAND_FORECAST': {
+                'Finance & Accounting': {
+                    budgeting: { q:'Consolidate historical spend patterns and revenue drivers for budget baseline', m:'Deploy ML budget forecasting with rolling projections and seasonal adjustments', s:'AI budget forecasting platform with real-time revenue sensing and autonomous reforecast generation' }
+                },
                 'Sales & Marketing': {
                     sales_forecast: { q:'Consolidate historical deal data and define key forecast drivers', m:'Deploy ML forecasting with pipeline analysis and win-probability scoring', s:'AI forecasting platform with real-time pipeline sensing and market signal integration' },
                     pipeline_mgmt: { q:'Implement stage-based probability weighting for pipeline forecasting', m:'Deploy AI forecast models with rep-level accuracy tracking and bias correction', s:'Predictive pipeline intelligence with deal-level risk scoring and automated forecast adjustment' }
@@ -4687,7 +5108,8 @@
                     litigation: { q:'Create document review protocols with relevance coding categories', m:'Deploy AI-assisted document review with relevance ranking and privilege detection', s:'Autonomous litigation document agent that reviews, codes, and builds case narratives' }
                 },
                 'Compliance & Risk': {
-                    reg_monitoring: { q:'Create regulatory document classification taxonomy for incoming guidance', m:'Deploy AI regulatory document analysis with requirement extraction', s:'Autonomous regulatory analyst that reads new guidance and maps impacts to controls' }
+                    reg_monitoring: { q:'Create regulatory document classification taxonomy for incoming guidance', m:'Deploy AI regulatory document analysis with requirement extraction', s:'Autonomous regulatory analyst that reads new guidance and maps impacts to controls' },
+                    risk_assessment: { q:'Create risk document intake checklists to extract key threats and control references', m:'Deploy AI document analysis that extracts risk factors, control gaps, and impact ratings', s:'Autonomous risk document agent that reads assessments, extracts findings, and maps them to the risk register' }
                 }
             },
             'SEARCH_RETRIEVAL': {
@@ -4697,6 +5119,9 @@
                 },
                 'Research & Development': {
                     literature_ip: { q:'Consolidate research databases and implement consistent metadata tagging', m:'Deploy AI research search with citation network analysis and trend detection', s:'Autonomous research assistant that finds papers, synthesizes findings, and identifies gaps' }
+                },
+                'Compliance & Risk': {
+                    reg_monitoring: { q:'Index regulatory sources with topic and jurisdiction tags for quick retrieval', m:'Deploy AI-powered regulatory search with semantic matching and change alerts', s:'Autonomous regulatory search agent that monitors sources, retrieves relevant updates, and links to controls' }
                 }
             },
             'LEAD_SCORING': {
@@ -4706,12 +5131,16 @@
                 }
             },
             'EMAIL_COMMS': {
+                'Finance & Accounting': {
+                    ar_collections: { q:'Create templated payment reminder sequences triggered by aging milestones', m:'Deploy AI-personalized collection emails with optimal send-time and tone adjustment', s:'Autonomous AR communications agent that drafts, sends, and adapts dunning messages based on payment behavior' }
+                },
                 'Sales & Marketing': {
                     campaigns: { q:'Create email templates with A/B test variants for each campaign type', m:'Deploy AI email orchestration with send-time optimization and dynamic content', s:'Autonomous campaign agent that creates, tests, sends, and optimizes emails continuously' },
                     lead_gen: { q:'Build drip email sequences for each buyer persona and stage', m:'Deploy AI-personalized outreach with engagement-based sequence branching', s:'Autonomous outreach agent that crafts, sends, and adapts sequences based on engagement signals' }
                 },
                 'Customer Service': {
-                    ticket_resolution: { q:'Create response templates for top ticket categories with personalization fields', m:'Deploy AI-drafted responses with customer context and resolution suggestions', s:'Autonomous response agent that drafts, personalizes, and sends contextual customer communications' }
+                    ticket_resolution: { q:'Create response templates for top ticket categories with personalization fields', m:'Deploy AI-drafted responses with customer context and resolution suggestions', s:'Autonomous response agent that drafts, personalizes, and sends contextual customer communications' },
+                    cust_onboarding: { q:'Create welcome email sequences with setup guides tailored to product tier', m:'Deploy AI-personalized onboarding emails triggered by milestone completion and inactivity', s:'Autonomous onboarding comms agent that sends contextual guidance, nudges stalled customers, and celebrates milestones' }
                 }
             },
             'RECRUITING': {
@@ -4777,6 +5206,9 @@
                 },
                 'Sales & Marketing': {
                     campaigns: { q:'Track campaign sentiment through social listening and review monitoring', m:'Deploy AI sentiment analytics across social, email, and review channels', s:'Autonomous brand sentiment agent that monitors, analyzes, and recommends messaging adjustments' }
+                },
+                'Human Resources': {
+                    perf_development: { q:'Add anonymous pulse surveys to capture employee sentiment on engagement and culture', m:'Deploy AI sentiment analysis across surveys, reviews, and internal communications', s:'AI workforce sentiment agent that detects disengagement patterns, predicts attrition, and recommends interventions' }
                 }
             },
             'CUST_FEEDBACK': {
@@ -4788,17 +5220,34 @@
                 }
             },
             'REVIEW_AUDIT': {
+                'Finance & Accounting': {
+                    budgeting: { q:'Implement quarterly budget review checklists with variance threshold triggers', m:'Deploy automated budget review workflows with approval tracking and audit trail', s:'AI budget review agent that audits submissions, flags anomalies, and ensures policy compliance continuously' },
+                    finance_compliance: { q:'Create periodic compliance review checklists with evidence gathering templates', m:'Deploy automated compliance review workflows with control testing and gap analysis', s:'AI compliance audit agent that reviews controls, tests effectiveness, and generates remediation plans continuously' }
+                },
                 'Compliance & Risk': {
                     audit_cycle: { q:'Create standard audit workpaper templates with evidence requirements', m:'Deploy automated audit evidence collection with continuous control testing', s:'AI audit agent that plans, tests, documents, and reports audit findings autonomously' },
                     risk_assessment: { q:'Standardize control testing procedures with effectiveness scoring', m:'Deploy automated control assessment with exception-based review workflow', s:'AI control assessment agent that tests, scores, and recommends improvements continuously' }
                 },
                 'Legal': {
+                    contract_lifecycle: { q:'Implement periodic contract compliance reviews with obligation tracking checklists', m:'Deploy automated contract review with milestone monitoring and obligation audit trails', s:'AI contract audit agent that reviews terms, tracks obligations, and flags non-compliance across the portfolio' },
                     litigation: { q:'Create document review protocols with privilege and relevance coding', m:'Deploy AI-assisted document review with predictive coding and priority ranking', s:'Autonomous document review agent that codes, privileges, and builds review sets efficiently' }
+                },
+                'Operations': {
+                    quality: { q:'Implement periodic quality audit checklists with corrective action tracking', m:'Deploy automated quality review with statistical trend analysis and root cause workflows', s:'AI quality audit agent that inspects processes, identifies systemic issues, and drives corrective actions autonomously' }
+                },
+                'Procurement': {
+                    vendor_mgmt: { q:'Create vendor performance review templates with scorecard criteria', m:'Deploy automated vendor audit workflows with compliance scoring and evidence collection', s:'AI vendor audit agent that reviews performance, flags contract deviations, and recommends corrective actions' }
+                },
+                'Research & Development': {
+                    experiment: { q:'Create experiment review checklists with methodology validation and result verification steps', m:'Deploy automated experiment review with statistical validation and peer-review routing', s:'AI experiment audit agent that validates methodology, checks statistical rigor, and certifies results autonomously' }
                 }
             },
             'SUMMARIZATION': {
                 'Executive / C-Suite': {
                     board_reporting: { q:'Create executive summary templates with consistent section structure', m:'Deploy AI summarization of department reports into board-ready briefs', s:'Autonomous board prep agent that aggregates, summarizes, and highlights decision points across departments' }
+                },
+                'Legal': {
+                    litigation: { q:'Create case summary templates with standard sections for facts, issues, and arguments', m:'Deploy AI case summarization with key argument extraction and precedent linking', s:'Autonomous litigation summarizer that distills depositions, filings, and evidence into actionable briefs' }
                 },
                 'Research & Development': {
                     literature_ip: { q:'Create literature review templates with standard synthesis sections', m:'Deploy AI paper summarization with key finding extraction and comparison', s:'Autonomous research synthesizer that reads, summarizes, and identifies connections across papers' }
@@ -4822,7 +5271,8 @@
             },
             'PROJECT_MGMT': {
                 'Executive / C-Suite': {
-                    portfolio_oversight: { q:'Standardize project status reporting with health indicators and milestones', m:'Deploy portfolio management dashboard with resource and timeline optimization', s:'AI portfolio agent that monitors health, predicts risks, and recommends resource reallocation' }
+                    portfolio_oversight: { q:'Standardize project status reporting with health indicators and milestones', m:'Deploy portfolio management dashboard with resource and timeline optimization', s:'AI portfolio agent that monitors health, predicts risks, and recommends resource reallocation' },
+                    strategic_planning: { q:'Implement strategic initiative tracking with milestone dependencies and owner accountability', m:'Deploy AI project management with cross-initiative dependency mapping and resource optimization', s:'AI strategy execution agent that tracks initiatives, predicts delivery risks, and reallocates resources autonomously' }
                 },
                 'Research & Development': {
                     product_dev: { q:'Implement milestone-based project tracking with deliverable checklists', m:'Deploy integrated project management with code commit and sprint analytics', s:'AI development agent that tracks progress from commits, predicts delivery dates, and optimizes sprints' }
@@ -4895,6 +5345,9 @@
                     campaigns: { q:'Create content briefs and brand voice guidelines for each channel', m:'Deploy AI content generation with brand voice training and channel optimization', s:'Autonomous content agent that plans, creates, tests, and optimizes content across all channels' },
                     lead_gen: { q:'Build content templates for each stage of the buyer journey', m:'Deploy AI content personalization by persona, industry, and buying stage', s:'Autonomous content engine that generates personalized assets for every prospect and touchpoint' }
                 },
+                'Executive / C-Suite': {
+                    board_reporting: { q:'Create board deck templates with standardized slide structures and data placeholders', m:'Deploy AI content generation for board materials with data-driven narrative creation', s:'Autonomous board content agent that drafts presentations, inserts live data, and tailors messaging to stakeholders' }
+                },
                 'Research & Development': {
                     product_dev: { q:'Create standard technical documentation templates by deliverable type', m:'Deploy AI-assisted technical writing with automated formatting and cross-referencing', s:'Autonomous documentation agent that generates, maintains, and updates technical content from code and data' }
                 }
@@ -4929,6 +5382,12 @@
                 }
             },
             'DATA_VALIDATE': {
+                'Finance & Accounting': {
+                    budgeting: { q:'Implement budget entry validation rules with cross-department consistency checks', m:'Deploy automated budget validation with historical trend comparison and outlier flagging', s:'AI budget validation agent that checks submissions against benchmarks, policies, and forecasts in real time' }
+                },
+                'Human Resources': {
+                    payroll_benefits: { q:'Add payroll validation rules for hours, rates, and deduction limits at point of entry', m:'Deploy automated payroll validation with cross-system reconciliation and exception reporting', s:'AI payroll validation agent that checks every transaction against tax rules, policies, and historical patterns' }
+                },
                 'Research & Development': {
                     experiment: { q:'Define validation rules and acceptable ranges for each measurement type', m:'Deploy automated data validation with statistical anomaly detection', s:'AI data quality agent that validates, flags, and corrects experimental data in real time' }
                 },
@@ -5048,6 +5507,26 @@
             'INCIDENT_MGMT': {
                 'IT & Engineering': {
                     incident_response: { q:'Document incident response playbooks for top incident categories', m:'Deploy automated incident detection with playbook execution and war-room coordination', s:'Autonomous incident commander that detects, triages, remediates, and generates postmortems' }
+                }
+            },
+            'FINANCIAL_CLOSE': {
+                'Finance & Accounting': {
+                    financial_close: { q:'Create close task checklists with deadlines, owners, and dependency sequencing', m:'Deploy automated close management with task orchestration and real-time status tracking', s:'AI close orchestration agent that sequences tasks, resolves blockers, and certifies close readiness autonomously' }
+                }
+            },
+            'JOURNAL_POST': {
+                'Finance & Accounting': {
+                    financial_close: { q:'Standardize recurring journal entry templates with supporting documentation requirements', m:'Deploy automated journal entry generation with validation rules and approval routing', s:'AI journal agent that prepares, validates, posts, and reconciles entries with zero manual intervention' }
+                }
+            },
+            'BACKGROUND_CHECK': {
+                'Human Resources': {
+                    recruitment: { q:'Create background check request templates with role-based screening requirements', m:'Deploy automated background check workflows with vendor integration and status tracking', s:'AI screening agent that initiates checks, monitors progress, flags issues, and clears candidates autonomously' }
+                }
+            },
+            'EMAIL_DRAFT': {
+                'Sales & Marketing': {
+                    lead_gen: { q:'Build outreach email templates by persona with personalization merge fields', m:'Deploy AI email drafting with tone optimization and engagement prediction scoring', s:'Autonomous outreach agent that drafts, personalizes, and optimizes prospect emails at scale' }
                 }
             }
         };
