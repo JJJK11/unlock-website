@@ -1989,7 +1989,7 @@
             { id:'DATA_CLEANSE', cat:'ai', potential:0.78, complexity:0.35, keys:['data cleaning','data cleansing','deduplication','duplicate removal','data hygiene','scrubbing','normalization','clean data','remove duplicates'], stems:['clean','deduplic','scrub','normaliz','hygien'], vn:[['clean','data'],['remove','duplicate'],['normalize','record']], state:'Manual data cleaning and deduplication', benefit:'Duplicates merged, formats standardized, and missing fields flagged automatically — clean data without the monthly cleanup sprints', recs:{q:'Profile data quality and identify top issues',m:'Deploy automated cleansing and dedup pipelines',s:'Continuous data quality platform with ML-based correction'}, ts:0.65 },
             { id:'DATA_VALIDATE', cat:'ai', potential:0.80, complexity:0.3, keys:['data validation','data quality check','integrity check','completeness check','accuracy verification','validate data','check data','verify data'], stems:['validat','integrit','verif','accura'], vn:[['validate','data'],['check','accuracy'],['verify','completeness']], state:'Manual data verification and quality checks', benefit:'Data validated at the point of entry — invalid formats, out-of-range values, and missing fields caught before they propagate downstream', recs:{q:'Define validation rules for critical fields',m:'Deploy automated validation at data entry points',s:'AI data quality monitoring with predictive error detection'}, ts:0.68 },
             { id:'MASTER_DATA', cat:'system', potential:0.70, complexity:0.5, keys:['master data','mdm','golden record','single source of truth','data stewardship','reference data','data governance','standardize data'], stems:['master','steward','governan'], vn:[['manage','master data'],['establish','source of truth'],['govern','data']], state:'Fragmented data across multiple systems', benefit:'One golden record per customer, vendor, and product across all systems — no more conflicting data between departments causing rework', recs:{q:'Identify critical master data domains and owners',m:'Implement MDM with synchronization rules',s:'Enterprise data governance platform with AI stewardship'}, ts:0.45 },
-            { id:'COMPLIANCE_GOV', cat:'ai', potential:0.75, complexity:0.35, keys:['compliance','regulatory','audit trail','control','sox','gdpr','policy','governance','regulation','comply','audit finding'], stems:['complian','regulat','audit','governan','policy'], vn:[['ensure','compliance'],['monitor','regulation'],['maintain','audit trail']], state:'Manual compliance tracking and reporting', benefit:'Continuous AI compliance monitoring agents track regulatory changes in real time, auto-map controls to evolving requirements (EU AI Act, NIST AI RMF), and maintain audit-ready documentation with complete traceability', recs:{q:'Create compliance checklists with mandatory sign-offs',m:'Deploy AI-powered continuous compliance monitoring with automated audit trails',s:'Agentic compliance platform with real-time regulatory change detection, risk scoring, and auto-reporting'}, ts:0.60 },
+            { id:'COMPLIANCE_GOV', cat:'ai', potential:0.75, complexity:0.35, keys:['compliance','regulatory','audit trail','control','sox','gdpr','policy','governance','regulation','comply','audit finding','sanctions','screening','aml','watchlist','monitor compliance'], stems:['complian','regulat','audit','governan','polic','sanction'], vn:[['ensure','compliance'],['monitor','regulation'],['maintain','audit trail'],['monitor','compliance'],['screen','sanctions']], state:'Manual compliance tracking and reporting', benefit:'Continuous AI compliance monitoring agents track regulatory changes in real time, auto-map controls to evolving requirements (EU AI Act, NIST AI RMF), and maintain audit-ready documentation with complete traceability', recs:{q:'Create compliance checklists with mandatory sign-offs',m:'Deploy AI-powered continuous compliance monitoring with automated audit trails',s:'Agentic compliance platform with real-time regulatory change detection, risk scoring, and auto-reporting'}, ts:0.60 },
 
             /* Knowledge Management */
             { id:'KNOWLEDGE_BASE', cat:'system', potential:0.74, complexity:0.35, keys:['knowledge base','wiki','documentation','knowledge management','institutional knowledge','sop','standard operating procedure','document process'], stems:['knowledg','document','wiki'], vn:[['build','knowledge base'],['document','process'],['create','wiki']], state:'Tribal knowledge and undocumented processes', benefit:'Tribal knowledge captured in a searchable system — new hires find answers in seconds instead of asking around for days', recs:{q:'Document top 10 critical processes as SOPs',m:'Build searchable knowledge base with tagging',s:'AI knowledge platform with auto-capture and recommendations'}, ts:0.45 },
@@ -2012,7 +2012,7 @@
 
             /* Compliance & Risk */
             { id:'REVIEW_AUDIT', cat:'human', potential:0.60, complexity:0.35, keys:['review','audit','check','verify','validation','validate','quality','qa','inspect','peer review','manual review','double check'], stems:['review','audit','verif','validat','inspect'], vn:[['review','document'],['audit','process'],['verify','result']], state:'Manual review and verification', benefit:'AI pre-screens documents and flags anomalies before human review — reviewers focus on the exceptions that actually need judgment instead of reading everything', recs:{q:'Define review criteria and checklists',m:'Deploy AI pre-screening to flag exceptions before human review',s:'AI review platform with continuous learning and auto-approval for low-risk items'}, ts:0.45 },
-            { id:'CONTRACT_MGMT', cat:'ai', potential:0.76, complexity:0.4, keys:['contract management','contract review','clause analysis','obligation tracking','renewal','sla monitoring','manage contract','review contract'], stems:['contract','clause','obligat','renew'], vn:[['review','contract'],['track','obligation'],['manage','renewal']], state:'Manual contract tracking and review', benefit:'AI reads contracts in seconds, extracts key clauses, flags risky language, and tracks obligations and renewal dates — replaces days of legal review per contract', recs:{q:'Create contract register with key dates and alerts',m:'Deploy CLM with AI clause review',s:'Intelligent contract platform with risk scoring and auto-negotiation support'}, ts:0.55 },
+            { id:'CONTRACT_MGMT', cat:'ai', potential:0.76, complexity:0.4, keys:['contract management','contract review','clause analysis','obligation tracking','renewal','sla monitoring','manage contract','review contract','agreement','nda','non-disclosure','terms and conditions','confidentiality agreement'], stems:['contract','clause','obligat','renew','agreement'], vn:[['review','contract'],['track','obligation'],['manage','renewal'],['draft','agreement'],['negotiate','terms']], state:'Manual contract tracking and review', benefit:'AI reads contracts in seconds, extracts key clauses, flags risky language, and tracks obligations and renewal dates — replaces days of legal review per contract', recs:{q:'Create contract register with key dates and alerts',m:'Deploy CLM with AI clause review',s:'Intelligent contract platform with risk scoring and auto-negotiation support'}, ts:0.55 },
             { id:'INCIDENT_MGMT', cat:'system', potential:0.72, complexity:0.4, keys:['incident response','breach','security incident','disaster recovery','business continuity','escalation protocol','crisis management','respond to incident'], stems:['incident','breach','disaster','crisis','escal'], vn:[['respond','incident'],['manage','crisis'],['escalate','breach']], state:'Ad-hoc incident response procedures', benefit:'AI-powered incident response detects anomalies, triggers automated playbooks, and executes auto-remediation — containment starts in seconds with root cause analysis and stakeholder notifications handled by agents', recs:{q:'Document incident response playbooks',m:'Deploy automated detection with playbook execution',s:'AI-powered incident platform with predictive alerts and auto-remediation'}, ts:0.50 },
 
             /* Operations, Monitoring & Field Services */
@@ -3676,9 +3676,16 @@
         /* ── Stemmer ── */
         function simpleStem(word) {
             if (word.length < 4) return word;
-            const noStem = new Set(['document','management','department','assessment','environment','requirement','statement','investment','equipment','development','adjustment','measurement','achievement','replacement']);
+            const noStem = new Set(['document','management','department','assessment','environment','requirement','statement','investment','equipment','development','adjustment','measurement','achievement','replacement','maintenance','process','status','analysis','access','diagnosis']);
             if (noStem.has(word)) return word;
-            const suffixes = ['mentation','ization','isation','fulness','ating','ition','ation','ment','ness','ible','able','ting','ling','ring','sing','tion','sion','ing','ies','ied','ion','ous','ive','ed','er','ly','al','es','or'];
+            /* Strip trailing 's' first to normalize plurals (e.g., "confirmations" -> "confirmation",
+               "settlements" -> "settlement") before checking other suffixes */
+            if (word.length > 4 && word.endsWith('s') && !word.endsWith('ss') && !word.endsWith('us')) {
+                word = word.slice(0, -1);
+            }
+            /* Order matters: longer suffixes first; 'ing' BEFORE 'ting/ling/ring/sing' to prevent
+               over-stemming (e.g., "scoring" should strip 'ing' not 'ring') */
+            const suffixes = ['mentation','ization','isation','fulness','ating','ition','ation','ment','ness','ible','able','tion','sion','ing','ies','ied','ion','ous','ive','ed','er','ly','al','or'];
             for (const suf of suffixes) {
                 if (word.endsWith(suf) && word.length - suf.length >= 3) return word.slice(0, -suf.length);
             }
@@ -3833,26 +3840,43 @@
 
             /* Extract context nouns for better descriptions */
             const contextNouns = ['report','document','data','file','form','record','invoice','email','ticket','request','order','schedule','plan','budget','contract','account','payment','claim','application','submission','correspondence','spreadsheet','database','system','workflow','process','task','project','meeting','agenda'];
-            const foundNoun = contextNouns.find(n => lower.includes(n)) || 'task';
+            const foundNoun = contextNouns.find(n => new RegExp('\\b' + n, 'i').test(lower)) || 'task';
+
+            /* Proper pluralization for heuristic nouns */
+            const heuristicNoPluralNouns = new Set(['data','compliance','equipment','feedback','inventory','payroll','access','software','evidence','personnel','documentation','correspondence','information','training','maintenance','research']);
+            function heuristicPlural(n) {
+                if (heuristicNoPluralNouns.has(n)) return n;
+                if (n.endsWith('s') || n.endsWith('x') || n.endsWith('ch') || n.endsWith('sh')) return n + 'es';
+                if (/[^aeiou]y$/.test(n)) return n.slice(0, -1) + 'ies';
+                return n + 's';
+            }
+            const nounPlural = heuristicPlural(foundNoun);
 
             for (const [group, verbs] of Object.entries(verbGroups)) {
                 for (const v of verbs) {
-                    if (words.includes(v) || words.some(w => w.startsWith(simpleStem(v)) && w.length >= 3)) {
+                    /* Require exact word match or stem match with length guard to prevent
+                       false positives (e.g., "counterparties" triggering verb "count") */
+                    if (words.includes(v) || words.some(w => w === simpleStem(v) || (w.startsWith(simpleStem(v)) && w.length <= v.length + 3))) {
                         const label = v.charAt(0).toUpperCase() + v.slice(1);
                         const nounLabel = foundNoun.charAt(0).toUpperCase() + foundNoun.slice(1);
+                        const nounLabelPlural = nounPlural.charAt(0).toUpperCase() + nounPlural.slice(1);
                         const benefitMap = {
-                            data: `${nounLabel}s captured and validated automatically at source — eliminates re-keying, reduces errors, and frees the team from repetitive ${foundNoun} work`,
-                            comm: `${nounLabel} ${v} happens automatically when triggered by events — no one has to remember, chase, or manually ${v} ${foundNoun}s`,
-                            review: `AI pre-screens ${foundNoun}s and flags exceptions — reviewers focus on the items that actually need human judgment instead of checking everything`,
-                            manage: `${nounLabel} ${v} tracked and coordinated automatically with live visibility — replaces manual follow-ups, status emails, and spreadsheet tracking`,
-                            create: `${nounLabel}s generated from templates and data in seconds — consistent quality without the manual effort of building each one from scratch`,
+                            data: `${nounLabelPlural} captured and validated automatically at source — eliminates re-keying, reduces errors, and frees the team from repetitive ${foundNoun} work`,
+                            comm: `${nounLabel} distribution happens automatically when triggered by events — no one has to remember, chase, or manually ${v} ${nounPlural}`,
+                            review: `AI pre-screens ${nounPlural} and flags exceptions — reviewers focus on the items that actually need human judgment instead of checking everything`,
+                            manage: `${nounLabel} ${group === 'manage' ? 'coordination' : 'management'} tracked automatically with live visibility — replaces manual follow-ups, status emails, and spreadsheet tracking`,
+                            create: `${nounLabelPlural} generated from templates and data in seconds — consistent quality without the manual effort of building each one from scratch`,
                             process: `${nounLabel} processing runs end-to-end with automated handoffs — what currently takes manual effort completes in minutes with audit trails`
                         };
-                        const gerund = v.endsWith('e') && !v.endsWith('ee') ? v.slice(0, -1) + 'ing' : v + 'ing';
+                        /* Gerund with proper consonant doubling */
+                        const heuristicDoublers = new Set(['submit','plan','run','log','scan','format','transfer','stop','drop','ship','set']);
+                        const gerund = v.endsWith('e') && !v.endsWith('ee') ? v.slice(0, -1) + 'ing'
+                            : heuristicDoublers.has(v) ? v + v.slice(-1) + 'ing'
+                            : v + 'ing';
                         return {
                             cat: catMap[group],
                             potential: potMap[group],
-                            state: `Manual ${gerund} of ${foundNoun}s`,
+                            state: `Manual ${gerund} of ${nounPlural}`,
                             benefit: benefitMap[group],
                             recs: {
                                 q: `Standardize the ${foundNoun} ${v} procedure and document steps`,
@@ -4012,6 +4036,7 @@
                 primaryId,
                 complexity,
                 techTier,
+                matchScore: topScore,
                 timeSavings: topMatches.length > 0 ? (topMatches[0].entry.ts || 0.5) : 0.3
             };
         }
@@ -4218,7 +4243,9 @@
                 'coordinate','manage','plan','organize','build','design','develop','write','run',
                 'conduct','complete','fulfill','resolve','sign','upload','download','publish','triage',
                 'archive','log','record','file','calculate','transfer','import','export','prioritize',
-                'summarize','document','evaluate','respond','negotiate','approve','assess','identify'];
+                'summarize','document','evaluate','respond','negotiate','assess','identify',
+                'issue','source','code','diagnose','register','enroll','certify','authorize',
+                'aggregate','triage','investigate','provision','administer','facilitate'];
             /* Prefer exact word match over startsWith — prevents "review" matching "reviews"
                when "conduct" is the actual verb in "conduct performance reviews" */
             const exactVerb = verbs.find(v => words.includes(v));
@@ -4231,9 +4258,9 @@
                 'request','file','spreadsheet','ledger','receipt','vendor','customer','employee',
                 'candidate','resume','letter','template','code','test','alert','log','error','meeting',
                 'presentation','proposal','compliance','audit','inventory','asset','equipment',
-                'shipment','requisition','purchase order','journal','reconciliation','approval',
+                'shipment','requisition','purchase order','work order','journal','reconciliation','approval',
                 'expense','credit','pipeline','lead','forecast','risk','incident','deployment',
-                'statement','policy','workflow','task','project','ticket','survey','feedback',
+                'statement','policy','workflow','task','project','survey','feedback',
                 'license','permit','certificate','signature','timesheet','payroll','benefit',
                 'claim','quote','estimate','specification','requirement','backup','patch',
                 'release','build','configuration','credentials','access','permission',
@@ -4241,7 +4268,15 @@
                 'recording','call','communication','stakeholder','milestone','renewal',
                 'production','sensor','quality','description','profile','transaction',
                 'onboarding','performance','assessment','registration','pricing','status',
-                'inquiry','profile','response','schedule','agenda','report card'];
+                'inquiry','response','schedule','agenda','report card',
+                /* V3.9 additions — domain nouns found missing in 14-industry testing */
+                'defect','shipping','maintenance','material','supplier','warehouse','content',
+                'patient','appointment','procedure','medication','prescription','diagnosis',
+                'referral','protocol','specimen','device','interview','utilization',
+                'confirmation','settlement','position','portfolio','complaint','dispute',
+                'agreement','wire','margin','technician','crew','filing','return','exchange',
+                'regulation','framework','submission','bid','subscriber','tenant','donor',
+                'grant','student','route','meter','audience','assignment','work item'];
             /* Use word-boundary prefix to prevent substring matches
                (e.g., "form" inside "performance", "file" inside "profiles") */
             const foundNouns = nouns.filter(n => new RegExp('\\b' + n.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'i').test(lower));
@@ -4251,7 +4286,7 @@
             let verbIng = '';
             if (foundVerb) {
                 /* Handle gerund: drop trailing 'e' before -ing; double final consonant for CVC pattern */
-                const doublers = new Set(['submit','plan','run','log','scan','format','transfer']);
+                const doublers = new Set(['submit','plan','run','log','scan','format','transfer','stop','drop','ship','set']);
                 if (foundVerb.endsWith('e')) {
                     verbIng = foundVerb.slice(0, -1) + 'ing';
                 } else if (doublers.has(foundVerb)) {
@@ -4292,17 +4327,23 @@
             const noPluralNouns = new Set(['data','compliance','equipment','feedback','inventory',
                 'payroll','access','software','evidence','personnel','documentation','correspondence',
                 'information','training','maintenance','research','demand','onboarding','performance',
-                'quality','status','production','pricing','sentiment']);
+                'quality','status','production','pricing','sentiment','shipping','content',
+                'utilization','margin','process','diagnosis','analysis']);
+
+            /* Nouns ending in 's' that are actually singular — need special plural forms */
+            const specialPlurals = { 'process': 'processes', 'diagnosis': 'diagnoses', 'analysis': 'analyses', 'status': 'statuses' };
 
             if (foundVerb && primaryNoun) {
                 const nounDisplay = noPluralNouns.has(primaryNoun) ? primaryNoun
+                    : specialPlurals[primaryNoun] ? specialPlurals[primaryNoun]
                     : primaryNoun.endsWith('s') ? primaryNoun
                     : /[^aeiou]y$/.test(primaryNoun) ? primaryNoun.slice(0, -1) + 'ies'
                     : primaryNoun + 's';
                 activity = verbIng + ' ' + nounDisplay;
             } else if (foundVerb) {
                 /* Verb only — extract a short descriptor from step name */
-                const shortDesc = step.stepName.replace(/^(the|a|an)\s+/i, '').substring(0, 30).trim();
+                const rawDesc = step.stepName.replace(/^(the|a|an)\s+/i, '');
+                const shortDesc = rawDesc.length > 30 ? rawDesc.substring(0, 30).replace(/\s\S*$/, '') + '...' : rawDesc;
                 activity = verbIng + ' (' + shortDesc + ')';
             } else if (primaryNoun) {
                 activity = primaryNoun + ' processing';
@@ -4314,17 +4355,19 @@
             const verbNounCombo = (foundVerb && primaryNoun)
                 ? foundVerb + '.*' + primaryNoun : null;
 
-            /* Helper: lowercase first char UNLESS it starts an acronym (e.g. "AI", "GL", "ERP") */
+            /* Helper: lowercase first char UNLESS it starts an acronym (e.g. "AI", "GL", "ERP")
+               or a mixed-case abbreviation like "IoT" */
             function lowerFirst(s) {
                 if (!s) return s;
                 if (s.length >= 2 && s[0] === s[0].toUpperCase() && s[1] === s[1].toUpperCase()) return s;
+                /* Protect mixed-case abbreviations: "IoT", "iPhone", etc. — uppercase + lowercase + uppercase */
+                if (s.length >= 3 && s[0] === s[0].toUpperCase() && s[1] === s[1].toLowerCase() && s[2] === s[2].toUpperCase()) return s;
                 return s.charAt(0).toLowerCase() + s.slice(1);
             }
 
             /* Build a natural-language label for templates (noun-first avoids double gerund) */
             const actLabel = primaryNoun
-                ? (noPluralNouns.has(primaryNoun) ? primaryNoun : /[^aeiou]y$/.test(primaryNoun) ? primaryNoun.slice(0, -1) + 'ies' : primaryNoun.endsWith('s') ? primaryNoun : primaryNoun + 's')
-                  + (foundVerb ? '' : '')
+                ? (noPluralNouns.has(primaryNoun) ? primaryNoun : specialPlurals[primaryNoun] ? specialPlurals[primaryNoun] : /[^aeiou]y$/.test(primaryNoun) ? primaryNoun.slice(0, -1) + 'ies' : primaryNoun.endsWith('s') ? primaryNoun : primaryNoun + 's')
                 : activity;
             const stateLabel = primaryNoun && foundVerb
                 ? primaryNoun + ' ' + verbIng   /* e.g. "invoice receiving" */
@@ -4348,7 +4391,7 @@
                 const bnLower = step.benefit.toLowerCase();
                 const comboPresent = verbNounCombo && new RegExp(verbNounCombo, 'i').test(bnLower);
                 if (!comboPresent) {
-                    step.benefit = `Automating ${activity} enables: ${lowerFirst(step.benefit)}`;
+                    step.benefit = `Automation of ${activity} enables: ${lowerFirst(step.benefit)}`;
                 }
             }
 
@@ -4365,7 +4408,7 @@
 
             /* Department → relevant KB step IDs. Steps outside this set get confidence downgraded. */
             const DEPT_DOMAIN = {
-                'Finance & Accounting': new Set(['DATA_ENTRY','INVOICE_PROC','RECONCILIATION','FINANCIAL_CLOSE','JOURNAL_POST','REPORTING','APPROVAL','COMPLIANCE_GOV','DATA_VALIDATE','DOC_UNDERSTAND','FORM_PROC','REVIEW_AUDIT','RISK_SCORING','DATA_CLEANSE','MASTER_DATA']),
+                'Finance & Accounting': new Set(['DATA_ENTRY','INVOICE_PROC','RECONCILIATION','FINANCIAL_CLOSE','JOURNAL_POST','REPORTING','APPROVAL','COMPLIANCE_GOV','DATA_VALIDATE','DOC_UNDERSTAND','FORM_PROC','REVIEW_AUDIT','RISK_SCORING','DATA_CLEANSE','MASTER_DATA','STATUS_TRACK','CONTRACT_MGMT']),
                 'Human Resources': new Set(['ONBOARDING','SCHEDULING','PERF_MGMT','WORKFORCE_PLAN','TRAINING','REPORTING','APPROVAL','DATA_ENTRY','DOC_UNDERSTAND','FORM_PROC','EMAIL_COMMS','COMPLIANCE_GOV','TEMPLATE_GEN','SENTIMENT','EMAIL_DRAFT','RECRUITING','RESUME_SCREEN','BACKGROUND_CHECK']),
                 'IT & Engineering': new Set(['INCIDENT_MGMT','OUTAGE_MGMT','CODE_GEN','API_MGMT','LEGACY_MOD','TICKET_SUPPORT','STATUS_TRACK','DATA_TRANSFER','EQUIP_MONITOR','REPORTING','APPROVAL','DOC_UNDERSTAND','KNOWLEDGE_BASE','SEARCH_RETRIEVAL','PROJECT_MGMT','LOG_ANALYSIS','CI_CD_DEPLOY','TEST_QA']),
                 'Operations': new Set(['SCHEDULING','INVENTORY','ASSET_MGMT','MAINT_MGMT','EQUIP_MONITOR','QUALITY_INSPECT','SAFETY_ENV','FIELD_SERVICE','STATUS_TRACK','TASK_ASSIGN','REPORTING','DATA_ENTRY','APPROVAL','DOC_UNDERSTAND','WORK_EXECUTION','TEST_QA']),
@@ -4373,7 +4416,7 @@
                 'Customer Service': new Set(['TICKET_SUPPORT','CHATBOT','SENTIMENT','CONVO_ANALYSIS','CUST_FEEDBACK','KNOWLEDGE_BASE','EMAIL_COMMS','EMAIL_DRAFT','PERSONALIZE','REPORTING','STATUS_TRACK','TEMPLATE_GEN','SEARCH_RETRIEVAL','ONBOARDING']),
                 'Supply Chain': new Set(['PROCUREMENT','INVENTORY','DEMAND_FORECAST','SCHEDULING','DATA_TRANSFER','APPROVAL','REPORTING','DOC_UNDERSTAND','INVOICE_PROC','RECONCILIATION','STATUS_TRACK','ASSET_MGMT','RISK_SCORING','QUALITY_INSPECT']),
                 'Legal': new Set(['CONTRACT_MGMT','COMPLIANCE_GOV','REVIEW_AUDIT','DOC_UNDERSTAND','DOC_SEARCH','SEARCH_RETRIEVAL','ENTITY_EXTRACT','SUMMARIZATION','TEMPLATE_GEN','APPROVAL','REPORTING','RISK_SCORING','EMAIL_COMMS']),
-                'Procurement': new Set(['PROCUREMENT','INVOICE_PROC','APPROVAL','CONTRACT_MGMT','DOC_UNDERSTAND','REPORTING','RECONCILIATION','DATA_ENTRY','RISK_SCORING','COMPLIANCE_GOV','FORM_PROC','EMAIL_COMMS','DEMAND_FORECAST']),
+                'Procurement': new Set(['PROCUREMENT','INVOICE_PROC','APPROVAL','CONTRACT_MGMT','DOC_UNDERSTAND','REPORTING','RECONCILIATION','DATA_ENTRY','RISK_SCORING','COMPLIANCE_GOV','FORM_PROC','EMAIL_COMMS','DEMAND_FORECAST','DECISION','REVIEW_AUDIT','STATUS_TRACK']),
                 'Executive / C-Suite': new Set(['REPORTING','SUMMARIZATION','MEETING_MGMT','DECISION','PROJECT_MGMT','STATUS_TRACK','EMAIL_COMMS','DOC_UNDERSTAND','RISK_SCORING','DEMAND_FORECAST','WORKFORCE_PLAN','CONTENT_GEN']),
                 'Research & Development': new Set(['CODE_GEN','DOC_UNDERSTAND','SEARCH_RETRIEVAL','DOC_SEARCH','KNOWLEDGE_BASE','DATA_CLEANSE','DATA_VALIDATE','REPORTING','PROJECT_MGMT','STATUS_TRACK','CONTENT_GEN','REVIEW_AUDIT','SUMMARIZATION','ENTITY_EXTRACT','TEST_QA']),
                 'Compliance & Risk': new Set(['COMPLIANCE_GOV','RISK_SCORING','REVIEW_AUDIT','DOC_UNDERSTAND','REPORTING','DATA_VALIDATE','ENTITY_EXTRACT','SEARCH_RETRIEVAL','DOC_SEARCH','CONTRACT_MGMT','STATUS_TRACK','SUMMARIZATION','APPROVAL'])
@@ -4448,8 +4491,12 @@
                 /* ═══ RULE 7: Semantic consistency — state and benefit must reference same task ═══ */
                 if (kbEntry) {
                     const coreTerms = kbEntry.keys.slice(0, 5);
-                    const stateHit = coreTerms.some(t => step.currentState.toLowerCase().includes(t.split(' ')[0]));
-                    const benefitHit = coreTerms.some(t => step.benefit.toLowerCase().includes(t.split(' ')[0]));
+                    /* Filter out generic/short words from multi-word keys to avoid false positives
+                       (e.g., "new hire" splitting to just "new" which matches everything) */
+                    const genericWords = new Set(['new','set','run','get','put','use','add','all','any','old','top','key','big']);
+                    const termWords = coreTerms.map(t => t.split(' ')[0]).filter(w => w.length > 2 && !genericWords.has(w));
+                    const stateHit = termWords.some(t => step.currentState.toLowerCase().includes(t));
+                    const benefitHit = termWords.some(t => step.benefit.toLowerCase().includes(t));
                     /* If both state AND benefit miss all core terms, overlay may have drifted */
                     if (!stateHit && !benefitHit) {
                         step.currentState = kbEntry.state;
@@ -4460,7 +4507,7 @@
                     const deptCtx = DEPARTMENT_CONTEXT[department];
                     if (deptCtx && deptCtx.keywords) {
                         const deptKeyHit = deptCtx.keywords.some(k => step.currentState.toLowerCase().includes(k) || step.benefit.toLowerCase().includes(k));
-                        const kbKeyHit = coreTerms.some(t => step.currentState.toLowerCase().includes(t.split(' ')[0]));
+                        const kbKeyHit = termWords.some(t => step.currentState.toLowerCase().includes(t) || step.benefit.toLowerCase().includes(t));
                         if (!deptKeyHit && !kbKeyHit) {
                             step.currentState = kbEntry.state;
                             step.benefit = kbEntry.benefit;
@@ -4495,18 +4542,21 @@
                 /* Use full benefit/state text for dedup — Rule 1b's verb-based prefixes
                    should already differentiate steps with the same KB entry.
                    Only append disambiguation if truly identical after contextualization. */
+                /* Helper: truncate step name at word boundary for dedup suffixes */
+                function truncStep(name) {
+                    if (name.length <= 40) return name.toLowerCase();
+                    return name.substring(0, 40).replace(/\s\S*$/, '').toLowerCase() + '...';
+                }
                 if (seenBenefits.has(step.benefit)) {
                     if (step.primaryId !== 'UNMATCHED') {
-                        const ctx = step.stepName.length > 40 ? step.stepName.substring(0, 40).trim() + '...' : step.stepName;
-                        step.benefit = step.benefit + ' — as applied to ' + ctx.toLowerCase();
+                        step.benefit = step.benefit + ' — as applied to ' + truncStep(step.stepName);
                     }
                 }
                 seenBenefits.add(step.benefit);
 
                 if (seenStates.has(step.currentState)) {
                     if (step.primaryId !== 'UNMATCHED') {
-                        const ctx = step.stepName.length > 40 ? step.stepName.substring(0, 40).trim() + '...' : step.stepName;
-                        step.currentState = step.currentState + ' (for ' + ctx.toLowerCase() + ')';
+                        step.currentState = step.currentState + ' (for ' + truncStep(step.stepName) + ')';
                     }
                 }
                 seenStates.add(step.currentState);
@@ -4515,7 +4565,7 @@
                 if (step.recs) {
                     for (const tier of ['q', 'm', 's']) {
                         if (step.recs[tier] && seenRecs[tier].has(step.recs[tier])) {
-                            step.recs[tier] = step.recs[tier] + ' (for ' + step.stepName.toLowerCase() + ')';
+                            step.recs[tier] = step.recs[tier] + ' (for ' + truncStep(step.stepName) + ')';
                         }
                         if (step.recs[tier]) seenRecs[tier].add(step.recs[tier]);
                     }
@@ -4535,13 +4585,16 @@
             }
 
             /* ═══ RULE 13: Post-generation domain drift detection ═══ */
+            /* Only downgrade singleton-category steps with weak match scores.
+               A high-scoring match (e.g., REVIEW_AUDIT for "conduct audit") is legitimate
+               even if it's the only 'human' category step among AI steps. */
             const totalMatched = analyzedSteps.filter(s => s.primaryId !== 'UNMATCHED').length;
             if (totalMatched >= 3) {
                 const catCounts = { ai: 0, system: 0, human: 0 };
                 for (const s of analyzedSteps) catCounts[s.cat] = (catCounts[s.cat] || 0) + 1;
                 const dominantCat = Object.entries(catCounts).sort((a, b) => b[1] - a[1])[0][0];
                 for (const s of analyzedSteps) {
-                    if (s.cat !== dominantCat && s.confidence === 'High' && catCounts[s.cat] === 1) {
+                    if (s.cat !== dominantCat && s.confidence === 'High' && catCounts[s.cat] === 1 && (!s.matchScore || s.matchScore < 5)) {
                         s.confidence = 'Medium';
                     }
                 }
