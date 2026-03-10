@@ -3927,19 +3927,82 @@
             return '';
         }
 
+        /* ── Department → relevant KB IDs (single source of truth) ── */
+        const DEPT_DOMAIN_IDS = {
+            'Finance & Accounting': ['DATA_ENTRY','INVOICE_PROC','RECONCILIATION','FINANCIAL_CLOSE','JOURNAL_POST','REPORTING','APPROVAL','COMPLIANCE_GOV','DATA_VALIDATE','DOC_UNDERSTAND','FORM_PROC','REVIEW_AUDIT','RISK_SCORING','DATA_CLEANSE','MASTER_DATA','STATUS_TRACK','CONTRACT_MGMT'],
+            'Human Resources': ['ONBOARDING','SCHEDULING','PERF_MGMT','WORKFORCE_PLAN','TRAINING','REPORTING','APPROVAL','DATA_ENTRY','DOC_UNDERSTAND','FORM_PROC','EMAIL_COMMS','COMPLIANCE_GOV','TEMPLATE_GEN','SENTIMENT','EMAIL_DRAFT','RECRUITING','RESUME_SCREEN','BACKGROUND_CHECK'],
+            'IT & Engineering': ['INCIDENT_MGMT','OUTAGE_MGMT','CODE_GEN','API_MGMT','LEGACY_MOD','TICKET_SUPPORT','STATUS_TRACK','DATA_TRANSFER','EQUIP_MONITOR','REPORTING','APPROVAL','DOC_UNDERSTAND','KNOWLEDGE_BASE','SEARCH_RETRIEVAL','PROJECT_MGMT','LOG_ANALYSIS','CI_CD_DEPLOY','TEST_QA'],
+            'Operations': ['SCHEDULING','INVENTORY','ASSET_MGMT','MAINT_MGMT','EQUIP_MONITOR','QUALITY_INSPECT','SAFETY_ENV','FIELD_SERVICE','STATUS_TRACK','TASK_ASSIGN','REPORTING','DATA_ENTRY','APPROVAL','DOC_UNDERSTAND','WORK_EXECUTION','TEST_QA'],
+            'Sales & Marketing': ['LEAD_SCORING','CHURN_PREDICT','PERSONALIZE','RECOMMEND','CONTENT_GEN','EMAIL_DRAFT','EMAIL_COMMS','SENTIMENT','CONVO_ANALYSIS','REPORTING','CUST_FEEDBACK','CHATBOT','DATA_ENTRY','TEMPLATE_GEN','DEMAND_FORECAST'],
+            'Customer Service': ['TICKET_SUPPORT','CHATBOT','SENTIMENT','CONVO_ANALYSIS','CUST_FEEDBACK','KNOWLEDGE_BASE','EMAIL_COMMS','EMAIL_DRAFT','PERSONALIZE','REPORTING','STATUS_TRACK','TEMPLATE_GEN','SEARCH_RETRIEVAL','ONBOARDING'],
+            'Supply Chain': ['PROCUREMENT','INVENTORY','DEMAND_FORECAST','SCHEDULING','DATA_TRANSFER','APPROVAL','REPORTING','DOC_UNDERSTAND','INVOICE_PROC','RECONCILIATION','STATUS_TRACK','ASSET_MGMT','RISK_SCORING','QUALITY_INSPECT'],
+            'Legal': ['CONTRACT_MGMT','COMPLIANCE_GOV','REVIEW_AUDIT','DOC_UNDERSTAND','DOC_SEARCH','SEARCH_RETRIEVAL','ENTITY_EXTRACT','SUMMARIZATION','TEMPLATE_GEN','APPROVAL','REPORTING','RISK_SCORING','EMAIL_COMMS'],
+            'Procurement': ['PROCUREMENT','INVOICE_PROC','APPROVAL','CONTRACT_MGMT','DOC_UNDERSTAND','REPORTING','RECONCILIATION','DATA_ENTRY','RISK_SCORING','COMPLIANCE_GOV','FORM_PROC','EMAIL_COMMS','DEMAND_FORECAST','DECISION','REVIEW_AUDIT','STATUS_TRACK'],
+            'Executive / C-Suite': ['REPORTING','SUMMARIZATION','MEETING_MGMT','DECISION','PROJECT_MGMT','STATUS_TRACK','EMAIL_COMMS','DOC_UNDERSTAND','RISK_SCORING','DEMAND_FORECAST','WORKFORCE_PLAN','CONTENT_GEN'],
+            'Research & Development': ['CODE_GEN','DOC_UNDERSTAND','SEARCH_RETRIEVAL','DOC_SEARCH','KNOWLEDGE_BASE','DATA_CLEANSE','DATA_VALIDATE','REPORTING','PROJECT_MGMT','STATUS_TRACK','CONTENT_GEN','REVIEW_AUDIT','SUMMARIZATION','ENTITY_EXTRACT','TEST_QA'],
+            'Compliance & Risk': ['COMPLIANCE_GOV','RISK_SCORING','REVIEW_AUDIT','DOC_UNDERSTAND','REPORTING','DATA_VALIDATE','ENTITY_EXTRACT','SEARCH_RETRIEVAL','DOC_SEARCH','CONTRACT_MGMT','STATUS_TRACK','SUMMARIZATION','APPROVAL']
+        };
+
+        /* ── Workflow Domain Detection ── */
+        /* Analyzes ALL steps together to identify the workflow's dominant KB domain.
+           Returns a domainProfile: { domainIds: Set, scores: Map<id, score> }
+           that biases per-step analysis toward coherent domain-locked output. */
+        function detectWorkflowDomain(rawSteps, department, industry, patternBoosts) {
+            const combined = rawSteps.join(' ').toLowerCase();
+            const words = combined.split(/[\s,;:.!?()]+/).filter(w => w.length > 1);
+            const stemmedWords = words.map(simpleStem);
+            const deptCtx = DEPARTMENT_CONTEXT[department];
+            const deptKeys = deptCtx ? deptCtx.keywords : [];
+
+            /* Score every KB entry against the combined workflow text */
+            const kbScores = new Map();
+            for (const entry of STEP_KB) {
+                const { score } = scoreStepAgainstEntry(words, combined, stemmedWords, entry, deptKeys, patternBoosts);
+                if (score > 0) kbScores.set(entry.id, score);
+            }
+
+            /* Sort by score, take the top entries that represent this workflow's domain.
+               Include any entry scoring >= 40% of the top entry (related activities). */
+            const sorted = [...kbScores.entries()].sort((a, b) => b[1] - a[1]);
+            const topScore = sorted.length > 0 ? sorted[0][1] : 0;
+            const threshold = topScore * 0.40;
+            const domainIds = new Set();
+            for (const [id, score] of sorted) {
+                if (score >= threshold && domainIds.size < 12) domainIds.add(id);
+            }
+
+            /* Also include DEPT_DOMAIN entries — the department itself defines valid domain */
+            const deptDomain = DEPT_DOMAIN_IDS[department];
+            if (deptDomain) {
+                for (const id of deptDomain) domainIds.add(id);
+            }
+
+            return { domainIds, scores: kbScores };
+        }
+
         /* ── Analyze a single step (v2) ── */
-        function analyzeStepV2(stepText, department, industry, patternBoosts) {
+        function analyzeStepV2(stepText, department, industry, patternBoosts, domainProfile) {
             const lower = stepText.toLowerCase();
             const words = lower.split(/[\s,;:.!?()]+/).filter(w => w.length > 1);
             const stemmedWords = words.map(simpleStem);
             const deptCtx = DEPARTMENT_CONTEXT[department];
             const deptKeys = deptCtx ? deptCtx.keywords : [];
 
-            /* Score against all KB entries */
+            /* Score against all KB entries with domain bias */
             let results = [];
             for (const entry of STEP_KB) {
-                const { score, matched } = scoreStepAgainstEntry(words, lower, stemmedWords, entry, deptKeys, patternBoosts);
-                if (score >= 1.5) results.push({ entry, score, matched });
+                let { score, matched } = scoreStepAgainstEntry(words, lower, stemmedWords, entry, deptKeys, patternBoosts);
+                if (score >= 1.5) {
+                    /* Domain bias: boost in-domain entries, penalize out-of-domain */
+                    if (domainProfile) {
+                        if (domainProfile.domainIds.has(entry.id)) {
+                            score *= 1.15;  /* 15% boost for domain-relevant entries */
+                        } else {
+                            score *= 0.80;  /* 20% penalty for out-of-domain entries */
+                        }
+                    }
+                    results.push({ entry, score, matched });
+                }
             }
             results.sort((a, b) => b.score - a.score);
             const topMatches = results.slice(0, 3);
@@ -4400,27 +4463,60 @@
 
         /* ── Content Alignment Validator ── */
         /* Enforces strict process-domain locking across all output rows.
-           16 numbered rules map to user requirements. */
-        function validateStepAlignment(analyzedSteps, industry, department) {
+           16 numbered rules map to user requirements.
+           domainProfile (from detectWorkflowDomain) enables cross-step coherence. */
+        function validateStepAlignment(analyzedSteps, industry, department, domainProfile) {
+            /* ═══ RULE 0: Workflow-level domain coherence ═══ */
+            /* Detect the workflow's dominant domain from the majority of matched steps.
+               If a step matched out-of-domain, check if a domain-relevant entry scored
+               close enough to be a valid alternative — and swap to it. This prevents
+               generic keys like "monitor", "review", "plan" from pulling individual
+               steps into unrelated domains. */
+            if (domainProfile) {
+                const matchedSteps = analyzedSteps.filter(s => s.primaryId !== 'UNMATCHED');
+                const domainHits = matchedSteps.filter(s => domainProfile.domainIds.has(s.primaryId));
+                /* Only enforce if we have a clear domain signal (majority of steps match) */
+                if (matchedSteps.length >= 2 && domainHits.length >= matchedSteps.length * 0.4) {
+                    for (const step of analyzedSteps) {
+                        if (step.primaryId === 'UNMATCHED') continue;
+                        if (domainProfile.domainIds.has(step.primaryId)) continue;
+                        /* This step matched out-of-domain — re-score to find best in-domain alternative */
+                        const lower = step.stepName.toLowerCase();
+                        const words = lower.split(/[\s,;:.!?()]+/).filter(w => w.length > 1);
+                        const stemmedWords = words.map(simpleStem);
+                        const deptCtx = DEPARTMENT_CONTEXT[department];
+                        const deptKeys = deptCtx ? deptCtx.keywords : [];
+                        let bestAlt = null, bestAltScore = 0;
+                        for (const entry of STEP_KB) {
+                            if (!domainProfile.domainIds.has(entry.id)) continue;
+                            const { score } = scoreStepAgainstEntry(words, lower, stemmedWords, entry, deptKeys, {});
+                            if (score > bestAltScore) { bestAltScore = score; bestAlt = entry; }
+                        }
+                        /* Swap if the in-domain alternative scored at least 50% of the original match */
+                        if (bestAlt && bestAltScore >= step.matchScore * 0.50 && bestAltScore >= 1.5) {
+                            step.primaryId = bestAlt.id;
+                            step.cat = bestAlt.cat;
+                            step.matchScore = bestAltScore;
+                            step.complexity = bestAlt.complexity;
+                            step.automationPotential = bestAlt.potential;
+                            step.potentialLabel = bestAlt.potential >= 0.70 ? 'High' : bestAlt.potential >= 0.40 ? 'Medium' : 'Low';
+                            step.techTier = determineTechTier(bestAlt.cat, bestAlt.potential, bestAlt.complexity);
+                            step.timeSavings = bestAlt.ts || 0.5;
+                            /* Content will be re-derived from the new KB entry in Rule 1 below */
+                        }
+                    }
+                }
+            }
+
             const seenBenefits = new Set();
             const seenStates = new Set();
             const seenRecs = { q: new Set(), m: new Set(), s: new Set() };
 
-            /* Department → relevant KB step IDs. Steps outside this set get confidence downgraded. */
-            const DEPT_DOMAIN = {
-                'Finance & Accounting': new Set(['DATA_ENTRY','INVOICE_PROC','RECONCILIATION','FINANCIAL_CLOSE','JOURNAL_POST','REPORTING','APPROVAL','COMPLIANCE_GOV','DATA_VALIDATE','DOC_UNDERSTAND','FORM_PROC','REVIEW_AUDIT','RISK_SCORING','DATA_CLEANSE','MASTER_DATA','STATUS_TRACK','CONTRACT_MGMT']),
-                'Human Resources': new Set(['ONBOARDING','SCHEDULING','PERF_MGMT','WORKFORCE_PLAN','TRAINING','REPORTING','APPROVAL','DATA_ENTRY','DOC_UNDERSTAND','FORM_PROC','EMAIL_COMMS','COMPLIANCE_GOV','TEMPLATE_GEN','SENTIMENT','EMAIL_DRAFT','RECRUITING','RESUME_SCREEN','BACKGROUND_CHECK']),
-                'IT & Engineering': new Set(['INCIDENT_MGMT','OUTAGE_MGMT','CODE_GEN','API_MGMT','LEGACY_MOD','TICKET_SUPPORT','STATUS_TRACK','DATA_TRANSFER','EQUIP_MONITOR','REPORTING','APPROVAL','DOC_UNDERSTAND','KNOWLEDGE_BASE','SEARCH_RETRIEVAL','PROJECT_MGMT','LOG_ANALYSIS','CI_CD_DEPLOY','TEST_QA']),
-                'Operations': new Set(['SCHEDULING','INVENTORY','ASSET_MGMT','MAINT_MGMT','EQUIP_MONITOR','QUALITY_INSPECT','SAFETY_ENV','FIELD_SERVICE','STATUS_TRACK','TASK_ASSIGN','REPORTING','DATA_ENTRY','APPROVAL','DOC_UNDERSTAND','WORK_EXECUTION','TEST_QA']),
-                'Sales & Marketing': new Set(['LEAD_SCORING','CHURN_PREDICT','PERSONALIZE','RECOMMEND','CONTENT_GEN','EMAIL_DRAFT','EMAIL_COMMS','SENTIMENT','CONVO_ANALYSIS','REPORTING','CUST_FEEDBACK','CHATBOT','DATA_ENTRY','TEMPLATE_GEN','DEMAND_FORECAST']),
-                'Customer Service': new Set(['TICKET_SUPPORT','CHATBOT','SENTIMENT','CONVO_ANALYSIS','CUST_FEEDBACK','KNOWLEDGE_BASE','EMAIL_COMMS','EMAIL_DRAFT','PERSONALIZE','REPORTING','STATUS_TRACK','TEMPLATE_GEN','SEARCH_RETRIEVAL','ONBOARDING']),
-                'Supply Chain': new Set(['PROCUREMENT','INVENTORY','DEMAND_FORECAST','SCHEDULING','DATA_TRANSFER','APPROVAL','REPORTING','DOC_UNDERSTAND','INVOICE_PROC','RECONCILIATION','STATUS_TRACK','ASSET_MGMT','RISK_SCORING','QUALITY_INSPECT']),
-                'Legal': new Set(['CONTRACT_MGMT','COMPLIANCE_GOV','REVIEW_AUDIT','DOC_UNDERSTAND','DOC_SEARCH','SEARCH_RETRIEVAL','ENTITY_EXTRACT','SUMMARIZATION','TEMPLATE_GEN','APPROVAL','REPORTING','RISK_SCORING','EMAIL_COMMS']),
-                'Procurement': new Set(['PROCUREMENT','INVOICE_PROC','APPROVAL','CONTRACT_MGMT','DOC_UNDERSTAND','REPORTING','RECONCILIATION','DATA_ENTRY','RISK_SCORING','COMPLIANCE_GOV','FORM_PROC','EMAIL_COMMS','DEMAND_FORECAST','DECISION','REVIEW_AUDIT','STATUS_TRACK']),
-                'Executive / C-Suite': new Set(['REPORTING','SUMMARIZATION','MEETING_MGMT','DECISION','PROJECT_MGMT','STATUS_TRACK','EMAIL_COMMS','DOC_UNDERSTAND','RISK_SCORING','DEMAND_FORECAST','WORKFORCE_PLAN','CONTENT_GEN']),
-                'Research & Development': new Set(['CODE_GEN','DOC_UNDERSTAND','SEARCH_RETRIEVAL','DOC_SEARCH','KNOWLEDGE_BASE','DATA_CLEANSE','DATA_VALIDATE','REPORTING','PROJECT_MGMT','STATUS_TRACK','CONTENT_GEN','REVIEW_AUDIT','SUMMARIZATION','ENTITY_EXTRACT','TEST_QA']),
-                'Compliance & Risk': new Set(['COMPLIANCE_GOV','RISK_SCORING','REVIEW_AUDIT','DOC_UNDERSTAND','REPORTING','DATA_VALIDATE','ENTITY_EXTRACT','SEARCH_RETRIEVAL','DOC_SEARCH','CONTRACT_MGMT','STATUS_TRACK','SUMMARIZATION','APPROVAL'])
-            };
+            /* Department → relevant KB step IDs (uses shared DEPT_DOMAIN_IDS) */
+            const DEPT_DOMAIN = {};
+            for (const [dept, ids] of Object.entries(DEPT_DOMAIN_IDS)) {
+                DEPT_DOMAIN[dept] = new Set(ids);
+            }
 
             /* Valid technology tiers per step category */
             const VALID_TIERS = {
@@ -5034,7 +5130,11 @@
                     }
                     if (rawSteps.length === 0) rawSteps.push(workflow.substring(0, 80));
                     const patternBoosts = detectProcessPatterns(workflow);
-                    const analyzed = validateStepAlignment(rawSteps.map(s => analyzeStepV2(s, department, industry, patternBoosts)), industry, department);
+                    /* Two-pass domain-locked analysis:
+                       Pass 1: detect workflow domain from all steps combined
+                       Pass 2: analyze each step with domain bias, then enforce coherence */
+                    const domainProfile = detectWorkflowDomain(rawSteps, department, industry, patternBoosts);
+                    const analyzed = validateStepAlignment(rawSteps.map(s => analyzeStepV2(s, department, industry, patternBoosts, domainProfile)), industry, department, domainProfile);
 
                     /* Per-step savings + risk notes */
                     const totalWeight = analyzed.reduce((s, x) => s + x.effortWeight, 0) || 1;
