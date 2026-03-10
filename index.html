@@ -4417,7 +4417,8 @@
                 'VALIDATE': { state:'Accountants manually verify journal entries against supporting documentation, checking debits equal credits and accounts are correct before posting', benefit:'AI validates every journal entry against chart of accounts, supporting docs, and balancing rules — flagging anomalies before they reach the ledger' , recs: { q:'Add automated balance checks and account validation rules that flag errors before entries reach the reviewer queue', m:'Deploy AI that validates every journal entry against chart of accounts, supporting docs, and balancing rules before posting', s:'Autonomous journal validation agent that tests every entry against accounting rules, detects anomalies, and blocks errors from reaching the ledger' } },
                 'GENERATE': { state:'Recurring and adjusting journal entries created manually each period by accountants pulling data from sub-ledgers and spreadsheets', benefit:'AI generates recurring, accrual, and adjusting entries automatically from sub-ledger data and historical patterns — ready for reviewer approval' , recs: { q:'Build templates for recurring journal entries that auto-calculate amounts from sub-ledger data each period', m:'Deploy AI that generates recurring, accrual, and adjusting entries automatically from sub-ledger data and historical patterns', s:'Autonomous journal creation agent that identifies, calculates, and stages all period-end entries without accountant intervention' } },
                 'EXECUTE': { state:'Journal entries posted manually one batch at a time, with accountants navigating multiple screens and approval queues to complete each posting cycle', benefit:'Validated journal entries post straight through to the general ledger — batch processing handles thousands of entries per cycle without manual intervention' , recs: { q:'Automate batch posting for pre-validated recurring entries so they post on schedule without manual navigation', m:'Deploy straight-through posting that processes validated journal entries in bulk without manual screen-by-screen entry', s:'Agentic journal processing pipeline that stages, validates, posts, and confirms thousands of entries per cycle with zero manual intervention' } },
-                'ANALYZE': { state:'Journal entry analysis limited to post-hoc reviews of trial balances and variance reports, often weeks after entries were posted', benefit:'AI analyzes journal entry patterns in real time — detecting unusual amounts, duplicate entries, and posting anomalies before the books close' , recs: { q:'Build a journal entry anomaly report that flags unusual amounts, new accounts, and duplicate entries after each posting cycle', m:'Deploy AI that analyzes journal entry patterns in real time, detecting unusual amounts, duplicates, and posting anomalies before close', s:'Autonomous journal analytics agent that continuously monitors posting patterns, predicts period-end issues, and recommends corrections proactively' } }
+                'ANALYZE': { state:'Journal entry analysis limited to post-hoc reviews of trial balances and variance reports, often weeks after entries were posted', benefit:'AI analyzes journal entry patterns in real time — detecting unusual amounts, duplicate entries, and posting anomalies before the books close' , recs: { q:'Build a journal entry anomaly report that flags unusual amounts, new accounts, and duplicate entries after each posting cycle', m:'Deploy AI that analyzes journal entry patterns in real time, detecting unusual amounts, duplicates, and posting anomalies before close', s:'Autonomous journal analytics agent that continuously monitors posting patterns, predicts period-end issues, and recommends corrections proactively' } },
+                'UPDATE': { state:'Ledger records updated manually after each posting cycle — accountants reconcile sub-ledger totals, adjust trial balances, and correct mispostings through reversal entries', benefit:'Ledger updates propagate automatically as journals post — sub-ledger reconciliation runs continuously and mispostings trigger immediate correction suggestions', recs: { q:'Set up automated sub-ledger-to-GL reconciliation that runs after every posting batch and flags variances immediately', m:'Deploy an AI agent that monitors ledger updates in real time, reconciles sub-ledgers continuously, and suggests corrections for mispostings', s:'Self-reconciling ledger system where agents validate every posting against sub-ledgers, detect anomalies, and auto-correct within policy' } }
             },
             'FINANCIAL_CLOSE': {
                 'RECEIVE': { state:'Close tasks and reconciliation items collected manually from multiple departments, with status tracked in spreadsheets and email threads', benefit:'All close tasks, reconciliation items, and deliverables auto-collected from sub-ledgers and departments into a unified close management workspace' , recs: { q:'Create a close task checklist with automated collection reminders for reconciliation items from each department', m:'Deploy automated close management that collects all tasks, reconciliation items, and deliverables from sub-ledgers and departments', s:'Autonomous close intake agent that gathers, validates, and stages every close deliverable from all sources without manual chasing' } },
@@ -5516,6 +5517,7 @@
             },
             'JOURNAL_POST': {
                 'Finance & Accounting': {
+                    ap_processing: { q:'Set up auto-post rules for validated AP journal entries so clean invoices flow straight to the ledger without manual posting', m:'Deploy an AI posting agent that batches validated AP entries, applies GL coding rules, and posts to the ledger with exception routing', s:'Autonomous AP posting pipeline that codes, validates, posts, and reconciles invoice-related journal entries end-to-end' },
                     financial_close: { q:'Enable enterprise copilot to auto-generate recurring journal entries from standardized templates with supporting documentation attached', m:'Deploy an AI journal entry agent that generates entries from source data, validates against rules, routes for approval, and maintains audit evidence', s:'Orchestrate autonomous journal agents that prepare, validate, post, reconcile entries, and maintain complete audit trails with zero manual intervention' }
                 }
             },
@@ -5703,25 +5705,34 @@
             let stepTypeApplied = false;
             let deptOvApplied = false;
             let indOvApplied = false;
+            /* Trace: track which overlay sourced each field */
+            let stateSource = 'base', benefitSource = 'base', recsSource = 'base';
+            let overlayIds = [];
             if (primaryId !== 'UNMATCHED') {
                 const deptOv = DEPT_OVERLAYS[primaryId] && DEPT_OVERLAYS[primaryId][department];
                 const indOv = CONTEXT_OVERLAYS[primaryId] && CONTEXT_OVERLAYS[primaryId][industry];
                 const stOv = STEP_TYPE_OVERLAYS[primaryId] && STEP_TYPE_OVERLAYS[primaryId][stepType];
+                if (deptOv) overlayIds.push('dept:' + primaryId + '×' + department);
+                if (indOv) overlayIds.push('ind:' + primaryId + '×' + industry);
+                if (stOv) overlayIds.push('st:' + primaryId + '×' + stepType);
                 /* state: step_type > dept > industry > base */
-                if (stOv) { state = stOv.state; stepTypeApplied = true; }
-                else if (deptOv) { state = deptOv.state; }
-                else if (indOv) { state = indOv.state; }
+                if (stOv) { state = stOv.state; stepTypeApplied = true; stateSource = 'step_type'; }
+                else if (deptOv) { state = deptOv.state; stateSource = 'dept'; }
+                else if (indOv) { state = indOv.state; stateSource = 'industry'; }
                 /* benefit: dept > industry > step_type > base */
-                if (deptOv) { benefit = deptOv.benefit; deptOvApplied = true; }
-                else if (indOv) { benefit = indOv.benefit; indOvApplied = true; }
-                else if (stOv) { benefit = stOv.benefit; }
+                if (deptOv) { benefit = deptOv.benefit; deptOvApplied = true; benefitSource = 'dept'; }
+                else if (indOv) { benefit = indOv.benefit; indOvApplied = true; benefitSource = 'industry'; }
+                else if (stOv) { benefit = stOv.benefit; benefitSource = 'step_type'; }
                 /* recs: workflow_type > step_type > base KB */
                 if (workflowType && WORKFLOW_OVERLAYS[primaryId]
                     && WORKFLOW_OVERLAYS[primaryId][department]
                     && WORKFLOW_OVERLAYS[primaryId][department][workflowType]) {
                     recs = { ...WORKFLOW_OVERLAYS[primaryId][department][workflowType] };
+                    recsSource = 'workflow';
+                    overlayIds.push('wf:' + primaryId + '×' + department + '×' + workflowType);
                 } else if (stOv && stOv.recs) {
                     recs = { ...stOv.recs };
+                    recsSource = 'step_type';
                 }
             }
 
@@ -5787,7 +5798,16 @@
                 complexity,
                 techTier,
                 matchScore: topScore,
-                timeSavings: topMatches.length > 0 ? (topMatches[0].entry.ts || 0.5) : 0.3
+                timeSavings: topMatches.length > 0 ? (topMatches[0].entry.ts || 0.5) : 0.3,
+                /* Trace fields for instrumentation */
+                _trace: {
+                    stateSource,
+                    benefitSource,
+                    recsSource,
+                    overlayIds,
+                    kbAlternatives: topMatches.slice(0, 3).map(m => ({ id: m.entry.id, score: Math.round(m.score * 100) / 100 })),
+                    rulesApplied: []  /* populated by validateStepAlignment */
+                }
             };
         }
 
@@ -6187,6 +6207,7 @@
                         }
                         /* Swap if the in-domain alternative scored at least 50% of the original match */
                         if (bestAlt && bestAltScore >= step.matchScore * 0.50 && bestAltScore >= 1.5) {
+                            const oldId = step.primaryId;
                             step.primaryId = bestAlt.id;
                             step.cat = bestAlt.cat;
                             step.matchScore = bestAltScore;
@@ -6195,6 +6216,7 @@
                             step.potentialLabel = bestAlt.potential >= 0.70 ? 'High' : bestAlt.potential >= 0.40 ? 'Medium' : 'Low';
                             step.techTier = determineTechTier(bestAlt.cat, bestAlt.potential, bestAlt.complexity);
                             step.timeSavings = bestAlt.ts || 0.5;
+                            if (step._trace) step._trace.rulesApplied.push('R0:swap:' + oldId + '→' + bestAlt.id);
                             /* Content will be re-derived from the new KB entry in Rule 1 below */
                         }
                     }
@@ -6308,11 +6330,11 @@
                         const termWords = coreTerms.map(t => t.split(' ')[0]).filter(w => w.length > 2 && !genericWords.has(w));
                         if (stateFromIndustry) {
                             const stateHit = termWords.some(t => step.currentState.toLowerCase().includes(t));
-                            if (!stateHit) { step.currentState = kbEntry.state; }
+                            if (!stateHit) { step.currentState = kbEntry.state; if (step._trace) step._trace.rulesApplied.push('R7:state→base'); }
                         }
                         if (benefitFromIndustry) {
                             const benefitHit = termWords.some(t => step.benefit.toLowerCase().includes(t));
-                            if (!benefitHit) { step.benefit = kbEntry.benefit; step.indOvApplied = false; }
+                            if (!benefitHit) { step.benefit = kbEntry.benefit; step.indOvApplied = false; if (step._trace) step._trace.rulesApplied.push('R7:benefit→base'); }
                         }
                     }
                 }
@@ -6326,10 +6348,10 @@
                     for (const [domKey, pattern] of Object.entries(DOMAIN_LANG)) {
                         if (domKey === deptLangKey) continue;
                         if (!benefitFromOverlay && pattern.test(step.benefit)) {
-                            step.benefit = kbEntry.benefit;
+                            step.benefit = kbEntry.benefit; if (step._trace) step._trace.rulesApplied.push('R8:benefit:' + domKey);
                         }
                         if (!stateFromOverlay && pattern.test(step.currentState)) {
-                            step.currentState = kbEntry.state;
+                            step.currentState = kbEntry.state; if (step._trace) step._trace.rulesApplied.push('R8:state:' + domKey);
                         }
                     }
                 }
@@ -6355,8 +6377,10 @@
                         const stOvBn = STEP_TYPE_OVERLAYS[step.primaryId] && STEP_TYPE_OVERLAYS[step.primaryId][step.stepType];
                         if (stOvBn && stOvBn.benefit && !seenBenefits.has(stOvBn.benefit)) {
                             step.benefit = stOvBn.benefit;
+                            if (step._trace) step._trace.rulesApplied.push('R9:benefit→step_type');
+                        } else {
+                            if (step._trace) step._trace.rulesApplied.push('R9:benefit:still_dup');
                         }
-                        /* If still duplicate, the step's unique context will differentiate in the UI */
                     }
                 }
                 seenBenefits.add(step.benefit);
@@ -6366,6 +6390,9 @@
                         const stOvSt = STEP_TYPE_OVERLAYS[step.primaryId] && STEP_TYPE_OVERLAYS[step.primaryId][step.stepType];
                         if (stOvSt && stOvSt.state && !seenStates.has(stOvSt.state)) {
                             step.currentState = stOvSt.state;
+                            if (step._trace) step._trace.rulesApplied.push('R9:state→step_type');
+                        } else {
+                            if (step._trace) step._trace.rulesApplied.push('R9:state:still_dup');
                         }
                     }
                 }
@@ -6383,8 +6410,10 @@
                             /* Try step_type alternative first */
                             if (altRecs && altRecs[tier] && !seenRecs[tier].has(altRecs[tier])) {
                                 step.recs[tier] = altRecs[tier];
+                                if (step._trace) step._trace.rulesApplied.push('R10:' + tier + '→step_type');
+                            } else {
+                                if (step._trace) step._trace.rulesApplied.push('R10:' + tier + ':still_dup');
                             }
-                            /* If still a duplicate after alt, leave it — roadmap dedup will skip */
                         }
                         if (step.recs[tier]) seenRecs[tier].add(step.recs[tier]);
                     }
@@ -6399,7 +6428,7 @@
 
                 /* ═══ RULE 12: Reject unrelated operational language ═══ */
                 if (deptDomain && step.primaryId !== 'UNMATCHED' && !deptDomain.has(step.primaryId)) {
-                    if (step.confidence === 'High') step.confidence = 'Medium';
+                    if (step.confidence === 'High') { step.confidence = 'Medium'; if (step._trace) step._trace.rulesApplied.push('R12:conf→Med:out-of-dept'); }
                 }
             }
 
@@ -6415,6 +6444,7 @@
                 for (const s of analyzedSteps) {
                     if (s.cat !== dominantCat && s.confidence === 'High' && catCounts[s.cat] === 1 && (!s.matchScore || s.matchScore < 5)) {
                         s.confidence = 'Medium';
+                        if (s._trace) s._trace.rulesApplied.push('R13:conf→Med:singleton-' + s.cat);
                     }
                 }
             }
@@ -6426,6 +6456,7 @@
             /* If the tech tier suggests advanced AI but the step is fundamentally manual
                coordination, or vice versa, correct the assignment. */
             for (const s of analyzedSteps) {
+                const oldTier = s.techTier;
                 if (s.techTier === 'Agentic AI' && s.automationPotential < 0.75) {
                     s.techTier = 'AI-Assisted';
                 }
@@ -6436,6 +6467,7 @@
                 if (s.techTier === 'Agentic AI' && /\bmanual/i.test(s.currentState) && s.cat === 'human') {
                     s.techTier = 'AI-Assisted';
                 }
+                if (oldTier !== s.techTier && s._trace) s._trace.rulesApplied.push('R15:tech:' + oldTier + '→' + s.techTier);
             }
 
             /* ═══ RULE 16: Format integrity — prevent truncated or empty content ═══ */
@@ -6466,6 +6498,64 @@
                 }
                 if (!s.confidence) {
                     s.confidence = 'Low';
+                }
+            }
+
+            /* ═══ ERROR TAXONOMY: Tag quality issues on each step ═══ */
+            const ERROR_TYPES = {
+                workflow_misclassification: 'workflow_misclassification',
+                step_misclassification: 'step_misclassification',
+                industry_overlay_conflict: 'industry_overlay_conflict',
+                department_overlay_conflict: 'department_overlay_conflict',
+                cross_domain_injection: 'cross_domain_injection',
+                technology_mismatch: 'technology_mismatch',
+                benefit_mismatch: 'benefit_mismatch',
+                roadmap_duplication: 'roadmap_duplication',
+                template_reuse: 'template_reuse',
+                roi_template_reuse: 'roi_template_reuse',
+                confidence_mismatch: 'confidence_mismatch',
+                formatting_error: 'formatting_error'
+            };
+            const benefitTexts = new Map();
+            const stateTexts = new Map();
+            const tsValues = new Map();
+            for (const s of analyzedSteps) {
+                s._errors = [];
+                /* cross_domain_injection: primaryId not in dept domain */
+                if (deptDomain && s.primaryId !== 'UNMATCHED' && !deptDomain.has(s.primaryId)) {
+                    s._errors.push(ERROR_TYPES.cross_domain_injection);
+                }
+                /* template_reuse: identical benefit or state across different steps */
+                if (benefitTexts.has(s.benefit) && benefitTexts.get(s.benefit) !== s.stepName) {
+                    s._errors.push(ERROR_TYPES.template_reuse);
+                }
+                benefitTexts.set(s.benefit, s.stepName);
+                if (stateTexts.has(s.currentState) && stateTexts.get(s.currentState) !== s.stepName) {
+                    s._errors.push(ERROR_TYPES.template_reuse);
+                }
+                stateTexts.set(s.currentState, s.stepName);
+                /* roi_template_reuse: identical timeSavings on different KB entries */
+                if (tsValues.has(s.timeSavings) && tsValues.get(s.timeSavings) !== s.primaryId && s.primaryId !== 'UNMATCHED') {
+                    /* Only flag if it's the same ts value on a different KB entry — same KB entry is expected */
+                }
+                tsValues.set(s.timeSavings, s.primaryId);
+                /* benefit_mismatch: benefit doesn't reference any word from step text */
+                const stepWords = s.stepName.toLowerCase().split(/[\s,;:.!?()]+/).filter(w => w.length > 3);
+                const bnLower = s.benefit.toLowerCase();
+                const stepWordHit = stepWords.some(w => bnLower.includes(w));
+                if (!stepWordHit && s.primaryId !== 'UNMATCHED') {
+                    s._errors.push(ERROR_TYPES.benefit_mismatch);
+                }
+                /* confidence_mismatch: High confidence but weak match score */
+                if (s.confidence === 'High' && s.matchScore && s.matchScore < 4) {
+                    s._errors.push(ERROR_TYPES.confidence_mismatch);
+                }
+                /* formatting_error: state or benefit too short */
+                if (s.currentState && s.currentState.length < 30) {
+                    s._errors.push(ERROR_TYPES.formatting_error);
+                }
+                if (s.benefit && s.benefit.length < 30) {
+                    s._errors.push(ERROR_TYPES.formatting_error);
                 }
             }
 
