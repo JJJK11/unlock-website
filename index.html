@@ -6594,12 +6594,14 @@
             /* Industry boost from KB entry */
             if (topMatches.length > 0 && topMatches[0].entry.industryBoosts) {
                 basePotential += topMatches[0].entry.industryBoosts[industry] || 0;
-
-            /* Industry & department aiBoost influence on per-step potential */
-            const indAiBoost = (INDUSTRY_CONTEXT[industry] || {}).aiBoost || 0;
-            const deptAiBoost = (DEPARTMENT_CONTEXT[department] || {}).aiBoost || 0;
-            basePotential += ((indAiBoost + deptAiBoost) / 2) * 0.01;
             }
+
+            /* Industry & department aiBoost — scale potential by AI maturity context.
+               Centers around mean aiBoost (~4); Technology (7) gets +12%, Non-profit (2) gets -8%. */
+            const indAiBoost = (INDUSTRY_CONTEXT[industry] || {}).aiBoost || 4;
+            const deptAiBoost = (DEPARTMENT_CONTEXT[department] || {}).aiBoost || 4;
+            const aiMaturityFactor = ((indAiBoost + deptAiBoost) / 2) - 4;
+            basePotential *= (1 + aiMaturityFactor * 0.04);
 
             basePotential = Math.max(0.10, Math.min(0.95, basePotential));
             const potentialLabel = basePotential >= 0.70 ? 'High' : basePotential >= 0.40 ? 'Medium' : 'Low';
@@ -6610,8 +6612,8 @@
             const matchedCount = topMatches.length > 0 ? topMatches[0].matched.length : 0;
             let confidence;
             if (topScore >= 10.0 && matchedCount >= 4) confidence = 'High';
-            else if (topScore >= 6.0 && (topScore - secondScore) >= 3.0) confidence = 'High';
-            else if (topScore >= 3.0) confidence = 'Medium';
+            else if (topScore >= 6.0 && (topScore - secondScore) >= 3.0 && matchedCount >= 3) confidence = 'High';
+            else if (topScore >= 4.0 && matchedCount >= 2) confidence = 'Medium';
             else confidence = 'Low';
 
             const effortWeight = detectEffort(stepText);
@@ -6877,10 +6879,13 @@
                 'summarize','document','evaluate','respond','negotiate','assess','identify',
                 'issue','source','code','diagnose','register','enroll','certify','authorize',
                 'aggregate','triage','investigate','provision','administer','facilitate'];
-            /* Prefer exact word match over startsWith — prevents "review" matching "reviews"
-               when "conduct" is the actual verb in "conduct performance reviews" */
+            /* Prefer exact word match; fuzzy only for verb conjugations (e.g. "reviewing" → "review").
+               Word-boundary check prevents "log" matching "login", "file" matching "filing". */
             const exactVerb = verbs.find(v => words.includes(v));
-            const fuzzyVerb = !exactVerb ? verbs.find(v => words.some(w => w.startsWith(v) && w.length <= v.length + 4)) : null;
+            const fuzzyVerb = !exactVerb ? verbs.find(v => {
+                return words.some(w => w.startsWith(v) && w.length <= v.length + 3
+                    && (w.endsWith('ing') || w.endsWith('ed') || w.endsWith('s') || w.endsWith('es')));
+            }) : null;
             const foundVerb = exactVerb || fuzzyVerb;
 
             /* Context nouns — what the step operates on */
@@ -6934,8 +6939,8 @@
                     verbIng = foundVerb + 'ing';
                 }
             }
-            /* Pick the primary noun: prefer multi-word, then last noun (direct object in English),
-               use KB keys only as tiebreaker. Exclude nouns that share a root with the verb. */
+            /* Pick the primary noun: prefer multi-word, then KB-relevant noun, then last noun.
+               Exclude nouns that share a root with the verb. */
             let primaryNoun = null;
             /* Filter out nouns that are the same word as the verb (avoid "scheduling schedules") */
             const eligibleNouns = foundVerb
@@ -6947,24 +6952,25 @@
                 if (multiWord.length > 0) {
                     primaryNoun = multiWord[0];
                 } else {
-                    /* 2. Pick the LAST noun (direct object in English word order).
+                    /* 2. Prefer KB-relevant nouns — they match the domain the step was classified into */
+                    const kbNouns = kbEntry ? eligibleNouns.filter(n => kbEntry.keys.some(k => k.includes(n))) : [];
+                    const candidates = kbNouns.length > 0 ? kbNouns : eligibleNouns;
+                    /* 3. Among candidates, pick the LAST noun (direct object in English word order).
                           Use word-boundary search for position. */
                     const nounWBPos = new Map();
-                    for (const noun of eligibleNouns) {
+                    for (const noun of candidates) {
                         const esc = noun.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
                         const re = new RegExp('\\b' + esc + '\\b', 'gi');
                         let last = -1, m;
                         while ((m = re.exec(lower)) !== null) last = m.index;
                         nounWBPos.set(noun, last);
                     }
-                    primaryNoun = eligibleNouns.reduce((a, b) => {
+                    primaryNoun = candidates.reduce((a, b) => {
                         const posA = nounWBPos.get(a);
                         const posB = nounWBPos.get(b);
                         if (posB > posA) return b;
                         if (posA > posB) return a;
-                        const aInKb = kbEntry && kbEntry.keys.some(k => k.includes(a));
-                        const bInKb = kbEntry && kbEntry.keys.some(k => k.includes(b));
-                        return bInKb && !aInKb ? b : a;
+                        return a;
                     });
                 }
             }
@@ -7102,6 +7108,7 @@
             const seenBenefits = new Set();
             const seenStates = new Set();
             const seenRecs = { q: new Set(), m: new Set(), s: new Set() };
+            const seenRecsNorm = { q: new Set(), m: new Set(), s: new Set() };
 
             /* Department → relevant KB step IDs (uses shared DEPT_DOMAIN_IDS) */
             const DEPT_DOMAIN = {};
@@ -7386,29 +7393,29 @@
                 }
 
                 /* ═══ RULE 10: Prevent duplicate recs across rows ═══ */
-                /* Full cascade: step_type → other step_types → base KB → suffixed */
+                /* Full cascade with NORMALIZED matching: step_type → other step_types → base KB → suffixed */
                 if (step.recs) {
                     const stOvAlt = STEP_TYPE_OVERLAYS[step.primaryId]
                         && STEP_TYPE_OVERLAYS[step.primaryId][step.stepType];
                     const altRecs = (stOvAlt && stOvAlt.recs) ? stOvAlt.recs : null;
                     for (const tier of ['q', 'm', 's']) {
-                        if (step.recs[tier] && seenRecs[tier].has(step.recs[tier])) {
+                        if (step.recs[tier] && isRecDuplicate(step.recs[tier], seenRecs[tier], seenRecsNorm[tier])) {
                             let resolved = false;
-                            if (!resolved && altRecs && altRecs[tier] && !seenRecs[tier].has(altRecs[tier])) {
+                            if (!resolved && altRecs && altRecs[tier] && !isRecDuplicate(altRecs[tier], seenRecs[tier], seenRecsNorm[tier])) {
                                 step.recs[tier] = altRecs[tier];
                                 if (step._trace) step._trace.rulesApplied.push('R10:' + tier + '→step_type');
                                 resolved = true;
                             }
                             if (!resolved && STEP_TYPE_OVERLAYS[step.primaryId]) {
                                 for (const [st, ov] of Object.entries(STEP_TYPE_OVERLAYS[step.primaryId])) {
-                                    if (st !== step.stepType && ov.recs && ov.recs[tier] && !seenRecs[tier].has(ov.recs[tier])) {
+                                    if (st !== step.stepType && ov.recs && ov.recs[tier] && !isRecDuplicate(ov.recs[tier], seenRecs[tier], seenRecsNorm[tier])) {
                                         step.recs[tier] = ov.recs[tier];
                                         if (step._trace) step._trace.rulesApplied.push('R10:' + tier + '→step_type:' + st);
                                         resolved = true; break;
                                     }
                                 }
                             }
-                            if (!resolved && kbEntry && kbEntry.recs && kbEntry.recs[tier] && !seenRecs[tier].has(kbEntry.recs[tier])) {
+                            if (!resolved && kbEntry && kbEntry.recs && kbEntry.recs[tier] && !isRecDuplicate(kbEntry.recs[tier], seenRecs[tier], seenRecsNorm[tier])) {
                                 step.recs[tier] = kbEntry.recs[tier];
                                 if (step._trace) step._trace.rulesApplied.push('R10:' + tier + '→base_kb');
                                 resolved = true;
@@ -7416,7 +7423,7 @@
                             if (!resolved) {
                                 const stepLabel = step.stepName.length <= 40 ? step.stepName : step.stepName.substring(0, 40).replace(/\s\S*$/, '') + '...';
                                 const suffixed = step.recs[tier] + ' (for ' + stepLabel + ')';
-                                if (!seenRecs[tier].has(suffixed)) {
+                                if (!isRecDuplicate(suffixed, seenRecs[tier], seenRecsNorm[tier])) {
                                     step.recs[tier] = suffixed;
                                     if (step._trace) step._trace.rulesApplied.push('R10:' + tier + '→suffixed');
                                 } else {
@@ -7424,7 +7431,7 @@
                                 }
                             }
                         }
-                        if (step.recs[tier]) seenRecs[tier].add(step.recs[tier]);
+                        if (step.recs[tier]) addRecToSeen(step.recs[tier], seenRecs[tier], seenRecsNorm[tier]);
                     }
                 }
 
