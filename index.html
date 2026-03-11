@@ -8085,6 +8085,12 @@
             const medCount  = data.steps.filter(s => s.potentialLabel === 'Medium').length;
             const autoShare = data.workload.ai;
 
+            /* Framing disclaimer */
+            const disclaimerEl = document.createElement('p');
+            disclaimerEl.style.cssText = 'font-size:0.82rem;color:var(--ink-4);text-align:center;margin:0 0 1.2rem';
+            disclaimerEl.textContent = 'Results are indicative and based on general workflow patterns. A detailed assessment may yield different findings.';
+            r.prepend(disclaimerEl);
+
             /* Metric strip (4 items) */
             const stripEl = document.getElementById('dMetric');
             stripEl.innerHTML = `
