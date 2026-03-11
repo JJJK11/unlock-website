@@ -6625,16 +6625,16 @@
                 if (indOv) overlayIds.push('ind:' + primaryId + '×' + industry);
                 if (stOv) overlayIds.push('st:' + primaryId + '×' + stepType);
                 if (wfOvRaw) overlayIds.push('wf:' + primaryId + '×' + department + '×' + workflowType);
-                /* state: workflow always wins; then dept for shared, step_type for non-shared */
+                /* state: workflow > industry > dept(shared) > step_type > dept > base */
                 if (wfOvRaw && wfOvRaw.state) { state = wfOvRaw.state; stepTypeApplied = true; stateSource = 'workflow'; }
+                else if (indOv) { state = indOv.state; stateSource = 'industry'; }
                 else if (sharedEntry && deptOv) { state = deptOv.state; stateSource = 'dept'; }
                 else if (stOv) { state = stOv.state; stepTypeApplied = true; stateSource = 'step_type'; }
                 else if (deptOv) { state = deptOv.state; stateSource = 'dept'; }
-                else if (indOv) { state = indOv.state; stateSource = 'industry'; }
-                /* benefit: workflow > dept > industry > step_type > base */
+                /* benefit: workflow > industry > dept > step_type > base */
                 if (wfOvRaw && wfOvRaw.benefit) { benefit = wfOvRaw.benefit; workflowOvApplied = true; benefitSource = 'workflow'; }
-                else if (deptOv) { benefit = deptOv.benefit; deptOvApplied = true; benefitSource = 'dept'; }
                 else if (indOv) { benefit = indOv.benefit; indOvApplied = true; benefitSource = 'industry'; }
+                else if (deptOv) { benefit = deptOv.benefit; deptOvApplied = true; benefitSource = 'dept'; }
                 else if (stOv) { benefit = stOv.benefit; benefitSource = 'step_type'; }
                 /* recs: workflow > step_type > base KB
                    Extract only q/m/s from workflow overlay (not state/benefit) */
@@ -7242,17 +7242,17 @@
                         ? WORKFLOW_OVERLAYS[step.primaryId][department][workflowType] : null;
                     let sharedEntry = false;
                     { let dc = 0; for (const ids of Object.values(DEPT_DOMAIN_IDS)) { if (ids.includes(step.primaryId)) dc++; } sharedEntry = dc >= 3; }
-                    /* state: workflow > [shared? dept : step_type] > [shared? step_type : dept] > industry > base */
+                    /* state: workflow > industry > dept(shared) > step_type > dept > base */
                     if (wfOv && wfOv.state) { step.currentState = wfOv.state; step.stepTypeApplied = true; step.workflowOvApplied = true; if (step._trace) step._trace.stateSource = 'workflow'; }
+                    else if (indOv) { step.currentState = indOv.state; if (step._trace) step._trace.stateSource = 'industry'; }
                     else if (sharedEntry && deptOv) { step.currentState = deptOv.state; if (step._trace) step._trace.stateSource = 'dept'; }
                     else if (stOv) { step.currentState = stOv.state; step.stepTypeApplied = true; if (step._trace) step._trace.stateSource = 'step_type'; }
                     else if (deptOv) { step.currentState = deptOv.state; if (step._trace) step._trace.stateSource = 'dept'; }
-                    else if (indOv) { step.currentState = indOv.state; if (step._trace) step._trace.stateSource = 'industry'; }
                     else { step.currentState = kbEntry.state; if (step._trace) step._trace.stateSource = 'base'; }
-                    /* benefit: workflow(benefit) > dept > industry > step_type > base */
+                    /* benefit: workflow > industry > dept > step_type > base */
                     if (wfOv && wfOv.benefit) { step.benefit = wfOv.benefit; step.workflowOvApplied = true; if (step._trace) step._trace.benefitSource = 'workflow'; }
-                    else if (deptOv) { step.benefit = deptOv.benefit; step.deptOvApplied = true; if (step._trace) step._trace.benefitSource = 'dept'; }
                     else if (indOv) { step.benefit = indOv.benefit; step.indOvApplied = true; if (step._trace) step._trace.benefitSource = 'industry'; }
+                    else if (deptOv) { step.benefit = deptOv.benefit; step.deptOvApplied = true; if (step._trace) step._trace.benefitSource = 'dept'; }
                     else if (stOv) { step.benefit = stOv.benefit; if (step._trace) step._trace.benefitSource = 'step_type'; }
                     else { step.benefit = kbEntry.benefit; if (step._trace) step._trace.benefitSource = 'base'; }
                     /* recs: workflow > step_type > base KB */
