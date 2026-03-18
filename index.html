@@ -1904,8 +1904,18 @@
                         <div class="soc"><a href="https://www.linkedin.com/company/unlock-solutions" target="_blank">LinkedIn</a><a href="https://x.com/UnlockSolns" target="_blank">@UnlockSolns</a><a href="https://x.com/UnlocksAI" target="_blank">@UnlocksAI</a></div>
                     </div>
                     <div class="cf-box">
-                        <div class="cf-hd"><h3>Book a Transformation Assessment</h3><p>Complimentary 30-minute consultation</p></div>
-                        <iframe src="https://forms.office.com/Pages/ResponsePage.aspx?id=2TyQeDE7PE6j6K9vioYoFxWkU7ugc5VFk88BHy4bM31UNDhXRDRWUkswQzJDTlpYMUoxMzEwMkNTRy4u&embed=true" style="width:100%;min-height:600px;border:none;border-radius:12px;background:transparent;" allowfullscreen></iframe>
+                        <div class="cf-hd"><h3>Book a Transformation Assessment</h3><p>Complimentary 30 minute consultation</p></div>
+                        <div class="cf">
+                            <form id="contactForm" class="cf-g">
+                                <div class="cf-f"><label for="cfName">Full Name</label><input type="text" id="cfName" name="name" placeholder="Your full name" required></div>
+                                <div class="cf-f"><label for="cfEmail">Work Email</label><input type="email" id="cfEmail" name="email" placeholder="you@company.com" required></div>
+                                <div class="cf-f"><label for="cfOrg">Company</label><input type="text" id="cfOrg" name="company" placeholder="Company name"></div>
+                                <div class="cf-f"><label for="cfInterest">Interest Area</label><select id="cfInterest" name="interest"><option value="" disabled selected>Select a focus area</option><option value="AI Enablement">AI Enablement & Strategy</option><option value="Digital Transformation">Digital Transformation</option><option value="Governance Advisory">Governance & Compliance Advisory</option><option value="Intelligent Operations">Intelligent Operations & Automation</option><option value="Enterprise Systems">Enterprise Systems Integration</option><option value="General Inquiry">General Inquiry</option></select></div>
+                                <div class="cf-f full"><label for="cfMsg">How can we help?</label><textarea id="cfMsg" name="message" placeholder="Tell us about your enterprise challenges..." rows="4"></textarea></div>
+                                <div class="cf-sub" style="grid-column:1/-1"><button type="submit" class="btn-w">Send Request <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></button><span class="cf-n">We typically respond within 24 hours</span></div>
+                            </form>
+                            <div id="contactSuccess" class="cf-ok"><h3>Request Received</h3><p>Thank you. We'll be in touch within 24 hours to discuss your transformation goals.</p></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -9280,6 +9290,40 @@
 
             window.addEventListener('scroll', onScroll, { passive: true });
             onScroll(); // run once on load
+        })();
+
+        /* ── Contact Form Submission ── */
+        (function() {
+            var form = document.getElementById('contactForm');
+            var ok = document.getElementById('contactSuccess');
+            if (!form) return;
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                var btn = form.querySelector('button[type="submit"]');
+                var origHTML = btn.innerHTML;
+                btn.disabled = true;
+                btn.innerHTML = 'Sending...';
+                var fd = new FormData(form);
+                fd.append('_subject', 'New Assessment Request from unlock-solutions.com');
+                fd.append('_template', 'table');
+                fetch('https://formsubmit.co/ajax/connect@unlock-solutions.com', {
+                    method: 'POST',
+                    body: fd
+                }).then(function(res) {
+                    if (res.ok) {
+                        form.style.display = 'none';
+                        ok.classList.add('show');
+                    } else {
+                        btn.innerHTML = origHTML;
+                        btn.disabled = false;
+                        alert('Something went wrong. Please email us directly at connect@unlock-solutions.com');
+                    }
+                }).catch(function() {
+                    btn.innerHTML = origHTML;
+                    btn.disabled = false;
+                    alert('Something went wrong. Please email us directly at connect@unlock-solutions.com');
+                });
+            });
         })();
 
     </script>
