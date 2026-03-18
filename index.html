@@ -8300,12 +8300,7 @@
                 fd.forEach((v, k) => { payload[k] = v; });
                 payload.source = 'diagnostic_tool';
                 var leadData = { name: payload.name || '', email: payload.email || '', company: payload.company || '', message: 'Diagnostic Tool Result\n\nIndustry: ' + (payload.industry || '') + '\nDepartment: ' + (payload.department || '') + '\nReadiness: ' + (payload.readiness_score || '') + '\nAutomation: ' + (payload.automation_share || '') + '\nSteps: ' + (payload.high_potential_steps || '') + '\nSummary: ' + (payload.executive_summary || ''), interest: 'Diagnostic Tool', brand: 'unlock' };
-                var leadsApi = fetch('https://ascio-leads-api.vercel.app/api/lead', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(leadData) }).catch(function(){});
-                var fd2 = new FormData(form);
-                fd2.append('_subject', 'Diagnostic Tool Lead from unlock-solutions.com');
-                fd2.append('_template', 'table');
-                var emailApi = fetch('https://formsubmit.co/ajax/connect@unlock-solutions.com', { method: 'POST', body: fd2 }).catch(function(){});
-                Promise.allSettled([leadsApi, emailApi]).then(function() {
+                fetch('https://ascio-leads-api.vercel.app/api/lead', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(leadData) }).then(function() {
                     ctaEl.innerHTML = '<div class="diag-cta-title">Thank you!</div><p class="diag-cta-success">We received your information and will be in touch within one business day to discuss your automation opportunities.</p>';
                 }).catch(function() {
                     ctaEl.innerHTML = '<div class="diag-cta-title">Thank you!</div><p class="diag-cta-success">We received your information and will be in touch within one business day to discuss your automation opportunities.</p>';
@@ -9304,12 +9299,7 @@
                 btn.disabled = true;
                 btn.innerHTML = 'Sending...';
                 var data = { name: form.name.value, email: form.email.value, company: form.company.value, interest: form.interest.value, message: form.message.value, brand: 'unlock' };
-                var leadsApi = fetch('https://ascio-leads-api.vercel.app/api/lead', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) }).catch(function(){});
-                var fd = new FormData(form);
-                fd.append('_subject', 'New Assessment Request from unlock-solutions.com');
-                fd.append('_template', 'table');
-                var emailApi = fetch('https://formsubmit.co/ajax/connect@unlock-solutions.com', { method: 'POST', body: fd }).catch(function(){});
-                Promise.allSettled([leadsApi, emailApi]).then(function() {
+                fetch('https://ascio-leads-api.vercel.app/api/lead', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) }).then(function() {
                     form.style.display = 'none';
                     ok.classList.add('show');
                 }).catch(function() {
