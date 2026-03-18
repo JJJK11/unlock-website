@@ -349,11 +349,7 @@
         <div class="newsletter" id="newsletter">
             <h3>Get the Weekly Briefing</h3>
             <p>AI &amp; technology analysis delivered to your inbox every Monday. No noise, no hype &#8212; just what matters.</p>
-            <form class="newsletter-form" action="https://formsubmit.co/connect@unlock-solutions.com" method="POST">
-                <input type="hidden" name="_subject" value="New AI & Tech Review Subscriber">
-                <input type="hidden" name="_captcha" value="false">
-                <input type="hidden" name="_next" value="https://unlock-solutions.com/review/">
-                <input type="text" name="_honey" style="display:none">
+            <form class="newsletter-form" onsubmit="event.preventDefault();var e=this.querySelector('input[name=email]').value,b=this.querySelector('button');b.disabled=true;b.textContent='Subscribing...';fetch('https://ascio-leads-api.vercel.app/api/lead',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:'Newsletter Subscriber',email:e,brand:'unlock',interest:'Newsletter',message:'AI & Tech Review subscriber'})}).finally(function(){b.textContent='Subscribed!'});">
                 <input type="email" name="email" placeholder="Enter your email address" required>
                 <button type="submit">Subscribe</button>
             </form>
