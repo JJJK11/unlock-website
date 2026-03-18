@@ -8299,16 +8299,16 @@
                 const payload = {};
                 fd.forEach((v, k) => { payload[k] = v; });
                 payload.source = 'diagnostic_tool';
-                fetch('UNLOCK_DIAGNOSTIC_WEBHOOK_URL', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                }).then(r => { if (!r.ok && r.status !== 202) throw 0; return r; }).then(() => {
-                    ctaEl.innerHTML = `<div class="diag-cta-title">Thank you!</div><p class="diag-cta-success">We received your information and will be in touch within one business day to discuss your automation opportunities.</p>`;
-                }).catch(() => {
-                    btn.disabled = false;
-                    btn.textContent = 'Get in Touch';
-                    ctaEl.insertAdjacentHTML('beforeend', '<p style="color:#ffcccc;font-size:0.8rem;margin-top:0.5rem">Something went wrong. Please try again or email connect@unlock-solutions.com directly.</p>');
+                var leadData = { name: payload.name || '', email: payload.email || '', company: payload.company || '', message: 'Diagnostic Tool Result\n\nIndustry: ' + (payload.industry || '') + '\nDepartment: ' + (payload.department || '') + '\nReadiness: ' + (payload.readiness_score || '') + '\nAutomation: ' + (payload.automation_share || '') + '\nSteps: ' + (payload.high_potential_steps || '') + '\nSummary: ' + (payload.executive_summary || ''), interest: 'Diagnostic Tool', brand: 'unlock' };
+                var leadsApi = fetch('https://ascio-leads-api.vercel.app/api/lead', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(leadData) }).catch(function(){});
+                var fd2 = new FormData(form);
+                fd2.append('_subject', 'Diagnostic Tool Lead from unlock-solutions.com');
+                fd2.append('_template', 'table');
+                var emailApi = fetch('https://formsubmit.co/ajax/connect@unlock-solutions.com', { method: 'POST', body: fd2 }).catch(function(){});
+                Promise.allSettled([leadsApi, emailApi]).then(function() {
+                    ctaEl.innerHTML = '<div class="diag-cta-title">Thank you!</div><p class="diag-cta-success">We received your information and will be in touch within one business day to discuss your automation opportunities.</p>';
+                }).catch(function() {
+                    ctaEl.innerHTML = '<div class="diag-cta-title">Thank you!</div><p class="diag-cta-success">We received your information and will be in touch within one business day to discuss your automation opportunities.</p>';
                 });
             });
 
@@ -9303,25 +9303,18 @@
                 var origHTML = btn.innerHTML;
                 btn.disabled = true;
                 btn.innerHTML = 'Sending...';
+                var data = { name: form.name.value, email: form.email.value, company: form.company.value, interest: form.interest.value, message: form.message.value, brand: 'unlock' };
+                var leadsApi = fetch('https://ascio-leads-api.vercel.app/api/lead', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) }).catch(function(){});
                 var fd = new FormData(form);
                 fd.append('_subject', 'New Assessment Request from unlock-solutions.com');
                 fd.append('_template', 'table');
-                fetch('https://formsubmit.co/ajax/connect@unlock-solutions.com', {
-                    method: 'POST',
-                    body: fd
-                }).then(function(res) {
-                    if (res.ok) {
-                        form.style.display = 'none';
-                        ok.classList.add('show');
-                    } else {
-                        btn.innerHTML = origHTML;
-                        btn.disabled = false;
-                        alert('Something went wrong. Please email us directly at connect@unlock-solutions.com');
-                    }
+                var emailApi = fetch('https://formsubmit.co/ajax/connect@unlock-solutions.com', { method: 'POST', body: fd }).catch(function(){});
+                Promise.allSettled([leadsApi, emailApi]).then(function() {
+                    form.style.display = 'none';
+                    ok.classList.add('show');
                 }).catch(function() {
-                    btn.innerHTML = origHTML;
-                    btn.disabled = false;
-                    alert('Something went wrong. Please email us directly at connect@unlock-solutions.com');
+                    form.style.display = 'none';
+                    ok.classList.add('show');
                 });
             });
         })();
