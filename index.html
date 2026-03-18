@@ -8045,22 +8045,19 @@
             if (!leadName) { wizShowErr(document.getElementById('dLeadName').closest('.diag-f'), 'Please enter your name'); return; }
             if (!leadEmail || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(leadEmail)) { wizShowErr(document.getElementById('dLeadEmail').closest('.diag-f'), 'Please enter a valid email'); return; }
 
-            /* POST lead to Power Automate webhook (fire-and-forget) */
-            const WEBHOOK_URL = 'PLACEHOLDER_DIAGNOSTIC_WEBHOOK_URL';
-            if (WEBHOOK_URL !== 'PLACEHOLDER_DIAGNOSTIC_WEBHOOK_URL') {
-                fetch(WEBHOOK_URL, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        name: leadName,
-                        email: leadEmail,
-                        company: leadCompany,
-                        brand: 'Unlock',
-                        source: 'Website Form',
-                        message: `Industry: ${industry} | Department: ${department} | Pain Points: ${painPoints} | Team Size: ${teamSize || 'N/A'} | Workflow: ${workflow.substring(0, 500)}`
-                    })
-                }).catch(() => { /* fail silently — don't block the results */ });
-            }
+            /* POST lead to Vercel API → Dataverse */
+            fetch('https://ascio-leads-api.vercel.app/api/lead', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    name: leadName,
+                    email: leadEmail,
+                    company: leadCompany,
+                    brand: 'unlock',
+                    interest: 'Diagnostic Tool',
+                    message: `Industry: ${industry} | Department: ${department} | Pain Points: ${painPoints} | Team Size: ${teamSize || 'N/A'} | Workflow: ${workflow.substring(0, 500)}`
+                })
+            }).catch(() => {});
 
             const loader = document.getElementById('dL');
             const results = document.getElementById('dR');
@@ -9034,7 +9031,8 @@
                 message: '[Chatbot Booking] Industry: ' + (formData.book_industry || '') + ' | Challenge: ' + (formData.book_challenge || ''),
                 source: 'chatbot'
             };
-            fetch('UNLOCK_CHAT_WEBHOOK_URL', {
+            payload.brand = 'unlock';
+            fetch('https://ascio-leads-api.vercel.app/api/lead', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload)
