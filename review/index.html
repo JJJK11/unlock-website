@@ -389,7 +389,7 @@
         <div class="newsletter" id="newsletter">
             <h3>Get the Weekly Briefing</h3>
             <p>AI &amp; technology analysis delivered to your inbox every Monday. No noise, no hype &#8212; just what matters.</p>
-            <form class="newsletter-form" action="https://formsubmit.co/connect@unlock-solutions.com" method="POST">
+            <form class="newsletter-form" id="newsletterForm" action="https://formsubmit.co/connect@unlock-solutions.com" method="POST">
                 <input type="hidden" name="_subject" value="New AI & Tech Review Subscriber">
                 <input type="hidden" name="_captcha" value="false">
                 <input type="hidden" name="_next" value="https://unlock-solutions.com/review/">
@@ -397,6 +397,19 @@
                 <input type="email" name="email" placeholder="Enter your email address" required>
                 <button type="submit">Subscribe</button>
             </form>
+            <script>
+            document.getElementById('newsletterForm').addEventListener('submit', function() {
+                var email = this.querySelector('input[name="email"]').value;
+                var WEBHOOK_URL = 'PLACEHOLDER_NEWSLETTER_WEBHOOK_URL';
+                if (WEBHOOK_URL !== 'PLACEHOLDER_NEWSLETTER_WEBHOOK_URL') {
+                    fetch(WEBHOOK_URL, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ email: email, brand: 'Unlock', source: 'Newsletter Signup', message: 'AI & Tech Review subscriber' })
+                    }).catch(function() {});
+                }
+            });
+            </script>
         </div>
 
     </div>

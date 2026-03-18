@@ -1778,12 +1778,13 @@
                     <div class="diag-chrome"><div class="diag-dots"><span class="diag-dot"></span><span class="diag-dot"></span><span class="diag-dot"></span></div><div class="diag-title">Automation Readiness Assessment</div></div>
                     <div class="diag-body">
                         <div class="diag-form" id="dF">
-                            <div class="diag-wizard-progress" id="dWizProg" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="5" aria-label="Assessment progress: step 1 of 5">
+                            <div class="diag-wizard-progress" id="dWizProg" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="6" aria-label="Assessment progress: step 1 of 6">
                                 <div class="diag-wiz-seg active" data-step="0"><span class="diag-wiz-dot">1</span><span class="diag-wiz-lbl">Context</span></div>
                                 <div class="diag-wiz-seg" data-step="1"><span class="diag-wiz-dot">2</span><span class="diag-wiz-lbl">Workflow</span></div>
                                 <div class="diag-wiz-seg" data-step="2"><span class="diag-wiz-dot">3</span><span class="diag-wiz-lbl">Review</span></div>
                                 <div class="diag-wiz-seg" data-step="3"><span class="diag-wiz-dot">4</span><span class="diag-wiz-lbl">Pain Points</span></div>
                                 <div class="diag-wiz-seg" data-step="4"><span class="diag-wiz-dot">5</span><span class="diag-wiz-lbl">Details</span></div>
+                                <div class="diag-wiz-seg" data-step="5"><span class="diag-wiz-dot">6</span><span class="diag-wiz-lbl">Get Results</span></div>
                             </div>
                             <div class="diag-wizard-step active" data-wstep="0">
                                 <div class="diag-wiz-header"><h3>Tell us about your organization</h3><p>Select your industry and department so we can tailor the analysis with relevant benchmarks and automation patterns for your context.</p></div>
@@ -1824,7 +1825,14 @@
                             <div class="diag-wizard-step" data-wstep="4">
                                 <div class="diag-wiz-header"><h3>Team and cost details</h3><p>Optional: provide team size and average hourly cost to generate an ROI estimate. Leave blank to skip.</p></div>
                                 <div class="diag-row"><div class="diag-f"><label for="dTS">Team size</label><input type="number" id="dTS" placeholder="e.g., 8" min="1" max="500"></div><div class="diag-f"><label for="dHC">Avg. hourly cost (CAD)</label><input type="number" id="dHC" placeholder="e.g., 45" min="10" max="500"></div></div>
-                                <div class="diag-wiz-nav"><button class="btn-wiz-back" onclick="wizBack()"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg> Back</button><button class="btn-k" id="dBtn" onclick="runD()">Run Assessment <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></button></div>
+                                <div class="diag-wiz-nav"><button class="btn-wiz-back" onclick="wizBack()"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg> Back</button><button class="btn-wiz-next" onclick="wizNext()">Next <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></button></div>
+                            </div>
+                            <div class="diag-wizard-step" data-wstep="5">
+                                <div class="diag-wiz-header"><h3>Where should we send your results?</h3><p>Enter your details to receive your full readiness report. We'll also include personalized recommendations based on your workflow analysis.</p></div>
+                                <div class="diag-row"><div class="diag-f"><label for="dLeadName">Name</label><input type="text" id="dLeadName" placeholder="Your name" required></div><div class="diag-f"><label for="dLeadCompany">Company</label><input type="text" id="dLeadCompany" placeholder="Company name"></div></div>
+                                <div class="diag-f"><label for="dLeadEmail">Work email</label><input type="email" id="dLeadEmail" placeholder="you@company.com" required></div>
+                                <p style="font-size:0.72rem;color:var(--ink-4);margin-top:0.5rem">We respect your privacy. Your information is used only to deliver your report and relevant follow-up.</p>
+                                <div class="diag-wiz-nav"><button class="btn-wiz-back" onclick="wizBack()"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg> Back</button><button class="btn-k" id="dBtn" onclick="runD()">Get My Report <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></button></div>
                             </div>
                         </div>
                     </div>
@@ -1897,18 +1905,7 @@
                     </div>
                     <div class="cf-box">
                         <div class="cf-hd"><h3>Book a Transformation Assessment</h3><p>Complimentary 30-minute consultation</p></div>
-                        <form class="cf" id="cF" action="https://formsubmit.co/connect@unlock-solutions.com" method="POST">
-                            <input type="hidden" name="_subject" value="New Inquiry — Unlock Solutions"><input type="hidden" name="_captcha" value="false"><input type="hidden" name="_template" value="table"><input type="text" name="_honey" style="display:none">
-                            <div class="cf-g">
-                                <div class="cf-f"><label>Name</label><input type="text" name="name" placeholder="Your name" required></div>
-                                <div class="cf-f"><label>Email</label><input type="email" name="email" placeholder="you@company.com" required></div>
-                                <div class="cf-f"><label>Company</label><input type="text" name="company" placeholder="Company name"></div>
-                                <div class="cf-f"><label>Interest</label><select name="interest" required><option value="" disabled selected>Select area</option><option>Enterprise Transformation</option><option>Platform Modernization</option><option>Governance & PMO</option><option>Intelligent Automation</option><option>Enablement & Adoption</option><option>Multiple / Not Sure</option></select></div>
-                                <div class="cf-f full"><label>About your goals</label><textarea name="message" placeholder="What transformation challenges are you facing?"></textarea></div>
-                            </div>
-                            <div class="cf-sub"><button type="submit" class="btn-w">Submit Request <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg></button><span class="cf-n">We respond within 24 hours</span></div>
-                        </form>
-                        <div class="cf-ok" id="cfOk"><h3>Request received.</h3><p>We'll be in touch within 24 hours.</p></div>
+                        <iframe src="https://forms.office.com/Pages/ResponsePage.aspx?id=2TyQeDE7PE6j6K9vioYoFxWkU7ugc5VFk88BHy4bM31UNDhXRDRWUkswQzJDTlpYMUoxMzEwMkNTRy4u&embed=true" style="width:100%;min-height:600px;border:none;border-radius:12px;background:transparent;" allowfullscreen></iframe>
                     </div>
                 </div>
             </div>
@@ -7895,7 +7892,7 @@
             const prog = document.getElementById('dWizProg');
             if (prog) {
                 prog.setAttribute('aria-valuenow', step + 1);
-                prog.setAttribute('aria-label', `Assessment progress: step ${step + 1} of 5`);
+                prog.setAttribute('aria-label', `Assessment progress: step ${step + 1} of 6`);
             }
         }
         function wizNext() {
@@ -7914,7 +7911,7 @@
                 const valid = Array.from(inputs).filter(el => el.value.trim().length > 0);
                 if (valid.length === 0) { wizShowErr(document.getElementById('dParsedSteps'), 'At least one step is required'); return; }
             }
-            if (wizardStep < 4) wizSetStep(wizardStep + 1);
+            if (wizardStep < 5) wizSetStep(wizardStep + 1);
         }
         function wizBack() {
             document.querySelectorAll('.diag-wiz-err').forEach(e => e.remove());
@@ -8030,6 +8027,30 @@
             const teamSize = parseInt(document.getElementById('dTS').value) || 0;
             const hourlyCost = parseInt(document.getElementById('dHC').value) || 0;
             if (!industry || !department || !workflow) { alert('Please complete all required fields.'); return; }
+
+            /* Lead capture validation */
+            const leadName = document.getElementById('dLeadName').value.trim();
+            const leadEmail = document.getElementById('dLeadEmail').value.trim();
+            const leadCompany = document.getElementById('dLeadCompany').value.trim();
+            if (!leadName) { wizShowErr(document.getElementById('dLeadName').closest('.diag-f'), 'Please enter your name'); return; }
+            if (!leadEmail || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(leadEmail)) { wizShowErr(document.getElementById('dLeadEmail').closest('.diag-f'), 'Please enter a valid email'); return; }
+
+            /* POST lead to Power Automate webhook (fire-and-forget) */
+            const WEBHOOK_URL = 'PLACEHOLDER_DIAGNOSTIC_WEBHOOK_URL';
+            if (WEBHOOK_URL !== 'PLACEHOLDER_DIAGNOSTIC_WEBHOOK_URL') {
+                fetch(WEBHOOK_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        name: leadName,
+                        email: leadEmail,
+                        company: leadCompany,
+                        brand: 'Unlock',
+                        source: 'Website Form',
+                        message: `Industry: ${industry} | Department: ${department} | Pain Points: ${painPoints} | Team Size: ${teamSize || 'N/A'} | Workflow: ${workflow.substring(0, 500)}`
+                    })
+                }).catch(() => { /* fail silently — don't block the results */ });
+            }
 
             const loader = document.getElementById('dL');
             const results = document.getElementById('dR');
@@ -8251,9 +8272,6 @@
                 + `<input type="hidden" name="recommendations" value="${esc(data.recs.join('; ') || 'None')}">`
                 + ((data.teamSize || data.hourlyCost) ? `<input type="hidden" name="roi_estimate" value="Hours saved: ${data.roi.hoursPerMonth.conservative}-${data.roi.hoursPerMonth.optimistic}/mo | Annual savings: CAD $${data.roi.annualSavings.conservative.toLocaleString()}-$${data.roi.annualSavings.optimistic.toLocaleString()} (team of ${data.roi.teamSize} at $${data.roi.hourlyCost}/hr)">` : '')
                 + `<input type="hidden" name="executive_summary" value="${esc(data.summary)}">`
-                + `<input type="hidden" name="_subject" value="Diagnostic Lead: ${esc(data.industry || 'Unknown')} / ${esc(document.getElementById('dD').value || 'Unknown')} — Score ${data.readiness.overall}/100">`
-                + `<input type="hidden" name="_template" value="table">`
-                + `<input type="hidden" name="_captcha" value="false">`
                 + `<button type="submit" class="diag-cta-submit">Get in Touch</button>`
                 + `</form>`
                 + `<button class="diag-cta-skip" onclick="document.getElementById('dCTA').style.display='none'">No thanks, I have what I need</button>`;
@@ -8267,11 +8285,15 @@
                 const btn = form.querySelector('.diag-cta-submit');
                 btn.disabled = true;
                 btn.textContent = 'Sending...';
-                const formData = new FormData(form);
-                fetch('https://formsubmit.co/ajax/connect@unlock-solutions.com', {
+                const fd = new FormData(form);
+                const payload = {};
+                fd.forEach((v, k) => { payload[k] = v; });
+                payload.source = 'diagnostic_tool';
+                fetch('UNLOCK_DIAGNOSTIC_WEBHOOK_URL', {
                     method: 'POST',
-                    body: formData
-                }).then(r => r.json()).then(() => {
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                }).then(r => { if (!r.ok && r.status !== 202) throw 0; return r; }).then(() => {
                     ctaEl.innerHTML = `<div class="diag-cta-title">Thank you!</div><p class="diag-cta-success">We received your information and will be in touch within one business day to discuss your automation opportunities.</p>`;
                 }).catch(() => {
                     btn.disabled = false;
@@ -8362,8 +8384,7 @@
         }
 
 
-        /* ── Contact form ── */
-        document.getElementById('cF').addEventListener('submit', async e => { e.preventDefault(); const f = e.target, b = f.querySelector('button[type="submit"]'), o = b.innerHTML; b.innerHTML = 'Sending...'; b.disabled = true; try { const r = await fetch(f.action, { method: 'POST', body: new FormData(f), headers: { 'Accept': 'application/json' } }); if (r.ok) { f.style.display = 'none'; document.getElementById('cfOk').classList.add('show'); } else throw 0; } catch { alert('Please email connect@unlock-solutions.com'); b.innerHTML = o; b.disabled = false; } });
+        /* ── Contact form — Now handled by embedded Microsoft Form ── */
 
         /* ── Scroll reveal ── */
         const obs = new IntersectionObserver(e => e.forEach(x => { if (x.isIntersecting) x.target.classList.add('v'); }), { threshold: 0.06, rootMargin: '0px 0px -40px 0px' });
@@ -9000,17 +9021,18 @@
 
         /* ── Booking submission ── */
         function submitBooking() {
-            const body = new FormData();
-            body.append('name', formData.book_name || '');
-            body.append('email', formData.book_email || '');
-            body.append('company', formData.book_company || '');
-            body.append('interest', formData.book_industry || '');
-            body.append('message', '[Chatbot Booking] Industry: ' + (formData.book_industry || '') + ' | Challenge: ' + (formData.book_challenge || ''));
-            body.append('_subject', 'Chatbot Consultation Request — Unlock Solutions');
-            body.append('_captcha', 'false');
-            body.append('_template', 'table');
-            fetch('https://formsubmit.co/connect@unlock-solutions.com', {
-                method: 'POST', body: body, headers: { 'Accept': 'application/json' }
+            const payload = {
+                name: formData.book_name || '',
+                email: formData.book_email || '',
+                company: formData.book_company || '',
+                interest: formData.book_industry || '',
+                message: '[Chatbot Booking] Industry: ' + (formData.book_industry || '') + ' | Challenge: ' + (formData.book_challenge || ''),
+                source: 'chatbot'
+            };
+            fetch('UNLOCK_CHAT_WEBHOOK_URL', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
             }).catch(() => {});
         }
     })();
