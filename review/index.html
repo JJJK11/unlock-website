@@ -56,7 +56,6 @@
         a { color: inherit; text-decoration: none; }
         .w { max-width: 1300px; margin: 0 auto; padding: 0 clamp(1.5rem, 5vw, 5rem); }
 
-        /* ══════════════ HEADER ══════════════ */
         header { position: fixed; top: 0; left: 0; right: 0; z-index: 200; background: rgba(7,26,66,0.85); backdrop-filter: blur(24px) saturate(1.4); -webkit-backdrop-filter: blur(24px) saturate(1.4); border-bottom: 1px solid rgba(245,200,0,0.1); }
         header .w { display: flex; justify-content: space-between; align-items: center; height: 64px; }
         .logo { display: flex; flex-direction: column; align-items: center; line-height: 1; text-decoration: none; }
@@ -75,7 +74,6 @@
         .mn a { font-size: 0.88rem; color: rgba(255,255,255,0.6); font-weight: 500; padding: 0.65rem clamp(1.5rem, 5vw, 5rem); transition: color 0.2s, background 0.2s; }
         .mn a:hover { color: #FFFFFF; background: rgba(255,255,255,0.03); }
 
-        /* ══════════════ HERO ══════════════ */
         .hero { padding: 120px 0 80px; text-align: center; position: relative; overflow: hidden; background: linear-gradient(135deg, var(--blue-dd) 0%, var(--blue-d) 40%, var(--blue) 100%); }
         .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 70% 20%, rgba(245,200,0,0.08) 0%, transparent 60%), radial-gradient(ellipse 60% 50% at 20% 80%, rgba(26,91,186,0.15) 0%, transparent 50%); pointer-events: none; }
         .hero-shapes { position: absolute; inset: 0; pointer-events: none; overflow: hidden; z-index: 1; }
@@ -96,17 +94,14 @@
         .hero-date { margin-top: 2rem; font-family: var(--mono); font-size: 0.6rem; color: rgba(255,255,255,0.35); letter-spacing: 0.15em; text-transform: uppercase; }
         .hero-rule { width: 100%; height: 3px; background: linear-gradient(90deg, var(--gold), var(--blue-l), var(--gold)); }
 
-        /* ══════════════ MAIN ══════════════ */
         .main { max-width: 1200px; margin: 0 auto; padding: 60px clamp(1.5rem, 5vw, 5rem); }
         .section-title { font-family: var(--mono); font-size: 0.6rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.16em; color: var(--gold); margin-bottom: 32px; display: flex; align-items: center; gap: 1rem; }
         .section-title::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
 
-        /* ══════════════ BROWSE LINK ══════════════ */
         .browse-all { display: inline-flex; align-items: center; gap: 0.5rem; font-family: var(--sans); font-size: 0.78rem; font-weight: 600; color: var(--gold); transition: gap 0.3s var(--ease), color 0.2s; text-decoration: none; white-space: nowrap; }
         .browse-all:hover { gap: 0.7rem; color: var(--gold-l); }
         .browse-all svg { width: 12px; height: 12px; }
 
-        /* ══════════════ FEATURED ══════════════ */
         .featured { margin-bottom: 64px; background: var(--surface); border: 1px solid var(--rule); overflow: hidden; border-top: 3px solid var(--gold); }
         .featured-body { padding: 3rem; }
         .featured-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
@@ -127,7 +122,6 @@
         .source-link:hover { gap: 0.65rem; color: var(--gold-l); }
         .source-link svg { width: 10px; height: 10px; }
 
-        /* ══════════════ ARTICLE BLOCKS ══════════════ */
         .articles { display: flex; flex-direction: column; gap: 2rem; margin-bottom: 64px; }
         .article { background: var(--surface); border: 1px solid var(--rule); border-left: 3px solid transparent; padding: 2rem 2.5rem; transition: all 0.3s var(--ease); }
         .article:hover { border-left-color: var(--gold); background: var(--surface-2); }
@@ -140,7 +134,6 @@
         .article .key-points li { font-size: 0.82rem; color: var(--ink-3); line-height: 1.8; margin-bottom: 0.35rem; }
         .article .key-points li::marker { color: var(--gold); }
 
-        /* ══════════════ PREVIOUS REVIEWS ══════════════ */
         .prev-reviews { margin-bottom: 64px; }
         .prev-reviews-list { display: flex; flex-direction: column; gap: 0.75rem; }
         .prev-review-link { display: flex; align-items: center; justify-content: space-between; background: var(--surface); border: 1px solid var(--rule); padding: 1.25rem 2rem; transition: all 0.3s var(--ease); text-decoration: none; }
@@ -150,7 +143,6 @@
         .prev-review-link svg { color: var(--gold); width: 14px; height: 14px; flex-shrink: 0; transition: transform 0.3s var(--ease); }
         .prev-review-link:hover svg { transform: translateX(3px); }
 
-        /* ══════════════ NEWSLETTER ══════════════ */
         .newsletter { background: linear-gradient(135deg, var(--blue-dd), var(--blue-d)); border: 1px solid var(--rule); padding: 48px; text-align: center; margin-bottom: 64px; border-top: 2px solid var(--gold); border-bottom: 2px solid var(--gold); }
         .newsletter h3 { font-family: var(--serif); font-size: 1.5rem; font-weight: 400; color: #FFFFFF; margin-bottom: 12px; }
         .newsletter p { color: rgba(255,255,255,0.6); margin-bottom: 28px; font-size: 0.92rem; }
@@ -161,14 +153,12 @@
         .newsletter-form button { padding: 0.8rem 2rem; background: var(--gold); color: var(--blue-dd); font-family: var(--sans); font-weight: 700; font-size: 0.82rem; letter-spacing: 0.03em; border: none; cursor: pointer; transition: all 0.25s var(--ease); }
         .newsletter-form button:hover { background: var(--gold-l); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(245,200,0,0.3); }
 
-        /* ══════════════ FOOTER ══════════════ */
         footer { background: var(--blue-dd); border-top: 2px solid var(--gold); padding: 1.5rem 0; }
         .ft { display: flex; justify-content: space-between; align-items: center; }
         .ft-b { font-size: 0.68rem; color: rgba(255,255,255,0.5); }
         .ft-b strong { color: var(--gold); }
         .ft-c { font-size: 0.62rem; color: rgba(255,255,255,0.35); }
 
-        /* ══════════════ RESPONSIVE ══════════════ */
         @media (max-width: 900px) {
             .hero h1 { font-size: clamp(2rem, 5vw, 3rem); }
             .featured-body { padding: 2rem; }
@@ -188,180 +178,174 @@
     <header><div class="w"><a href="../index.html" class="logo"><div class="logo-top">Unl<span class="logo-lock"><svg viewBox="0 0 24 26" fill="none"><rect x="3" y="13" width="16" height="11" rx="2.5" stroke="#1a5bba" stroke-width="2.2" fill="none"/><path d="M7 13V8a5 5 0 0 1 10 0" stroke="#1a5bba" stroke-width="2.2" stroke-linecap="round" fill="none"/><circle cx="11" cy="18" r="1.2" fill="#1a5bba"/><rect x="10.4" y="18" width="1.2" height="2.2" rx="0.6" fill="#1a5bba"/></svg></span>ck</div><div class="logo-bottom">Solutions</div></a><ul class="hn"><li><a href="../index.html#capabilities">Capabilities</a></li><li><a href="../index.html#maturity">Maturity</a></li><li><a href="../index.html#approach">Approach</a></li><li><a href="../index.html#diagnostic">Diagnostic</a></li><li><a href="./" style="color:#fff">AI &amp; Tech Review</a></li><li><a href="../index.html#contact" class="hn-cta">Book a Consultation</a></li></ul><button class="mt" onclick="document.querySelector('.mn').classList.toggle('open')" aria-label="Menu"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M4 6h16M4 12h16M4 18h16"/></svg></button></div></header>
     <div class="mn"><a href="../index.html#capabilities" onclick="this.parentElement.classList.remove('open')">Capabilities</a><a href="../index.html#maturity" onclick="this.parentElement.classList.remove('open')">Maturity</a><a href="../index.html#approach" onclick="this.parentElement.classList.remove('open')">Approach</a><a href="../index.html#diagnostic" onclick="this.parentElement.classList.remove('open')">Diagnostic</a><a href="./" onclick="this.parentElement.classList.remove('open')">AI &amp; Tech Review</a><a href="../index.html#contact" onclick="this.parentElement.classList.remove('open')">Contact</a></div>
 
-    <!-- Hero -->
     <section class="hero">
         <div class="hero-shapes"><div class="hero-shape"></div><div class="hero-shape"></div><div class="hero-shape"></div><div class="hero-shape"></div></div>
         <div class="hero-content">
             <div class="hero-ey">Weekly Review</div>
             <h1>AI &amp; Tech <i>Review</i></h1>
             <p>Emerging developments across AI and technology.</p>
-            <div class="hero-date">Week of April 10 to 17, 2026</div>
+            <div class="hero-date">Week of April 18 to 24, 2026</div>
         </div>
     </section>
     <div class="hero-rule"></div>
 
-    <!-- Main -->
     <div class="main">
 
-        <!-- ════════ FEATURED ════════ -->
         <div class="section-title">Lead Story</div>
-        <div class="featured" data-tags="canada,ai,enterprise">
+        <div class="featured" data-tags="enterprise,ai,infra">
             <div class="featured-body">
                 <div class="featured-header">
-                    <span class="tag tag-canada">Canada</span>
-                    <span class="tag tag-ai">AI</span>
                     <span class="tag tag-enterprise">Enterprise</span>
-                    <span class="featured-meta">10 Apr 2026</span>
+                    <span class="tag tag-ai">AI</span>
+                    <span class="tag tag-infra">Infrastructure</span>
+                    <span class="featured-meta">22 Apr 2026</span>
                 </div>
-                <h2>Cohere in Advanced Merger Talks with Germany&#8217;s Aleph Alpha as Canada and Europe Push Sovereign AI</h2>
-                <p class="lead">Toronto based Cohere is in advanced merger discussions with German AI company Aleph Alpha, according to reports confirmed on April 10. The combined entity would operate under dual headquarters in Canada and Germany, with the German government positioned as an anchor customer. Cohere chief AI officer Joelle Pineau confirmed on April 14 that Canada remains the company&#8217;s home even as the cross border structure takes shape.</p>
-                <p class="detail">Cohere is the larger of the two companies, and reporting indicates that its core intellectual property and presence will remain in Canada if the deal completes. The week also produced a memorandum of understanding between Cohere and Saab on advanced AI collaboration supporting the GlobalEye program, extending the commercial relationships that will anchor the new structure. The transaction would be one of the largest Canada to Europe technology combinations in recent memory and positions Cohere as a sovereign AI option for both Canadian and European buyers.</p>
+                <h2>Google Cloud Next 2026 Repositions the Stack: Eighth Generation TPUs, Gemini Enterprise Agent Platform, and a $750M Partner Fund</h2>
+                <p class="lead">Google Cloud Next 2026 ran April 22 with announcements that reset the enterprise AI conversation in three places at once. The eighth generation Tensor Processing Unit lineup splits into two specialized chips for distinct AI workloads, alongside top tier instances that pair with NVIDIA&#8217;s newest GPUs to deliver up to ten times faster and cheaper AI tasks. The Gemini Enterprise Agent Platform launched as a single environment for building, scaling, and governing AI agents, and a $750 million fund will back the 120,000 member partner ecosystem in agentic deployments.</p>
+                <p class="detail">The signal under the headlines is consolidation. Google reported that direct API usage now processes more than 16 billion tokens per minute, up from 10 billion the previous quarter, and that nearly 75 percent of Google Cloud customers use its AI products. Internal adoption is also accelerating: 75 percent of all new code at Google is currently AI generated and approved by engineers, compared with 50 percent last fall. Alphabet shares climbed on the back of the announcements, and analysts pointed to a strengthened position against Azure and AWS in the enterprise agentic tier.</p>
                 <ul class="key-points">
-                    <li>Dual headquarters model would anchor the combined company in both Canada and Germany</li>
-                    <li>German government set to become an anchor customer of the combined entity</li>
-                    <li>Saab memorandum of understanding on advanced AI collaboration extends the strategic buyer base</li>
+                    <li>Eighth generation TPUs split into two specialized chips for separate AI workload classes</li>
+                    <li>Gemini Enterprise Agent Platform consolidates build, scale, and govern functions for AI agents</li>
+                    <li>$750 million partner fund directs ecosystem investment toward agentic AI deployments</li>
+                    <li>Token throughput on direct API rose from 10 to 16 billion per minute quarter over quarter</li>
                 </ul>
-                <p class="detail"><strong>Enterprise Impact:</strong> Canadian enterprises seeking sovereign AI options now have a clearer path through Cohere, whose Canadian data residency commitments are reinforced by the dual headquarters structure. Procurement teams evaluating large language model vendors should factor the merger trajectory into total cost of ownership analyses, particularly where EU market access, German government alignment, or Canadian data residency are prerequisites. The deal also validates the thesis that mid size sovereign AI vendors can compete against US hyperscaler models where regulatory or residency constraints apply.</p>
-                <a href="https://betakit.com/cohere-exec-pledges-ai-firm-will-stay-canadian-headquartered-amid-merger-reports/" target="_blank" rel="noopener" class="source-link">Source: BetaKit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+                <p class="detail"><strong>Enterprise Impact:</strong> Enterprise architecture teams should reassess platform commitments this cycle, especially where agentic use cases are advancing. The Gemini Enterprise Agent Platform creates a credible alternative to single vendor agentic stacks and forces explicit governance choices about where agents are built, where they execute, and where they are observed. Procurement should request capacity reservations, price protections, and model continuity clauses before suppliers tighten terms to recover the capital. Canadian buyers should pair platform decisions with explicit residency and lawful access language; Google has not announced Canadian Cloud Next equivalents to its sovereign offerings in Europe.</p>
+                <a href="https://www.bloomberg.com/news/articles/2026-04-22/google-cloud-releases-new-tpu-chip-lineup-in-bid-to-speed-up-ai" target="_blank" rel="noopener" class="source-link">Source: Bloomberg <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
             </div>
         </div>
 
-        <!-- ════════ CANADA & ENTERPRISE ════════ -->
         <div class="section-title" id="canada">Canada &amp; Enterprise</div>
         <div class="articles">
-            <div class="article" data-tags="canada,enterprise,ai">
-                <div class="article-header"><span class="tag tag-canada">Canada</span><span class="tag tag-enterprise">Enterprise</span><span class="tag tag-ai">AI</span><span class="article-date">Apr 2026</span></div>
-                <h3>Microsoft Commits $7.5 Billion to Canadian AI Data Centre Expansion with Digital Sovereignty Pledge</h3>
-                <p class="summary">Microsoft outlined plans to invest $7.5 billion USD in Canadian AI data centre expansion, paired with a formal pledge to protect Canada&#8217;s digital sovereignty through local data residency, Canadian operational controls, and dedicated infrastructure for government and regulated workloads. The announcement arrived amid an intensifying debate on where Canadian enterprise and public sector data is processed.</p>
+            <div class="article" data-tags="canada,enterprise">
+                <div class="article-header"><span class="tag tag-canada">Canada</span><span class="tag tag-enterprise">Enterprise</span><span class="article-date">23 Apr 2026</span></div>
+                <h3>Canadian Tech Rallies on Shopify Surge as Lightspeed Lifts Fiscal 2026 Guidance</h3>
+                <p class="summary">Canadian technology equities surged in the week ending April 23 with Shopify leading and Lightspeed Commerce close behind. Lightspeed reported fiscal 2026 third quarter revenue of $312.3 million, up 11 percent year over year, with gross margin improving to 43 percent and Lightspeed Capital revenue up 34 percent. Management raised fiscal 2026 guidance, and the broader sector posted a 17 percent gain over the rolling week, with Xanadu Quantum Technologies up 234 percent.</p>
                 <ul class="key-points">
-                    <li>Investment anchors new capacity in Canada for AI training and inference workloads requiring data residency</li>
-                    <li>Digital sovereignty pledge includes local operations, Canadian controls, and dedicated infrastructure for regulated workloads</li>
-                    <li>Parallel announcements from Okta, Nokia, and others reflect accelerating sovereign infrastructure competition</li>
+                    <li>Lightspeed Q3 revenue $312.3M, up 11 percent year over year, with gross margin to 43 percent</li>
+                    <li>Lightspeed Capital revenue up 34 percent, management raised fiscal 2026 guidance</li>
+                    <li>Canadian tech sector up 17 percent in the rolling week, with Xanadu Quantum Technologies up 234 percent</li>
                 </ul>
-                <p class="detail"><strong>Enterprise Impact:</strong> Canadian enterprises in financial services, healthcare, and public sector can now reassess deployment plans with a credible domestic hyperscaler option. CIOs should revisit cloud workload placement decisions originally made before dedicated Canadian AI capacity existed. Sovereignty commitments in contracts should be tested: residency, operational control, and lawful access provisions all matter and are not identical across providers.</p>
-                <a href="https://betakit.com/microsoft-to-spend-7-5-billion-on-ai-data-centre-expansion-with-pledge-to-protect-canadas-digital-sovereignty/" target="_blank" rel="noopener" class="source-link">Source: BetaKit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+                <p class="detail"><strong>Enterprise Impact:</strong> The rally underlines that Canadian software vendors are competing seriously for enterprise platform spend. Mid market and enterprise buyers should benchmark Canadian platforms in the next platform RFP cycle rather than defaulting to incumbent US vendors. Lightspeed&#8217;s capital business is a useful reminder that platform vendors are increasingly bundling embedded financial services, which carries new compliance considerations for buyers in regulated retail and hospitality.</p>
+                <a href="https://ca.finance.yahoo.com/news/shopify-just-moved-2-canadian-201000473.html" target="_blank" rel="noopener" class="source-link">Source: Yahoo Finance Canada <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
             </div>
-            <div class="article" data-tags="canada,enterprise,ai">
-                <div class="article-header"><span class="tag tag-canada">Canada</span><span class="tag tag-enterprise">Enterprise</span><span class="tag tag-ai">AI</span><span class="article-date">Apr 2026</span></div>
-                <h3>Nokia Expands Ottawa Footprint, Tests the Limits of Canada&#8217;s Sovereign AI Definition</h3>
-                <p class="summary">Nokia announced an Ottawa expansion that puts pressure on how Canada defines sovereign AI. The expansion emphasizes research and development headcount growth, Canadian based AI model work, and domestic intellectual property creation, opening a public conversation about whether foreign owned operations can meet emerging sovereign AI qualification bars.</p>
+            <div class="article" data-tags="canada,enterprise,infra">
+                <div class="article-header"><span class="tag tag-canada">Canada</span><span class="tag tag-enterprise">Enterprise</span><span class="tag tag-infra">Infrastructure</span><span class="article-date">8 Apr 2026</span></div>
+                <h3>Federal Government Commits Over $11 Million to Battery Innovation in Quebec, Strengthening the Critical Minerals Stack</h3>
+                <p class="summary">Natural Resources Canada announced over $11 million in funding for three battery innovation projects in Quebec, supporting the Energy Innovation Program and the country&#8217;s broader battery and critical minerals value chain. Quebec hosts nearly a quarter of Canadian battery firms and is positioned as the anchor of domestic capacity. The investments target chemistry, manufacturing, and recycling capabilities relevant to electric vehicles, grid storage, and industrial applications.</p>
                 <ul class="key-points">
-                    <li>Expansion centres on Ottawa R&amp;D talent and Canadian generated intellectual property</li>
-                    <li>Raises the question of whether Canadian operations of foreign parents qualify as sovereign for procurement purposes</li>
-                    <li>Reflects broader policy pressure on federal procurement to define sovereign AI precisely</li>
+                    <li>Three projects funded under the Energy Innovation Program with over $11 million in federal investment</li>
+                    <li>Quebec hosts approximately one quarter of Canadian battery firms by count</li>
+                    <li>Investment scope spans battery chemistry, manufacturing, and recycling capabilities</li>
                 </ul>
-                <p class="detail"><strong>Enterprise Impact:</strong> Enterprises responding to federal or provincial sovereignty requirements need to watch how policy definitions evolve. Contractual assertions about Canadian operations, data handling, and ownership should be documented in enough detail to survive later scrutiny. Technology leaders evaluating AI vendors should request clarity on ownership, control, and IP custody separately rather than accepting blanket sovereignty claims.</p>
-                <a href="https://betakit.com/nokias-ottawa-expansion-tests-canadas-definition-of-sovereign-ai/" target="_blank" rel="noopener" class="source-link">Source: BetaKit <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+                <p class="detail"><strong>Enterprise Impact:</strong> Enterprises in automotive, energy, and industrial sectors should map supplier exposure to the emerging Canadian battery and critical minerals stack. Procurement teams negotiating multi year supply contracts should factor domestic capacity build out into total cost of ownership and resilience modelling. The federal direction reinforces the strategic case for sourcing critical mineral derived components inside Canada where the unit economics permit.</p>
+                <a href="https://www.canada.ca/en/natural-resources-canada/news/2026/04/canada-invests-in-battery-innovation-projects-in-quebec.html" target="_blank" rel="noopener" class="source-link">Source: Government of Canada <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
             </div>
             <div class="article" data-tags="canada,enterprise">
                 <div class="article-header"><span class="tag tag-canada">Canada</span><span class="tag tag-enterprise">Enterprise</span><span class="article-date">Apr 2026</span></div>
-                <h3>Reitmans Completes Migration to Shopify Across Three Canadian Retail Brands</h3>
-                <p class="summary">Reitmans Canada Ltd. announced the completion of its ecommerce migration to Shopify across the Reitmans, RW&amp;CO., and Penningtons brands. The move positions three legacy Canadian retail names on a unified modern commerce platform, targeting faster page performance, more intuitive customer journeys, and a common operational layer across stores.</p>
+                <h3>Canadian IT Hiring Plans Accelerate: 48 Percent of Tech Leaders Plan to Add Headcount in 2026</h3>
+                <p class="summary">The latest Robert Half Canada Demand for Skilled Talent Report found that 48 percent of Canadian technology and IT hiring managers plan to increase hiring in 2026, with only five percent reporting they already have the headcount and skills required. The shortfall is concentrated in cloud, AI engineering, security, and data domains, with employers reporting they expect to compete on flexibility and learning budgets in addition to compensation.</p>
                 <ul class="key-points">
-                    <li>Three Canadian retail brands consolidated on a common Shopify platform in one programme</li>
-                    <li>Shopify continues to win mid and upper tier Canadian enterprise accounts</li>
-                    <li>Operations team can now leverage shared catalogue, inventory, and checkout tooling across brands</li>
+                    <li>48 percent of Canadian tech and IT hiring managers plan to grow headcount in 2026</li>
+                    <li>Only 5 percent of leaders report sufficient existing headcount and skills</li>
+                    <li>Shortfalls concentrated in cloud, AI engineering, security, and data domains</li>
                 </ul>
-                <p class="detail"><strong>Enterprise Impact:</strong> Canadian enterprises operating multiple legacy ecommerce platforms should treat the Reitmans migration as a benchmark of what is achievable in a phased programme. Unified commerce platforms reduce marketing and operations cost but require strong brand governance and permissioning to avoid cross contamination between brands. Retailers in the $100M to $1B revenue band should reassess total cost of ownership against legacy platforms annually.</p>
-                <a href="https://simplywall.st/stocks/us/software/nasdaq-shop/shopify/news/is-reitmans-shift-to-shopify-shop-hinting-at-a-deeper-edge-i" target="_blank" rel="noopener" class="source-link">Source: Simply Wall St <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+                <p class="detail"><strong>Enterprise Impact:</strong> CIOs and CTOs in Canadian enterprises should reassess workforce plans against the 2026 talent market. Strategic projects in AI, cloud, and security should not assume incumbent staffing will absorb new scope. Compensation, learning, and flexibility commitments belong in approved hiring plans alongside headcount targets. Vendor and partner staffing options should be revisited for any project on a hard timeline.</p>
+                <a href="https://www.roberthalf.com/ca/en/insights/research/data-reveals-which-technology-roles-are-in-highest-demand" target="_blank" rel="noopener" class="source-link">Source: Robert Half Canada <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
             </div>
         </div>
 
-        <!-- ════════ AI MODELS & PLATFORMS ════════ -->
         <div class="section-title" id="platforms">AI Models &amp; Platforms</div>
         <div class="articles">
-            <div class="article" data-tags="enterprise,ai">
-                <div class="article-header"><span class="tag tag-enterprise">Enterprise</span><span class="tag tag-ai">AI</span><span class="article-date">2 Apr 2026</span></div>
-                <h3>Microsoft Launches Three In House Foundation Models Through Microsoft Foundry</h3>
-                <p class="summary">Microsoft launched three new foundational AI models built entirely in house and available immediately through Microsoft Foundry and the new MAI Playground. MAI Transcribe 1 handles speech to text, MAI Voice 1 generates realistic human voice, and MAI Image 2 produces images. The release is the first public output of the Microsoft superintelligence team led by Mustafa Suleyman.</p>
+            <div class="article" data-tags="enterprise,ai,infra">
+                <div class="article-header"><span class="tag tag-enterprise">Enterprise</span><span class="tag tag-ai">AI</span><span class="tag tag-infra">Infrastructure</span><span class="article-date">24 Apr 2026</span></div>
+                <h3>Tesla Cybercab Production Begins, Dallas and Houston Robotaxi Launch Without Safety Monitors</h3>
+                <p class="summary">Tesla CEO Elon Musk announced on April 24 that production of the Cybercab autonomous vehicle has started, with a promotional video showing the vehicle rolling off the factory floor and operating on public streets. The launch follows the April 18 expansion of unsupervised robotaxi service to Dallas and Houston, the first Tesla deployments without safety monitors in the front seat. Tesla has signalled seven cities by June 2026: Austin, Dallas, Houston, Phoenix, Miami, Orlando, Tampa, and Las Vegas.</p>
                 <ul class="key-points">
-                    <li>Three models span the most commercially valuable enterprise AI modalities: speech, voice generation, and image</li>
-                    <li>Available through Microsoft Foundry and MAI Playground with no Azure lock in limitation referenced</li>
-                    <li>Marks Microsoft&#8217;s first major in house frontier model release and a clear signal of AI self sufficiency ambitions</li>
+                    <li>Cybercab moves from prototype to production manufacturing on April 24, 2026</li>
+                    <li>Dallas and Houston unsupervised robotaxi service launched April 18 with no safety monitor</li>
+                    <li>FSD V14.3.2 unifies Smart Summon, Full Self Driving, and Robotaxi behind a single AI model</li>
                 </ul>
-                <p class="detail"><strong>Enterprise Impact:</strong> Enterprises building voice and transcription workflows on OpenAI or Google services now have a native Microsoft alternative that is likely to integrate most cleanly with Microsoft 365 and Azure deployments. Procurement teams should re evaluate AI model roadmaps annually; Microsoft&#8217;s move reduces the cost of staying within a single vendor stack for common enterprise modalities. Monitor pricing and availability closely as Microsoft typically bundles new models into existing Enterprise Agreements over time.</p>
-                <a href="https://techcrunch.com/2026/04/02/microsoft-takes-on-ai-rivals-with-three-new-foundational-models/" target="_blank" rel="noopener" class="source-link">Source: TechCrunch <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+                <p class="detail"><strong>Enterprise Impact:</strong> Enterprises in mobility, logistics, insurance, and urban infrastructure should treat the unsupervised robotaxi expansion as a pivot point in commercial autonomous deployment. Risk and underwriting models built around supervised operation need to be updated. Fleet operators should request data sharing agreements and operational design domain definitions in any pilot. The unified FSD AI model raises a single point of failure question that operators with safety critical exposure should address through contractual incident response and root cause access provisions.</p>
+                <a href="https://www.bloomberg.com/news/articles/2026-04-24/musk-says-tesla-has-begun-production-of-its-cybercab-robotaxi" target="_blank" rel="noopener" class="source-link">Source: Bloomberg <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+            </div>
+            <div class="article" data-tags="enterprise,ai">
+                <div class="article-header"><span class="tag tag-enterprise">Enterprise</span><span class="tag tag-ai">AI</span><span class="article-date">21 Apr 2026</span></div>
+                <h3>Apple Names John Ternus to Succeed Tim Cook, Outlines Six New AI Anchored Product Categories</h3>
+                <p class="summary">Apple announced on April 21 that John Ternus will succeed Tim Cook as CEO, and on April 23 confirmed plans to develop up to six new product categories anchored by AI capability: AI enabled AirPods, smart glasses, an AI wearable codenamed Pendant, smart displays, desktop robots, and security cameras. Apple Intelligence enhancements were released on April 20, including a Foundation Models Framework that gives developers AI inference free of cost with as little as three lines of code.</p>
+                <ul class="key-points">
+                    <li>John Ternus named CEO designate, signalling Apple&#8217;s AI era leadership transition</li>
+                    <li>Six new AI anchored product categories disclosed including smart glasses, wearables, displays, and robotics</li>
+                    <li>Foundation Models Framework opens free on device AI inference to developers</li>
+                </ul>
+                <p class="detail"><strong>Enterprise Impact:</strong> Enterprise IT and security teams should expect a wave of AI capable Apple devices to enter corporate fleets through the next refresh cycle. MDM policies, app entitlements, and DLP coverage should be updated to address new device classes including smart glasses and wearables. The Foundation Models Framework reduces the cost of building AI features into custom internal apps, making in house Apple platform development more attractive than it was a quarter ago. Procurement should track product specific availability and Canadian distribution timelines.</p>
+                <a href="https://www.cnn.com/2026/04/21/tech/apple-new-ceo-ai-john-ternus" target="_blank" rel="noopener" class="source-link">Source: CNN Business <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+            </div>
+            <div class="article" data-tags="enterprise,ai,infra">
+                <div class="article-header"><span class="tag tag-enterprise">Enterprise</span><span class="tag tag-ai">AI</span><span class="tag tag-infra">Infrastructure</span><span class="article-date">20 Apr 2026</span></div>
+                <h3>Amazon Commits up to $25 Billion More to Anthropic and Adds Claude Opus 4.7 to Bedrock</h3>
+                <p class="summary">Amazon announced an expanded agreement to invest up to $25 billion more in Anthropic, on top of $8 billion previously committed, as part of an AI infrastructure deal that also brings Claude Opus 4.7 into Amazon Bedrock. Amazon Bedrock customers can now use Claude Opus 4.7 for coding, long running agents, and professional knowledge work. The week also brought general availability for AWS Interconnect Multicloud, Amazon S3 Files, and Amazon Bio Discovery for AI assisted antibody therapy research.</p>
+                <ul class="key-points">
+                    <li>Up to $25 billion additional Amazon investment in Anthropic, on top of $8 billion already deployed</li>
+                    <li>Claude Opus 4.7 now available in Amazon Bedrock for coding, agent, and knowledge workloads</li>
+                    <li>AWS Interconnect Multicloud GA opens Layer 3 private connections to Google Cloud, with Azure and OCI to follow</li>
+                </ul>
+                <p class="detail"><strong>Enterprise Impact:</strong> Enterprises operating on AWS now have a coherent path to frontier model access without leaving the AWS perimeter. Architecture teams should reassess where Bedrock fits in the model selection portfolio, especially for agentic workloads. AWS Interconnect Multicloud reduces lock in friction for multi cloud deployments. Bio Discovery is a marker that AWS is moving up the stack into vertical AI products, a pattern enterprises should expect to repeat in financial services and other regulated industries through 2026.</p>
+                <a href="https://www.cnbc.com/2026/04/20/amazon-invest-up-to-25-billion-in-anthropic-part-of-ai-infrastructure.html" target="_blank" rel="noopener" class="source-link">Source: CNBC <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+            </div>
+            <div class="article" data-tags="enterprise,ai">
+                <div class="article-header"><span class="tag tag-enterprise">Enterprise</span><span class="tag tag-ai">AI</span><span class="article-date">22 Apr 2026</span></div>
+                <h3>Microsoft Frontier Suite Lands in Hong Kong, Enterprise Admins Gain Copilot Uninstall, Multi Agent Studio GA</h3>
+                <p class="summary">Microsoft used the AI Tour stop in Hong Kong on April 22 to frame the next phase of Copilot adoption as Frontier Success: AI agents embedded in daily operations and governed centrally. The April release wave also added the long requested ability for IT administrators to remove Copilot from enterprise devices, a meaningful concession to regulated buyers. Multi agent systems in Copilot Studio reached general availability in April, opening orchestration patterns to all eligible customers.</p>
+                <ul class="key-points">
+                    <li>Frontier Suite positions Copilot as embedded, governed AI agents in daily operations</li>
+                    <li>Enterprise admins can now uninstall Copilot from managed devices, addressing regulated industry concerns</li>
+                    <li>Multi agent systems in Copilot Studio reach general availability for all eligible customers</li>
+                </ul>
+                <p class="detail"><strong>Enterprise Impact:</strong> Regulated industry CIOs that paused Copilot rollouts should revisit the roadmap with the new uninstall capability in scope. Multi agent orchestration in Copilot Studio raises the importance of agent governance, testing, and lifecycle management; ISO/IEC 42001 alignment is the natural reference. Procurement should lock the 40 percent Copilot discount terms and the lower 1,000 licence threshold while the promotion runs. Pricing model changes for Dragon Copilot effective May 1 should be modelled against current per user costs.</p>
+                <a href="https://learn.microsoft.com/en-us/partner-center/announcements/2026-april" target="_blank" rel="noopener" class="source-link">Source: Microsoft Learn <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+            </div>
+        </div>
+
+        <div class="section-title" id="regulation">Regulation &amp; Infrastructure</div>
+        <div class="articles">
+            <div class="article" data-tags="enterprise,ai,infra">
+                <div class="article-header"><span class="tag tag-enterprise">Enterprise</span><span class="tag tag-ai">AI</span><span class="tag tag-infra">Infrastructure</span><span class="article-date">Apr 2026</span></div>
+                <h3>NVIDIA Closes Fiscal 2026 With $197.3 Billion Data Center Revenue, Q1 FY27 Guidance at $78 Billion</h3>
+                <p class="summary">NVIDIA closed fiscal 2026 with $197.3 billion in data center revenue, up from $115.2 billion the prior year, and now derives over 91 percent of sales from data center products. Q4 FY26 results posted $68.13 billion total revenue and $1.62 adjusted EPS, both ahead of consensus. CEO Jensen Huang framed the moment with the phrase &#8220;compute equals revenues,&#8221; and Q1 FY27 guidance of $78 billion plus or minus 2 percent suggests the multi year buildout has further to run. Hyperscalers accounted for just over 50 percent of data center revenue.</p>
+                <ul class="key-points">
+                    <li>Data center revenue $197.3B for fiscal 2026, up from $115.2B in fiscal 2025</li>
+                    <li>Q1 FY27 revenue guidance $78B plus or minus 2 percent</li>
+                    <li>Hyperscalers represent just over 50 percent of data center revenue</li>
+                </ul>
+                <p class="detail"><strong>Enterprise Impact:</strong> The numbers reset capacity planning assumptions for AI hungry workloads. Enterprises should assume sustained hyperscaler appetite for compute through 2026 and 2027, which translates into continuing pressure on regional capacity and pricing. Multi year cloud commitments negotiated now should include capacity reservations and price escalation caps. Supply chain risk for GPU dependent projects should be assessed against named vendor and named SKU exposure rather than generic compute terms.</p>
+                <a href="https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-fourth-quarter-and-fiscal-2026" target="_blank" rel="noopener" class="source-link">Source: NVIDIA Newsroom <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+            </div>
+            <div class="article" data-tags="enterprise,ai,regulation">
+                <div class="article-header"><span class="tag tag-enterprise">Enterprise</span><span class="tag tag-ai">AI</span><span class="tag tag-regulation">Regulation</span><span class="article-date">16 Apr 2026</span></div>
+                <h3>EU AI Act Logging Requirements Sharpen as Agent Architectures Move From Pilots to Production</h3>
+                <p class="summary">Reporting on April 16 underlined the EU AI Act logging obligations applicable to high risk and general purpose AI systems. Article 12 requires automatic event recording for high risk systems, and the Code of Practice for general purpose AI models adds expectations around incident logging, model lifecycle records, and training data documentation. Even with the reported delay of high risk obligations through the Digital Omnibus, the underlying logging architecture is foundational and should be designed in once.</p>
+                <ul class="key-points">
+                    <li>Article 12 mandates automatic event logging for high risk AI systems sufficient to support traceability</li>
+                    <li>General purpose AI Code of Practice extends logging into incident, lifecycle, and training data documentation</li>
+                    <li>Logging architecture aligns with ISO/IEC 42001 AI management system requirements regardless of EU enforcement timing</li>
+                </ul>
+                <p class="detail"><strong>Enterprise Impact:</strong> Enterprises deploying AI agents into EU markets should treat logging as a near term design decision. Establishing logging against ISO/IEC 42001 and the EU Code of Practice yields a single technical foundation for multiple regimes. Boards should request evidence that AI agent decisions are reconstructable, auditable, and retained for the period required by the most stringent regulator the organization touches. Canadian organizations with EU exposure should pair AI logging with privacy logging requirements emerging in domestic legislation.</p>
+                <a href="https://www.helpnetsecurity.com/2026/04/16/eu-ai-act-logging-requirements/" target="_blank" rel="noopener" class="source-link">Source: Help Net Security <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
             </div>
             <div class="article" data-tags="enterprise,ai">
                 <div class="article-header"><span class="tag tag-enterprise">Enterprise</span><span class="tag tag-ai">AI</span><span class="article-date">8 Apr 2026</span></div>
-                <h3>Meta Releases Muse Spark, First Model from Superintelligence Labs Under Alexandr Wang</h3>
-                <p class="summary">Meta debuted Muse Spark, the first major AI model from Meta Superintelligence Labs under chief AI officer Alexandr Wang. Originally code named Avocado, Muse Spark offers competitive performance in multimodal perception, reasoning, and agentic tasks, delivered from a smaller footprint than Meta&#8217;s older Llama 4 variants. Meta confirmed AI capital expenditures for 2026 will run between $115 billion and $135 billion.</p>
+                <h3>Meta Pivots From Open Source Llama to Proprietary Muse Spark Under Superintelligence Labs</h3>
+                <p class="summary">Meta released Muse Spark on April 8 as the first model from Meta Superintelligence Labs under chief AI officer Alexandr Wang, signalling a strategic pivot away from the open source Llama family. Muse Spark, originally code named Avocado, is positioned as more capable per compute unit than Llama 4 Maverick, the previous mid size flagship, and is initially proprietary with the company saying it &#8220;hopes&#8221; to open source future versions.</p>
                 <ul class="key-points">
-                    <li>Muse Spark is positioned as more capable per compute unit than prior Meta models</li>
-                    <li>API access currently restricted to select partners with wider paid API planned</li>
-                    <li>AI capital expenditure guidance nearly doubles year over year for 2026</li>
+                    <li>Muse Spark is proprietary, breaking the open source pattern Meta has followed for the past two years</li>
+                    <li>Better reasoning at lower compute cost than Llama 4 Maverick, according to Meta</li>
+                    <li>API access initially restricted, with broader paid API access planned</li>
                 </ul>
-                <p class="detail"><strong>Enterprise Impact:</strong> Meta&#8217;s first paid API model gives enterprises another frontier tier option, but restricted access initially limits procurement choice. Organizations with existing Llama deployments should evaluate migration economics once the wider API opens. For enterprises concerned about AI vendor concentration, the expanding pool of viable providers, including Cohere, Microsoft, Meta, Google, and Anthropic, opens genuine procurement leverage in 2026 contract cycles.</p>
-                <a href="https://about.fb.com/news/2026/04/introducing-muse-spark-meta-superintelligence-labs/" target="_blank" rel="noopener" class="source-link">Source: Meta Newsroom <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
-            </div>
-            <div class="article" data-tags="enterprise,ai">
-                <div class="article-header"><span class="tag tag-enterprise">Enterprise</span><span class="tag tag-ai">AI</span><span class="article-date">13 Apr 2026</span></div>
-                <h3>AWS Brings Agent Registry, Claude Mythos Preview, and Expanded Agent Tooling to Bedrock</h3>
-                <p class="summary">Amazon Web Services published its April 13 Weekly Roundup highlighting the Claude Mythos model preview in Amazon Bedrock, a new AWS Agent Registry, and general availability of AWS DevOps Agent and AWS Security Agent. Customers including United Airlines and T Mobile reported up to 75 percent reduction in mean time to resolution using the DevOps Agent, and Security Agent brings continuous penetration testing into the development lifecycle.</p>
-                <ul class="key-points">
-                    <li>Amazon Bedrock adds Claude Mythos preview, extending frontier model choice inside the AWS stack</li>
-                    <li>Agent Registry introduces discoverable, reusable agents across AWS customer estates</li>
-                    <li>DevOps and Security Agents now generally available with measured MTTR improvements at large customers</li>
-                </ul>
-                <p class="detail"><strong>Enterprise Impact:</strong> Enterprises operating on AWS should evaluate whether first party agents for DevOps and security replace current point solutions or complement them. The Agent Registry pattern hints at an emerging governance surface for agentic workflows and will make inventory of internal agents a practical requirement. Security teams should test the AWS Security Agent against existing penetration testing programs to understand where it adds independent coverage and where it duplicates current tooling.</p>
-                <a href="https://aws.amazon.com/blogs/aws/aws-weekly-roundup-claude-mythos-preview-in-amazon-bedrock-aws-agent-registry-and-more-april-13-2026/" target="_blank" rel="noopener" class="source-link">Source: AWS News Blog <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
-            </div>
-            <div class="article" data-tags="enterprise,ai">
-                <div class="article-header"><span class="tag tag-enterprise">Enterprise</span><span class="tag tag-ai">AI</span><span class="article-date">Apr 2026</span></div>
-                <h3>Alphabet Outlines $175 to $185 Billion 2026 Capex Plan as Google Cloud Posts 48 Percent Growth</h3>
-                <p class="summary">Alphabet set 2026 capital expenditure guidance between $175 billion and $185 billion, up from $91 billion in 2025, citing the need to meet AI infrastructure demand. Google Cloud revenues increased 48 percent to $17.7 billion in the most recent quarter, led by enterprise AI infrastructure and enterprise AI solutions, and the business closed 2025 at an annual run rate exceeding $70 billion.</p>
-                <ul class="key-points">
-                    <li>2026 capex guidance roughly doubles 2025 spending, reflecting aggressive infrastructure build out</li>
-                    <li>Google Cloud growth driven by enterprise AI infrastructure and AI solutions sales</li>
-                    <li>BMO raised Google Cloud 2026 AI revenue growth forecast to 40 percent, citing Anthropic partnership strength</li>
-                </ul>
-                <p class="detail"><strong>Enterprise Impact:</strong> The scale of Alphabet, Microsoft, and Meta infrastructure commitments signals that cloud AI capacity constraints are easing for customers who plan ahead. Enterprises negotiating multi year cloud commitments should seek price protections and capacity reservations now, before suppliers begin tightening terms to recover capital. Financial services and public sector workloads with Canadian residency requirements should pair infrastructure plans with explicit location and lawful access clauses.</p>
-                <a href="https://seekingalpha.com/news/4547610-alphabet-outlines-175b-185b-2026-capex-plan-as-ai-momentum-accelerates-across-search-cloud" target="_blank" rel="noopener" class="source-link">Source: Seeking Alpha <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
+                <p class="detail"><strong>Enterprise Impact:</strong> Enterprises with production deployments on Llama variants need to plan a multi quarter horizon for migration economics, particularly where the open weights have shaped fine tuning, deployment, or sovereignty positioning. The shift increases the value of model agnostic enterprise architectures and the cost of vendor specific integration. For Canadian organizations evaluating sovereign AI options, the pool of credible large model providers continues to expand, and procurement leverage in 2026 contract cycles is genuine.</p>
+                <a href="https://venturebeat.com/technology/goodbye-llama-meta-launches-new-proprietary-ai-model-muse-spark-first-since" target="_blank" rel="noopener" class="source-link">Source: VentureBeat <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
             </div>
         </div>
 
-        <!-- ════════ REGULATION & INFRASTRUCTURE ════════ -->
-        <div class="section-title" id="regulation">Regulation &amp; Infrastructure</div>
-        <div class="articles">
-            <div class="article" data-tags="enterprise,ai">
-                <div class="article-header"><span class="tag tag-enterprise">Enterprise</span><span class="tag tag-ai">AI</span><span class="article-date">Apr 2026</span></div>
-                <h3>Microsoft 365 Copilot Discount Threshold Drops to 1,000 Licences, Expanding Mid Market Eligibility</h3>
-                <p class="summary">Microsoft reduced the minimum Microsoft 365 Copilot purchase needed for the 40 percent discount from 1,500 licences to 1,000 licences, extending eligibility to more mid market and enterprise customers. CSP customers can now transact the 40 percent promotional offer directly through Partner Center without tenant pre activation. Dragon Copilot is moving to a reduced list price and a simplified per encounter consumption model on May 1, 2026.</p>
-                <ul class="key-points">
-                    <li>M365 Copilot 40 percent discount minimum drops from 1,500 to 1,000 licences</li>
-                    <li>CSP transaction flow simplified through Partner Center for eligible customers</li>
-                    <li>Dragon Copilot shifts to simplified per encounter pricing effective May 1, 2026</li>
-                </ul>
-                <p class="detail"><strong>Enterprise Impact:</strong> Mid market enterprises that were priced out of enterprise Copilot pilots should revisit the economics under the new threshold. CSP partners can now move customers through preferred pricing without the prior tenant activation friction. Dragon Copilot customers should model the per encounter consumption change against current per user costs; the switch will benefit some workloads and hurt others.</p>
-                <a href="https://learn.microsoft.com/en-us/partner-center/announcements/2026-april" target="_blank" rel="noopener" class="source-link">Source: Microsoft Learn <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
-            </div>
-            <div class="article" data-tags="enterprise,ai">
-                <div class="article-header"><span class="tag tag-enterprise">Enterprise</span><span class="tag tag-ai">AI</span><span class="article-date">Apr 2026</span></div>
-                <h3>Apple Confirms WWDC 2026 for June 8 to 12 with AI Focus Centered on Siri Overhaul</h3>
-                <p class="summary">Apple confirmed WWDC 2026 for June 8 to 12, centred on AI advancements and major updates to iOS, macOS, watchOS, and tvOS. Siri is expected to move toward a chatbot style interaction model with support for multi step actions, backed by Apple Foundation Models developed in partnership with Google and based on Gemini. Processing will continue on device and in Private Cloud Compute.</p>
-                <ul class="key-points">
-                    <li>WWDC 2026 dated June 8 to 12, online event open to all developers with in person component at Apple Park</li>
-                    <li>Siri expected to shift toward chatbot style interaction with multi step action support</li>
-                    <li>Apple Foundation Models partnership with Google on Gemini confirmed, with on device and Private Cloud Compute processing</li>
-                </ul>
-                <p class="detail"><strong>Enterprise Impact:</strong> Enterprise mobile fleets should expect Siri to become a legitimate productivity assistant in the next iOS and macOS cycle, prompting fresh MDM and policy work. IT leaders should assess data handling implications of on device and Private Cloud Compute processing for regulated data, and document whether enterprise DLP and MDM policies cover the new Siri interaction modes. Enterprises that disabled Apple Intelligence features should revisit the decision when the updated capabilities ship.</p>
-                <a href="https://techcrunch.com/2026/03/23/apple-wwdc-june-8-12-ai-advancements-siri-developers-conference/" target="_blank" rel="noopener" class="source-link">Source: TechCrunch <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
-            </div>
-            <div class="article" data-tags="canada,enterprise,ai">
-                <div class="article-header"><span class="tag tag-canada">Canada</span><span class="tag tag-enterprise">Enterprise</span><span class="tag tag-ai">AI</span><span class="article-date">Apr 2026</span></div>
-                <h3>Saab and Cohere Sign Memorandum of Understanding on Advanced AI Collaboration</h3>
-                <p class="summary">Swedish defence and security company Saab signed a memorandum of understanding with Canadian AI company Cohere to collaborate on advanced artificial intelligence technologies in support of the GlobalEye airborne surveillance programme. The agreement establishes a framework for joint work spanning model development, deployment, and operational integration.</p>
-                <ul class="key-points">
-                    <li>MOU establishes a framework for AI collaboration on GlobalEye and related programmes</li>
-                    <li>Extends the pool of strategic buyer relationships Cohere is assembling in 2026</li>
-                    <li>Reinforces Canada&#8217;s positioning as a source of sovereign AI capabilities for allied defence buyers</li>
-                </ul>
-                <p class="detail"><strong>Enterprise Impact:</strong> Canadian technology companies with defence adjacent capabilities should track how this agreement evolves, both as a reference point for contract structures and for downstream supplier opportunities. For enterprises evaluating AI vendors, Saab&#8217;s selection of Cohere signals that mid sized sovereign AI providers are considered credible for mission critical use cases, not only commercial applications.</p>
-                <a href="https://www.saab.com/newsroom/press-releases/2026/saab-and-cohere-sign-memorandum-of-understanding-on-advanced-ai-collaboration" target="_blank" rel="noopener" class="source-link">Source: Saab <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></a>
-            </div>
-        </div>
-
-        <!-- View All Insights -->
         <div style="text-align:center;margin-bottom:48px">
             <a href="../blog/" class="browse-all">View all insights <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </div>
@@ -370,6 +354,13 @@
         <div class="section-title">Previous Reviews</div>
         <div class="prev-reviews">
             <div class="prev-reviews-list">
+                <a href="apr-10-2026.html" class="prev-review-link">
+                    <div>
+                        <div class="prev-title">AI &amp; Tech Review</div>
+                        <div class="prev-date">Week of April 10 to 17, 2026</div>
+                    </div>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                </a>
                 <a href="mar-29-2026.html" class="prev-review-link">
                     <div>
                         <div class="prev-title">AI &amp; Tech Review</div>
@@ -387,28 +378,20 @@
                 <a href="mar-2-2026.html" class="prev-review-link">
                     <div>
                         <div class="prev-title">AI &amp; Tech Review</div>
-                        <div class="prev-date">Week of March 2 &#8211; 8, 2026</div>
+                        <div class="prev-date">Week of March 2 to 8, 2026</div>
                     </div>
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
                 </a>
                 <a href="feb-23-2026.html" class="prev-review-link">
                     <div>
                         <div class="prev-title">AI &amp; Tech Review</div>
-                        <div class="prev-date">Week of February 23 &#8211; March 1, 2026</div>
-                    </div>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-                </a>
-                <a href="feb-16-2026.html" class="prev-review-link">
-                    <div>
-                        <div class="prev-title">AI &amp; Tech Review</div>
-                        <div class="prev-date">Week of February 16 &#8211; 22, 2026</div>
+                        <div class="prev-date">Week of February 23 to March 1, 2026</div>
                     </div>
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
                 </a>
             </div>
         </div>
 
-        <!-- Newsletter -->
         <div class="newsletter" id="newsletter">
             <h3>Get the Weekly Briefing</h3>
             <p>AI &amp; technology analysis delivered to your inbox every Monday. No noise, no hype &#8212; just what matters.</p>
