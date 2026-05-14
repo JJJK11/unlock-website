@@ -838,105 +838,99 @@
             filter: none;
         }
 
-        /* Bento grid */
-        .pe-bento {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            grid-auto-rows: minmax(180px, auto);
-            gap: 14px;
-            margin: 2rem 0 3rem;
-        }
-        .pe-tile {
+        /* Contextual info panel */
+        .pe-info {
             position: relative;
-            padding: 1.6rem 1.5rem 1.4rem;
+            margin: 1.5rem 0 2rem;
+            padding: 1.8rem 2rem 1.7rem;
             background: rgba(255,255,255,0.04);
             border: 1px solid rgba(255,255,255,0.08);
             border-radius: 18px;
             backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
             overflow: hidden;
-            transition: background 0.4s, border-color 0.4s;
-            cursor: pointer;
-            transform-style: preserve-3d;
-            will-change: transform;
+            transition: background 0.4s, border-color 0.4s, transform 0.4s var(--ease-out);
         }
-        /* Cursor spotlight overlay */
-        .pe-tile::before {
+        .pe-info::before {
             content: ''; position: absolute; inset: 0; border-radius: 18px;
-            background: radial-gradient(
-                360px circle at var(--pe-mx, 50%) var(--pe-my, 50%),
-                rgba(245,200,0,0.14),
-                rgba(245,200,0,0.04) 30%,
-                transparent 55%
-            );
-            opacity: 0; transition: opacity 0.4s;
+            background: linear-gradient(135deg, rgba(245,200,0,0.04) 0%, transparent 50%);
             pointer-events: none;
         }
-        .pe-tile:hover::before { opacity: 1; }
-        .pe-tile:hover {
-            background: rgba(255,255,255,0.07);
-            border-color: rgba(245,200,0,0.35);
+        .pe-info.is-anchor {
+            background: rgba(26,91,186,0.18);
+            border-color: rgba(45,111,212,0.35);
         }
-        .pe-tile.is-anchor { background: rgba(26,91,186,0.18); border-color: rgba(45,111,212,0.35); }
-        .pe-tile.is-anchor:hover { border-color: rgba(245,200,0,0.5); background: rgba(26,91,186,0.25); }
-
-        /* Hyperscaler tier pill */
-        .pe-tile-tier {
+        .pe-info-fade {
+            animation: peInfoIn 0.45s var(--ease-out);
+        }
+        @keyframes peInfoIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        .pe-info-meta {
+            display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+            margin-bottom: 0.8rem;
+        }
+        .pe-info-tier, .pe-info-count {
             display: inline-block;
-            font-family: var(--mono); font-size: 0.58rem; font-weight: 600;
-            color: rgba(255,255,255,0.55);
+            font-family: var(--mono); font-size: 0.6rem; font-weight: 600;
             letter-spacing: 0.1em; text-transform: uppercase;
-            padding: 3px 8px;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
+            padding: 4px 9px;
             border-radius: 4px;
-            margin-bottom: 0.7rem;
-        }
-        .pe-tile.is-anchor .pe-tile-tier {
-            color: #f5c800;
-            background: rgba(245,200,0,0.08);
-            border-color: rgba(245,200,0,0.25);
-        }
-
-
-        .pe-tile-row1 { grid-column: span 2; grid-row: 1; }
-        .pe-tile-row2-sm { grid-column: span 1; grid-row: 2; }
-        .pe-tile-row2-lg { grid-column: span 2; grid-row: 2; }
-        .pe-tile-row3 { grid-column: span 2; grid-row: 3; }
-
-        .pe-tile-head {
-            display: flex; align-items: flex-start; justify-content: space-between;
-            margin-bottom: 0.6rem;
-        }
-        .pe-tile-name {
-            font-family: var(--sans); font-weight: 700;
-            font-size: 1.05rem; letter-spacing: -0.01em;
-            color: #fff;
-        }
-        .pe-tile.is-anchor .pe-tile-name { font-size: 1.4rem; }
-        .pe-tile-desc {
-            font-size: 0.82rem; line-height: 1.55;
-            color: rgba(255,255,255,0.65);
-            margin-bottom: 1rem;
-        }
-        .pe-tile.is-anchor .pe-tile-desc { font-size: 0.9rem; }
-        .pe-tile-chips {
-            display: flex; flex-wrap: wrap; gap: 6px;
-        }
-        .pe-tile-chip {
-            font-family: var(--sans); font-size: 0.7rem; font-weight: 500;
-            color: rgba(255,255,255,0.78);
-            padding: 4px 10px;
-            background: rgba(255,255,255,0.06);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 999px;
             white-space: nowrap;
         }
-        .pe-tile-chip.is-shared { color: #f5c800; border-color: rgba(245,200,0,0.3); }
-        .pe-tile-more {
-            font-family: var(--mono); font-size: 0.62rem; font-weight: 600;
-            color: rgba(255,255,255,0.5); letter-spacing: 0.06em;
-            padding: 4px 6px;
+        .pe-info-tier {
+            color: rgba(255,255,255,0.7);
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.12);
         }
+        .pe-info.is-anchor .pe-info-tier {
+            color: #f5c800;
+            background: rgba(245,200,0,0.08);
+            border-color: rgba(245,200,0,0.3);
+        }
+        .pe-info-count {
+            color: rgba(255,255,255,0.55);
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .pe-info-title {
+            font-family: var(--sans); font-weight: 700;
+            font-size: 1.6rem; letter-spacing: -0.015em;
+            color: #fff;
+            margin: 0 0 0.4rem;
+            line-height: 1.15;
+        }
+        .pe-info-desc {
+            font-size: 0.95rem; line-height: 1.55;
+            color: rgba(255,255,255,0.7);
+            margin: 0 0 1rem;
+            max-width: 60ch;
+        }
+        .pe-info-highlights {
+            display: flex; flex-wrap: wrap; gap: 8px;
+            margin-top: 1rem;
+        }
+        .pe-info-highlight {
+            font-family: var(--sans); font-size: 0.78rem; font-weight: 500;
+            color: rgba(255,255,255,0.85);
+            padding: 6px 12px;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 999px;
+        }
+        .pe-info.is-anchor .pe-info-highlight {
+            background: rgba(245,200,0,0.08);
+            border-color: rgba(245,200,0,0.25);
+            color: #fff;
+        }
+        .pe-info-highlight.is-shared::before {
+            content: ''; display: inline-block;
+            width: 5px; height: 5px; border-radius: 50%;
+            background: #f5c800; margin-right: 6px;
+            vertical-align: middle;
+            box-shadow: 0 0 6px rgba(245,200,0,0.6);
+        }
+
 
         /* Filter pill bar */
         .pe-filterbar {
@@ -1012,17 +1006,14 @@
         }
 
         @media (max-width: 980px) {
-            .pe-bento { grid-template-columns: repeat(2, 1fr); }
-            .pe-tile-row1 { grid-column: span 2; grid-row: auto; }
-            .pe-tile-row2-sm { grid-column: span 1; grid-row: auto; }
-            .pe-tile-row2-lg { grid-column: span 2; grid-row: auto; }
-            .pe-tile-row3 { grid-column: span 1; grid-row: auto; }
+            .pe-info { padding: 1.5rem 1.5rem 1.4rem; }
+            .pe-info-title { font-size: 1.35rem; }
         }
         @media (max-width: 580px) {
             .pe-sec { padding: 4rem 0 3.5rem; }
-            .pe-bento { grid-template-columns: 1fr; }
-            .pe-bento > * { grid-column: span 1 !important; }
-            .pe-tile.is-anchor .pe-tile-name { font-size: 1.2rem; }
+            .pe-info { padding: 1.3rem 1.25rem 1.2rem; margin: 1rem 0 1.5rem; }
+            .pe-info-title { font-size: 1.2rem; }
+            .pe-info-desc { font-size: 0.85rem; }
             .pe-pill { font-size: 0.66rem; padding: 7px 12px; }
             .pe-chip { font-size: 0.7rem; padding: 6px 11px; }
         }
@@ -1966,13 +1957,13 @@
                     <div class="pe-marquee-track" id="peMarquee"></div>
                 </div>
 
-                <!-- Bento hero -->
-                <div class="pe-bento rv" id="peBento"></div>
-
                 <!-- Filter pill bar -->
                 <div class="pe-filterbar rv">
                     <div class="pe-filterbar-inner" id="peFilters"></div>
                 </div>
+
+                <!-- Contextual info panel -->
+                <div class="pe-info rv" id="peInfo"></div>
 
                 <!-- Logo wall -->
                 <div class="pe-wall rv" id="peWall"></div>
@@ -8562,11 +8553,14 @@
                 { name:'Terraform',           slug:'terraform' }
             ];
 
-            var bento = document.getElementById('peBento');
             var filters = document.getElementById('peFilters');
             var wall = document.getElementById('peWall');
             var marquee = document.getElementById('peMarquee');
-            if(!bento || !filters || !wall) return;
+            var info = document.getElementById('peInfo');
+            if(!filters || !wall || !info) return;
+
+            /* Anchor categories get the gold-accent treatment in the info panel */
+            var anchors = { core:1, ai:1 };
 
             /* Build marquee (logos duplicated for seamless loop) */
             if (marquee) {
@@ -8581,53 +8575,8 @@
                 marquee.innerHTML = marqueeHtml;
             }
 
-            /* Tile size hints — anchors get extra real estate */
-            var layout = {
-                core:  { cls:'pe-tile-row1', anchor:true,  preview:6 },
-                ai:    { cls:'pe-tile-row1', anchor:true,  preview:7 },
-                cloud: { cls:'pe-tile-row2-sm', anchor:false, preview:4 },
-                data:  { cls:'pe-tile-row2-sm', anchor:false, preview:4 },
-                sec:   { cls:'pe-tile-row2-lg', anchor:false, preview:6 },
-                integ: { cls:'pe-tile-row3', anchor:false, preview:5 },
-                auto:  { cls:'pe-tile-row3', anchor:false, preview:5 }
-            };
-
-            /* Build bento */
-            cats.forEach(function(c) {
-                var l = layout[c.id];
-                var tile = document.createElement('div');
-                tile.className = 'pe-tile ' + l.cls + (l.anchor ? ' is-anchor' : '');
-                tile.dataset.cat = c.id;
-
-                var preview = c.apps.slice(0, l.preview);
-                var remaining = c.apps.length - preview.length;
-
-                var chipsHtml = preview.map(function(name) {
-                    var classes = 'pe-tile-chip';
-                    if (shared[name]) classes += ' is-shared';
-                    return '<span class="' + classes + '">' + name + '</span>';
-                }).join('');
-                if (remaining > 0) {
-                    chipsHtml += '<span class="pe-tile-more">+' + remaining + '</span>';
-                }
-
-                tile.innerHTML =
-                    '<div class="pe-tile-head">' +
-                        '<div class="pe-tile-name">' + c.name + '</div>' +
-                    '</div>' +
-                    (c.tier ? '<div class="pe-tile-tier">' + c.tier + '</div>' : '') +
-                    '<div class="pe-tile-desc">' + c.desc + '</div>' +
-                    '<div class="pe-tile-chips">' + chipsHtml + '</div>';
-
-                tile.addEventListener('click', function() { applyFilter(c.id); });
-                /* Cursor spotlight tracking */
-                tile.addEventListener('mousemove', function(e) {
-                    var r = tile.getBoundingClientRect();
-                    tile.style.setProperty('--pe-mx', (e.clientX - r.left) + 'px');
-                    tile.style.setProperty('--pe-my', (e.clientY - r.top) + 'px');
-                });
-                bento.appendChild(tile);
-            });
+            /* How many top platforms to highlight per category */
+            var highlightCount = { core:6, cloud:5, data:5, integ:5, auto:5, ai:7, sec:6 };
 
             /* Build filter pills */
             var pills = [{ id:'all', name:'All Platforms' }].concat(cats.map(function(c) {
@@ -8667,11 +8616,60 @@
                 wall.appendChild(chip);
             });
 
+            /* Render the info panel for a given category */
+            function renderInfo(catId) {
+                var html;
+                info.classList.remove('is-anchor');
+                info.classList.remove('pe-info-fade');
+                void info.offsetWidth; /* restart animation */
+
+                if (catId === 'all') {
+                    var totalPlatforms = Object.keys(ownership).length;
+                    var sharedTotal = Object.keys(shared).length;
+                    var headlinePlatforms = [
+                        'Amazon Web Services','Microsoft Azure','Google Cloud',
+                        'OpenAI','Anthropic','Databricks','Snowflake','Salesforce','SAP S/4HANA'
+                    ];
+                    var hlHtml = headlinePlatforms.map(function(n) {
+                        var sh = !!shared[n];
+                        return '<span class="pe-info-highlight' + (sh ? ' is-shared' : '') + '">' + n + '</span>';
+                    }).join('');
+                    html =
+                        '<div class="pe-info-meta">' +
+                            '<span class="pe-info-tier">Full Stack Coverage</span>' +
+                            '<span class="pe-info-count">' + totalPlatforms + '+ Platforms · ' + cats.length + ' Ecosystems · ' + sharedTotal + '+ Cross Stack</span>' +
+                        '</div>' +
+                        '<h3 class="pe-info-title">Complete enterprise ecosystem</h3>' +
+                        '<p class="pe-info-desc">From foundational ERP and cloud infrastructure through modern AI and zero trust security. Unlock delivers transformation across every layer of the enterprise stack.</p>' +
+                        '<div class="pe-info-highlights">' + hlHtml + '</div>';
+                } else {
+                    var c = cats.find(function(x){ return x.id === catId; });
+                    if (!c) return;
+                    if (anchors[catId]) info.classList.add('is-anchor');
+                    var hi = c.apps.slice(0, highlightCount[catId] || 5);
+                    var hlHtml2 = hi.map(function(n) {
+                        var sh = !!shared[n];
+                        return '<span class="pe-info-highlight' + (sh ? ' is-shared' : '') + '">' + n + '</span>';
+                    }).join('');
+                    html =
+                        '<div class="pe-info-meta">' +
+                            '<span class="pe-info-tier">' + c.tier + '</span>' +
+                            '<span class="pe-info-count">' + c.apps.length + ' Platforms</span>' +
+                        '</div>' +
+                        '<h3 class="pe-info-title">' + c.name + '</h3>' +
+                        '<p class="pe-info-desc">' + c.desc + '</p>' +
+                        '<div class="pe-info-highlights">' + hlHtml2 + '</div>';
+                }
+                info.innerHTML = html;
+                info.classList.add('pe-info-fade');
+            }
+
             /* Filter handler */
             function applyFilter(catId) {
                 filters.querySelectorAll('.pe-pill').forEach(function(p) {
                     p.classList.toggle('is-active', p.dataset.cat === catId);
                 });
+                renderInfo(catId);
                 if (catId === 'all') {
                     wall.classList.remove('is-filtered');
                     wall.querySelectorAll('.pe-chip').forEach(function(c) { c.classList.remove('is-on'); });
@@ -8683,6 +8681,9 @@
                     });
                 }
             }
+
+            /* Initial state: All Platforms */
+            renderInfo('all');
         })();
     </script>
 
