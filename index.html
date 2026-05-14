@@ -918,7 +918,7 @@
 
         .pe-tile-head {
             display: flex; align-items: flex-start; justify-content: space-between;
-            margin-bottom: 0.9rem;
+            margin-bottom: 0.6rem;
         }
         .pe-tile-name {
             font-family: var(--sans); font-weight: 700;
@@ -926,16 +926,6 @@
             color: #fff;
         }
         .pe-tile.is-anchor .pe-tile-name { font-size: 1.4rem; }
-        .pe-tile-count {
-            font-family: var(--mono); font-size: 0.62rem;
-            font-weight: 600; letter-spacing: 0.08em;
-            color: #f5c800;
-            padding: 4px 9px;
-            background: rgba(245,200,0,0.1);
-            border: 1px solid rgba(245,200,0,0.25);
-            border-radius: 999px;
-            white-space: nowrap;
-        }
         .pe-tile-desc {
             font-size: 0.82rem; line-height: 1.55;
             color: rgba(255,255,255,0.65);
@@ -995,34 +985,6 @@
             box-shadow: 0 4px 18px rgba(245,200,0,0.35);
         }
 
-        /* Stats row */
-        .pe-stats {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1px;
-            margin: 0 0 2rem;
-            background: rgba(255,255,255,0.06);
-            border: 1px solid rgba(255,255,255,0.06);
-            border-radius: 14px;
-            overflow: hidden;
-        }
-        .pe-stat {
-            padding: 1.1rem 1rem;
-            background: #050B1F;
-            text-align: center;
-        }
-        .pe-stat-num {
-            font-family: var(--serif); font-weight: 400;
-            font-size: 2rem; line-height: 1;
-            color: #f5c800;
-            margin-bottom: 0.3rem;
-        }
-        .pe-stat-lbl {
-            font-family: var(--mono); font-size: 0.6rem; font-weight: 600;
-            color: rgba(255,255,255,0.55);
-            letter-spacing: 0.1em; text-transform: uppercase;
-        }
-
         /* Logo / chip wall */
         .pe-wall {
             display: flex; flex-wrap: wrap; gap: 8px;
@@ -1068,15 +1030,12 @@
             .pe-tile-row2-sm { grid-column: span 1; grid-row: auto; }
             .pe-tile-row2-lg { grid-column: span 2; grid-row: auto; }
             .pe-tile-row3 { grid-column: span 1; grid-row: auto; }
-            .pe-stats { grid-template-columns: repeat(2, 1fr); }
         }
         @media (max-width: 580px) {
             .pe-sec { padding: 4rem 0 3.5rem; }
             .pe-bento { grid-template-columns: 1fr; }
             .pe-bento > * { grid-column: span 1 !important; }
             .pe-tile.is-anchor .pe-tile-name { font-size: 1.2rem; }
-            .pe-stats { grid-template-columns: 1fr 1fr; }
-            .pe-stat-num { font-size: 1.5rem; }
             .pe-pill { font-size: 0.66rem; padding: 7px 12px; }
             .pe-chip { font-size: 0.7rem; padding: 6px 11px; }
         }
@@ -2027,9 +1986,6 @@
                 <div class="pe-filterbar rv">
                     <div class="pe-filterbar-inner" id="peFilters"></div>
                 </div>
-
-                <!-- Capability stats -->
-                <div class="pe-stats rv" id="peStats"></div>
 
                 <!-- Logo wall -->
                 <div class="pe-wall rv" id="peWall"></div>
@@ -8637,7 +8593,6 @@
             var bento = document.getElementById('peBento');
             var filters = document.getElementById('peFilters');
             var wall = document.getElementById('peWall');
-            var stats = document.getElementById('peStats');
             var marquee = document.getElementById('peMarquee');
             if(!bento || !filters || !wall) return;
 
@@ -8688,7 +8643,6 @@
                 tile.innerHTML =
                     '<div class="pe-tile-head">' +
                         '<div class="pe-tile-name">' + c.name + '</div>' +
-                        '<div class="pe-tile-count">' + c.apps.length + ' Platforms</div>' +
                     '</div>' +
                     (c.tier ? '<div class="pe-tile-tier">' + c.tier + '</div>' : '') +
                     '<div class="pe-tile-desc">' + c.desc + '</div>' +
@@ -8742,47 +8696,6 @@
                 chip.textContent = name;
                 wall.appendChild(chip);
             });
-
-            /* Build stats */
-            var totalPlatforms = Object.keys(ownership).length;
-            var sharedCount = Object.keys(shared).length;
-            var statData = [
-                { num: totalPlatforms, suffix:'+', lbl: 'Platforms' },
-                { num: cats.length,    suffix:'',  lbl: 'Ecosystems' },
-                { num: sharedCount,    suffix:'+', lbl: 'Cross Stack' },
-                { num: 0,              suffix:'',  lbl: 'Coverage', literal:'24/7' }
-            ];
-            statData.forEach(function(s) {
-                var div = document.createElement('div');
-                div.className = 'pe-stat';
-                var initial = s.literal || '0' + s.suffix;
-                div.innerHTML = '<div class="pe-stat-num" data-target="' + s.num + '" data-suffix="' + s.suffix + '"' +
-                    (s.literal ? ' data-literal="' + s.literal + '"' : '') + '>' + initial + '</div>' +
-                    '<div class="pe-stat-lbl">' + s.lbl + '</div>';
-                stats.appendChild(div);
-            });
-
-            /* Count-up animation */
-            var countObs = new IntersectionObserver(function(entries) {
-                entries.forEach(function(entry) {
-                    if (!entry.isIntersecting) return;
-                    countObs.unobserve(entry.target);
-                    var el = entry.target;
-                    if (el.dataset.literal) { el.textContent = el.dataset.literal; return; }
-                    var target = parseInt(el.dataset.target, 10);
-                    var suffix = el.dataset.suffix || '';
-                    var start = performance.now();
-                    var dur = 900;
-                    function tick(now) {
-                        var t = Math.min((now - start) / dur, 1);
-                        var eased = 1 - Math.pow(1 - t, 3);
-                        el.textContent = Math.round(target * eased) + suffix;
-                        if (t < 1) requestAnimationFrame(tick);
-                    }
-                    requestAnimationFrame(tick);
-                });
-            }, { threshold: 0.3 });
-            stats.querySelectorAll('.pe-stat-num').forEach(function(el) { countObs.observe(el); });
 
             /* Filter handler */
             function applyFilter(catId) {
