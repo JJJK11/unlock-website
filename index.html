@@ -793,13 +793,58 @@
         }
         .pe-lead { color: rgba(255,255,255,0.7); }
 
+        /* Hero logo marquee */
+        .pe-marquee {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            padding: 0.5rem 0;
+            margin: 2.5rem 0 1rem;
+            mask-image: linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%);
+            -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%);
+        }
+        .pe-marquee-fade {
+            position: absolute; top: 0; bottom: 0; width: 80px;
+            pointer-events: none; z-index: 3;
+        }
+        .pe-marquee-fade-l { left: 0; background: linear-gradient(90deg, #050B1F, transparent); }
+        .pe-marquee-fade-r { right: 0; background: linear-gradient(-90deg, #050B1F, transparent); }
+        .pe-marquee-track {
+            display: flex; gap: 3rem; align-items: center;
+            width: max-content;
+            animation: peMarquee 50s linear infinite;
+        }
+        .pe-marquee:hover .pe-marquee-track { animation-play-state: paused; }
+        @keyframes peMarquee {
+            from { transform: translateX(0); }
+            to   { transform: translateX(-50%); }
+        }
+        .pe-mq-logo {
+            height: 28px; width: auto; max-width: 130px;
+            opacity: 0.55;
+            transition: opacity 0.3s var(--ease), transform 0.3s var(--ease);
+            flex-shrink: 0;
+        }
+        .pe-mq-logo:hover {
+            opacity: 1;
+            transform: scale(1.08);
+        }
+        .pe-mq-logo[data-fallback] {
+            font-family: var(--sans); font-weight: 700; font-size: 0.9rem;
+            color: rgba(255,255,255,0.55);
+            white-space: nowrap;
+            display: flex; align-items: center; height: 28px;
+            letter-spacing: 0.02em;
+            filter: none;
+        }
+
         /* Bento grid */
         .pe-bento {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             grid-auto-rows: minmax(180px, auto);
             gap: 14px;
-            margin: 3rem 0 3rem;
+            margin: 2rem 0 3rem;
         }
         .pe-tile {
             position: relative;
@@ -809,23 +854,62 @@
             border-radius: 18px;
             backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
             overflow: hidden;
-            transition: transform 0.4s var(--ease-out), background 0.4s, border-color 0.4s;
+            transition: background 0.4s, border-color 0.4s;
             cursor: pointer;
+            transform-style: preserve-3d;
+            will-change: transform;
         }
+        /* Cursor spotlight overlay */
         .pe-tile::before {
             content: ''; position: absolute; inset: 0; border-radius: 18px;
-            background: linear-gradient(135deg, rgba(245,200,0,0) 0%, rgba(245,200,0,0.08) 100%);
+            background: radial-gradient(
+                360px circle at var(--pe-mx, 50%) var(--pe-my, 50%),
+                rgba(245,200,0,0.14),
+                rgba(245,200,0,0.04) 30%,
+                transparent 55%
+            );
             opacity: 0; transition: opacity 0.4s;
             pointer-events: none;
         }
+        .pe-tile:hover::before { opacity: 1; }
         .pe-tile:hover {
             background: rgba(255,255,255,0.07);
             border-color: rgba(245,200,0,0.35);
-            transform: translateY(-3px);
         }
-        .pe-tile:hover::before { opacity: 1; }
         .pe-tile.is-anchor { background: rgba(26,91,186,0.18); border-color: rgba(45,111,212,0.35); }
         .pe-tile.is-anchor:hover { border-color: rgba(245,200,0,0.5); background: rgba(26,91,186,0.25); }
+
+        /* Hyperscaler tier pill */
+        .pe-tile-tier {
+            display: inline-block;
+            font-family: var(--mono); font-size: 0.58rem; font-weight: 600;
+            color: rgba(255,255,255,0.55);
+            letter-spacing: 0.1em; text-transform: uppercase;
+            padding: 3px 8px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 4px;
+            margin-bottom: 0.7rem;
+        }
+        .pe-tile.is-anchor .pe-tile-tier {
+            color: #f5c800;
+            background: rgba(245,200,0,0.08);
+            border-color: rgba(245,200,0,0.25);
+        }
+
+        /* NEW badge on chips */
+        .pe-tile-chip.is-new::before,
+        .pe-chip.is-new::before {
+            content: 'NEW';
+            font-family: var(--mono); font-size: 0.5rem; font-weight: 700;
+            color: #050B1F;
+            background: #f5c800;
+            padding: 1px 4px;
+            border-radius: 2px;
+            margin-right: 5px;
+            letter-spacing: 0.05em;
+            vertical-align: 1px;
+        }
 
         .pe-tile-row1 { grid-column: span 2; grid-row: 1; }
         .pe-tile-row2-sm { grid-column: span 1; grid-row: 2; }
@@ -1927,6 +2011,13 @@
                         <h2 class="sec-title pe-h2">Enterprise ecosystem<br>coverage</h2>
                         <p class="sec-lead pe-lead">We modernize, integrate, and optimize across the platforms your business runs on.</p>
                     </div>
+                </div>
+
+                <!-- Hero logo marquee -->
+                <div class="pe-marquee rv" aria-label="Platform partners">
+                    <div class="pe-marquee-fade pe-marquee-fade-l"></div>
+                    <div class="pe-marquee-fade pe-marquee-fade-r"></div>
+                    <div class="pe-marquee-track" id="peMarquee"></div>
                 </div>
 
                 <!-- Bento hero -->
@@ -8468,21 +8559,43 @@
 
         /* ── Platform Expertise: Bento + Logo Wall ── */
         (function() {
+            /* Platforms added in the 2026 refresh — flagged with NEW badge */
+            var newSet = {
+                'Rippling':1,'Deel':1,
+                'Vercel':1,'Pulumi':1,
+                'Confluent':1,'Apache Kafka':1,'Hightouch':1,'Hex':1,'Sigma Computing':1,'Trino':1,'Apache Iceberg':1,
+                'Tines':1,'n8n':1,'Make.com':1,'Segment':1,
+                'Sierra':1,'Decagon':1,
+                'Amazon Bedrock':1,'Azure AI Foundry':1,'Google Vertex AI':1,'Google Gemini':1,'xAI Grok':1,
+                'Pinecone':1,'Weaviate':1,'Chroma':1,
+                'CrewAI':1,'AutoGen':1,'LangGraph':1,
+                'Cursor':1,'GitHub Copilot':1,'Glean':1,'Writer':1,'Perplexity Enterprise':1,
+                'Groq':1,'Together AI':1,'Replicate':1,
+                'Vanta':1,'Drata':1,'Tailscale':1,'Orca Security':1,'1Password Enterprise':1
+            };
+
             var cats = [
-                { id:'core',  name:'Core Systems',         desc:'ERP, CRM, HCM, and financials that anchor enterprise operations.',
-                  apps:['SAP S/4HANA','Oracle Cloud','NetSuite','Dynamics 365','Salesforce','Workday','Epicor','Infor','Acumatica','Certinia','Sage Intacct','IFS','Unit4','HubSpot','Zoho One'] },
-                { id:'cloud', name:'Cloud Infrastructure', desc:'Compute, network, and platform services across hyperscalers.',
-                  apps:['Amazon Web Services','Microsoft Azure','Google Cloud','IBM Cloud','Oracle OCI','Terraform','Docker','Kubernetes','Cloudflare','VMware','Red Hat OpenShift','Akamai','DigitalOcean'] },
-                { id:'data',  name:'Data & Analytics',     desc:'Lakehouses, BI, ML pipelines, and reverse ETL.',
-                  apps:['Databricks','Snowflake','Tableau','Power BI','Qlik Sense','Looker','ThoughtSpot','Alteryx','Informatica','Talend','dbt','Apache Spark','Fivetran','Monte Carlo','Sisense'] },
-                { id:'integ', name:'Integration Layer',    desc:'iPaaS, APIs, and event driven connectivity.',
-                  apps:['MuleSoft','Workato','Boomi','Celigo','SnapLogic','Tray.io','Jitterbit','Zapier','Kong','Apigee','Postman','Atlassian','Slack','Monday.com','Notion'] },
-                { id:'auto',  name:'Automation',           desc:'RPA, workflow orchestration, and process intelligence.',
-                  apps:['UiPath','Automation Anywhere','Blue Prism','Camunda','Pegasystems','Appian','Nintex','ServiceNow','Jaggaer','Coupa','SAP Signavio','Power Automate'] },
-                { id:'ai',    name:'AI Systems',           desc:'Foundation models, retrieval, agents, and enterprise copilots.',
-                  apps:['OpenAI','Anthropic','Cohere','Mistral AI','Hugging Face','LangChain','LlamaIndex','DataRobot','C3.ai','H2O.ai','Scale AI','Weights & Biases','MLflow','Palantir','Enterprise Copilots'] },
-                { id:'sec',   name:'Security & Control',   desc:'Identity, EDR, posture management, and SIEM.',
-                  apps:['CrowdStrike','Palo Alto Networks','Okta','Zscaler','SentinelOne','Fortinet','CyberArk','SailPoint','Qualys','Rapid7','Wiz','Snyk','Varonis','KnowBe4','Proofpoint','Splunk'] }
+                { id:'core',  name:'Core Systems', tier:'Hyperscaler Tier 1',
+                  desc:'ERP, CRM, HCM, and financials that anchor enterprise operations.',
+                  apps:['SAP S/4HANA','Oracle Cloud','NetSuite','Dynamics 365','Salesforce','Workday','Epicor','Infor','Acumatica','Certinia','Sage Intacct','IFS','Unit4','HubSpot','Zoho One','Rippling','Deel'] },
+                { id:'cloud', name:'Cloud Infrastructure', tier:'Hyperscaler Tier 1',
+                  desc:'Compute, network, and platform services across hyperscalers.',
+                  apps:['Amazon Web Services','Microsoft Azure','Google Cloud','IBM Cloud','Oracle OCI','Terraform','Docker','Kubernetes','Cloudflare','VMware','Red Hat OpenShift','Akamai','DigitalOcean','Vercel','Pulumi'] },
+                { id:'data',  name:'Data & Analytics', tier:'Lakehouse + BI',
+                  desc:'Lakehouses, streaming, BI, ML pipelines, and reverse ETL.',
+                  apps:['Databricks','Snowflake','Tableau','Power BI','Qlik Sense','Looker','ThoughtSpot','Alteryx','Informatica','Talend','dbt','Apache Spark','Fivetran','Monte Carlo','Sisense','Confluent','Apache Kafka','Hightouch','Hex','Sigma Computing','Trino','Apache Iceberg'] },
+                { id:'integ', name:'Integration Layer', tier:'iPaaS + API',
+                  desc:'iPaaS, APIs, event streams, and CDP connectivity.',
+                  apps:['MuleSoft','Workato','Boomi','Celigo','SnapLogic','Tray.io','Jitterbit','Zapier','Kong','Apigee','Postman','Tines','n8n','Make.com','Segment'] },
+                { id:'auto',  name:'Automation', tier:'RPA + Agentic',
+                  desc:'RPA, workflow orchestration, process mining, and AI agents.',
+                  apps:['UiPath','Automation Anywhere','Blue Prism','Camunda','Pegasystems','Appian','Nintex','ServiceNow','Jaggaer','Coupa','SAP Signavio','Power Automate','Sierra','Decagon'] },
+                { id:'ai',    name:'AI Systems', tier:'Foundation + Agentic 2026',
+                  desc:'Foundation models, retrieval, vector stores, agent frameworks, and enterprise copilots.',
+                  apps:['OpenAI','Anthropic','Google Gemini','xAI Grok','Cohere','Mistral AI','Hugging Face','Amazon Bedrock','Azure AI Foundry','Google Vertex AI','Pinecone','Weaviate','Chroma','LangChain','LangGraph','LlamaIndex','CrewAI','AutoGen','Cursor','GitHub Copilot','Glean','Writer','Perplexity Enterprise','Groq','Together AI','Replicate','DataRobot','C3.ai','H2O.ai','Scale AI','Weights & Biases','MLflow','Palantir','Enterprise Copilots'] },
+                { id:'sec',   name:'Security & Control', tier:'Zero Trust + GRC',
+                  desc:'Identity, EDR, posture management, SIEM, and compliance automation.',
+                  apps:['CrowdStrike','Palo Alto Networks','Okta','Zscaler','SentinelOne','Fortinet','CyberArk','SailPoint','Qualys','Rapid7','Wiz','Snyk','Varonis','KnowBe4','Proofpoint','Splunk','Vanta','Drata','Tailscale','Orca Security','1Password Enterprise'] }
             ];
 
             var shared = {
@@ -8494,22 +8607,60 @@
                 'Workato':['integ','auto'],
                 'Splunk':['data','sec'],
                 'Palantir':['data','ai'],
-                'Power BI':['core','data']
+                'Power BI':['core','data'],
+                'Amazon Bedrock':['cloud','ai'],
+                'Azure AI Foundry':['cloud','ai'],
+                'Google Vertex AI':['cloud','ai'],
+                'Cloudflare':['cloud','sec']
             };
+
+            /* Marquee brands — uses Iconify CDN (simple-icons set), white via query param */
+            var marqueeBrands = [
+                { name:'Amazon Web Services', slug:'amazonwebservices' },
+                { name:'Microsoft Azure',     slug:'microsoftazure' },
+                { name:'Google Cloud',        slug:'googlecloud' },
+                { name:'Oracle',              slug:'oracle' },
+                { name:'SAP',                 slug:'sap' },
+                { name:'Salesforce',          slug:'salesforce' },
+                { name:'OpenAI',              slug:'openai' },
+                { name:'Anthropic',           slug:'anthropic' },
+                { name:'Databricks',          slug:'databricks' },
+                { name:'Snowflake',           slug:'snowflake' },
+                { name:'NVIDIA',              slug:'nvidia' },
+                { name:'Cloudflare',          slug:'cloudflare' },
+                { name:'GitHub',              slug:'github' },
+                { name:'Docker',              slug:'docker' },
+                { name:'Kubernetes',          slug:'kubernetes' },
+                { name:'Terraform',           slug:'terraform' }
+            ];
 
             var bento = document.getElementById('peBento');
             var filters = document.getElementById('peFilters');
             var wall = document.getElementById('peWall');
             var stats = document.getElementById('peStats');
+            var marquee = document.getElementById('peMarquee');
             if(!bento || !filters || !wall) return;
+
+            /* Build marquee (logos duplicated for seamless loop) */
+            if (marquee) {
+                var marqueeHtml = '';
+                for (var pass = 0; pass < 2; pass++) {
+                    marqueeBrands.forEach(function(b) {
+                        marqueeHtml += '<img class="pe-mq-logo" loading="lazy" alt="' + b.name + '" ' +
+                            'src="https://api.iconify.design/simple-icons:' + b.slug + '.svg?color=white" ' +
+                            'onerror="this.outerHTML=\'<span class=&quot;pe-mq-logo&quot; data-fallback>' + b.name + '</span>\'">';
+                    });
+                }
+                marquee.innerHTML = marqueeHtml;
+            }
 
             /* Tile size hints — anchors get extra real estate */
             var layout = {
                 core:  { cls:'pe-tile-row1', anchor:true,  preview:6 },
-                ai:    { cls:'pe-tile-row1', anchor:true,  preview:6 },
+                ai:    { cls:'pe-tile-row1', anchor:true,  preview:7 },
                 cloud: { cls:'pe-tile-row2-sm', anchor:false, preview:4 },
                 data:  { cls:'pe-tile-row2-sm', anchor:false, preview:4 },
-                sec:   { cls:'pe-tile-row2-lg', anchor:false, preview:5 },
+                sec:   { cls:'pe-tile-row2-lg', anchor:false, preview:6 },
                 integ: { cls:'pe-tile-row3', anchor:false, preview:5 },
                 auto:  { cls:'pe-tile-row3', anchor:false, preview:5 }
             };
@@ -8525,8 +8676,10 @@
                 var remaining = c.apps.length - preview.length;
 
                 var chipsHtml = preview.map(function(name) {
-                    var isShared = !!shared[name];
-                    return '<span class="pe-tile-chip' + (isShared ? ' is-shared' : '') + '">' + name + '</span>';
+                    var classes = 'pe-tile-chip';
+                    if (shared[name]) classes += ' is-shared';
+                    if (newSet[name]) classes += ' is-new';
+                    return '<span class="' + classes + '">' + name + '</span>';
                 }).join('');
                 if (remaining > 0) {
                     chipsHtml += '<span class="pe-tile-more">+' + remaining + '</span>';
@@ -8537,10 +8690,17 @@
                         '<div class="pe-tile-name">' + c.name + '</div>' +
                         '<div class="pe-tile-count">' + c.apps.length + ' Platforms</div>' +
                     '</div>' +
+                    (c.tier ? '<div class="pe-tile-tier">' + c.tier + '</div>' : '') +
                     '<div class="pe-tile-desc">' + c.desc + '</div>' +
                     '<div class="pe-tile-chips">' + chipsHtml + '</div>';
 
                 tile.addEventListener('click', function() { applyFilter(c.id); });
+                /* Cursor spotlight tracking */
+                tile.addEventListener('mousemove', function(e) {
+                    var r = tile.getBoundingClientRect();
+                    tile.style.setProperty('--pe-mx', (e.clientX - r.left) + 'px');
+                    tile.style.setProperty('--pe-my', (e.clientY - r.top) + 'px');
+                });
                 bento.appendChild(tile);
             });
 
@@ -8574,7 +8734,10 @@
 
             Object.keys(ownership).sort(function(a,b){ return a.localeCompare(b); }).forEach(function(name) {
                 var chip = document.createElement('span');
-                chip.className = 'pe-chip' + (shared[name] ? ' is-shared' : '');
+                var classes = 'pe-chip';
+                if (shared[name]) classes += ' is-shared';
+                if (newSet[name]) classes += ' is-new';
+                chip.className = classes;
                 chip.dataset.cats = ownership[name].join(',');
                 chip.textContent = name;
                 wall.appendChild(chip);
@@ -8584,18 +8747,42 @@
             var totalPlatforms = Object.keys(ownership).length;
             var sharedCount = Object.keys(shared).length;
             var statData = [
-                { num: totalPlatforms + '+', lbl: 'Platforms' },
-                { num: cats.length,           lbl: 'Ecosystems' },
-                { num: sharedCount + '+',     lbl: 'Cross Stack' },
-                { num: '24/7',                lbl: 'Coverage' }
+                { num: totalPlatforms, suffix:'+', lbl: 'Platforms' },
+                { num: cats.length,    suffix:'',  lbl: 'Ecosystems' },
+                { num: sharedCount,    suffix:'+', lbl: 'Cross Stack' },
+                { num: 0,              suffix:'',  lbl: 'Coverage', literal:'24/7' }
             ];
             statData.forEach(function(s) {
                 var div = document.createElement('div');
                 div.className = 'pe-stat';
-                div.innerHTML = '<div class="pe-stat-num">' + s.num + '</div>' +
-                                '<div class="pe-stat-lbl">' + s.lbl + '</div>';
+                var initial = s.literal || '0' + s.suffix;
+                div.innerHTML = '<div class="pe-stat-num" data-target="' + s.num + '" data-suffix="' + s.suffix + '"' +
+                    (s.literal ? ' data-literal="' + s.literal + '"' : '') + '>' + initial + '</div>' +
+                    '<div class="pe-stat-lbl">' + s.lbl + '</div>';
                 stats.appendChild(div);
             });
+
+            /* Count-up animation */
+            var countObs = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (!entry.isIntersecting) return;
+                    countObs.unobserve(entry.target);
+                    var el = entry.target;
+                    if (el.dataset.literal) { el.textContent = el.dataset.literal; return; }
+                    var target = parseInt(el.dataset.target, 10);
+                    var suffix = el.dataset.suffix || '';
+                    var start = performance.now();
+                    var dur = 900;
+                    function tick(now) {
+                        var t = Math.min((now - start) / dur, 1);
+                        var eased = 1 - Math.pow(1 - t, 3);
+                        el.textContent = Math.round(target * eased) + suffix;
+                        if (t < 1) requestAnimationFrame(tick);
+                    }
+                    requestAnimationFrame(tick);
+                });
+            }, { threshold: 0.3 });
+            stats.querySelectorAll('.pe-stat-num').forEach(function(el) { countObs.observe(el); });
 
             /* Filter handler */
             function applyFilter(catId) {
