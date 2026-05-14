@@ -870,15 +870,13 @@
             display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
             margin-bottom: 0.8rem;
         }
-        .pe-info-tier, .pe-info-count {
+        .pe-info-tier {
             display: inline-block;
             font-family: var(--mono); font-size: 0.6rem; font-weight: 600;
             letter-spacing: 0.1em; text-transform: uppercase;
             padding: 4px 9px;
             border-radius: 4px;
             white-space: nowrap;
-        }
-        .pe-info-tier {
             color: rgba(255,255,255,0.7);
             background: rgba(255,255,255,0.06);
             border: 1px solid rgba(255,255,255,0.12);
@@ -887,11 +885,6 @@
             color: #f5c800;
             background: rgba(245,200,0,0.08);
             border-color: rgba(245,200,0,0.3);
-        }
-        .pe-info-count {
-            color: rgba(255,255,255,0.55);
-            background: transparent;
-            border: 1px solid rgba(255,255,255,0.1);
         }
         .pe-info-title {
             font-family: var(--sans); font-weight: 700;
@@ -8624,8 +8617,6 @@
                 void info.offsetWidth; /* restart animation */
 
                 if (catId === 'all') {
-                    var totalPlatforms = Object.keys(ownership).length;
-                    var sharedTotal = Object.keys(shared).length;
                     var headlinePlatforms = [
                         'Amazon Web Services','Microsoft Azure','Google Cloud',
                         'OpenAI','Anthropic','Databricks','Snowflake','Salesforce','SAP S/4HANA'
@@ -8637,7 +8628,6 @@
                     html =
                         '<div class="pe-info-meta">' +
                             '<span class="pe-info-tier">Full Stack Coverage</span>' +
-                            '<span class="pe-info-count">' + totalPlatforms + '+ Platforms · ' + cats.length + ' Ecosystems · ' + sharedTotal + '+ Cross Stack</span>' +
                         '</div>' +
                         '<h3 class="pe-info-title">Complete enterprise ecosystem</h3>' +
                         '<p class="pe-info-desc">From foundational ERP and cloud infrastructure through modern AI and zero trust security. Unlock delivers transformation across every layer of the enterprise stack.</p>' +
@@ -8654,7 +8644,6 @@
                     html =
                         '<div class="pe-info-meta">' +
                             '<span class="pe-info-tier">' + c.tier + '</span>' +
-                            '<span class="pe-info-count">' + c.apps.length + ' Platforms</span>' +
                         '</div>' +
                         '<h3 class="pe-info-title">' + c.name + '</h3>' +
                         '<p class="pe-info-desc">' + c.desc + '</p>' +
