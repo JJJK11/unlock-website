@@ -897,19 +897,6 @@
             border-color: rgba(245,200,0,0.25);
         }
 
-        /* NEW badge on chips */
-        .pe-tile-chip.is-new::before,
-        .pe-chip.is-new::before {
-            content: 'NEW';
-            font-family: var(--mono); font-size: 0.5rem; font-weight: 700;
-            color: #050B1F;
-            background: #f5c800;
-            padding: 1px 4px;
-            border-radius: 2px;
-            margin-right: 5px;
-            letter-spacing: 0.05em;
-            vertical-align: 1px;
-        }
 
         .pe-tile-row1 { grid-column: span 2; grid-row: 1; }
         .pe-tile-row2-sm { grid-column: span 1; grid-row: 2; }
@@ -8515,21 +8502,6 @@
 
         /* ── Platform Expertise: Bento + Logo Wall ── */
         (function() {
-            /* Platforms added in the 2026 refresh — flagged with NEW badge */
-            var newSet = {
-                'Rippling':1,'Deel':1,
-                'Vercel':1,'Pulumi':1,
-                'Confluent':1,'Apache Kafka':1,'Hightouch':1,'Hex':1,'Sigma Computing':1,'Trino':1,'Apache Iceberg':1,
-                'Tines':1,'n8n':1,'Make.com':1,'Segment':1,
-                'Sierra':1,'Decagon':1,
-                'Amazon Bedrock':1,'Azure AI Foundry':1,'Google Vertex AI':1,'Google Gemini':1,'xAI Grok':1,
-                'Pinecone':1,'Weaviate':1,'Chroma':1,
-                'CrewAI':1,'AutoGen':1,'LangGraph':1,
-                'Cursor':1,'GitHub Copilot':1,'Glean':1,'Writer':1,'Perplexity Enterprise':1,
-                'Groq':1,'Together AI':1,'Replicate':1,
-                'Vanta':1,'Drata':1,'Tailscale':1,'Orca Security':1,'1Password Enterprise':1
-            };
-
             var cats = [
                 { id:'core',  name:'Core Systems', tier:'Hyperscaler Tier 1',
                   desc:'ERP, CRM, HCM, and financials that anchor enterprise operations.',
@@ -8633,7 +8605,6 @@
                 var chipsHtml = preview.map(function(name) {
                     var classes = 'pe-tile-chip';
                     if (shared[name]) classes += ' is-shared';
-                    if (newSet[name]) classes += ' is-new';
                     return '<span class="' + classes + '">' + name + '</span>';
                 }).join('');
                 if (remaining > 0) {
@@ -8690,7 +8661,6 @@
                 var chip = document.createElement('span');
                 var classes = 'pe-chip';
                 if (shared[name]) classes += ' is-shared';
-                if (newSet[name]) classes += ' is-new';
                 chip.className = classes;
                 chip.dataset.cats = ownership[name].join(',');
                 chip.textContent = name;
