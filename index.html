@@ -1762,78 +1762,13 @@
                         <p class="sec-lead">Transformation fails when it's treated as a single event. We run a five-phase operating discipline that moves from diagnosis through institutionalized governance: each phase producing measurable capability, governed by data, and directly tied to enterprise outcomes.</p>
                     </div>
                 </div>
-                <div class="acc acc-dark rv">
-                    <div class="acc-item active">
-                        <div class="acc-head" onclick="toggleAcc(this)">
-                            <div class="acc-num">01</div>
-                            <h3>Discovery & Context</h3>
-                            <div class="acc-brief">Systems, workflows, operating model, readiness</div>
-                            <div class="acc-arrow"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M19 9l-7 7-7-7"/></svg></div>
-                        </div>
-                        <div class="acc-body">
-                            <div class="acc-content">
-                                <p class="acc-text">We build a factual, data-driven view of your current state: systems, workflows, operating model, governance, and organizational readiness. This includes stakeholder interviews, process mapping, technology inventory, and a control-point analysis across business and IT. The output is a documented baseline with clear boundaries, dependencies, and readiness scores that inform every decision downstream.</p>
-                                <div class="acc-tags"><span class="acc-tag">Stakeholder interviews</span><span class="acc-tag">Process mapping</span><span class="acc-tag">Technology inventory</span><span class="acc-tag">Control-point analysis</span><span class="acc-tag">Readiness scoring</span></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="acc-item">
-                        <div class="acc-head" onclick="toggleAcc(this)">
-                            <div class="acc-num">02</div>
-                            <h3>Design & Governance</h3>
-                            <div class="acc-brief">Operating model, RASCI, risk, decision forums</div>
-                            <div class="acc-arrow"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M19 9l-7 7-7-7"/></svg></div>
-                        </div>
-                        <div class="acc-body">
-                            <div class="acc-content">
-                                <p class="acc-text">Discovery findings are translated into an actionable transformation architecture: target operating model, accountability structures (RASCI), risk posture, decision forums, and change management framework. We define governance cadence, escalation paths, and success metrics before any build work begins, ensuring the program has structural integrity from day one.</p>
-                                <div class="acc-tags"><span class="acc-tag">Target operating model</span><span class="acc-tag">RASCI</span><span class="acc-tag">Risk posture</span><span class="acc-tag">Decision forums</span><span class="acc-tag">Change architecture</span></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="acc-item">
-                        <div class="acc-head" onclick="toggleAcc(this)">
-                            <div class="acc-num">03</div>
-                            <h3>Build & Integrate</h3>
-                            <div class="acc-brief">Platforms, automation, AI, security, observability</div>
-                            <div class="acc-arrow"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M19 9l-7 7-7-7"/></svg></div>
-                        </div>
-                        <div class="acc-body">
-                            <div class="acc-content">
-                                <p class="acc-text">We configure platforms, automation layers, AI capabilities, and integration pipelines aligned to your enterprise systems. This phase covers solution architecture, development sprints, API orchestration, security hardening, observability instrumentation, and UAT. Every component is built against the governance framework established in Phase 02: no shadow IT, no ungoverned deployments.</p>
-                                <div class="acc-tags"><span class="acc-tag">Solution architecture</span><span class="acc-tag">API orchestration</span><span class="acc-tag">Security hardening</span><span class="acc-tag">Observability</span><span class="acc-tag">UAT</span></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="acc-item">
-                        <div class="acc-head" onclick="toggleAcc(this)">
-                            <div class="acc-num">04</div>
-                            <h3>Scale & Adopt</h3>
-                            <div class="acc-brief">Rollout, training, playbooks, adoption tracking</div>
-                            <div class="acc-arrow"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M19 9l-7 7-7-7"/></svg></div>
-                        </div>
-                        <div class="acc-body">
-                            <div class="acc-content">
-                                <p class="acc-text">Pilots transition into production through structured rollout: phased deployment, role-based training, operational playbooks, and change management embedded in the business. We run adoption tracking, feedback loops, and performance benchmarks to ensure the organization absorbs the change rather than reverting to prior patterns. This is where transformation becomes operational reality.</p>
-                                <div class="acc-tags"><span class="acc-tag">Phased deployment</span><span class="acc-tag">Role-based training</span><span class="acc-tag">Playbooks</span><span class="acc-tag">Adoption tracking</span><span class="acc-tag">Performance benchmarks</span></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="acc-item">
-                        <div class="acc-head" onclick="toggleAcc(this)">
-                            <div class="acc-num">05</div>
-                            <h3>Govern & Evolve</h3>
-                            <div class="acc-brief">Metrics, review cycles, benefits realization, continuous improvement</div>
-                            <div class="acc-arrow"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M19 9l-7 7-7-7"/></svg></div>
-                        </div>
-                        <div class="acc-body">
-                            <div class="acc-content">
-                                <p class="acc-text">We institutionalize governance, performance metrics, review cycles, and benefits realization tracking. This includes establishing continuous improvement pipelines, quarterly maturity assessments, and executive reporting that ties transformation outcomes directly to enterprise KPIs. The goal is a self-sustaining operating discipline: not a dependency on external consultants.</p>
-                                <div class="acc-tags"><span class="acc-tag">Governance</span><span class="acc-tag">KPI tracking</span><span class="acc-tag">Maturity assessments</span><span class="acc-tag">Executive reporting</span><span class="acc-tag">Continuous improvement</span></div>
-                            </div>
-                        </div>
-                    </div>
+                <!-- Phase filter bar -->
+                <div class="pe-filterbar rv">
+                    <div class="pe-filterbar-inner" id="apFilters"></div>
                 </div>
+
+                <!-- Contextual info panel -->
+                <div class="pe-info rv" id="apInfo"></div>
             </div>
         </section>
 
@@ -8673,6 +8608,68 @@
 
             /* Initial state: Core Systems (chips filtered to core; All Platforms is opt in) */
             applyFilter('core');
+        })();
+
+        /* ── Our Approach: Phase pills + info panel ── */
+        (function() {
+            var phases = [
+                { id:'p1', num:'01', name:'Discovery & Context', tier:'Phase 01',
+                  desc:'We build a factual, data driven view of your current state: systems, workflows, operating model, governance, and organizational readiness. This includes stakeholder interviews, process mapping, technology inventory, and a control point analysis across business and IT. The output is a documented baseline with clear boundaries, dependencies, and readiness scores that inform every decision downstream.',
+                  tags:['Stakeholder interviews','Process mapping','Technology inventory','Control point analysis','Readiness scoring'] },
+                { id:'p2', num:'02', name:'Design & Governance', tier:'Phase 02',
+                  desc:'Discovery findings are translated into an actionable transformation architecture: target operating model, accountability structures (RASCI), risk posture, decision forums, and change management framework. We define governance cadence, escalation paths, and success metrics before any build work begins, ensuring the program has structural integrity from day one.',
+                  tags:['Target operating model','RASCI','Risk posture','Decision forums','Change architecture'] },
+                { id:'p3', num:'03', name:'Build & Integrate', tier:'Phase 03',
+                  desc:'We configure platforms, automation layers, AI capabilities, and integration pipelines aligned to your enterprise systems. This phase covers solution architecture, development sprints, API orchestration, security hardening, observability instrumentation, and UAT. Every component is built against the governance framework established in Phase 02: no shadow IT, no ungoverned deployments.',
+                  tags:['Solution architecture','API orchestration','Security hardening','Observability','UAT'] },
+                { id:'p4', num:'04', name:'Scale & Adopt', tier:'Phase 04',
+                  desc:'Pilots transition into production through structured rollout: phased deployment, role based training, operational playbooks, and change management embedded in the business. We run adoption tracking, feedback loops, and performance benchmarks to ensure the organization absorbs the change rather than reverting to prior patterns. This is where transformation becomes operational reality.',
+                  tags:['Phased deployment','Role based training','Playbooks','Adoption tracking','Performance benchmarks'] },
+                { id:'p5', num:'05', name:'Govern & Evolve', tier:'Phase 05',
+                  desc:'We institutionalize governance, performance metrics, review cycles, and benefits realization tracking. This includes establishing continuous improvement pipelines, quarterly maturity assessments, and executive reporting that ties transformation outcomes directly to enterprise KPIs. The goal is a self sustaining operating discipline: not a dependency on external consultants.',
+                  tags:['Governance','KPI tracking','Maturity assessments','Executive reporting','Continuous improvement'] }
+            ];
+
+            var filters = document.getElementById('apFilters');
+            var info = document.getElementById('apInfo');
+            if(!filters || !info) return;
+
+            phases.forEach(function(p, i) {
+                var btn = document.createElement('button');
+                btn.className = 'pe-pill' + (i === 0 ? ' is-active' : '');
+                btn.dataset.phase = p.id;
+                btn.textContent = p.num + ' ' + p.name;
+                btn.addEventListener('click', function() { applyPhase(p.id); });
+                filters.appendChild(btn);
+            });
+
+            function renderPhase(phaseId) {
+                var p = phases.find(function(x){ return x.id === phaseId; });
+                if (!p) return;
+                info.classList.remove('pe-info-fade');
+                info.classList.add('is-anchor');
+                void info.offsetWidth;
+                var tagsHtml = p.tags.map(function(t) {
+                    return '<span class="pe-info-highlight">' + t + '</span>';
+                }).join('');
+                info.innerHTML =
+                    '<div class="pe-info-meta">' +
+                        '<span class="pe-info-tier">' + p.tier + '</span>' +
+                    '</div>' +
+                    '<h3 class="pe-info-title">' + p.name + '</h3>' +
+                    '<p class="pe-info-desc">' + p.desc + '</p>' +
+                    '<div class="pe-info-highlights">' + tagsHtml + '</div>';
+                info.classList.add('pe-info-fade');
+            }
+
+            function applyPhase(phaseId) {
+                filters.querySelectorAll('.pe-pill').forEach(function(p) {
+                    p.classList.toggle('is-active', p.dataset.phase === phaseId);
+                });
+                renderPhase(phaseId);
+            }
+
+            applyPhase('p1');
         })();
     </script>
 
