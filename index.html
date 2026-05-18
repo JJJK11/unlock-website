@@ -8571,10 +8571,10 @@
             /* How many top platforms to highlight per category */
             var highlightCount = { core:6, cloud:5, data:5, integ:5, auto:5, ai:7, sec:6 };
 
-            /* Build filter pills */
-            var pills = [{ id:'all', name:'All Platforms' }].concat(cats.map(function(c) {
+            /* Build filter pills: categories first, All Platforms at the end */
+            var pills = cats.map(function(c) {
                 return { id:c.id, name:c.name };
-            }));
+            }).concat([{ id:'all', name:'All Platforms' }]);
             pills.forEach(function(p, i) {
                 var btn = document.createElement('button');
                 btn.className = 'pe-pill' + (i === 0 ? ' is-active' : '');
@@ -8671,8 +8671,8 @@
                 }
             }
 
-            /* Initial state: All Platforms */
-            renderInfo('all');
+            /* Initial state: Core Systems (chips filtered to core; All Platforms is opt in) */
+            applyFilter('core');
         })();
     </script>
 
