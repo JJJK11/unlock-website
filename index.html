@@ -1731,10 +1731,10 @@
                 <div class="mat-wrap rv">
                     <div class="mat-bar"><div class="mat-bar-fill" id="matFill"></div></div>
                     <div class="mat-stages">
-                        <div class="mat-stage"><div class="mat-stage-n">Level 01</div><h4>Traditional</h4><ul><li>70%+ manual workflows</li><li>Automation below 10%</li><li>Siloed systems, no APIs</li><li>No formal governance</li></ul></div>
-                        <div class="mat-stage"><div class="mat-stage-n">Level 02</div><h4>Transitional</h4><ul><li>1 to 3 pilots with baseline KPIs</li><li>10 to 30% targeted automation</li><li>Initial governance and RASCI</li><li>80 to 90% data accuracy</li></ul></div>
-                        <div class="mat-stage"><div class="mat-stage-n">Level 03</div><h4>Augmented</h4><ul><li>Standardized processes across 3+ functions</li><li>30 to 60% workflow automation</li><li>Governed decision forums and audit trails</li><li>Operational KPIs tied to platform data</li></ul></div>
-                        <div class="mat-stage"><div class="mat-stage-n">Level 04</div><h4>Intelligent Enterprise</h4><ul><li>Integrated operating model with closed loop performance</li><li>Agentic workflows with bounded autonomy</li><li>Process intelligence and live observability across operations</li><li>Continuous improvement pipeline active</li></ul></div>
+                        <div class="mat-stage"><div class="mat-stage-n">Level 01</div><h4>Traditional</h4><ul><li>Work is manual and email driven</li><li>Siloed systems, no APIs</li><li>No formal governance</li><li>No reliable process data</li></ul></div>
+                        <div class="mat-stage"><div class="mat-stage-n">Level 02</div><h4>Transitional</h4><ul><li>First automation pilots with baseline KPIs</li><li>Workflows documented and standardized</li><li>Initial governance and RASCI</li><li>Data quality improving</li></ul></div>
+                        <div class="mat-stage"><div class="mat-stage-n">Level 03</div><h4>Augmented</h4><ul><li>AI assists daily work across several functions</li><li>Workflow automation in production</li><li>Governed decision forums and audit trails</li><li>Operational KPIs tied to platform data</li></ul></div>
+                        <div class="mat-stage"><div class="mat-stage-n">Level 04</div><h4>Intelligent Enterprise</h4><ul><li>Orchestrated human and agent workflows with bounded autonomy</li><li>Process intelligence and live observability</li><li>Closed loop performance management</li><li>Continuous improvement pipeline active</li></ul></div>
                     </div>
                 </div>
             </div>
@@ -1772,12 +1772,12 @@
                 <div class="sec-intro rv">
                     <div class="sec-tag">Transformation Diagnostic</div>
                     <div>
-                        <h2 class="sec-title">Automation readiness<br>assessment</h2>
-                        <p class="sec-lead">Describe a business process and our engine analyzes automation potential, workload distribution, and a recommended future state, from assisted work through to governed agentic workflows.</p>
+                        <h2 class="sec-title">Process<br>diagnostic</h2>
+                        <p class="sec-lead">Describe a business process step by step. The engine maps each step to an automation mode, from human required to agentic AI, scores overall readiness, and returns an indicative roadmap of quick wins, medium term builds, and strategic moves.</p>
                     </div>
                 </div>
                 <div class="diag rv">
-                    <div class="diag-chrome"><div class="diag-dots"><span class="diag-dot"></span><span class="diag-dot"></span><span class="diag-dot"></span></div><div class="diag-title">Automation Readiness Assessment</div></div>
+                    <div class="diag-chrome"><div class="diag-dots"><span class="diag-dot"></span><span class="diag-dot"></span><span class="diag-dot"></span></div><div class="diag-title">Process Diagnostic</div></div>
                     <div class="diag-body">
                         <div class="diag-form" id="dF">
                             <div class="diag-wizard-progress" id="dWizProg" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="6" aria-label="Assessment progress: step 1 of 6">
@@ -1899,7 +1899,7 @@
                     <div class="sec-tag">Insights</div>
                     <div>
                         <h2 class="sec-title">Latest from<br>Unlock Solutions</h2>
-                        <p class="sec-lead">Emerging developments across AI and technology.</p>
+                        <p class="sec-lead">From our weekly review of developments across AI and technology.</p>
                     </div>
                 </div>
                 <div class="ins-grid rv">
@@ -2119,20 +2119,20 @@
         };
 
         const INDUSTRY_BENCHMARKS = {
-            'Financial Services': { avg:52, top:74, areas:'reconciliation, compliance monitoring, agentic payment processing, and regulatory reporting', note:'Agentic AI is transforming compliance monitoring and fraud detection in real time; intelligent document processing now handles KYC, loan origination, and regulatory filings with minimal human review (2025-2026 industry data)' },
-            'Healthcare': { avg:40, top:58, areas:'clinical documentation, claims processing, patient scheduling, and care coordination', note:'Clinical AI assistants and ambient documentation are reaching production scale; AI-powered diagnostics and care coordination agents are accelerating from pilot to deployment across health systems (2025-2026 industry data)' },
-            'Manufacturing': { avg:48, top:68, areas:'predictive maintenance, quality control, supply chain optimization, and production scheduling', note:'AI agents now orchestrate predictive maintenance and quality inspection via computer vision; digital twins paired with AI enable real-time production optimization across the factory floor (2025-2026 industry data)' },
-            'Retail': { avg:45, top:65, areas:'demand forecasting, inventory optimization, personalized marketing, and customer service AI', note:'Hyper-personalization engines and conversational commerce agents are mainstream; AI-powered demand sensing now drives inventory and pricing decisions in real time (2025-2026 industry data)' },
-            'Technology': { avg:65, top:84, areas:'CI/CD pipelines, agentic coding, incident management, and customer support', note:'AI-native development is standard practice with copilots and agentic coding tools delivering significant productivity gains; autonomous DevOps agents handle CI/CD, testing, and incident response (2025-2026 industry data)' },
-            'Government': { avg:30, top:46, areas:'document processing, citizen services, compliance reporting, and predictive analytics', note:'Citizen-facing AI assistants and intelligent case management are expanding across agencies; AI governance frameworks (NIST AI RMF, Treasury Board directives) are shaping responsible deployment (2025-2026 industry data)' },
-            'Energy & Utilities': { avg:42, top:62, areas:'predictive maintenance, field workforce optimization, outage management, and grid analytics', note:'Grid optimization AI and predictive asset management agents are reducing outages and maintenance costs; carbon tracking AI supports regulatory compliance and sustainability reporting (2025-2026 industry data)' },
-            'Professional Services': { avg:46, top:66, areas:'document generation, contract analysis, client reporting, and knowledge management', note:'AI-augmented advisory and RAG-powered knowledge retrieval are transforming consulting and legal; automated deliverable generation and agentic research assistants are boosting utilization (2025-2026 industry data)' },
-            'Education': { avg:33, top:50, areas:'enrollment processing, adaptive learning, student communications, and administrative automation', note:'Adaptive learning AI and AI tutoring agents are personalizing instruction at scale; automated assessment and administrative AI are freeing educators to focus on teaching (2025-2026 industry data)' },
-            'Telecommunications': { avg:58, top:78, areas:'autonomous network management, customer service AI, billing operations, and churn prevention', note:'Network self-healing AI agents autonomously detect and resolve outages; conversational billing and churn prediction agents are standard in leading providers (2025-2026 industry data)' },
-            'Real Estate': { avg:34, top:52, areas:'lease management, property marketing, price modeling, and tenant communications', note:'AI property valuation models and intelligent lease management platforms are gaining adoption; PropTech automation is streamlining tenant communications and portfolio analytics (2025-2026 industry data)' },
-            'Non-profit / NGO': { avg:26, top:40, areas:'donor management, grant reporting, program tracking, and fundraising automation', note:'Donor intelligence AI and program impact analytics are emerging; grant writing assistance and fundraising automation help resource-constrained organizations scale their missions (2025-2026 industry data)' },
-            'Logistics & Transportation': { avg:50, top:70, areas:'route optimization, fleet management, shipment tracking, and demand planning', note:'Autonomous route optimization and predictive ETA agents are standard in leading fleets; AI freight matching and demand sensing are reducing empty miles and improving delivery accuracy (2025-2026 industry data)' },
-            'Media & Entertainment': { avg:46, top:66, areas:'content production, audience analytics, rights management, and ad optimization', note:'Multimodal generative AI tools are production-ready for content creation; AI audience analytics and automated rights management are reshaping production and distribution workflows (2025-2026 industry data)' }
+            'Financial Services': { avg:52, top:74, areas:'reconciliation, compliance monitoring, agentic payment processing, and regulatory reporting', note:'Agentic AI is transforming compliance monitoring and fraud detection in real time; intelligent document processing now handles KYC, loan origination, and regulatory filings with minimal human review (2025 to 2026 industry data)' },
+            'Healthcare': { avg:40, top:58, areas:'clinical documentation, claims processing, patient scheduling, and care coordination', note:'Clinical AI assistants and ambient documentation are reaching production scale; AI-powered diagnostics and care coordination agents are accelerating from pilot to deployment across health systems (2025 to 2026 industry data)' },
+            'Manufacturing': { avg:48, top:68, areas:'predictive maintenance, quality control, supply chain optimization, and production scheduling', note:'AI agents now orchestrate predictive maintenance and quality inspection via computer vision; digital twins paired with AI enable real-time production optimization across the factory floor (2025 to 2026 industry data)' },
+            'Retail': { avg:45, top:65, areas:'demand forecasting, inventory optimization, personalized marketing, and customer service AI', note:'Hyper-personalization engines and conversational commerce agents are mainstream; AI-powered demand sensing now drives inventory and pricing decisions in real time (2025 to 2026 industry data)' },
+            'Technology': { avg:65, top:84, areas:'CI/CD pipelines, agentic coding, incident management, and customer support', note:'AI-native development is standard practice with copilots and agentic coding tools delivering significant productivity gains; autonomous DevOps agents handle CI/CD, testing, and incident response (2025 to 2026 industry data)' },
+            'Government': { avg:30, top:46, areas:'document processing, citizen services, compliance reporting, and predictive analytics', note:'Citizen-facing AI assistants and intelligent case management are expanding across agencies; AI governance frameworks (NIST AI RMF, Treasury Board directives) are shaping responsible deployment (2025 to 2026 industry data)' },
+            'Energy & Utilities': { avg:42, top:62, areas:'predictive maintenance, field workforce optimization, outage management, and grid analytics', note:'Grid optimization AI and predictive asset management agents are reducing outages and maintenance costs; carbon tracking AI supports regulatory compliance and sustainability reporting (2025 to 2026 industry data)' },
+            'Professional Services': { avg:46, top:66, areas:'document generation, contract analysis, client reporting, and knowledge management', note:'AI-augmented advisory and RAG-powered knowledge retrieval are transforming consulting and legal; automated deliverable generation and agentic research assistants are boosting utilization (2025 to 2026 industry data)' },
+            'Education': { avg:33, top:50, areas:'enrollment processing, adaptive learning, student communications, and administrative automation', note:'Adaptive learning AI and AI tutoring agents are personalizing instruction at scale; automated assessment and administrative AI are freeing educators to focus on teaching (2025 to 2026 industry data)' },
+            'Telecommunications': { avg:58, top:78, areas:'autonomous network management, customer service AI, billing operations, and churn prevention', note:'Network self-healing AI agents autonomously detect and resolve outages; conversational billing and churn prediction agents are standard in leading providers (2025 to 2026 industry data)' },
+            'Real Estate': { avg:34, top:52, areas:'lease management, property marketing, price modeling, and tenant communications', note:'AI property valuation models and intelligent lease management platforms are gaining adoption; PropTech automation is streamlining tenant communications and portfolio analytics (2025 to 2026 industry data)' },
+            'Non-profit / NGO': { avg:26, top:40, areas:'donor management, grant reporting, program tracking, and fundraising automation', note:'Donor intelligence AI and program impact analytics are emerging; grant writing assistance and fundraising automation help resource-constrained organizations scale their missions (2025 to 2026 industry data)' },
+            'Logistics & Transportation': { avg:50, top:70, areas:'route optimization, fleet management, shipment tracking, and demand planning', note:'Autonomous route optimization and predictive ETA agents are standard in leading fleets; AI freight matching and demand sensing are reducing empty miles and improving delivery accuracy (2025 to 2026 industry data)' },
+            'Media & Entertainment': { avg:46, top:66, areas:'content production, audience analytics, rights management, and ad optimization', note:'Multimodal generative AI tools are production-ready for content creation; AI audience analytics and automated rights management are reshaping production and distribution workflows (2025 to 2026 industry data)' }
         };
 
         const INDUSTRY_CONTEXT = {
@@ -4098,9 +4098,9 @@
             const regulated = ['Healthcare', 'Financial Services', 'Government'];
             const operationalIds = new Set(['SCHEDULING', 'EMAIL_COMMS', 'FIELD_SERVICE', 'REPORTING', 'DATA_ENTRY', 'ONBOARDING', 'TICKET_MGMT']);
             if (step.cat === 'ai' && regulated.includes(industry) && !operationalIds.has(step.primaryId))
-                return 'Regulatory compliance review required \u2014 human-in-the-loop may be mandated';
+                return 'Regulatory compliance review required: human in the loop may be mandated';
             if (step.complexity > 0.5)
-                return 'Multi-system integration adds 4\u20138 weeks to implementation';
+                return 'Multi-system integration adds 4 to 8 weeks to implementation';
             if (step.techTier === 'Agentic AI')
                 return 'Requires robust testing, monitoring, and fallback protocols before autonomous deployment';
             if (step.complexity > 0.4)
@@ -6715,9 +6715,9 @@
             const secondScore = topMatches.length > 1 ? topMatches[1].score: 0;
             const matchedCount = topMatches.length > 0 ? topMatches[0].matched.length: 0;
             let confidence;
-            if (topScore >= 10.0 && matchedCount >= 4) confidence = 'High';
-            else if (topScore >= 6.0 && (topScore - secondScore) >= 3.0 && matchedCount >= 3) confidence = 'High';
-            else if (topScore >= 4.0 && matchedCount >= 2) confidence = 'Medium';
+            if (topScore >= 8.0 && matchedCount >= 3) confidence = 'High';
+            else if (topScore >= 6.0 && (topScore - secondScore) >= 3.0) confidence = 'High';
+            else if (topScore >= 3.0) confidence = 'Medium';
             else confidence = 'Low';
 
             const effortWeight = detectEffort(stepText);
@@ -6840,11 +6840,11 @@
 
             const overall = Math.round(Math.min(100, apScore + pmScore + cxScore + ifScore));
             let label;
-            if (overall >= 80) label = 'Excellent \u2014 Strong automation candidate';
-            else if (overall >= 65) label = 'Strong \u2014 Significant automation opportunity';
-            else if (overall >= 45) label = 'Moderate \u2014 Targeted automation recommended';
-            else if (overall >= 25) label = 'Developing \u2014 Foundational improvements first';
-            else label = 'Early Stage \u2014 Process standardization needed';
+            if (overall >= 80) label = 'Excellent: strong automation candidate';
+            else if (overall >= 65) label = 'Strong: significant automation opportunity';
+            else if (overall >= 45) label = 'Moderate: targeted automation recommended';
+            else if (overall >= 25) label = 'Developing: foundational improvements first';
+            else label = 'Early stage: process standardization needed';
 
             return {
                 overall, label,
@@ -6946,7 +6946,7 @@
             const medCount = steps.filter(s => s.potentialLabel === 'Medium').length;
             const indCtx = INDUSTRY_CONTEXT[industry];
             const deptCtx = DEPARTMENT_CONTEXT[department];
-            let summary = `Analyzed ${n} workflow step${n !== 1 ? 's': ''} across your ${department || 'organization'} with a readiness score of ${readiness.overall}/100 (${readiness.label.split(' \u2014 ')[0]}).`;
+            let summary = `Analyzed ${n} workflow step${n !== 1 ? 's': ''} across your ${department || 'organization'} with a readiness score of ${readiness.overall}/100 (${readiness.label.split(':')[0]}).`;
             if (highCount > 0) summary += ` ${highCount} step${highCount > 1 ? 's show': ' shows'} high automation potential.`;
             if (medCount > 0) summary += ` ${medCount} step${medCount > 1 ? 's have': ' has'} medium potential with targeted improvements.`;
             if (indCtx) summary += ` Given your ${industry.toLowerCase()} context, we recommend prioritizing ${indCtx.focus}.`;
@@ -7795,20 +7795,21 @@
 
             /* Build "future": reference specific steps by name, not generic types */
             let future = '';
+            const stepPhrase = s => esc(s.stepName.charAt(0).toLowerCase() + s.stepName.slice(1));
             if (highSteps.length > 0) {
                 const topStep = highSteps[0];
-                const topLabel = typeLabels[topStep.primaryId] || topStep.stepName.toLowerCase();
+                const topLabel = typeLabels[topStep.primaryId];
                 const topSavings = Math.round(topStep.timeSavings * 100);
-                future = `Your highest-impact opportunity is in <strong>${esc(topStep.stepName.toLowerCase())}</strong> (${topLabel}), which could reduce processing time by <strong>${topSavings}%</strong>.`;
+                future = `Your highest-impact opportunity is in <strong>${stepPhrase(topStep)}</strong>${topLabel ? ` (${topLabel})` : ''}, which could reduce processing time by <strong>${topSavings}%</strong>.`;
                 if (highSteps.length > 1) {
                     const secondStep = highSteps[1];
-                    const secondLabel = typeLabels[secondStep.primaryId] || secondStep.stepName.toLowerCase();
-                    future += ` Combined with improvements to <strong>${esc(secondStep.stepName.toLowerCase())}</strong> (${secondLabel}), your team could redirect meaningful capacity to <strong>${highValue}</strong>.`;
+                    const secondLabel = typeLabels[secondStep.primaryId];
+                    future += ` Combined with improvements to <strong>${stepPhrase(secondStep)}</strong>${secondLabel ? ` (${secondLabel})` : ''}, your team could redirect meaningful capacity to <strong>${highValue}</strong>.`;
                 } else if (medSteps.length > 0) {
-                    future += ` Paired with medium-term improvements to <strong>${esc(medSteps[0].stepName.toLowerCase())}</strong>, your team could free up capacity for <strong>${highValue}</strong>.`;
+                    future += ` Paired with medium-term improvements to <strong>${stepPhrase(medSteps[0])}</strong>, your team could free up capacity for <strong>${highValue}</strong>.`;
                 }
             } else if (medSteps.length > 0) {
-                future = `With incremental automation of <strong>${esc(medSteps[0].stepName.toLowerCase())}</strong> and related steps, your team could free up capacity for <strong>${highValue}</strong>.`;
+                future = `With incremental automation of <strong>${stepPhrase(medSteps[0])}</strong> and related steps, your team could free up capacity for <strong>${highValue}</strong>.`;
             } else {
                 future = `Process standardization and targeted improvements could free your team to focus on <strong>${highValue}</strong>.`;
             }
@@ -8119,11 +8120,26 @@
                     const totalWeight = analyzed.reduce((s, x) => s + x.effortWeight, 0) || 1;
                     const baseHrs = (teamSize || 0) * 160;
                     const hc = hourlyCost || 0;
+                    /* Same workflow share assumption as estimateROI so per-step figures reconcile with the ROI panel */
+                    const wfShare = Math.min(totalWeight / (analyzed.length * 3), 0.40);
                     for (const step of analyzed) {
-                        const alloc = baseHrs * (step.effortWeight / totalWeight);
-                        const saved = Math.round(alloc * step.timeSavings);
+                        const alloc = baseHrs * wfShare * (step.effortWeight / totalWeight);
+                        const saved = Math.round(alloc * step.timeSavings * 0.85);
                         step.stepSavings = (teamSize && hourlyCost) ? `~${saved} hrs/mo saved (~$${(saved * hc).toLocaleString()}/mo)`: '';
                         step.riskNote = deriveRiskNote(step, industry);
+                    }
+
+                    /* Dedupe repeated current-state boilerplate across steps that matched the same pattern */
+                    const seenStateTails = new Set();
+                    for (const step of analyzed) {
+                        const cs = step.currentState || '';
+                        const ci = cs.indexOf(':');
+                        const tail = ci > -1 ? cs.slice(ci + 1).trim() : cs;
+                        if (tail.length > 40 && seenStateTails.has(tail)) {
+                            step.currentState = (ci > -1 ? cs.slice(0, ci) : 'This step') + ': handled manually as part of the same cycle described above';
+                        } else {
+                            seenStateTails.add(tail);
+                        }
                     }
 
                     const painAnalysis = analyzePainPoints(painPoints, analyzed);
@@ -8214,10 +8230,14 @@
             /* Benchmark */
             const benchEl = document.getElementById('dBench');
             if (data.benchmark) {
-                const pos = autoShare > data.benchmark.avg ? 'above': autoShare < data.benchmark.avg ? 'below': 'at';
+                const potentialLine = autoShare > data.benchmark.avg
+                    ? `Your assessed automation potential of <strong>${autoShare}%</strong> is above what peers typically automate today, which points to meaningful headroom in this workflow.`
+                    : autoShare < data.benchmark.avg
+                    ? `Your assessed automation potential of <strong>${autoShare}%</strong> sits below what peers typically automate today, which suggests targeted improvements rather than broad automation.`
+                    : `Your assessed automation potential of <strong>${autoShare}%</strong> matches what peers typically automate today.`;
                 benchEl.innerHTML = `<div class="diag-bench-title">Industry Context</div>`
-                    + `<p>Organizations in ${data.industry} typically automate <strong>${data.benchmark.avg}%</strong> of similar workflows, with top-quartile performers reaching <strong>${data.benchmark.top}%</strong>. Your assessed automation share of <strong>${autoShare}%</strong> positions you <strong>${pos}</strong> the industry average.</p>`
-                    + `<p style="margin-top:0.5rem;font-size:0.82rem;color:var(--ink-3)">Common automation areas: ${data.benchmark.areas}. ${data.benchmark.note}. Based on cross-industry automation maturity research from McKinsey, Gartner, Forrester, and Deloitte, 2025\u20132026.</p>`;
+                    + `<p>Organizations in ${data.industry} typically automate <strong>${data.benchmark.avg}%</strong> of similar workflows today, with top quartile performers reaching <strong>${data.benchmark.top}%</strong>. ${potentialLine}</p>`
+                    + `<p style="margin-top:0.5rem;font-size:0.82rem;color:var(--ink-3)">Common automation areas: ${data.benchmark.areas}. ${data.benchmark.note}.</p>`;
                 const department = document.getElementById('dD').value;
                 const insightData = INDUSTRY_DEPT_INSIGHTS[data.industry] && INDUSTRY_DEPT_INSIGHTS[data.industry][department];
                 if (insightData) {
@@ -8248,9 +8268,9 @@
                     return `<div class="diag-roadmap-phase ${cls}"><div class="diag-roadmap-phase-title">${title}<span class="diag-roadmap-time">${timeframe}</span></div>${items.map(it => `<div class="diag-roadmap-item">${arrow}<div>${it.title}</div></div>`).join('')}</div>`;
                 }
                 roadmapEl.innerHTML = `<div class="diag-roadmap-title">Implementation Roadmap</div><div class="diag-roadmap-grid">`
-                    + phaseHTML(data.roadmap.quick, 'Quick Wins', 'quick', '0\u20133 months')
-                    + phaseHTML(data.roadmap.medium, 'Medium-Term', 'medium', '3\u20136 months')
-                    + phaseHTML(data.roadmap.strategic, 'Strategic', 'strategic', '6\u201312 months')
+                    + phaseHTML(data.roadmap.quick, 'Quick Wins', 'quick', '0 to 3 months')
+                    + phaseHTML(data.roadmap.medium, 'Medium-Term', 'medium', '3 to 6 months')
+                    + phaseHTML(data.roadmap.strategic, 'Strategic', 'strategic', '6 to 12 months')
                     + `</div>`;
                 roadmapEl.style.display = '';
                 roadmapEl.classList.remove('anim-in');
@@ -8271,8 +8291,8 @@
                 const fmtD = v => 'CAD $' + v.toLocaleString();
                 roiEl.innerHTML = `<div class="diag-roi-title">ROI Estimation</div>`
                     + `<div class="diag-roi-grid">`
-                    + `<div class="diag-roi-item"><div class="diag-roi-label">Est. Hours Saved/Month</div><div class="diag-roi-vals"><span class="diag-roi-cons">${roi.hoursPerMonth.conservative} hrs</span><span class="diag-roi-sep">\u2013</span><span class="diag-roi-opt">${roi.hoursPerMonth.optimistic} hrs</span></div></div>`
-                    + `<div class="diag-roi-item"><div class="diag-roi-label">Est. Annual Savings</div><div class="diag-roi-vals"><span class="diag-roi-cons">${fmtD(roi.annualSavings.conservative)}</span><span class="diag-roi-sep">\u2013</span><span class="diag-roi-opt">${fmtD(roi.annualSavings.optimistic)}</span></div></div>`
+                    + `<div class="diag-roi-item"><div class="diag-roi-label">Est. Hours Saved/Month</div><div class="diag-roi-vals"><span class="diag-roi-cons">${roi.hoursPerMonth.conservative} hrs</span><span class="diag-roi-sep">to</span><span class="diag-roi-opt">${roi.hoursPerMonth.optimistic} hrs</span></div></div>`
+                    + `<div class="diag-roi-item"><div class="diag-roi-label">Est. Annual Savings</div><div class="diag-roi-vals"><span class="diag-roi-cons">${fmtD(roi.annualSavings.conservative)}</span><span class="diag-roi-sep">to</span><span class="diag-roi-opt">${fmtD(roi.annualSavings.optimistic)}</span></div></div>`
                     + `</div>`
                     + `<div class="diag-roi-note">Based on team of ${roi.teamSize} at $${roi.hourlyCost}/hr. Conservative (50% realization) to optimistic (85% realization).</div>`;
                 roiEl.style.display = '';
@@ -8784,7 +8804,7 @@
                 ]
             },
             svc_transform: {
-                message: "We lead <strong>end-to-end transformation programs</strong> \u2014 from operating model redesign to measurable performance outcomes.<ul><li>Enterprise operating model redesign</li><li>Process re-engineering</li><li>Cross-functional integration</li><li>Performance architecture</li><li>Executive governance design</li></ul>",
+                message: "We lead <strong>end to end transformation programs</strong>: from operating model redesign to measurable performance outcomes.<ul><li>Enterprise operating model redesign</li><li>Process re-engineering</li><li>Cross-functional integration</li><li>Performance architecture</li><li>Executive governance design</li></ul>",
                 options: [
                     { label: "Explore Another Service", next: "services" },
                     { label: "Book a Consultation", next: "book_1" },
@@ -8826,7 +8846,7 @@
 
             /* ── Maturity ── */
             maturity: {
-                message: "Our <strong>Maturity Model</strong> evaluates enterprise operating capability across automation, governance, integration, and performance visibility.<br><br><strong>Level 01 \u2014 Traditional</strong><br>Manual workflows \u2022 Siloed systems \u2022 Limited governance \u2022 Lagging performance reporting<br><br><strong>Level 02 \u2014 Transitional</strong><br>Isolated pilots \u2022 Emerging governance \u2022 Partial automation \u2022 Basic KPI alignment<br><br><strong>Level 03 \u2014 Augmented</strong><br>Cross-functional standardization \u2022 Governed decision forums \u2022 Integrated KPIs \u2022 Automation at scale<br><br><strong>Level 04 \u2014 Intelligent Enterprise</strong><br>Closed-loop performance \u2022 Real-time observability \u2022 Integrated operating model \u2022 Continuous improvement pipeline",
+                message: "Our <strong>Maturity Model</strong> evaluates enterprise operating capability across automation, governance, integration, and performance visibility.<br><br><strong>Level 01: Traditional</strong><br>Manual, email driven work \u2022 Siloed systems \u2022 No formal governance \u2022 No reliable process data<br><br><strong>Level 02: Transitional</strong><br>First automation pilots \u2022 Documented workflows \u2022 Initial governance and RASCI \u2022 Improving data quality<br><br><strong>Level 03: Augmented</strong><br>AI assisting daily work \u2022 Automation in production \u2022 Governed decision forums and audit trails \u2022 KPIs tied to platform data<br><br><strong>Level 04: Intelligent Enterprise</strong><br>Orchestrated human and agent workflows with bounded autonomy \u2022 Process intelligence and live observability \u2022 Closed loop performance \u2022 Continuous improvement",
                 options: [
                     { label: "Run a Diagnostic", next: "diagnostic_scroll" },
                     { label: "Book a Consultation", next: "book_1" },
@@ -8883,7 +8903,7 @@
                 ]
             },
             initiative_result: {
-                message: "Based on your input, this initiative likely begins in <strong>Phase 01: Discovery & Context</strong>, followed by structured governance design.<br><br>Typical timeline: <strong>8\u201316 weeks</strong> for foundational architecture before scale.<br><br>A senior advisor can provide a detailed engagement roadmap tailored to your context.",
+                message: "Based on your input, this initiative likely begins in <strong>Phase 01: Discovery & Context</strong>, followed by structured governance design.<br><br>Typical timeline: <strong>8 to 16 weeks</strong> for foundational architecture before scale.<br><br>A senior advisor can provide a detailed engagement roadmap tailored to your context.",
                 options: [
                     { label: "Book a Consultation", next: "book_1" },
                     { label: "View Case Study", next: "casestudy" },
@@ -8893,7 +8913,7 @@
 
             /* ── Platforms ── */
             platforms: {
-                message: "We modernize and integrate across <strong>enterprise ecosystems</strong>:<br><br><strong>ERP</strong> \u2014 SAP \u2022 Oracle \u2022 NetSuite \u2022 Epicor \u2022 Infor<br><strong>CRM</strong> \u2014 Salesforce \u2022 Microsoft Dynamics<br><strong>Cloud & Data</strong> \u2014 AWS \u2022 Azure \u2022 Google Cloud \u2022 Databricks<br><strong>Automation</strong> \u2014 Workato \u2022 UiPath \u2022 Automation Anywhere \u2022 Atlassian<br><strong>AI & Intelligent Systems</strong> \u2014 OpenAI \u2022 Google Vertex AI \u2022 Anthropic \u2022 Enterprise copilots<br><strong>Security & Governance</strong> \u2014 CrowdStrike \u2022 Palo Alto Networks \u2022 Okta",
+                message: "We modernize and integrate across <strong>enterprise ecosystems</strong>:<br><br><strong>ERP</strong>: SAP \u2022 Oracle \u2022 NetSuite \u2022 Epicor \u2022 Infor<br><strong>CRM</strong>: Salesforce \u2022 Microsoft Dynamics<br><strong>Cloud & Data</strong>: AWS \u2022 Azure \u2022 Google Cloud \u2022 Databricks<br><strong>Automation</strong>: Workato \u2022 UiPath \u2022 Automation Anywhere \u2022 Atlassian<br><strong>AI & Intelligent Systems</strong>: OpenAI \u2022 Google Vertex AI \u2022 Anthropic \u2022 Enterprise copilots<br><strong>Security & Governance</strong>: CrowdStrike \u2022 Palo Alto Networks \u2022 Okta",
                 options: [
                     { label: "Discuss a Specific Platform", next: "initiative_1" },
                     { label: "Book a Consultation", next: "book_1" },
@@ -8938,7 +8958,7 @@
 
             /* ── Pricing ── */
             pricing: {
-                message: "Unlock Solutions operates on <strong>structured transformation engagements</strong>.<br><br><strong>Typical structures:</strong><ul><li>6\u201312 week diagnostic & architecture design</li><li>3\u20136 month implementation phases</li><li>6\u201312 month enterprise-scale programs</li></ul><strong>Engagement types:</strong><ul><li>Fixed-fee discovery</li><li>Milestone-based transformation</li><li>Retained executive advisory</li></ul>",
+                message: "Unlock Solutions operates on <strong>structured transformation engagements</strong>.<br><br><strong>Typical structures:</strong><ul><li>6 to 12 week diagnostic & architecture design</li><li>3 to 6 month implementation phases</li><li>6 to 12 month enterprise scale programs</li></ul><strong>Engagement types:</strong><ul><li>Fixed-fee discovery</li><li>Milestone-based transformation</li><li>Retained executive advisory</li></ul>",
                 options: [
                     { label: "Get a Customized Estimate", next: "book_1" },
                     { label: "View Case Study", next: "casestudy" },
