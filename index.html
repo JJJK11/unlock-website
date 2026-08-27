@@ -8301,11 +8301,21 @@
 
             /* CTA: Lead capture */
             const ctaEl = document.getElementById('dCTA');
+            /* Reuse the details captured at the Get Results step so the visitor never re-enters them */
+            const capturedName = (document.getElementById('dLeadName').value || '').trim();
+            const capturedCompany = (document.getElementById('dLeadCompany').value || '').trim();
+            const capturedEmail = (document.getElementById('dLeadEmail').value || '').trim();
+            const hasCaptured = capturedName && capturedEmail;
             ctaEl.innerHTML = `<div class="diag-cta-title">Want to explore these opportunities further?</div>`
                 + `<p class="diag-cta-sub">Our team can walk you through a deeper analysis of your workflow, discuss implementation priorities, and help you build a business case for automation.</p>`
                 + `<form class="diag-cta-form" id="dCTAForm">`
-                + `<div class="diag-cta-row"><input type="text" name="name" placeholder="Your name" required><input type="text" name="company" placeholder="Company"></div>`
-                + `<input type="email" name="email" placeholder="Work email" required>`
+                + (hasCaptured
+                    ? `<p class="diag-cta-sub" style="margin-bottom:0.25rem">One click and we will follow up at <strong>${esc(capturedEmail)}</strong> with this report as the starting point.</p>`
+                      + `<input type="hidden" name="name" value="${esc(capturedName)}">`
+                      + `<input type="hidden" name="company" value="${esc(capturedCompany)}">`
+                      + `<input type="hidden" name="email" value="${esc(capturedEmail)}">`
+                    : `<div class="diag-cta-row"><input type="text" name="name" placeholder="Your name" required><input type="text" name="company" placeholder="Company"></div>`
+                      + `<input type="email" name="email" placeholder="Work email" required>`)
                 + `<input type="hidden" name="industry" value="${esc(data.industry || '')}">`
                 + `<input type="hidden" name="department" value="${esc(document.getElementById('dD').value || '')}">`
                 + `<input type="hidden" name="readiness_score" value="${data.readiness.overall}/100 (${data.readiness.label})">`
@@ -8318,7 +8328,7 @@
                 + `<input type="hidden" name="medium_term" value="${esc(data.roadmap.medium.map(r => r.title).join('; ') || 'None')}">`
                 + `<input type="hidden" name="strategic" value="${esc(data.roadmap.strategic.map(r => r.title).join('; ') || 'None')}">`
                 + `<input type="hidden" name="recommendations" value="${esc(data.recs.join('; ') || 'None')}">`
-                + ((data.teamSize || data.hourlyCost) ? `<input type="hidden" name="roi_estimate" value="Hours saved: ${data.roi.hoursPerMonth.conservative}-${data.roi.hoursPerMonth.optimistic}/mo | Annual savings: CAD $${data.roi.annualSavings.conservative.toLocaleString()}-$${data.roi.annualSavings.optimistic.toLocaleString()} (team of ${data.roi.teamSize} at $${data.roi.hourlyCost}/hr)">`: '')
+                + ((data.teamSize || data.hourlyCost) ? `<input type="hidden" name="roi_estimate" value="Hours saved: ${data.roi.hoursPerMonth.conservative} to ${data.roi.hoursPerMonth.optimistic}/mo | Annual savings: CAD $${data.roi.annualSavings.conservative.toLocaleString()} to $${data.roi.annualSavings.optimistic.toLocaleString()} (team of ${data.roi.teamSize} at $${data.roi.hourlyCost}/hr)">`: '')
                 + `<input type="hidden" name="executive_summary" value="${esc(data.summary)}">`
                 + `<button type="submit" class="diag-cta-submit">Get in Touch</button>`
                 + `</form>`
@@ -8337,7 +8347,13 @@
                 const payload = {};
                 fd.forEach((v, k) => { payload[k] = v; });
                 payload.source = 'diagnostic_tool';
-                var leadData = { name: payload.name || '', email: payload.email || '', company: payload.company || '', message: 'Diagnostic Tool Result\n\nIndustry: ' + (payload.industry || '') + '\nDepartment: ' + (payload.department || '') + '\nReadiness: ' + (payload.readiness_score || '') + '\nAutomation: ' + (payload.automation_share || '') + '\nSteps: ' + (payload.high_potential_steps || '') + '\nSummary: ' + (payload.executive_summary || ''), interest: 'Diagnostic Tool', brand: 'unlock' };
+                var leadData = { name: payload.name || '', email: payload.email || '', company: payload.company || '', message: 'Diagnostic Tool Result\n\nIndustry: ' + (payload.industry || '') + '\nDepartment: ' + (payload.department || '') + '\nReadiness: ' + (payload.readiness_score || '') + '\nAutomation: ' + (payload.automation_share || '') + '\nSteps: ' + (payload.high_potential_steps || '')
+                    + '\n\nStep detail:\n' + (payload.step_details || '')
+                    + '\n\nPain points: ' + (payload.pain_points || '')
+                    + '\n\nQuick wins: ' + (payload.quick_wins || '') + '\nMedium term: ' + (payload.medium_term || '') + '\nStrategic: ' + (payload.strategic || '')
+                    + '\nRecommendations: ' + (payload.recommendations || '')
+                    + (payload.roi_estimate ? '\n\nROI estimate: ' + payload.roi_estimate : '')
+                    + '\n\nSummary: ' + (payload.executive_summary || ''), interest: 'Diagnostic Tool', brand: 'unlock' };
                 fetch('https://ascio-leads-api.vercel.app/api/lead', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(leadData) }).then(function() {
                     ctaEl.innerHTML = '<div class="diag-cta-title">Thank you!</div><p class="diag-cta-success">We received your information and will be in touch within one business day to discuss your automation opportunities.</p>';
                 }).catch(function() {
