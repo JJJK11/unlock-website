@@ -1780,13 +1780,12 @@
                     <div class="diag-chrome"><div class="diag-dots"><span class="diag-dot"></span><span class="diag-dot"></span><span class="diag-dot"></span></div><div class="diag-title">Process Diagnostic</div></div>
                     <div class="diag-body">
                         <div class="diag-form" id="dF">
-                            <div class="diag-wizard-progress" id="dWizProg" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="6" aria-label="Assessment progress: step 1 of 6">
+                            <div class="diag-wizard-progress" id="dWizProg" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="5" aria-label="Assessment progress: step 1 of 5">
                                 <div class="diag-wiz-seg active" data-step="0"><span class="diag-wiz-dot">1</span><span class="diag-wiz-lbl">Context</span></div>
                                 <div class="diag-wiz-seg" data-step="1"><span class="diag-wiz-dot">2</span><span class="diag-wiz-lbl">Workflow</span></div>
                                 <div class="diag-wiz-seg" data-step="2"><span class="diag-wiz-dot">3</span><span class="diag-wiz-lbl">Review</span></div>
                                 <div class="diag-wiz-seg" data-step="3"><span class="diag-wiz-dot">4</span><span class="diag-wiz-lbl">Pain Points</span></div>
-                                <div class="diag-wiz-seg" data-step="4"><span class="diag-wiz-dot">5</span><span class="diag-wiz-lbl">Details</span></div>
-                                <div class="diag-wiz-seg" data-step="5"><span class="diag-wiz-dot">6</span><span class="diag-wiz-lbl">Get Results</span></div>
+                                <div class="diag-wiz-seg" data-step="4"><span class="diag-wiz-dot">5</span><span class="diag-wiz-lbl">Get Results</span></div>
                             </div>
                             <div class="diag-wizard-step active" data-wstep="0">
                                 <div class="diag-wiz-header"><h3>Tell us about your organization</h3><p>Select your industry and department so we can tailor the analysis with relevant benchmarks and automation patterns for your context.</p></div>
@@ -1822,14 +1821,11 @@
                                     <button type="button" class="diag-pain-tag" aria-pressed="false" onclick="togglePainTag(this)">Customer complaints</button>
                                 </div>
                                 <div class="diag-f"><label for="dX">Additional details (optional)</label><textarea id="dX" rows="3" placeholder="Describe specific frustrations, bottlenecks, or issues not covered above..."></textarea></div>
+                                <p class="diag-wiz-tip">Optional: add team size and average hourly cost and your results include an estimate of hours and dollars saved.</p>
+                                <div class="diag-row"><div class="diag-f"><label for="dTS">Team size (optional)</label><input type="number" id="dTS" placeholder="e.g., 8" min="1" max="500"></div><div class="diag-f"><label for="dHC">Avg. hourly cost in CAD (optional)</label><input type="number" id="dHC" placeholder="e.g., 45" min="10" max="500"></div></div>
                                 <div class="diag-wiz-nav"><button class="btn-wiz-back" onclick="wizBack()"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg> Back</button><button class="btn-wiz-next" onclick="wizNext()">Next <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></button></div>
                             </div>
                             <div class="diag-wizard-step" data-wstep="4">
-                                <div class="diag-wiz-header"><h3>Team and cost details</h3><p>Optional: provide team size and average hourly cost to generate an ROI estimate. Leave blank to skip.</p></div>
-                                <div class="diag-row"><div class="diag-f"><label for="dTS">Team size</label><input type="number" id="dTS" placeholder="e.g., 8" min="1" max="500"></div><div class="diag-f"><label for="dHC">Avg. hourly cost (CAD)</label><input type="number" id="dHC" placeholder="e.g., 45" min="10" max="500"></div></div>
-                                <div class="diag-wiz-nav"><button class="btn-wiz-back" onclick="wizBack()"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg> Back</button><button class="btn-wiz-next" onclick="wizNext()">Next <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></button></div>
-                            </div>
-                            <div class="diag-wizard-step" data-wstep="5">
                                 <div class="diag-wiz-header"><h3>Where should we send your results?</h3><p>Enter your details to receive your full readiness report. We'll also include personalized recommendations based on your workflow analysis.</p></div>
                                 <div class="diag-row"><div class="diag-f"><label for="dLeadName">Name</label><input type="text" id="dLeadName" placeholder="Your name" required></div><div class="diag-f"><label for="dLeadCompany">Company</label><input type="text" id="dLeadCompany" placeholder="Company name"></div></div>
                                 <div class="diag-f"><label for="dLeadEmail">Work email</label><input type="email" id="dLeadEmail" placeholder="you@company.com" required></div>
@@ -7924,7 +7920,7 @@
             const prog = document.getElementById('dWizProg');
             if (prog) {
                 prog.setAttribute('aria-valuenow', step + 1);
-                prog.setAttribute('aria-label', `Assessment progress: step ${step + 1} of 6`);
+                prog.setAttribute('aria-label', `Assessment progress: step ${step + 1} of 5`);
             }
         }
         function wizNext() {
@@ -7943,7 +7939,7 @@
                 const valid = Array.from(inputs).filter(el => el.value.trim().length > 0);
                 if (valid.length === 0) { wizShowErr(document.getElementById('dParsedSteps'), 'At least one step is required'); return; }
             }
-            if (wizardStep < 5) wizSetStep(wizardStep + 1);
+            if (wizardStep < 4) wizSetStep(wizardStep + 1);
         }
         function wizBack() {
             document.querySelectorAll('.diag-wiz-err').forEach(e => e.remove());
